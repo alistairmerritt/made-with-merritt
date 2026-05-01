@@ -88,15 +88,12 @@
         const rect = track.getBoundingClientRect();
         const range = Math.max(1, track.offsetHeight - vh);
         const p = Math.max(0, Math.min(1, -rect.top / range));
-        // Start reveals during curtain phase (hero departing) — ep is a floor
-        // so lines begin fading in as curtainP approaches 1, then p takes over
-        const ep = Math.max(curtainP() * 0.5, p);
 
         lines.forEach(({ el: lineEl, wordSpans }, i) => {
           const segIdx = (mergeLastTwo && i === n - 1) ? nSegs - 1 : i;
           const segStart = (segIdx / nSegs) * 0.85;
           const segEnd = ((segIdx + 1) / nSegs) * 0.85;
-          const segP = Math.max(0, Math.min(1, (ep - segStart) / (segEnd - segStart)));
+          const segP = Math.max(0, Math.min(1, (p - segStart) / (segEnd - segStart)));
           const maxTy = vh * 0.25;
           lineEl.style.transform = `translateY(${(1 - segP) * maxTy}px)`;
           lineEl.style.opacity = Math.min(1, segP * 8).toString();
@@ -131,17 +128,14 @@
     whyLabel.style.transformOrigin = 'left center';
     const updateWhyLabel = () => {
       const vh = window.innerHeight;
-      const rect = whyTrack.getBoundingClientRect();
-      const range = Math.max(1, whyTrack.offsetHeight - vh);
-      const p = Math.max(0, Math.min(1, -rect.top / range));
       const cp = curtainP();
-      const ep = Math.max(cp * 0.5, p);
-      // Shrink from 2× to 1× over line 0's segment — begins during curtain
-      const labelP = Math.min(1, ep / 0.2125);
-      const scale = 2 - labelP;
-      // Drift upward into final position during the curtain phase
-      const ty = (1 - cp) * 40;
-      whyLabel.style.transform = `scale(${scale}) translateY(${ty}px)`;
+      // During curtain: label is low in the white area and scrolls up into
+      // its settled position as the hero departs. After curtain it stays put.
+      // ty: starts ~40% of viewport below natural centre, drifts to 0.
+      // scale: starts at 2×, shrinks to 1× — both driven purely by curtainP.
+      const ty    = (1 - cp) * vh * 0.4;
+      const scale = 1 + (1 - cp);          // 2 → 1 as curtain lifts
+      whyLabel.style.transform = `translateY(${ty}px) scale(${scale})`;
     };
     window.addEventListener('scroll', updateWhyLabel, { passive: true });
     window.addEventListener('resize', updateWhyLabel);
