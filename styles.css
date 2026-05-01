@@ -1130,16 +1130,34 @@ section { position: relative; }
   .nav-links { display: none; }
   .nav-hamburger { display: flex; }
   .hero-actions-wrap { bottom: 40px; }
+  .hero-content-wrap { padding: 0 20px; }
   .hero-headline { font-size: 36px; }
   .h-display { font-size: 32px; }
   .interaction-text .h-display { font-size: 36px; }
-  .interaction, .banks, .ecosystem, .usecases, .start, .footer { padding-left: 20px; padding-right: 20px; }
+  .interaction, .banks, .ecosystem, .usecases, .start, .footer, .hardware { padding-left: 20px; padding-right: 20px; }
+  .interaction { padding-top: 80px; padding-bottom: 80px; }
+  .banks { padding-top: 80px; padding-bottom: 80px; }
+  .ecosystem { padding-top: 80px; padding-bottom: 80px; }
+  .usecases { padding-top: 80px; padding-bottom: 80px; background-attachment: scroll; }
+  .start { padding-top: 80px; padding-bottom: 80px; }
+  .footer { padding-top: 80px; padding-bottom: 40px; }
+  .ha { padding: 80px 20px; }
   .start-grid, .usecases-grid { grid-template-columns: 1fr; }
   .banks-layout { gap: 32px; }
   .banks-strip { flex-wrap: wrap; }
   .bank-pill { flex: 0 0 calc(50% - 5px); }
-  .scroll-zoom-text { left: 20px; right: 20px; bottom: 40px; }
-  .ha { padding: 120px 32px; }
+  .banks-image-wrap { min-height: 260px; }
+  .ecosystem-image-wrap { min-height: 260px; }
+  .why { height: auto; }
+  .why-sticky { position: static; height: auto; padding: 60px 20px; mask-image: none; -webkit-mask-image: none; }
+  .why-inner { padding-top: 40px; }
+  .scroll-zoom { height: auto; }
+  .scroll-zoom-sticky { position: static; height: 60vh; }
+  .scroll-zoom-text { left: 0; right: 0; bottom: 40px; transform: none; padding: 0 20px; }
+  .dial-intro-content { padding: 0 20px; bottom: 48px; }
+  .hardware-scroll-panel { padding: 60px 0; min-height: auto; }
+  .hardware-scroll-panel[data-hw-panel="0"] { padding-top: 60px; }
+  .hardware-img-wrap { height: 300px; }
   .footer-top { margin-bottom: 60px; }
 }
 
@@ -1153,9 +1171,6 @@ section { position: relative; }
 }
 
 /* Intro */
-.mwm-above-fold {
-  /* layout handled by JS — intro is fixed, featured is positioned below */
-}
 .mwm-intro {
   position: fixed;
   top: 0;
@@ -1401,6 +1416,8 @@ section { position: relative; }
 @media (max-width: 640px) {
   .mwm-intro-inner { grid-template-columns: 1fr; gap: 32px; }
   .mwm-intro, .mwm-experiments, .mwm-about, .mwm-footer { padding-left: 20px; padding-right: 20px; }
+  .mwm-experiments { padding-top: 48px; padding-bottom: 60px; }
+  .mwm-about { padding-top: 60px; padding-bottom: 60px; }
   .mwm-grid { grid-template-columns: 1fr; }
   .mwm-about-inner { grid-template-columns: 1fr; gap: 40px; }
   .mwm-about-photo { aspect-ratio: 1; }

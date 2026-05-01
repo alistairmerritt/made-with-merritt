@@ -1,6 +1,7 @@
 /* Pivot — landing page interactions */
 (() => {
   const ACCENT = '#E24D25';
+  const isMobile = window.innerWidth <= 640;
 
   // ─── Hero curtain departure progress (0→1 as hero scrolls away) ───────────
   // naturalDocTop is declared later in this scope and is hoisted (fn declaration)
@@ -88,13 +89,21 @@
         const rect = track.getBoundingClientRect();
         const range = Math.max(1, track.offsetHeight - vh);
         const p = Math.max(0, Math.min(1, -rect.top / range));
+        // Additive curtain offset: line 1 fades in during curtain (cp drives
+        // the first segment), then p picks up immediately after with no dead zone.
+        // At curtainP=1, ep = p + 0.2125, so line 2 starts the moment the
+        // curtain ends rather than after another full segment of scrolling.
+        const ep = Math.min(1, p + curtainP() * 0.2125);
 
         lines.forEach(({ el: lineEl, wordSpans }, i) => {
           const segIdx = (mergeLastTwo && i === n - 1) ? nSegs - 1 : i;
           const segStart = (segIdx / nSegs) * 0.85;
           const segEnd = ((segIdx + 1) / nSegs) * 0.85;
-          const segP = Math.max(0, Math.min(1, (p - segStart) / (segEnd - segStart)));
-          lineEl.style.transform = '';
+          const segP = Math.max(0, Math.min(1, (ep - segStart) / (segEnd - segStart)));
+          // No translateY during curtain — container moves instead, so
+          // lines stay anchored to the label. Full slide-in only post-curtain.
+          const maxTy = p > 0 ? vh * 0.25 : 0;
+          lineEl.style.transform = `translateY(${(1 - segP) * maxTy}px)`;
           lineEl.style.opacity = Math.min(1, segP * 8).toString();
           lineEl.style.filter = `blur(${(1 - Math.min(1, segP / 0.85)) * 6}px)`;
           const fadeP = Math.max(0, Math.min(1, (segP - 0.65) / 0.35));
@@ -115,28 +124,46 @@
       }
     };
 
-    window.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update);
-    update();
+    if (isMobile) {
+      lines.forEach(({ el: lineEl, wordSpans }) => {
+        lineEl.style.opacity = '1';
+        lineEl.style.filter = '';
+        const colour = dark ? 'rgba(255,255,255,1)' : 'rgba(0,0,0,1)';
+        wordSpans.forEach(s => s.style.color = colour);
+      });
+    } else {
+      window.addEventListener('scroll', update, { passive: true });
+      window.addEventListener('resize', update);
+      update();
+    }
   });
 
   // ─── Why Pivot? label scale animation ─────────────────
   const whyTrack = document.querySelector('[data-reveal-track]');
+  const whyInner = document.querySelector('.why-inner');
   const whyLabel = document.querySelector('.why-label');
-  if (whyTrack && whyLabel) {
-    whyLabel.style.transformOrigin = 'left center';
-    const updateWhyLabel = () => {
-      const rect = whyTrack.getBoundingClientRect();
+  if (!isMobile && whyTrack && whyInner) {
+    if (whyLabel) whyLabel.style.transformOrigin = 'left center';
+    const updateWhyBlock = () => {
       const vh = window.innerHeight;
-      const range = Math.max(1, whyTrack.offsetHeight - vh);
-      const p = Math.max(0, Math.min(1, -rect.top / range));
-      const labelP = Math.min(1, p / 0.2125);
-      const scale = 2 - labelP;
-      whyLabel.style.transform = `scale(${scale})`;
+      const cp = curtainP();
+      // Move the entire content block as one unit during the curtain phase.
+      const ty = (1 - cp) * (vh * 0.5 + 149);
+      whyInner.style.transform = `translateY(${ty}px)`;
+      // Scale label down from 1.5× to 1× as line 2 comes in (ep 0.2125→0.425).
+      if (whyLabel) {
+        const rect  = whyTrack.getBoundingClientRect();
+        const range = Math.max(1, whyTrack.offsetHeight - vh);
+        const p     = Math.max(0, Math.min(1, -rect.top / range));
+        const ep    = Math.min(1, p + cp * 0.2125);
+        // Scale 1.5→1 while line 1 reveals (ep 0→0.2125), fully settled by the time line 2 starts.
+        const shrinkP = Math.max(0, Math.min(1, ep / 0.2125));
+        whyLabel.style.transform = `scale(${1.5 - shrinkP * 0.5})`;
+      }
     };
-    window.addEventListener('scroll', updateWhyLabel, { passive: true });
-    window.addEventListener('resize', updateWhyLabel);
-    updateWhyLabel();
+    window.addEventListener('scroll', updateWhyBlock, { passive: true });
+    window.addEventListener('resize', updateWhyBlock);
+    updateWhyBlock();
   }
 
   // ─── Dial-intro black reveal on scroll ─────────────────
@@ -144,20 +171,28 @@
   const dialIntroReveal  = document.getElementById('dial-intro-reveal');
   const dialIntroContent = dialIntroEl && dialIntroEl.querySelector('.dial-intro-content');
   if (dialIntroEl && dialIntroReveal) {
-    const updateDialReveal = () => {
-      const rect = dialIntroEl.getBoundingClientRect();
-      const vh   = window.innerHeight;
-      // p: 0 when section top hits viewport bottom, 1 when section fills viewport
-      const p = Math.max(0, Math.min(1, (vh - rect.top) / vh));
-      dialIntroReveal.style.opacity = (1 - p).toString();
+    if (isMobile) {
+      dialIntroReveal.style.opacity = '0';
       if (dialIntroContent) {
-        dialIntroContent.style.opacity   = p.toString();
-        dialIntroContent.style.transform = `translateY(${(1 - p) * 36}px)`;
+        dialIntroContent.style.opacity = '1';
+        dialIntroContent.style.transform = 'none';
       }
-    };
-    window.addEventListener('scroll', updateDialReveal, { passive: true });
-    window.addEventListener('resize', updateDialReveal);
-    updateDialReveal();
+    } else {
+      const updateDialReveal = () => {
+        const rect = dialIntroEl.getBoundingClientRect();
+        const vh   = window.innerHeight;
+        // p: 0 when section top hits viewport bottom, 1 when section fills viewport
+        const p = Math.max(0, Math.min(1, (vh - rect.top) / vh));
+        dialIntroReveal.style.opacity = (1 - p).toString();
+        if (dialIntroContent) {
+          dialIntroContent.style.opacity   = p.toString();
+          dialIntroContent.style.transform = `translateY(${(1 - p) * 36}px)`;
+        }
+      };
+      window.addEventListener('scroll', updateDialReveal, { passive: true });
+      window.addEventListener('resize', updateDialReveal);
+      updateDialReveal();
+    }
   }
 
   // ─── Curtain reveal helper ─────────────────────────────────────────
@@ -199,15 +234,17 @@
     update();
   }
 
-  // Hero → Why+Interaction curtain (.why-sticky needs the sticky fix)
-  makeCurtain(
-    document.getElementById('hero'),
-    document.getElementById('why-stack'),
-    { stickyFix: '.why-sticky' }
-  );
+  if (!isMobile) {
+    // Hero → Why+Interaction curtain (.why-sticky needs the sticky fix)
+    makeCurtain(
+      document.getElementById('hero'),
+      document.getElementById('why-stack'),
+      { stickyFix: '.why-sticky' }
+    );
 
-  // Dial-intro → Hardware curtain (no sticky children inside)
-  makeCurtain(dialIntroEl, document.getElementById('hardware-stack'));
+    // Dial-intro → Hardware curtain (no sticky children inside)
+    makeCurtain(dialIntroEl, document.getElementById('hardware-stack'));
+  }
 
   // ─── Scroll zoom on dark hero break ────────────────────
   const zoomSection = document.getElementById('scroll-zoom');
