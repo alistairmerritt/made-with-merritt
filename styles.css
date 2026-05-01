@@ -385,7 +385,7 @@ section { position: relative; }
 .hero-actions { display: flex; gap: 12px; align-items: center; }
 
 /* ─── Why ────────────────────────────────────────────── */
-.why { background: #fff; height: 300vh; }
+.why { background: #fff; height: 240vh; }
 .why-label { color: var(--accent); margin-bottom: 28px; }
 .why-sticky {
   position: sticky;

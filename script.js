@@ -103,6 +103,7 @@
           // No translateY during curtain — container moves instead, so
           // lines stay anchored to the label. Full slide-in only post-curtain.
           const maxTy = p > 0 ? vh * 0.25 : 0;
+          if (i === 0 && segP < 1) console.log(`[reveal] scrollY=${window.scrollY.toFixed(1)} p=${p.toFixed(4)} cp=${curtainP().toFixed(4)} ep=${ep.toFixed(4)} segP=${segP.toFixed(4)} maxTy=${maxTy.toFixed(0)} ty=${((1-segP)*maxTy).toFixed(1)} blur=${((1-Math.min(1,segP/0.85))*6).toFixed(2)}`);
           lineEl.style.transform = `translateY(${(1 - segP) * maxTy}px)`;
           lineEl.style.opacity = Math.min(1, segP * 8).toString();
           lineEl.style.filter = `blur(${(1 - Math.min(1, segP / 0.85)) * 6}px)`;
