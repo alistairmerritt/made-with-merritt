@@ -2,6 +2,16 @@
 (() => {
   const ACCENT = '#E24D25';
 
+  // ─── Hero curtain departure progress (0→1 as hero scrolls away) ───────────
+  // naturalDocTop is declared later in this scope and is hoisted (fn declaration)
+  const heroEl = document.getElementById('hero');
+  const curtainP = () => {
+    if (!heroEl || !heroEl.offsetHeight) return 0;
+    const heroTop = naturalDocTop(heroEl);
+    const heroH   = heroEl.offsetHeight;
+    return Math.max(0, Math.min(1, (window.scrollY - heroTop) / heroH));
+  };
+
   // ─── Nav scroll state ──────────────────────────────────
   const nav        = document.getElementById('nav');
   const mobileMenu = document.getElementById('nav-mobile-menu');
@@ -78,12 +88,15 @@
         const rect = track.getBoundingClientRect();
         const range = Math.max(1, track.offsetHeight - vh);
         const p = Math.max(0, Math.min(1, -rect.top / range));
+        // Start reveals during curtain phase (hero departing) — ep is a floor
+        // so lines begin fading in as curtainP approaches 1, then p takes over
+        const ep = Math.max(curtainP() * 0.5, p);
 
         lines.forEach(({ el: lineEl, wordSpans }, i) => {
           const segIdx = (mergeLastTwo && i === n - 1) ? nSegs - 1 : i;
           const segStart = (segIdx / nSegs) * 0.85;
           const segEnd = ((segIdx + 1) / nSegs) * 0.85;
-          const segP = Math.max(0, Math.min(1, (p - segStart) / (segEnd - segStart)));
+          const segP = Math.max(0, Math.min(1, (ep - segStart) / (segEnd - segStart)));
           const maxTy = vh * 0.25;
           lineEl.style.transform = `translateY(${(1 - segP) * maxTy}px)`;
           lineEl.style.opacity = Math.min(1, segP * 8).toString();
@@ -121,10 +134,14 @@
       const rect = whyTrack.getBoundingClientRect();
       const range = Math.max(1, whyTrack.offsetHeight - vh);
       const p = Math.max(0, Math.min(1, -rect.top / range));
-      // Shrink from 2× to 1× over line 0's segment (p = 0 → 0.2125)
-      const labelP = Math.min(1, p / 0.2125);
+      const cp = curtainP();
+      const ep = Math.max(cp * 0.5, p);
+      // Shrink from 2× to 1× over line 0's segment — begins during curtain
+      const labelP = Math.min(1, ep / 0.2125);
       const scale = 2 - labelP;
-      whyLabel.style.transform = `scale(${scale})`;
+      // Drift upward into final position during the curtain phase
+      const ty = (1 - cp) * 40;
+      whyLabel.style.transform = `scale(${scale}) translateY(${ty}px)`;
     };
     window.addEventListener('scroll', updateWhyLabel, { passive: true });
     window.addEventListener('resize', updateWhyLabel);
@@ -290,10 +307,10 @@
 
   // ─── Banks ─────────────────────────────────────────────
   const banks = [
-    { name: 'HomePod',   label: '70%',     color: '#006AFF', bg: '#EDF3FF', image: 'assets/bank-1.png', value: 0.70 },
-    { name: 'Lamp',  label: '60%', color: '#E24D25', bg: '#FDF1EE', image: 'assets/bank-2.png', value: 0.60 },
-    { name: 'Thermostat', label: '30°',    color: '#3DBA6A', bg: '#EFF9F3', image: 'assets/bank-3.png', value: 1.0 },
-    { name: 'Timer',   label: '15m',  color: '#B46FE8', bg: '#F5EEF9', image: 'assets/bank-4.png', value: 0.55 },
+    { name: 'HomePod',   label: '70%',     color: '#006AFF', bg: '#EDF3FF', image: '/assets/bank-1.png', value: 0.70 },
+    { name: 'Lamp',  label: '60%', color: '#E24D25', bg: '#FDF1EE', image: '/assets/bank-2.png', value: 0.60 },
+    { name: 'Thermostat', label: '30°',    color: '#3DBA6A', bg: '#EFF9F3', image: '/assets/bank-3.png', value: 1.0 },
+    { name: 'Timer',   label: '15m',  color: '#B46FE8', bg: '#F5EEF9', image: '/assets/bank-4.png', value: 0.55 },
   ];
   const banksStrip = document.getElementById('banks-strip');
   banksStrip.innerHTML = banks.map((b, i) => `
@@ -373,15 +390,15 @@
 
   // ─── Ecosystem accordion ───────────────────────────────
   const ecosystemItems = [
-    { label: 'Firmware',    subtitle: 'for richer on-device control',                         desc: 'Pivot firmware expands what the Home Assistant Voice Preview Edition (VPE) can do on-device, adding colour-coded banks, tactile knob interaction, LED feedback, and event firing into Home Assistant. It\'s built on ESPHome, using the original Nabu Casa firmware as its foundation.', hoverImage: 'assets/firmware-hover.png',      clickImage: 'assets/firmware-accordian.png'    },
-    { label: 'Integration', subtitle: 'for easy setup and configuration in Home Assistant',   desc: 'The Pivot integration bridges Pivot firmware and Home Assistant, connecting each bank to the entities, scenes and scripts already in your setup. It also provides the configuration layer for feedback, colours, display behaviour and device preferences.',              hoverImage: 'assets/integration-hover.png',   clickImage: 'assets/integration-accordian.png' },
-    { label: 'Dashboard',   subtitle: 'for visual feedback and UI support',                   desc: 'The dashboard adds an optional visual layer to Pivot, offering clearer feedback and UI support for those who want the physical and digital parts of the system to feel more connected.',  hoverImage: 'assets/dashboard-hover.png',     clickImage: 'assets/dashboard-accordian.png'   },
-    { label: 'Hardware',    subtitle: 'for a more functional physical form',                  desc: 'Pivot hardware rethinks the physical form of the VPE, creating a more tactile, more functional, and more intentional object for the home.',                                              hoverImage: 'assets/hardware-hover.png',      clickImage: 'assets/hardware-accordian.png'    },
+    { label: 'Firmware',    subtitle: 'for richer on-device control',                         desc: 'Pivot firmware expands what the Home Assistant Voice Preview Edition (VPE) can do on-device, adding colour-coded banks, tactile knob interaction, LED feedback, and event firing into Home Assistant. It\'s built on ESPHome, using the original Nabu Casa firmware as its foundation.', hoverImage: '/assets/firmware-hover.png',      clickImage: '/assets/firmware-accordian.png'    },
+    { label: 'Integration', subtitle: 'for easy setup and configuration in Home Assistant',   desc: 'The Pivot integration bridges Pivot firmware and Home Assistant, connecting each bank to the entities, scenes and scripts already in your setup. It also provides the configuration layer for feedback, colours, display behaviour and device preferences.',              hoverImage: '/assets/integration-hover.png',   clickImage: '/assets/integration-accordian.png' },
+    { label: 'Dashboard',   subtitle: 'for visual feedback and UI support',                   desc: 'The dashboard adds an optional visual layer to Pivot, offering clearer feedback and UI support for those who want the physical and digital parts of the system to feel more connected.',  hoverImage: '/assets/dashboard-hover.png',     clickImage: '/assets/dashboard-accordian.png'   },
+    { label: 'Hardware',    subtitle: 'for a more functional physical form',                  desc: 'Pivot hardware rethinks the physical form of the VPE, creating a more tactile, more functional, and more intentional object for the home.',                                              hoverImage: '/assets/hardware-hover.png',      clickImage: '/assets/hardware-accordian.png'    },
   ];
-  const ECO_DEFAULT_IMAGE = 'assets/default-accordian.png';
+  const ECO_DEFAULT_IMAGE = '/assets/default-accordian.png';
   const ECO_DISCLAIMERS = {
-    'assets/integration-accordian.png': 'For illustrative purposes only.',
-    'assets/dashboard-accordian.png':   'Actual dashboard shown.',
+    '/assets/integration-accordian.png': 'For illustrative purposes only.',
+    '/assets/dashboard-accordian.png':   'Actual dashboard shown.',
   };
   const accordionEl = document.getElementById('ecosystem-accordion');
   const imgA = document.getElementById('eco-img-a');
@@ -473,27 +490,27 @@
   // ─── Hardware cards + sticky scroll ────────────────────
   const hwData = [
     {
-      defaultImg: 'assets/pivot-dial-fold-1.png',
+      defaultImg: '/assets/pivot-dial-fold-1.png',
       cards: [
-        { label: 'Dial',              note: 'Combines the dial and button into one tactile control. <br> Turn to adjust, press to select.',                                 img: 'assets/dial.png'              },
-        { label: 'Diffused LED ring', note: '12-segment feedback channels hidden beneath the printed surface for a cleaner face.',                                          img: 'assets/diffused-led-ring.png' },
-        { label: 'Mount',             note: 'Desk, shelf, bench or wall mount options, with the upright desk mount helping conceal the cable.* <br><span class="hw-card-footnote">*Right-angle USBC adapter required</span>',  img: 'assets/mount.png'             },
+        { label: 'Dial',              note: 'Combines the dial and button into one tactile control. <br> Turn to adjust, press to select.',                                 img: '/assets/dial.png'              },
+        { label: 'Diffused LED ring', note: '12-segment feedback channels hidden beneath the printed surface for a cleaner face.',                                          img: '/assets/diffused-led-ring.png' },
+        { label: 'Mount',             note: 'Desk, shelf, bench or wall mount options, with the upright desk mount helping conceal the cable.* <br><span class="hw-card-footnote">*Right-angle USBC adapter required</span>',  img: '/assets/mount.png'             },
       ]
     },
     {
-      defaultImg: 'assets/pivot-dial-fold-2.png',
+      defaultImg: '/assets/pivot-dial-fold-2.png',
       cards: [
-        { label: 'Upright desk mount', note: 'An angled form that brings the dial forward and helps conceal the cable behind the body.',                            img: 'assets/upright-desk-mount.png' },
-        { label: 'Low-profile mount',  note: 'A shorter body and mount combo for desks or walls where a flatter, more minimal footprint might make sense.',         img: 'assets/low-profile-mount.png'  },
-        { label: 'Wall mount',         note: 'A flat mounting option for vertical placement, designed to work with the shorter body.',  img: 'assets/wall-mount.png'         },
+        { label: 'Upright desk mount', note: 'An angled form that brings the dial forward and helps conceal the cable behind the body.',                            img: '/assets/upright-desk-mount.png' },
+        { label: 'Low-profile mount',  note: 'A shorter body and mount combo for desks or walls where a flatter, more minimal footprint might make sense.',         img: '/assets/low-profile-mount.png'  },
+        { label: 'Wall mount',         note: 'A flat mounting option for vertical placement, designed to work with the shorter body.',  img: '/assets/wall-mount.png'         },
       ]
     },
     {
-      defaultImg: 'assets/pivot-dial-fold-3.png',
+      defaultImg: '/assets/pivot-dial-fold-3.png',
       cards: [
-        { label: 'Body',   note: 'Choose the body style that suits how and where Pivot Dial will be used.',                                                         img: 'assets/body.png'   },
-        { label: 'Colour', note: 'Explore subtle or contrasting combinations across the enclosure, dial and mount.',                                         img: 'assets/colour.png' },
-        { label: 'Remix', note: 'Edit the STL files to refine details, adjust the form or adapt Pivot Dial to your setup.',                       img: 'assets/modify.png' },
+        { label: 'Body',   note: 'Choose the body style that suits how and where Pivot Dial will be used.',                                                         img: '/assets/body.png'   },
+        { label: 'Colour', note: 'Explore subtle or contrasting combinations across the enclosure, dial and mount.',                                         img: '/assets/colour.png' },
+        { label: 'Remix', note: 'Edit the STL files to refine details, adjust the form or adapt Pivot Dial to your setup.',                       img: '/assets/modify.png' },
       ]
     },
   ];
