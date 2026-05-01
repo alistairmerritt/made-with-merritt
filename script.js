@@ -81,8 +81,8 @@
 
         lines.forEach(({ el: lineEl, wordSpans }, i) => {
           const segIdx = (mergeLastTwo && i === n - 1) ? nSegs - 1 : i;
-          const segStart = (segIdx / nSegs) * 0.85;
-          const segEnd = ((segIdx + 1) / nSegs) * 0.85;
+          const segStart = 0.05 + (segIdx / nSegs) * 0.50;
+          const segEnd   = 0.05 + ((segIdx + 1) / nSegs) * 0.50;
           const segP = Math.max(0, Math.min(1, (p - segStart) / (segEnd - segStart)));
           const maxTy = vh * 0.25;
           lineEl.style.transform = `translateY(${(1 - segP) * maxTy}px)`;
@@ -121,10 +121,13 @@
       const rect = whyTrack.getBoundingClientRect();
       const range = Math.max(1, whyTrack.offsetHeight - vh);
       const p = Math.max(0, Math.min(1, -rect.top / range));
-      // Shrink from 2× to 1× over line 0's segment (p = 0 → 0.2125)
+      // Shrink from 2× to 1× over first segment
       const labelP = Math.min(1, p / 0.2125);
       const scale = 2 - labelP;
-      whyLabel.style.transform = `scale(${scale})`;
+      // Follow curtain upward then stop at p = 0.25
+      const followP = Math.min(1, p / 0.25);
+      const ty = (1 - followP) * vh * 0.25;
+      whyLabel.style.transform = `translateY(${ty}px) scale(${scale})`;
     };
     window.addEventListener('scroll', updateWhyLabel, { passive: true });
     window.addEventListener('resize', updateWhyLabel);
