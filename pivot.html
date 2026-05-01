@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pivot – Voice control you can touch</title>
+  <meta name="description" content="Pivot transforms the Home Assistant Voice Preview Edition into a tactile control dial – for lights, media, climate, timers, scenes and more.">
+  <link rel="icon" type="image/svg+xml" href="assets/pivot-logo-01.svg">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- ─── Topbar ───────────────────────────────────────── -->
+  <div class="topbar" id="topbar">
+    <span class="topbar-left">A <a href="index.html" class="topbar-left-link">Made with Merritt</a> Project</span>
+    <div class="topbar-links">
+      <a href="index.html" class="topbar-link">Home</a>
+      <a href="index.html#about" class="topbar-link">About</a>
+      <a href="#" class="topbar-link" data-contact>Contact</a>
+    </div>
+  </div>
+
+  <div class="page">
+    <!-- ─── Nav ─────────────────────────────────────────── -->
+    <nav class="nav" id="nav">
+      <a href="#hero" class="nav-brand">
+        <img src="assets/pivot.svg" alt="Pivot" class="nav-wordmark" height="36">
+      </a>
+      <div class="nav-links">
+        <a href="#interaction">How it works</a>
+        <a href="#ecosystem">Ecosystem</a>
+        <a href="#dial-intro">Hardware</a>
+        <a href="https://alistairmerritt.github.io/pivot/" target="_blank" rel="noopener">Docs <svg class="ext-arrow" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.5 8.5L8.5 1.5M8.5 1.5H3.5M8.5 1.5V6.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="#start" class="nav-cta btn-primary">Get started</a>
+      </div>
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+    <div class="nav-mobile-overlay" id="nav-mobile-overlay"></div>
+    <div class="nav-mobile-menu" id="nav-mobile-menu">
+      <a href="#interaction">How it works</a>
+      <a href="#ecosystem">Ecosystem</a>
+      <a href="#dial-intro">Hardware</a>
+      <a href="https://alistairmerritt.github.io/pivot/" target="_blank" rel="noopener">Docs <svg class="ext-arrow" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.5 8.5L8.5 1.5M8.5 1.5H3.5M8.5 1.5V6.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a href="#start" class="nav-mobile-cta">Get started</a>
+    </div>
+
+    <!-- ─── Hero ────────────────────────────────────────── -->
+    <section id="hero" class="hero">
+      <div class="hero-bg" id="hero-bg"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <div class="hero-content-wrap">
+          <div class="hero-inner">
+            <span class="badge" id="hero-badge">For Home Assistant Voice Preview Edition</span>
+            <h1 class="hero-headline" id="hero-headline">Voice control you can touch.</h1>
+            <p class="hero-sub">Pivot transforms the Home Assistant Voice Preview Edition (VPE) into a tactile control dial – for lights, media, climate, timers, scenes and more. Use it with your existing VPE, or build a more refined version with <a href="#hardware" class="hero-sub-link">Pivot Dial</a>.</p>
+          </div>
+        </div>
+        <div class="hero-actions-wrap">
+          <div class="hero-content-wrap">
+            <div class="hero-actions">
+              <a href="#interaction" class="btn-primary">See how it works</a>
+              <a href="https://alistairmerritt.github.io/pivot/" target="_blank" rel="noopener" class="btn-accent">Read the docs <svg class="ext-arrow" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.5 8.5L8.5 1.5M8.5 1.5H3.5M8.5 1.5V6.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Why + Interaction ──────────────────────────── -->
+    <div class="stack" id="why-stack" style="z-index:2">
+      <section id="why" class="why" data-reveal-track>
+        <div class="why-sticky">
+          <div class="why-inner">
+            <div class="section-label why-label">Why Pivot?</div>
+            <p class="reveal-text" data-reveal>Not every control needs a screen.<br>Not every command needs a conversation.<br>Pivot exists to give the Home Assistant Voice<br class="visual"> a more purposeful place in the home.<br>Something you can reach for, speak to,<br class="visual">and understand at a glance.</p>
+            
+          </div>
+        </div>
+      </section>
+
+      <section id="interaction" class="interaction">
+        <div class="container">
+          <div class="section-label section-label-dark">Core interaction</div>
+          <div class="interaction-grid">
+            <div class="interaction-text">
+              <h2 class="h-display h-display-light">Turn. Press. <span class="accent">Know.</span></h2>
+              <div class="steps" id="interaction-steps">
+                <div class="step" data-step="0">
+                  <span class="step-num">01</span>
+                  <div>
+                    <div class="step-label">Turn</div>
+                    <div class="step-desc">Rotate the dial to adjust. Brightness, volume, temperature – whatever your bank controls.</div>
+                  </div>
+                </div>
+                <div class="divider divider-dark"></div>
+                <div class="step" data-step="1">
+                  <span class="step-num">02</span>
+                  <div>
+                    <div class="step-label">Press</div>
+                    <div class="step-desc">A short press toggles or activates. A long press wakes the voice assistant.</div>
+                  </div>
+                </div>
+                <div class="divider divider-dark"></div>
+                <div class="step" data-step="2">
+                  <span class="step-num">03</span>
+                  <div>
+                    <div class="step-label">Know</div>
+                    <div class="step-desc">The LED ring shows state at a glance – colour-coded by mode, lit by value.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="interaction-dial">
+              <div class="dial-wrap">
+                <svg id="dial-ring" width="300" height="300" viewBox="0 0 300 300" aria-hidden="true"></svg>
+                <div class="dial-readout">
+                  <div class="dial-readout-label">Lights</div>
+                  <div class="dial-readout-value" id="dial-value">65%</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+
+    <!-- ─── Banks + Ecosystem ──────────────────────────── -->
+    <div class="stack" style="z-index:3">
+      <section id="banks" class="banks">
+        <div class="container">
+          <div class="banks-layout">
+            <div class="banks-text">
+              <div class="section-label">Colour-coded banks</div>
+              <h2 class="h-display">One dial.<br>Four assignable banks.</h2>
+              <p class="lead">Pivot provides four assignable banks, each linked to an entity, scene or script in Home Assistant. Hold and turn the dial to move between banks – the LED ring shows which bank is active, along with the current value.</p>
+            </div>
+            <div class="banks-image-wrap">
+              <div class="banks-img-layer" id="bank-img-a"></div>
+              <div class="banks-img-layer" id="bank-img-b"></div>
+            </div>
+            <div class="banks-strip" id="banks-strip"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="ecosystem" class="ecosystem">
+        <div class="container">
+          <div class="section-label section-label-dark">The Pivot ecosystem</div>
+          <div class="ecosystem-body">
+            <div class="ecosystem-image-wrap">
+              <div class="ecosystem-image-layer" id="eco-img-a"></div>
+              <div class="ecosystem-image-layer" id="eco-img-b"></div>
+              <div class="eco-disclaimer" id="eco-disclaimer">For illustrative purposes only.</div>
+            </div>
+            <div class="ecosystem-right">
+              <p class="ecosystem-lead">The Pivot ecosystem is made up of four parts, each designed to complement one another.</p>
+              <p class="ecosystem-lead">Start with the Pivot Dial as a refined enclosure for your VPE, install the firmware and integration for custom control, or bring them together for the full Pivot experience.</p>
+              <div class="ecosystem-accordion" id="ecosystem-accordion"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ─── Dial intro ───────────────────────────────────── -->
+    <div class="stack" style="z-index:5;">
+      <section class="dial-intro" id="dial-intro">
+        <div class="dial-intro-reveal" id="dial-intro-reveal"></div>
+        <div class="dial-intro-overlay"></div>
+        <div class="dial-intro-content">
+          <div class="dial-intro-inner">
+            <div class="section-label section-label-dark">Pivot Hardware</div>
+            <h2 class="dial-intro-heading">Meet the Pivot Dial.</h2>
+            <p class="dial-intro-sub">A tactile enclosure for the Home Assistant Voice Preview Edition. Designed around touch, feedback and everyday placement.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ─── Hardware + Use cases + HA ───────────────────── -->
+    <div class="stack" id="hardware-stack" style="z-index:4;">
+      <section id="hardware" class="hardware">
+        <div class="hardware-scroll">
+
+          <div class="hardware-scroll-text">
+            <div class="hardware-scroll-panel" data-hw-panel="0">
+              <div class="section-label">Tactile control</div>
+              <h2 class="h-display">The VPE enclosure,<br> reimagined.</h2>
+              <p class="body-copy">Pivot Dial reshapes the Home Assistant Voice Preview Edition around the way it’s used within the Pivot ecosystem – with the dial brought forward for tactile control, the LED ring more clearly defined for glanceable feedback, and the overall form designed to sit naturally in the home.</p>
+              <p class="body-copy body-copy-spacer"Rather than feeling like a device to tuck away, it becomes a more deliberate control object: something you can reach for, read at a glance, and leave out in the open.</p>
+              <div class="hw-cards" id="hw-cards-0"></div>
+            </div>
+
+            <div class="hardware-scroll-panel" data-hw-panel="1">
+              <div class="section-label">Placement and orientation</div>
+              <h2 class="h-display">A better position <br> for everyday control.</h2>
+              <p class="body-copy">Pivot Dial is designed around two body styles and a set of mount options, so the VPE can sit where it makes the most sense for your space.</p>
+              <p class="body-copy">Choose the upright body for a more visible, angled control point with cleaner cable concealment, or the shortened body for lower-profile desk or wall placement. Depending on your room and setup, changing the orientation may also help the microphones hear you more effectively.</p>
+              <p class="body-copy body-copy-spacer">The firmware lets you set the LED orientation to match the body and mount, so the light ring displays the right way up in any position.</p>
+              <div class="hw-cards" id="hw-cards-1"></div>
+            </div>
+
+            <div class="hardware-scroll-panel" data-hw-panel="2">
+              <div class="section-label">Customisable</div>
+              <h2 class="h-display">Printed your way.</h2>
+              <p class="body-copy">Pivot Dial is made to be 3D printed, giving you more control over how the hardware looks, sits and feels in your space.</p>
+              <p class="body-copy">Keep it quiet and minimal, give the dial a stronger presence, or choose a mount and body style that better suits the room. Small choices in colour, material and placement can change the character of the device without changing how it works.</p>
+              <p class="body-copy body-copy-spacer">Because the files can be modified, Pivot Dial can keep evolving, whether you want to refine a detail, adjust the form, or adapt it to your own setup.</p>
+              <div class="hw-cards" id="hw-cards-2"></div>
+              <div class="hardware-cta">
+                <a href="#start" class="btn-primary">Buy Now <svg class="ext-arrow" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.5 8.5L8.5 1.5M8.5 1.5H3.5M8.5 1.5V6.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                <a href="#" class="btn-outline">Assembly Guide <svg class="ext-arrow" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.5 8.5L8.5 1.5M8.5 1.5H3.5M8.5 1.5V6.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="hardware-scroll-img">
+            <div class="hardware-img-wrap">
+              <div class="hardware-img-layer" id="hw-img-a"></div>
+              <div class="hardware-img-layer" id="hw-img-b"></div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <section id="usecases" class="usecases">
+        <div class="container">
+          <div class="section-label">PIVOT USE CASES</div>
+          <div class="usecases-intro">
+            <h2 class="h-display">Quick control for<br>everyday moments.</h2>
+          </div>
+          <div class="usecases-grid" id="usecases-grid"></div>
+        </div>
+      </section>
+
+      <section id="docs" class="ha">
+        <div class="ha-centered">
+          <div class="section-label section-label-dark">Transparent by design</div>
+          <h2 class="h-display h-display-light">Know what you're installing.</h2>
+          <p class="body-copy body-copy-dark">Pivot is built for people who care how their smart home works. It's local-first, ESPHome-based, openly documented, and designed to keep the existing Voice Preview Edition functionality intact.</p>
+          <p class="body-copy body-copy-dark">The firmware builds on the official Home Assistant Voice Preview Edition ESPHome configuration, while the integration and dashboard remain separate layers you can inspect, modify, remove or roll back if needed.</p>
+          <div class="proof-list" id="proof-list"></div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ─── Start + Footer ────────────────────────────── -->
+    <div class="stack" style="z-index:6">
+      <section id="start" class="start">
+        <div class="container">
+          <div class="section-label">Getting started</div>
+          <h2 class="h-display start-heading">Choose your<br>level of Pivot.</h2>
+          <div class="start-grid" id="start-grid"></div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="container">
+          <div class="footer-top">
+            <p class="footer-headline">For the moments touch makes <br> more sense than talk.</p>
+            <div class="footer-actions">
+              <a href="https://alistairmerritt.github.io/pivot/getting-started/" target="_blank" rel="noopener" class="btn-primary">Get started <svg class="ext-arrow" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.5 8.5L8.5 1.5M8.5 1.5H3.5M8.5 1.5V6.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            </div>
+          </div>
+          <div class="divider divider-dark"></div>
+          <p class="footer-story">Pivot begun as a personal attempt to make the Home Assistant Voice Preview Edition more useful day to day. As its potential expanded, it's grown into a small ecosystem for those who still value touch and feel as well as voice.</p>
+          <a href="#" class="footer-build-link">Watch the build story. <svg class="ext-arrow" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.5 8.5L8.5 1.5M8.5 1.5H3.5M8.5 1.5V6.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <div class="footer-bottom">
+            <div class="footer-credit-group">
+              <a href="index.html" class="footer-credit footer-credit-link">By Made with Merritt</a>
+              <span class="footer-credit-pipe">|</span>
+              <a href="#" class="footer-credit footer-credit-link" data-contact>Get in touch</a>
+            </div>
+            <div class="footer-links">
+              <a href="https://alistairmerritt.github.io/pivot/" target="_blank" rel="noopener">Docs</a>
+              <a href="https://github.com/alistairmerritt/pivot-integration" target="_blank" rel="noopener">GitHub</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- ─── Contact Modal ──────────────────────────── -->
+  <div class="contact-overlay" id="contact-overlay">
+    <div class="contact-modal">
+      <button class="contact-close" id="contact-close" aria-label="Close">✕</button>
+      <p class="contact-modal-heading">Let's chat</p>
+      <p class="contact-modal-desc">Whether it's a project, a question about Pivot, or something still taking shape, I'd love to hear from you.</p>
+      <form class="contact-form" id="contact-form">
+        <div class="contact-field">
+          <input type="text" name="name" placeholder="Name" required>
+        </div>
+        <div class="contact-field">
+          <input type="email" name="email" placeholder="Email" required>
+        </div>
+        <div class="contact-field">
+          <textarea name="message" placeholder="Message" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="contact-submit">Send message</button>
+      </form>
+      <p class="contact-success" id="contact-success">Thanks for getting in touch – I'll get back to you soon.</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
