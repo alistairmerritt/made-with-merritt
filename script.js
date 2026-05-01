@@ -100,9 +100,10 @@
           const segStart = (segIdx / nSegs) * 0.85;
           const segEnd = ((segIdx + 1) / nSegs) * 0.85;
           const segP = Math.max(0, Math.min(1, (ep - segStart) / (segEnd - segStart)));
-          // No translateY during curtain — container moves instead, so
-          // lines stay anchored to the label. Full slide-in only post-curtain.
-          const maxTy = p > 0 ? vh * 0.25 : 0;
+          // Ramp maxTy in smoothly over first 3% of p to avoid a snap when
+          // scrolling back up into the curtain zone (where ep can be non-zero
+          // from curtainP while p = 0, making the jump visible).
+          const maxTy = Math.min(p / 0.03, 1) * vh * 0.25;
           lineEl.style.transform = `translateY(${(1 - segP) * maxTy}px)`;
           lineEl.style.opacity = Math.min(1, segP * 8).toString();
           lineEl.style.filter = `blur(${(1 - Math.min(1, segP / 0.85)) * 6}px)`;
