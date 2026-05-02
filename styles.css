@@ -697,7 +697,7 @@ section { position: relative; }
   justify-content: space-between;
   gap: 16px;
 }
-.accordion-trigger-text { display: flex; align-items: baseline; }
+.accordion-trigger-text { display: flex; align-items: baseline; gap: 0.4em; }
 .accordion-label {
   font-size: 16px;
   color: #fff;
@@ -1161,19 +1161,24 @@ section { position: relative; }
   .hardware-img-wrap { height: 300px; }
   .footer-top { margin-bottom: 60px; }
 
-  /* 1. Why section: flow as paragraph, ignore animation segment breaks */
-  .why-sticky .reveal-line { display: inline; }
-  .why-sticky .reveal-line br { display: none; }
-  .why-sticky .reveal-text { display: block; font-size: 28px; line-height: 1.35; }
+  /* Why section — static display, no scroll pinning, one sentence per line */
+  .why { height: auto; }
+  .why-sticky {
+    position: relative; height: auto; overflow: visible;
+    padding: 60px 20px;
+    mask-image: none; -webkit-mask-image: none;
+  }
+  .why-inner { padding-top: 0; }
+  .reveal-line br { display: none; }
 
-  /* 3. Ecosystem accordion subtitle: stack label + subtitle vertically */
+  /* Accordion subtitle: stack vertically, left-aligned */
   .accordion-trigger-text { flex-direction: column; align-items: flex-start; gap: 2px; }
-  .accordion-subtitle { font-size: 13px; margin-left: 0; }
+  .accordion-subtitle { font-size: 14px; margin-left: 0; }
 
-  /* 4. Hardware intro heading: allow wrap, reduce size to fit on 2 lines */
+  /* Hardware intro heading */
   .dial-intro-heading { white-space: normal; font-size: clamp(40px, 10.5vw, 52px); }
 
-  /* 5. Hardware panels: show per-panel image, hide shared sticky image */
+  /* Hardware panels: show per-panel image, hide shared sticky image */
   .hw-panel-mobile-img {
     width: 100%; height: 260px;
     border-radius: 12px;
@@ -1183,7 +1188,7 @@ section { position: relative; }
   }
   .hardware-scroll-img { display: none; }
 
-  /* 6. Use cases: sticky background + row card layout + tighter padding */
+  /* Use cases: sticky background + row card layout */
   .usecases { position: relative; background: none; padding: 0; }
   .usecases-bg {
     position: sticky; top: 0;
@@ -1200,17 +1205,14 @@ section { position: relative; }
   .usecase-title { font-size: 17px; margin-bottom: 4px; }
   .usecase-body { font-size: 13px; }
 
-  /* 7. Footer headline: reduce size so it breaks cleanly to 2 lines */
-  .footer-headline { font-size: 26px; }
+  /* Footer headline */
+  .footer-headline { font-size: 22px; }
 }
 
 /* ─── Touch devices (phones + tablets/iPad) ──────────────
    Disable scroll-driven animations and curtain effects.
    Matches the JS isMobile check: !matchMedia('(hover:hover) and (pointer:fine)'). */
 @media (hover: none), (pointer: coarse) {
-  .why { height: auto; }
-  .why-sticky { position: static; height: auto; padding: 60px 40px; mask-image: none; -webkit-mask-image: none; }
-  .why-inner { padding-top: 40px; }
   .scroll-zoom { height: auto; }
   .scroll-zoom-sticky { position: static; height: 60vh; }
   .scroll-zoom-text { left: 0; right: 0; bottom: 40px; transform: none; padding: 0 40px; }
@@ -1476,9 +1478,20 @@ section { position: relative; }
   .mwm-intro, .mwm-experiments, .mwm-about, .mwm-footer { padding-left: 20px; padding-right: 20px; }
   .mwm-experiments { padding-top: 48px; padding-bottom: 60px; }
   .mwm-about { padding-top: 60px; padding-bottom: 60px; }
-  .mwm-grid { grid-template-columns: 1fr; }
   .mwm-about-inner { grid-template-columns: 1fr; gap: 40px; }
   .mwm-about-photo { aspect-ratio: 1; }
+
+  /* Featured card — remove fixed-intro scroll behaviour, match margins */
+  .mwm-intro { position: relative; top: auto; left: auto; right: auto; z-index: auto; }
+  .mwm-featured { padding: 0 20px 20px; }
+  .mwm-featured-card { height: auto; min-height: 65vh; }
+  .mwm-featured-text { padding: 28px 20px; }
+  .mwm-slide-pills { display: none; }
+
+  /* Experiments grid */
+  .mwm-grid { grid-template-columns: 1fr; gap: 28px; }
+  .mwm-card-image { background-color: var(--grey-bg); }
+  .mwm-card-image::before { background-size: 90%; background-repeat: no-repeat; }
 }
 
 /* ─── Contact Modal ──────────────────────────────── */
