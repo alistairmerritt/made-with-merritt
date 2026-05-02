@@ -1491,7 +1491,7 @@ section { position: relative; }
   /* Experiments grid */
   .mwm-grid { grid-template-columns: 1fr; gap: 28px; }
   .mwm-card-image { background-color: var(--grey-bg); }
-  .mwm-card-image::before { background-size: 90%; background-repeat: no-repeat; }
+  .mwm-card-image::before { background-size: cover; }
 }
 
 /* ─── Contact Modal ──────────────────────────────── */
