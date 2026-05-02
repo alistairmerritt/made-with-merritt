@@ -937,6 +937,7 @@ section { position: relative; }
   background-attachment: fixed;
   padding: 140px 60px;
 }
+.usecases-bg { display: none; }
 .usecases-intro {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1159,6 +1160,48 @@ section { position: relative; }
   .hardware-scroll-panel[data-hw-panel="0"] { padding-top: 60px; }
   .hardware-img-wrap { height: 300px; }
   .footer-top { margin-bottom: 60px; }
+
+  /* 1. Why section: flow as paragraph, ignore animation segment breaks */
+  .why-sticky .reveal-line { display: inline; }
+  .why-sticky .reveal-line br { display: none; }
+  .why-sticky .reveal-text { display: block; font-size: 28px; line-height: 1.35; }
+
+  /* 3. Ecosystem accordion subtitle: stack label + subtitle vertically */
+  .accordion-trigger-text { flex-direction: column; align-items: flex-start; gap: 2px; }
+  .accordion-subtitle { font-size: 13px; margin-left: 0; }
+
+  /* 4. Hardware intro heading: allow wrap, reduce size to fit on 2 lines */
+  .dial-intro-heading { white-space: normal; font-size: clamp(40px, 10.5vw, 52px); }
+
+  /* 5. Hardware panels: show per-panel image, hide shared sticky image */
+  .hw-panel-mobile-img {
+    width: 100%; height: 260px;
+    border-radius: 12px;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 28px;
+  }
+  .hardware-scroll-img { display: none; }
+
+  /* 6. Use cases: sticky background + row card layout + tighter padding */
+  .usecases { position: relative; background: none; padding: 0; }
+  .usecases-bg {
+    position: sticky; top: 0;
+    height: 100svh; width: 100%;
+    background-image: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)), url('../assets/use-cases-background.jpg');
+    background-size: cover; background-position: center;
+    margin-bottom: -100svh;
+  }
+  .usecases .container { position: relative; z-index: 1; padding: 60px 20px 80px; }
+  .usecases-grid { grid-template-columns: 1fr; }
+  .usecase-card { flex-direction: row; align-items: flex-start; gap: 16px; padding: 20px; }
+  .usecase-icon-row { flex-shrink: 0; padding-top: 2px; }
+  .usecase-icon { font-size: 26px; }
+  .usecase-title { font-size: 17px; margin-bottom: 4px; }
+  .usecase-body { font-size: 13px; }
+
+  /* 7. Footer headline: reduce size so it breaks cleanly to 2 lines */
+  .footer-headline { font-size: 26px; }
 }
 
 /* ─── Touch devices (phones + tablets/iPad) ──────────────

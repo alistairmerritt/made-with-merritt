@@ -490,14 +490,14 @@
         el.querySelector('.accordion-icon').textContent = '+';
       });
       if (wasActive) {
-        setEcosystemImage(ECO_DEFAULT_IMAGE);
+        if (!isMobile) setEcosystemImage(ECO_DEFAULT_IMAGE);
       } else {
         item.classList.add('active');
         trigger.querySelector('.accordion-icon').textContent = '−';
-        setEcosystemImage(item.dataset.clickImage);
+        if (!isMobile) setEcosystemImage(item.dataset.clickImage);
       }
       // Re-sync disclaimer after any post-click synthetic mouse events settle
-      requestAnimationFrame(() => {
+      if (!isMobile) requestAnimationFrame(() => {
         const active = accordionEl.querySelector('.accordion-item.active');
         const src  = active ? active.dataset.clickImage : ECO_DEFAULT_IMAGE;
         const disc = ECO_DISCLAIMERS[src] || '';
@@ -555,6 +555,15 @@
         <div class="hw-card-note">${card.note}</div>
       </div>
     `).join('');
+    if (isMobile) {
+      const panelEl = document.querySelector(`[data-hw-panel="${panelIdx}"]`);
+      if (panelEl) {
+        const img = document.createElement('div');
+        img.className = 'hw-panel-mobile-img';
+        img.style.backgroundImage = `url('${panel.defaultImg}')`;
+        panelEl.insertBefore(img, panelEl.firstChild);
+      }
+    }
   });
 
   const hwImgA = document.getElementById('hw-img-a');
