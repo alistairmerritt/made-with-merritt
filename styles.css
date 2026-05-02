@@ -1161,6 +1161,19 @@ section { position: relative; }
   .footer-top { margin-bottom: 60px; }
 }
 
+/* ─── Touch devices (phones + tablets/iPad) ──────────────
+   Disable scroll-driven animations and curtain effects.
+   Matches the JS isMobile check: !matchMedia('(hover:hover) and (pointer:fine)'). */
+@media (hover: none), (pointer: coarse) {
+  .why { height: auto; }
+  .why-sticky { position: static; height: auto; padding: 60px 40px; mask-image: none; -webkit-mask-image: none; }
+  .why-inner { padding-top: 40px; }
+  .scroll-zoom { height: auto; }
+  .scroll-zoom-sticky { position: static; height: 60vh; }
+  .scroll-zoom-text { left: 0; right: 0; bottom: 40px; transform: none; padding: 0 40px; }
+  .dial-intro-content { padding: 0 40px; bottom: 48px; }
+}
+
 /* ─── Made with Merritt page ──────────────────────────── */
 .mwm-body { background: #fff; }
 

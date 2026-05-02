@@ -1,7 +1,9 @@
 /* Pivot — landing page interactions */
 (() => {
   const ACCENT = '#E24D25';
-  const isMobile = window.innerWidth <= 640;
+  // Disable scroll animations on any touch-first device (phones, iPads, etc.)
+  // Matches the same condition used in CSS for hover effects.
+  const isMobile = !window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
   // ─── Hero curtain departure progress (0→1 as hero scrolls away) ───────────
   // naturalDocTop is declared later in this scope and is hoisted (fn declaration)
