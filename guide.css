@@ -5,7 +5,7 @@
 
 /* ─── Nav (dark, transparent → solid) ────────────────── */
 .g-nav {
-  position: fixed; top: 32px; left: 0; right: 0;
+  position: fixed; top: 0; left: 0; right: 0;
   z-index: 1000;
   height: 80px;
   display: flex; align-items: center; justify-content: space-between;
@@ -83,7 +83,7 @@
 /* ─── Sub-nav (sticky, horizontal) ───────────────────── */
 .g-subnav {
   position: sticky;
-  top: 112px;
+  top: 80px;
   z-index: 900;
   background: rgba(0,0,0,0.96);
   backdrop-filter: blur(12px);
@@ -224,9 +224,9 @@
   color: var(--grey-2);
 }
 .g-needs-optional {
-  font-size: 13px;
+  font-size: 12px;
   line-height: 1.55;
-  color: var(--grey-2);
+  color: var(--grey-3);
   border-top: 1px solid var(--grey-3);
   padding-top: 12px;
   margin-top: 4px;
