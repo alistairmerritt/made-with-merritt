@@ -11,16 +11,6 @@
 </head>
 <body class="guide-body">
 
-  <!-- ─── Topbar ─────────────────────────────────────── -->
-  <div class="topbar">
-    <span class="topbar-left">A <a href="/" class="topbar-left-link">Made with Merritt</a> Project</span>
-    <div class="topbar-links">
-      <a href="/" class="topbar-link">Home</a>
-      <a href="/pivot/" class="topbar-link">Pivot Dial</a>
-      <a href="https://alistairmerritt.github.io/pivot/" target="_blank" rel="noopener" class="topbar-link">Docs</a>
-    </div>
-  </div>
-
   <!-- ─── Nav ───────────────────────────────────────── -->
   <nav class="g-nav" id="g-nav">
     <div class="g-nav-brand">
@@ -57,8 +47,7 @@
       <a href="#what-youll-need">What you'll need</a>
       <a href="#body-options">Body options</a>
       <a href="#mount-options">Mounts</a>
-      <a href="#printing-notes">Printing</a>
-      <a href="#assembly">Assembly</a>
+      <a href="#printing-notes">Printing & assembly</a>
       <a href="#recommended-config">Config</a>
       <a href="#firmware">Firmware</a>
     </div>
@@ -164,71 +153,48 @@
     </div>
   </section>
 
-  <!-- ─── Printing notes (dark) ─────────────────────── -->
+  <!-- ─── Printing & Assembly (dark, split + accordion) ────── -->
   <section id="printing-notes" class="g-section g-dark g-pad">
     <div class="g-container">
       <div class="g-split">
         <div class="g-split-text">
-          <p class="g-eyebrow g-eyebrow-light">Printing notes</p>
-          <h2 class="g-title g-title-light">Print it right.</h2>
-          <p class="g-lead g-lead-light">A few things to know before you start printing.</p>
+          <p class="g-eyebrow g-eyebrow-light">Printing &amp; assembly</p>
+          <h2 class="g-title g-title-light">Before you build.</h2>
+          <p class="g-lead g-lead-light">A few things to know before you start printing, and what to expect during assembly.</p>
 
-          <div class="g-print-notes">
-            <div class="g-print-note">
-              <p class="g-print-note-title">Supports</p>
-              <p class="g-print-note-body">The main shell and backplate require supports that will require removal after printing and before starting assembly.</p>
+          <div class="ecosystem-accordion" id="g-print-accordion">
+            <div class="accordion-item">
+              <button class="accordion-trigger">
+                <span class="accordion-trigger-text"><span class="accordion-label">Supports</span></span>
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-panel"><div class="accordion-panel-inner"><p>The main shell and backplate require supports. Remove these before starting assembly.</p></div></div>
             </div>
-            <div class="g-print-note">
-              <p class="g-print-note-title">Face / cover</p>
-              <p class="g-print-note-body">Print with no infill so the LED ring can shine through the surface. Grey, bone or soft neutral filaments give the best LED definition. Pure white can over-diffuse the light.</p>
-              <div class="g-callout" style="margin-top: 12px;">
-                <p class="g-callout-label">Filament tip</p>
-                <p>Translucent PLA also works well for a more see-through, techy look.</p>
-              </div>
+            <div class="accordion-item">
+              <button class="accordion-trigger">
+                <span class="accordion-trigger-text"><span class="accordion-label">Face / cover</span></span>
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-panel"><div class="accordion-panel-inner"><p>Print with no infill so the LED ring shines through the surface. Grey, bone or soft neutral filaments give the best LED definition. Pure white can over-diffuse the light. Translucent PLA works well for a more see-through look.</p></div></div>
             </div>
-            <div class="g-print-note">
-              <p class="g-print-note-title">Print surface</p>
-              <p class="g-print-note-body">Print on a smooth bed for the cleanest finish on visible parts. No sanding should be required if parts come out cleanly.</p>
+            <div class="accordion-item">
+              <button class="accordion-trigger">
+                <span class="accordion-trigger-text"><span class="accordion-label">Print surface</span></span>
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-panel"><div class="accordion-panel-inner"><p>Print on a smooth bed for the cleanest finish on visible parts. No sanding should be required if parts come out cleanly.</p></div></div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-trigger">
+                <span class="accordion-trigger-text"><span class="accordion-label">Dial assembly</span></span>
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-panel"><div class="accordion-panel-inner"><p>The dial may take some adjustment to seat correctly. Rotate and adjust slowly until it moves cleanly in both directions — up/down press and clockwise/counterclockwise rotation.</p></div></div>
             </div>
           </div>
         </div>
         <div>
           <div class="g-image-panel" style="background-image: url('../../assets/diffused-led-ring.png'); background-color: #111;"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── Assembly (dark, full-bleed image) ─────────── -->
-  <section id="assembly" class="g-assembly">
-    <div class="g-assembly-bg"></div>
-    <div class="g-assembly-overlay"></div>
-    <div class="g-assembly-content">
-      <p class="g-eyebrow g-eyebrow-light">Dial assembly</p>
-      <h2 class="g-title g-title-light">Take your time<br>with this step.</h2>
-      <p class="g-lead g-lead-light">The dial assembly may take some trial and error. Once aligned correctly, the dial should allow both button movement and rotation.</p>
-
-      <div class="g-steps">
-        <div class="g-step">
-          <span class="g-step-num">01</span>
-          <div>
-            <p class="g-step-label">Position the dial</p>
-            <p class="g-step-desc">Place the dial assembly and begin rotating slowly to find the grooves. The position isn't immediately obvious.</p>
-          </div>
-        </div>
-        <div class="g-step">
-          <span class="g-step-num">02</span>
-          <div>
-            <p class="g-step-label">Test both movements</p>
-            <p class="g-step-desc">Once you think it's seated, test for both up/down button movement and clockwise/counterclockwise rotation.</p>
-          </div>
-        </div>
-        <div class="g-step">
-          <span class="g-step-num">03</span>
-          <div>
-            <p class="g-step-label">Adjust and repeat</p>
-            <p class="g-step-desc">If one movement is restricted, slightly rotate and re-test. Small adjustments are usually all that's needed.</p>
-          </div>
         </div>
       </div>
     </div>
@@ -334,6 +300,25 @@
       window.addEventListener('scroll', () => {
         nav.classList.toggle('scrolled', window.scrollY > 20);
       }, { passive: true });
+
+      // ─── Printing & assembly accordion ──────────────
+      const printAccordion = document.getElementById('g-print-accordion');
+      if (printAccordion) {
+        printAccordion.querySelectorAll('.accordion-trigger').forEach(trigger => {
+          trigger.addEventListener('click', () => {
+            const item = trigger.closest('.accordion-item');
+            const isActive = item.classList.contains('active');
+            printAccordion.querySelectorAll('.accordion-item').forEach(el => {
+              el.classList.remove('active');
+              el.querySelector('.accordion-icon').textContent = '+';
+            });
+            if (!isActive) {
+              item.classList.add('active');
+              item.querySelector('.accordion-icon').textContent = '−';
+            }
+          });
+        });
+      }
 
       // ─── Sub-nav scroll spy ──────────────────────────
       const subLinks = document.querySelectorAll('.g-subnav-inner a');
