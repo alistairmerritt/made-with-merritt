@@ -1191,6 +1191,7 @@ section { position: relative; }
   /* Use cases: sticky background + row card layout */
   .usecases { position: relative; background: none; padding: 0; }
   .usecases-bg {
+    display: block;
     position: sticky; top: 0;
     height: 100svh; width: 100%;
     background-image: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)), url('../assets/use-cases-background.jpg');
