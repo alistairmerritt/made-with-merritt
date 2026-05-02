@@ -1492,7 +1492,7 @@ section { position: relative; }
   /* Experiments grid */
   .mwm-grid { grid-template-columns: 1fr; gap: 28px; }
   .mwm-card-image { background-color: var(--grey-bg); }
-  .mwm-card-image::before { background-size: cover; }
+  .mwm-card-image::before { background-color: var(--grey-bg); background-size: contain; background-repeat: no-repeat; background-position: center; }
 }
 
 /* ─── Contact Modal ──────────────────────────────── */
