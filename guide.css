@@ -223,6 +223,14 @@
   font-size: 13px;
   color: var(--grey-2);
 }
+.g-needs-optional {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--grey-2);
+  border-top: 1px solid var(--grey-3);
+  padding-top: 12px;
+  margin-top: 4px;
+}
 
 /* ─── Body options ─────────────────────────────────────── */
 .g-body-grid {
