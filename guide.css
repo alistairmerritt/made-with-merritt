@@ -34,8 +34,8 @@
 /* ─── Hero ─────────────────────────────────────────────── */
 .g-hero {
   position: relative;
-  height: 100svh;
-  min-height: 600px;
+  height: 50svh;
+  min-height: 400px;
   display: flex; align-items: flex-end;
   padding: 0 60px 80px;
   overflow: hidden;
