@@ -218,14 +218,6 @@
   font-size: 16px;
   line-height: 1.5;
   color: var(--ink);
-  display: flex; align-items: flex-start; gap: 12px;
-}
-.g-needs-list li::before {
-  content: '';
-  flex-shrink: 0; width: 5px; height: 5px;
-  border-radius: 50%;
-  background: var(--grey-2);
-  position: relative; top: 8px;
 }
 .g-needs-note {
   font-size: 13px;
