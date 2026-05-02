@@ -1338,8 +1338,10 @@ section { position: relative; }
   background-position: center;
   transition: transform 0.7s ease;
 }
-.mwm-card:hover .mwm-card-image::before {
-  transform: scale(1.07);
+@media (hover: hover) and (pointer: fine) {
+  .mwm-card:hover .mwm-card-image::before {
+    transform: scale(1.07);
+  }
 }
 .mwm-card-placeholder { background: var(--grey-bg); }
 .mwm-card-name {
