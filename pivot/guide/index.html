@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Printing & Assembly Guide — Pivot Dial</title>
+  <meta name="description" content="Printable parts, body options, mount options, printing notes and assembly guide for Pivot Dial.">
+  <link rel="icon" type="image/svg+xml" href="/assets/pivot-logo-01.svg">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/guide.css">
+</head>
+<body class="guide-body">
+
+  <!-- ─── Topbar ─────────────────────────────────────── -->
+  <div class="topbar">
+    <span class="topbar-left">A <a href="/" class="topbar-left-link">Made with Merritt</a> Project</span>
+    <div class="topbar-links">
+      <a href="/" class="topbar-link">Home</a>
+      <a href="/pivot/" class="topbar-link">Pivot Dial</a>
+      <a href="https://alistairmerritt.github.io/pivot/" target="_blank" rel="noopener" class="topbar-link">Docs</a>
+    </div>
+  </div>
+
+  <!-- ─── Nav ───────────────────────────────────────── -->
+  <nav class="guide-nav">
+    <div class="guide-nav-brand">
+      <a href="/pivot/">
+        <img src="/assets/Pivot.svg" alt="Pivot" height="28" style="filter: invert(1);">
+      </a>
+      <span class="guide-nav-separator">/</span>
+      <span class="guide-nav-page">Printing & Assembly Guide</span>
+    </div>
+    <div class="guide-nav-links">
+      <a href="https://alistairmerritt.github.io/pivot/" target="_blank" rel="noopener">Docs <svg class="ext-arrow" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.5 8.5L8.5 1.5M8.5 1.5H3.5M8.5 1.5V6.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a href="https://ko-fi.com/s/0e4e8e3f3a" target="_blank" rel="noopener" class="btn-primary" style="line-height:1; padding: 10px 18px;">Download STL — $24</a>
+    </div>
+  </nav>
+
+  <div class="guide-page-offset">
+
+    <!-- ─── Hero ───────────────────────────────────── -->
+    <div class="guide-hero">
+      <span class="guide-hero-badge">Pivot Dial</span>
+      <h1 class="guide-hero-title">Printing &amp; Assembly Guide</h1>
+      <p class="guide-hero-desc">This guide covers the printable parts, body options, mount options, printing notes and basic assembly considerations for Pivot Dial.</p>
+    </div>
+
+    <hr class="guide-divider">
+
+    <!-- ─── Main layout ────────────────────────────── -->
+    <div class="guide-layout">
+
+      <!-- ─── Content ────────────────────────────── -->
+      <main class="guide-main">
+
+        <!-- What you'll need -->
+        <section class="guide-section" id="what-youll-need">
+          <h2 class="guide-h2">What you'll need</h2>
+          <p class="guide-section-intro">Before you begin, make sure you have everything on hand.</p>
+          <div class="guide-needs-card">
+            <p class="guide-needs-title">Required</p>
+            <ul class="guide-needs-list">
+              <li>Home Assistant Voice Preview Edition</li>
+              <li>3D printer or access to a print service</li>
+              <li>PLA or similar filament</li>
+              <li>Right-angle USB-C adapter <span style="font-size:13px; color: var(--grey-2);">(required for the upright body)</span></li>
+              <li>Optional: right-angle 3.5mm adapter for an external speaker connection</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Body options -->
+        <section class="guide-section" id="body-options">
+          <h2 class="guide-h2">Body options</h2>
+          <p class="guide-section-intro">Pivot Dial includes two body configurations. Choose the one that best suits your placement and setup.</p>
+
+          <div class="guide-option-grid">
+            <div class="guide-option-card">
+              <p class="guide-option-label">Option 1</p>
+              <p class="guide-option-title">Upright body</p>
+              <p class="guide-option-desc">The main version — best for desks, bedside tables, and dining areas. A lower "chin" section mostly conceals the cable when used with the desk mount and a right-angle USB-C adapter.</p>
+              <ul class="guide-option-ul">
+                <li>Desk or shelf placement</li>
+                <li>Cleaner cable concealment</li>
+                <li>More sculptural presence</li>
+              </ul>
+            </div>
+            <div class="guide-option-card">
+              <p class="guide-option-label">Option 2</p>
+              <p class="guide-option-title">Short body</p>
+              <p class="guide-option-desc">No chin. Designed for lower-profile placement or wall mounting. The cable exits from the side, so it will remain visible.</p>
+              <ul class="guide-option-ul">
+                <li>Wall mounting</li>
+                <li>Low-profile desk placement</li>
+                <li>No right-angle adapter needed</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="callout callout-warn" style="margin-top: 20px;">
+            <p class="callout-label">Note</p>
+            <p>The upright body requires a right-angle USB-C adapter. A standard straight USB-C cable will not fit within the enclosure.</p>
+          </div>
+        </section>
+
+        <!-- Mount options -->
+        <section class="guide-section" id="mount-options">
+          <h2 class="guide-h2">Mount options</h2>
+          <p class="guide-section-intro">Three mount options are available depending on how and where you want to place the dial.</p>
+
+          <div class="guide-mount-list">
+            <div class="guide-mount-item">
+              <span class="guide-mount-name">Desk mount</span>
+              <span class="guide-mount-desc">An angled mount designed primarily for the upright body. Cleanest option for desks and shelves, especially with a right-angle USB-C adapter.</span>
+            </div>
+            <div class="guide-mount-item">
+              <span class="guide-mount-name">Raised desk mount</span>
+              <span class="guide-mount-desc">A lower-profile mount for desks or fixed to a wall for a slight angle.</span>
+            </div>
+            <div class="guide-mount-item">
+              <span class="guide-mount-name">Flat wall mount</span>
+              <span class="guide-mount-desc">Designed for vertical surfaces. Works best with the short body.</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Included parts -->
+        <section class="guide-section" id="included-parts">
+          <h2 class="guide-h2">Included parts</h2>
+          <p class="guide-section-intro">Each body configuration includes the same core assembly system. The difference is in body depth, backplate length and cable-routing position.</p>
+
+          <div class="guide-parts-grid">
+            <div class="guide-parts-card">
+              <p class="guide-parts-card-label">Upright body</p>
+              <ul class="guide-parts-list">
+                <li>Dial outer</li>
+                <li>Dial inner</li>
+                <li>Face / cover</li>
+                <li>Main shell</li>
+                <li>Backplate</li>
+              </ul>
+            </div>
+            <div class="guide-parts-card">
+              <p class="guide-parts-card-label">Short body</p>
+              <ul class="guide-parts-list">
+                <li>Dial outer</li>
+                <li>Dial inner</li>
+                <li>Short face / cover</li>
+                <li>Short main shell</li>
+                <li>Short backplate</li>
+              </ul>
+            </div>
+          </div>
+
+          <p class="guide-p" style="margin-top: 16px;">On the upright body, cable management runs through the backplate. On the short body, cable routing runs through the main shell.</p>
+        </section>
+
+        <!-- Printing notes -->
+        <section class="guide-section" id="printing-notes">
+          <h2 class="guide-h2">Printing notes</h2>
+
+          <h3 class="guide-h3">Supports</h3>
+          <p class="guide-p">The main shell and backplate require supports. Remove these after printing before assembly.</p>
+
+          <h3 class="guide-h3">Face / cover</h3>
+          <p class="guide-p">The face should be printed with no infill so the LED ring can shine through the printed surface.</p>
+
+          <div class="callout">
+            <p class="callout-label">Filament tip</p>
+            <p>Grey, bone, beige or soft neutral filaments give the best LED definition. Pure white can diffuse light too much, making the LEDs less distinct. Translucent PLA also works well for a more minimal, see-through look.</p>
+          </div>
+
+          <h3 class="guide-h3">Print surface</h3>
+          <p class="guide-p">For the cleanest finish, print on a smooth print bed. This gives the best surface finish for the visible parts of the enclosure.</p>
+
+          <h3 class="guide-h3">Post-processing</h3>
+          <p class="guide-p">No sanding should be required if the parts are printed cleanly.</p>
+        </section>
+
+        <!-- Cable notes -->
+        <section class="guide-section" id="cable-notes">
+          <h2 class="guide-h2">Cable notes</h2>
+
+          <h3 class="guide-h3">Upright body</h3>
+          <p class="guide-p">Requires a right-angle USB-C adapter. Without one, the cable will not fit within the enclosure. When used with the desk mount, the cable can be mostly hidden.</p>
+
+          <h3 class="guide-h3">Short body</h3>
+          <p class="guide-p">No right-angle adapter required. The cable exits from the side and will remain visible. This is the better option if you want to avoid buying an adapter, or if you're mounting to a wall or upright surface.</p>
+
+          <h3 class="guide-h3">Optional audio adapter</h3>
+          <p class="guide-p">If connecting the VPE to an external speaker via the 3.5mm output, a right-angle AUX adapter can help with cable routing.</p>
+        </section>
+
+        <!-- Assembly -->
+        <section class="guide-section" id="assembly">
+          <h2 class="guide-h2">Dial assembly</h2>
+          <p class="guide-p">The dial assembly may take some trial and error. When fitting the dial, you may need to adjust, rotate and test the position until you find the correct grooves.</p>
+          <p class="guide-p">Once aligned properly, the dial should allow both up/down button movement and clockwise/counterclockwise rotation.</p>
+
+          <div class="callout">
+            <p class="callout-label">Take your time</p>
+            <p>The correct fit may not be obvious immediately. With small adjustments you should find a position where the dial moves cleanly in both directions.</p>
+          </div>
+        </section>
+
+        <!-- Recommended config -->
+        <section class="guide-section" id="recommended-config">
+          <h2 class="guide-h2">Recommended configuration</h2>
+          <p class="guide-section-intro">Two setups, depending on how you plan to use Pivot Dial.</p>
+
+          <div class="guide-config-grid">
+            <div class="guide-config-card">
+              <p class="guide-config-label">Cleanest desk setup</p>
+              <ul class="guide-config-ul">
+                <li>Upright body</li>
+                <li>Desk mount</li>
+                <li>Right-angle USB-C adapter</li>
+                <li>Grey, bone or beige face — no infill</li>
+                <li>Smooth print bed finish</li>
+              </ul>
+            </div>
+            <div class="guide-config-card">
+              <p class="guide-config-label">Wall mounting</p>
+              <ul class="guide-config-ul">
+                <li>Short body</li>
+                <li>Flat wall mount</li>
+                <li>Side-exiting cable</li>
+                <li>Optional firmware LED orientation adjustment</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Firmware -->
+        <section class="guide-section" id="firmware">
+          <h2 class="guide-h2">Firmware</h2>
+          <p class="guide-p">Pivot Dial can be used as a physical enclosure for the Home Assistant Voice Preview Edition on its own.</p>
+          <p class="guide-p">To unlock the full Pivot control experience — banks, scenes, timers and more — you'll need to install the optional Pivot firmware and integration separately.</p>
+
+          <div class="callout callout-warn">
+            <p class="callout-label">Required separately</p>
+            <p>Firmware is not included with the printed parts and must be installed by the user. Full instructions are in the <a href="https://alistairmerritt.github.io/pivot/" target="_blank" rel="noopener" style="color: var(--accent); border-bottom: 1px solid rgba(226,77,37,0.3); padding-bottom: 1px;">Pivot documentation</a>.</p>
+          </div>
+        </section>
+
+        <!-- License -->
+        <section class="guide-section" id="license">
+          <h2 class="guide-h2">License</h2>
+          <div class="guide-license">
+            <p>These files are for personal use only. Commercial resale, redistribution or sale of printed parts is not permitted without written permission.</p>
+          </div>
+        </section>
+
+        <!-- Support -->
+        <section class="guide-section" id="support">
+          <h2 class="guide-h2">Support</h2>
+          <p class="guide-p">For setup, firmware and ecosystem documentation, refer to the <a href="https://alistairmerritt.github.io/pivot/" target="_blank" rel="noopener" style="color: var(--ink); border-bottom: 1px solid var(--grey-3); padding-bottom: 1px;">Pivot documentation</a>.</p>
+        </section>
+
+      </main><!-- /.guide-main -->
+
+      <!-- ─── TOC ─────────────────────────────────── -->
+      <aside class="guide-toc" aria-label="On this page">
+        <p class="guide-toc-label">On this page</p>
+        <ul class="guide-toc-list">
+          <li><a href="#what-youll-need">What you'll need</a></li>
+          <li><a href="#body-options">Body options</a></li>
+          <li><a href="#mount-options">Mount options</a></li>
+          <li><a href="#included-parts">Included parts</a></li>
+          <li><a href="#printing-notes">Printing notes</a></li>
+          <li><a href="#cable-notes">Cable notes</a></li>
+          <li><a href="#assembly">Dial assembly</a></li>
+          <li><a href="#recommended-config">Recommended config</a></li>
+          <li><a href="#firmware">Firmware</a></li>
+          <li><a href="#license">License</a></li>
+          <li><a href="#support">Support</a></li>
+        </ul>
+      </aside>
+
+    </div><!-- /.guide-layout -->
+
+    <!-- ─── CTA ──────────────────────────────────── -->
+    <div class="guide-cta-section">
+      <div class="guide-cta-left">
+        <h2>Ready to print?</h2>
+        <p>Download the STL files and get started.</p>
+      </div>
+      <div class="guide-cta-actions">
+        <a href="/pivot/" class="btn-guide-secondary">← Back to Pivot Dial</a>
+        <a href="https://ko-fi.com/s/0e4e8e3f3a" target="_blank" rel="noopener" class="btn-primary">Download STL — $24 <svg class="ext-arrow" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.5 8.5L8.5 1.5M8.5 1.5H3.5M8.5 1.5V6.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
+
+  </div><!-- /.guide-page-offset -->
+
+  <script>
+    (() => {
+      // ─── TOC scroll spy ───────────────────────────────
+      const tocLinks = document.querySelectorAll('.guide-toc-list a');
+      const sections = Array.from(tocLinks).map(a => document.querySelector(a.getAttribute('href')));
+
+      function updateToc() {
+        let active = 0;
+        const offset = 140;
+        sections.forEach((s, i) => {
+          if (s && s.getBoundingClientRect().top <= offset) active = i;
+        });
+        tocLinks.forEach((a, i) => {
+          a.classList.toggle('active', i === active);
+        });
+      }
+
+      window.addEventListener('scroll', updateToc, { passive: true });
+      updateToc();
+    })();
+  </script>
+
+</body>
+</html>
