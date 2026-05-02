@@ -47,6 +47,8 @@
   mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMobileMenu));
   mobileOverlay.addEventListener('click', closeMobileMenu);
 
+  const isMobile = window.matchMedia('(max-width: 640px)').matches;
+
   // ─── Scroll-reveal text ────────────────────────────────
   const reveals = document.querySelectorAll('[data-reveal]');
   reveals.forEach(el => {
@@ -94,7 +96,8 @@
           const segStart = (segIdx / nSegs) * 0.85;
           const segEnd = ((segIdx + 1) / nSegs) * 0.85;
           const segP = Math.max(0, Math.min(1, (p - segStart) / (segEnd - segStart)));
-          lineEl.style.transform = '';
+          const maxTy = vh * 0.25;
+          lineEl.style.transform = `translateY(${(1 - segP) * maxTy}px)`;
           lineEl.style.opacity = Math.min(1, segP * 8).toString();
           lineEl.style.filter = `blur(${(1 - Math.min(1, segP / 0.85)) * 6}px)`;
           const fadeP = Math.max(0, Math.min(1, (segP - 0.65) / 0.35));
@@ -115,15 +118,17 @@
       }
     };
 
-    window.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update);
-    update();
+    if (!isMobile) {
+      window.addEventListener('scroll', update, { passive: true });
+      window.addEventListener('resize', update);
+      update();
+    }
   });
 
   // ─── Why Pivot? label scale animation ─────────────────
   const whyTrack = document.querySelector('[data-reveal-track]');
   const whyLabel = document.querySelector('.why-label');
-  if (whyTrack && whyLabel) {
+  if (!isMobile && whyTrack && whyLabel) {
     whyLabel.style.transformOrigin = 'left center';
     const updateWhyLabel = () => {
       const rect = whyTrack.getBoundingClientRect();
@@ -199,15 +204,17 @@
     update();
   }
 
-  // Hero → Why+Interaction curtain (.why-sticky needs the sticky fix)
-  makeCurtain(
-    document.getElementById('hero'),
-    document.getElementById('why-stack'),
-    { stickyFix: '.why-sticky' }
-  );
+  if (!isMobile) {
+    // Hero → Why+Interaction curtain (.why-sticky needs the sticky fix)
+    makeCurtain(
+      document.getElementById('hero'),
+      document.getElementById('why-stack'),
+      { stickyFix: '.why-sticky' }
+    );
 
-  // Dial-intro → Hardware curtain (no sticky children inside)
-  makeCurtain(dialIntroEl, document.getElementById('hardware-stack'));
+    // Dial-intro → Hardware curtain (no sticky children inside)
+    makeCurtain(dialIntroEl, document.getElementById('hardware-stack'));
+  }
 
   // ─── Scroll zoom on dark hero break ────────────────────
   const zoomSection = document.getElementById('scroll-zoom');
@@ -407,7 +414,7 @@
       <button class="accordion-trigger">
         <span class="accordion-trigger-text">
           <span class="accordion-label">${item.label}</span>
-          <span class="accordion-subtitle">&nbsp;${item.subtitle}</span>
+          <span class="accordion-subtitle">${item.subtitle}</span>
         </span>
         <span class="accordion-icon">+</span>
       </button>

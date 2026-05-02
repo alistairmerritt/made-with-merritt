@@ -130,23 +130,27 @@
 
   <script>
     (() => {
-      // ─── Fixed intro — position featured below it ─────
+      const isMobile = window.matchMedia('(max-width: 640px)').matches;
       const introEl  = document.querySelector('.mwm-intro');
       const featuredEl = document.querySelector('.mwm-featured');
-      function layoutAboveFold() {
-        const h = introEl.offsetHeight;
-        featuredEl.style.marginTop = h + 'px';
-        featuredEl.style.minHeight = `calc(100vh - ${h}px)`;
-      }
-      layoutAboveFold();
-      window.addEventListener('resize', layoutAboveFold);
 
-      // ─── Fade intro out as user scrolls ───────────────
-      function fadeIntro() {
-        const opacity = Math.max(0, 1 - window.scrollY / introEl.offsetHeight);
-        introEl.style.opacity = opacity;
+      if (!isMobile) {
+        // ─── Fixed intro — position featured below it ─────
+        const layoutAboveFold = () => {
+          const h = introEl.offsetHeight;
+          featuredEl.style.marginTop = h + 'px';
+          featuredEl.style.minHeight = `calc(100vh - ${h}px)`;
+        };
+        layoutAboveFold();
+        window.addEventListener('resize', layoutAboveFold);
+
+        // ─── Fade intro out as user scrolls ───────────────
+        const fadeIntro = () => {
+          const opacity = Math.max(0, 1 - window.scrollY / introEl.offsetHeight);
+          introEl.style.opacity = opacity;
+        };
+        window.addEventListener('scroll', fadeIntro, { passive: true });
       }
-      window.addEventListener('scroll', fadeIntro, { passive: true });
     })();
 
     (() => {
