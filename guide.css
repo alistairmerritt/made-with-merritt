@@ -19,7 +19,7 @@
   background: rgba(0,0,0,0.96);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.15);
 }
 .g-nav-brand {
   display: flex; align-items: center; gap: 12px;
@@ -88,7 +88,7 @@
   background: rgba(0,0,0,0.96);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255,255,255,0.07);
+  border-bottom: 1px solid rgba(255,255,255,0.15);
 }
 .g-subnav-inner {
   display: flex;
@@ -242,7 +242,7 @@
   font-size: 13px;
   line-height: 1.6;
   color: rgba(0,0,0,0.4);
-  border-top: 1px solid rgba(0,0,0,0.08);
+  border-top: 1px solid rgba(0,0,0,0.14);
   padding-top: 20px;
   margin-top: 4px;
 }
@@ -257,7 +257,7 @@
 
 .g-body-card {
   background: #111;
-  border: 1px solid rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.15);
   border-radius: 16px;
   overflow: hidden;
 }
@@ -341,7 +341,7 @@
 /* ─── Callout ──────────────────────────────────────────── */
 .g-callout {
   background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
   border-left: 3px solid rgba(255,255,255,0.2);
   border-radius: 0 8px 8px 0;
   padding: 16px 20px;
@@ -447,7 +447,7 @@
 .g-print-notes {
   display: flex; flex-direction: column; gap: 36px;
 }
-.g-print-note { border-top: 1px solid rgba(255,255,255,0.07); padding-top: 28px; }
+.g-print-note { border-top: 1px solid rgba(255,255,255,0.15); padding-top: 28px; }
 .g-print-note:first-child { border-top: none; padding-top: 0; }
 .g-print-note-title {
   font-size: 17px; font-weight: 500;
@@ -487,7 +487,7 @@
 .g-step {
   display: flex; gap: 20px; align-items: flex-start;
   padding: 20px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.07);
+  border-bottom: 1px solid rgba(255,255,255,0.15);
 }
 .g-step:last-child { border-bottom: none; }
 .g-step-num {
@@ -655,7 +655,7 @@
 
 /* ─── Divider between dark sections ──────────────────────  */
 .g-section-rule { border: none; border-top: 1px solid rgba(255,255,255,0.06); margin: 0; }
-.g-section-rule-light { border: none; border-top: 1px solid var(--grey-3); margin: 0; }
+.g-section-rule-light { border: none; border-top: 1px solid #C4C4C4; margin: 0; }
 
 /* ─── Static two-image pair ──────────────────────────────── */
 .g-image-pair {
@@ -712,7 +712,7 @@
 .g-stages {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  border-top: 1px solid rgba(255,255,255,0.07);
+  border-top: 1px solid rgba(255,255,255,0.15);
   margin-top: 48px;
 }
 /* Single-column variant used inside two-col layout */
@@ -729,12 +729,12 @@
 .g-stage {
   display: block;
   padding: 28px 32px 28px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.07);
+  border-bottom: 1px solid rgba(255,255,255,0.15);
 }
 .g-stage:nth-child(even) {
   padding-left: 32px;
   padding-right: 0;
-  border-left: 1px solid rgba(255,255,255,0.07);
+  border-left: 1px solid rgba(255,255,255,0.15);
 }
 .g-stage-num {
   font-size: 11px; letter-spacing: 0.08em;
@@ -761,13 +761,13 @@
 
 /* ─── Build overview stages — light context ─────────────── */
 .g-light .g-stages {
-  border-top-color: rgba(0,0,0,0.07);
+  border-top-color: rgba(0,0,0,0.14);
 }
 .g-light .g-stage {
-  border-bottom-color: rgba(0,0,0,0.07);
+  border-bottom-color: rgba(0,0,0,0.14);
 }
 .g-light .g-stage:nth-child(even) {
-  border-left-color: rgba(0,0,0,0.07);
+  border-left-color: rgba(0,0,0,0.14);
 }
 .g-light .g-stage-num { color: rgba(0,0,0,0.2); }
 .g-light .g-stage-title { color: var(--ink); }
@@ -790,15 +790,15 @@
 }
 .g-accordion-group-line {
   flex: 1; height: 1px;
-  background: rgba(0,0,0,0.08);
+  background: rgba(0,0,0,0.14);
 }
 
 /* ─── Suppress double line after group header ────────────── */
 .g-accordion-group + .accordion-item { border-top: none; }
 
 /* ─── Light accordion (dark-on-white) ───────────────────── */
-.g-accordion-light .accordion-item { border-top-color: rgba(0,0,0,0.08); }
-.g-accordion-light .accordion-item:last-child { border-bottom-color: rgba(0,0,0,0.08); }
+.g-accordion-light .accordion-item { border-top-color: rgba(0,0,0,0.14); }
+.g-accordion-light .accordion-item:last-child { border-bottom-color: rgba(0,0,0,0.14); }
 .g-accordion-light .accordion-label,
 .g-accordion-light .accordion-subtitle { color: var(--ink); }
 .g-accordion-light .accordion-item:hover .accordion-label,
