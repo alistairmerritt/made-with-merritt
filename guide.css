@@ -271,8 +271,11 @@
   position: absolute; inset: 0;
   background-size: cover;
   background-position: center;
-  transition: opacity 0.9s ease;
+  transition: opacity 0.9s ease, transform 0.7s ease;
   opacity: 0;
+}
+@media (hover: hover) and (pointer: fine) {
+  .g-body-card:hover .g-card-slide-layer { transform: scale(1.07); }
 }
 .g-card-pills {
   position: absolute;
@@ -379,10 +382,21 @@
 .g-mount-img {
   border-radius: 14px;
   aspect-ratio: 4/3;
-  background-size: cover;
-  background-position: center;
   background-color: #e8e8e8;
   margin-bottom: 18px;
+  overflow: hidden;
+  position: relative;
+}
+.g-mount-img::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: inherit;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.7s ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .g-mount-card:hover .g-mount-img::before { transform: scale(1.07); }
 }
 .g-mount-name {
   font-size: 17px; font-weight: 500;
