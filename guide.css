@@ -594,6 +594,17 @@
   overflow: hidden;
 }
 
+/* ─── Single section image ───────────────────────────────── */
+.g-section-image {
+  width: 100%;
+  aspect-ratio: 16/7;
+  border-radius: 14px;
+  background-size: cover;
+  background-position: center;
+  background-color: #111;
+  margin-bottom: 64px;
+}
+
 /* ─── Build overview stages (2-col grid) ────────────────── */
 .g-stages {
   display: grid;
@@ -667,6 +678,9 @@
   flex: 1; height: 1px;
   background: rgba(0,0,0,0.08);
 }
+
+/* ─── Suppress double line after group header ────────────── */
+.g-accordion-group + .accordion-item { border-top: none; }
 
 /* ─── Light accordion (dark-on-white) ───────────────────── */
 .g-accordion-light .accordion-item { border-top-color: rgba(0,0,0,0.08); }
