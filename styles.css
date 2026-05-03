@@ -1210,10 +1210,7 @@ section { position: relative; }
   .nav-links { display: none; }
   .nav-hamburger { display: flex; }
   .hero-actions-wrap { bottom: 40px; }
-  .hw-sticky-bar { padding: 12px 20px; }
-  .hw-sticky-label { display: none; }
-  .hw-sticky-ctas { width: 100%; }
-  .hw-sticky-btn { flex: 1; justify-content: center; }
+  .hw-sticky-bar { display: none; }
   .hero-content-wrap { padding: 0 20px; }
   .hero-headline { font-size: 36px; }
   .h-display { font-size: 32px; }
