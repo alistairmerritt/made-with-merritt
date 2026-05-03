@@ -731,9 +731,6 @@
 .g-light .g-stage:nth-child(even) {
   border-left-color: rgba(0,0,0,0.07);
 }
-.g-light .g-stages-col .g-stage:first-child {
-  border-top: 1px solid rgba(0,0,0,0.07);
-}
 .g-light .g-stage-num { color: rgba(0,0,0,0.2); }
 .g-light .g-stage-title { color: var(--ink); }
 .g-light .g-stage-desc { color: var(--grey-2); }
