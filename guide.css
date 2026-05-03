@@ -284,8 +284,21 @@
   z-index: 2;
   padding: 40px 20px 16px;
   background: linear-gradient(to top, rgba(0,0,0,0.35) 0%, transparent 100%);
-  border-radius: 0 0 0 0;
 }
+/* Override animated pill fill — use simple opacity dots instead */
+.g-card-pills .mwm-pill {
+  width: 24px;
+  height: 4px;
+  background: rgba(255,255,255,0.25);
+  transition: background 0.2s;
+}
+.g-card-pills .mwm-pill.active {
+  background: rgba(255,255,255,0.9);
+}
+.g-card-pills .mwm-pill.done {
+  background: rgba(255,255,255,0.25);
+}
+.g-card-pills .mwm-pill-fill { display: none; }
 .g-body-card-text {
   padding: 24px 28px 28px;
 }

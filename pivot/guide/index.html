@@ -444,9 +444,8 @@
 
       function updatePills(current) {
         pillEls.forEach((pill, i) => {
-          pill.classList.remove('active', 'done');
-          if (i < current) pill.classList.add('done');
-          else if (i === current) { void pill.offsetWidth; pill.classList.add('active'); }
+          pill.classList.toggle('active', i === current);
+          pill.classList.remove('done');
         });
       }
       updatePills(0);
