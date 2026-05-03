@@ -574,6 +574,19 @@
   margin: 0;
 }
 
+/* ─── Full guide section background ─────────────────────── */
+.g-fullguide { position: relative; overflow: hidden; }
+.g-fullguide-bg {
+  position: absolute; inset: 0;
+  background-size: cover;
+  background-position: center 30%;
+  opacity: 0.5;
+}
+.g-fullguide-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to right, #000 35%, rgba(0,0,0,0.2) 100%);
+}
+
 /* ─── CTA footer ────────────────────────────────────────── */
 .g-cta {
   position: relative;
