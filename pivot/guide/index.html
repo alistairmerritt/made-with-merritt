@@ -194,7 +194,14 @@
           </div>
         </div>
         <div>
-          <div class="g-image-panel" style="background-image: url('../../assets/diffused-led-ring.png'); background-color: #111;"></div>
+          <div class="g-gallery" id="g-gallery">
+            <div class="g-gallery-slide active" style="background-image: url('../../assets/pivot-hand.png'); background-color: #111; background-position: center;"></div>
+            <div class="g-gallery-slide" style="background-image: url('../../assets/diffused-led-ring.png'); background-color: #f0f0f0;"></div>
+            <div class="g-gallery-pills">
+              <div class="mwm-pill active"><div class="mwm-pill-fill"></div></div>
+              <div class="mwm-pill"><div class="mwm-pill-fill"></div></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -300,6 +307,30 @@
       window.addEventListener('scroll', () => {
         nav.classList.toggle('scrolled', window.scrollY > 20);
       }, { passive: true });
+
+      // ─── Printing section image gallery ─────────────
+      (() => {
+        const slides = document.querySelectorAll('#g-gallery .g-gallery-slide');
+        const pills  = document.querySelectorAll('#g-gallery .mwm-pill');
+        let idx = 0;
+
+        function advance() {
+          slides[idx].classList.remove('active');
+          pills[idx].classList.remove('active');
+          pills[idx].classList.add('done');
+          idx = (idx + 1) % slides.length;
+          if (idx === 0) pills.forEach(p => { p.classList.remove('done', 'active'); });
+          slides[idx].classList.add('active');
+          const fill = pills[idx].querySelector('.mwm-pill-fill');
+          fill.style.animation = 'none';
+          void fill.offsetWidth;
+          fill.style.animation = '';
+          pills[idx].classList.add('active');
+        }
+
+        pills[0].classList.add('active');
+        setInterval(advance, 5000);
+      })();
 
       // ─── Printing & assembly accordion ──────────────
       const printAccordion = document.getElementById('g-print-accordion');

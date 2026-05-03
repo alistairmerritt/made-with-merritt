@@ -577,6 +577,32 @@
 .g-section-rule { border: none; border-top: 1px solid rgba(255,255,255,0.06); margin: 0; }
 .g-section-rule-light { border: none; border-top: 1px solid var(--grey-3); margin: 0; }
 
+/* ─── Image gallery with pill indicators ────────────────── */
+.g-gallery {
+  position: relative;
+  border-radius: 16px;
+  aspect-ratio: 4/5;
+  overflow: hidden;
+}
+.g-gallery-slide {
+  position: absolute; inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.7s ease;
+}
+.g-gallery-slide.active { opacity: 1; }
+.g-gallery-pills {
+  position: absolute;
+  bottom: 16px; left: 50%;
+  transform: translateX(-50%);
+  display: flex; gap: 6px;
+  z-index: 2;
+}
+.g-gallery-pills .mwm-pill.active .mwm-pill-fill {
+  animation-duration: 5s;
+}
+
 /* ─── Responsive ─────────────────────────────────────────── */
 @media (max-width: 1000px) {
   .g-split { grid-template-columns: 1fr; gap: 48px; }
