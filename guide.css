@@ -36,13 +36,12 @@
   position: relative;
   height: 50svh;
   min-height: 400px;
-  display: flex; align-items: flex-end;
+  display: flex; align-items: center;
   overflow: hidden;
 }
-.g-hero-container {
+.g-container.g-hero-container {
   position: relative; z-index: 1;
   width: 100%;
-  padding-bottom: 140px;
 }
 .g-hero-bg {
   position: absolute; inset: 0;
@@ -89,6 +88,7 @@
   position: sticky;
   top: 80px;
   z-index: 900;
+  margin-top: 80px;
   background: rgba(0,0,0,0.96);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
