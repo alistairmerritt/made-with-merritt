@@ -162,6 +162,13 @@
   margin-top: 8px;
   line-height: 1.5;
 }
+.g-lead-note-dark {
+  display: block;
+  font-size: 13px;
+  color: rgba(255,255,255,0.3);
+  margin-top: 8px;
+  line-height: 1.5;
+}
 
 .g-body {
   font-size: 16px;
@@ -370,6 +377,11 @@
   font-size: 14px; line-height: 1.6;
   color: var(--grey-2);
 }
+
+/* ─── Mount card dark context ───────────────────────────── */
+.g-dark .g-mount-img { background-color: #1a1a1a; }
+.g-dark .g-mount-name { color: #fff; }
+.g-dark .g-mount-desc { color: rgba(255,255,255,0.4); }
 
 /* ─── Included parts ────────────────────────────────────── */
 .g-parts-wrap {
