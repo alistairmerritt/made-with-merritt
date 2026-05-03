@@ -155,6 +155,13 @@
   margin-bottom: 40px;
 }
 .g-lead-light { color: rgba(255,255,255,0.5); }
+.g-lead-note {
+  display: block;
+  font-size: 13px;
+  color: rgba(0,0,0,0.35);
+  margin-top: 8px;
+  line-height: 1.5;
+}
 
 .g-body {
   font-size: 16px;
@@ -261,9 +268,12 @@
   opacity: 0;
 }
 .g-card-pills {
+  position: absolute;
+  bottom: 16px;
+  left: 20px;
   display: flex;
   gap: 6px;
-  margin-top: 20px;
+  z-index: 2;
 }
 .g-body-card-text {
   padding: 24px 28px 28px;
