@@ -642,8 +642,6 @@
   background-size: cover;
   background-position: center;
   background-color: #111;
-  position: sticky;
-  top: 120px;
 }
 
 /* ─── Single section image ───────────────────────────────── */
@@ -664,10 +662,7 @@
   gap: 80px;
   align-items: start;
 }
-.g-overview-left {
-  position: sticky;
-  top: 120px;
-}
+.g-overview-left {}
 .g-overview-left .g-lead { margin-bottom: 32px; }
 
 /* ─── Build overview stages ──────────────────────────────── */
