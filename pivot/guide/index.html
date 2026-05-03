@@ -430,9 +430,8 @@
       updateSubnav();
     })();
 
-    // ─── Build card slideshows ───────────────────────────────
+    // ─── Build card slideshows (manual only) ────────────────
     function initCardSlideshow(layerAId, layerBId, pillsId, slides) {
-      const SLIDE_MS = 5000;
       const layerA = document.getElementById(layerAId);
       const layerB = document.getElementById(layerBId);
       const pillEls = document.getElementById(pillsId).querySelectorAll('.mwm-pill');
@@ -463,15 +462,9 @@
         updatePills(idx);
       }
 
-      let timer = setInterval(() => goToSlide((idx + 1) % slides.length), SLIDE_MS);
-
       pillEls.forEach((pill, i) => {
         pill.style.cursor = 'pointer';
-        pill.addEventListener('click', () => {
-          goToSlide(i);
-          clearInterval(timer);
-          timer = setInterval(() => goToSlide((idx + 1) % slides.length), SLIDE_MS);
-        });
+        pill.addEventListener('click', () => goToSlide(i));
       });
     }
 
