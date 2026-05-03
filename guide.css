@@ -594,11 +594,11 @@
   position: absolute; inset: 0;
   background-size: cover;
   background-position: center 30%;
-  opacity: 0.5;
+  opacity: 0.85;
 }
 .g-fullguide-overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(to right, rgba(0,0,0,0.9) 30%, rgba(0,0,0,0.1) 100%);
+  background: linear-gradient(to right, rgba(0,0,0,0.82) 25%, rgba(0,0,0,0) 70%);
 }
 
 /* ─── CTA footer ────────────────────────────────────────── */
