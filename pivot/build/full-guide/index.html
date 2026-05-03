@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Full Assembly Guide — Pivot Dial</title>
+  <title>Full Assembly Guide – Pivot Dial</title>
   <meta name="description" content="Step-by-step guide to disassembling the Home Assistant Voice Preview Edition and reassembling it inside the Pivot Dial.">
   <link rel="icon" type="image/svg+xml" href="/assets/pivot-logo-01.svg">
   <link rel="stylesheet" href="/styles.css">
@@ -22,7 +22,7 @@
     </div>
     <div class="g-nav-links">
       <a href="/pivot/build/">Assembly overview</a>
-      <a href="https://ko-fi.com/s/0e4e8e3f3a" target="_blank" rel="noopener" class="btn-primary" style="line-height:1; padding: 10px 18px;">Download STL — $19 USD</a>
+      <a href="https://ko-fi.com/s/0e4e8e3f3a" target="_blank" rel="noopener" class="btn-primary" style="line-height:1; padding: 10px 18px;">Download STL – $19 USD</a>
     </div>
   </nav>
 
@@ -30,12 +30,12 @@
   <div class="fg-header">
     <div class="fg-container">
       <span class="fg-header-badge">Pivot Dial</span>
-      <h1 class="fg-header-title">Full Assembly<br>Guide</h1>
-      <p class="fg-header-desc">This guide walks through removing the Home Assistant Voice Preview Edition from its original enclosure and reassembling it inside the Pivot Dial.</p>
+      <h1 class="fg-header-title">Full Assembly Guide</h1>
+      <p class="fg-header-desc">This guide walks through removing the Home Assistant Voice Preview Edition from its original enclosure and reassembling it inside Pivot Dial.</p>
       <p class="fg-header-desc">Allow around 20 minutes once your printed parts are ready. Take your time, avoid forcing any components, and follow each section carefully.</p>
       <div class="fg-notice">
-        <p class="fg-notice-label">Warranty note</p>
-        <p>Pivot Dial requires removing the Home Assistant Voice Preview Edition from its original enclosure. This process may affect your original product warranty, especially if damage occurs during disassembly or reassembly. Take your time and avoid forcing any parts.</p>
+        <p class="fg-notice-label">Care note</p>
+        <p>Pivot Dial requires removing the Home Assistant Voice Preview Edition from its original enclosure. This process may affect your original product warranty, especially if damage occurs during disassembly or reassembly. Take your time, avoid forcing any parts, and work on a clean, stable surface.</p>
       </div>
     </div>
   </div>
@@ -62,18 +62,31 @@
         <ul class="g-needs-list">
           <li>Home Assistant Voice Preview Edition</li>
           <li>Printed Pivot Dial parts <span class="g-needs-note">STL files or prepared 3MF file</span></li>
-          <li>No. 1 and No. 2 crosshead screwdriver</li>
-          <li>Small flathead screwdriver</li>
+          <li>No. 1 crosshead screwdriver</li>
+          <li>No. 2 crosshead screwdriver</li>
           <li>USB-C cable</li>
           <li><span>Right-angle USB-C adapter <span class="g-needs-note">Stand Build only</span></span></li>
-          <li>Clean workspace</li>
-          <li>Small tray or container for screws</li>
+          <li><span>Right-angle AUX adapter <span class="g-needs-note">If required for your build</span></span></li>
         </ul>
       </div>
 
-      <div class="fg-tip">
+      <div class="g-needs-card" style="margin-top: 16px;">
+        <p class="g-needs-label">Recommended</p>
+        <ul class="g-needs-list">
+          <li>Clean workspace</li>
+          <li>Small flathead screwdriver</li>
+          <li>Small tray or container for screws</li>
+          <li>Container for discarded VPE parts <span class="g-needs-note">In case you want to reassemble your VPE in the future</span></li>
+        </ul>
+      </div>
+
+      <div class="fg-tip" style="margin-top: 24px;">
         <p class="fg-tip-label">Keep screws organised</p>
-        <p>The VPE uses several different screw sizes. Keep them separated as you go — particularly the smaller speaker screws, which are easy to lose and difficult to source if misplaced.</p>
+        <p>Keep the screws organised as you work, especially the smaller speaker screws from the original enclosure. They are easy to misplace.</p>
+      </div>
+      <div class="fg-tip">
+        <p class="fg-tip-label">Handle the PCB carefully</p>
+        <p>Take care when handling the PCB. Hold it by the edges where possible and avoid touching the components directly.</p>
       </div>
     </div>
   </section>
@@ -83,7 +96,7 @@
     <div class="fg-container">
       <p class="fg-section-eyebrow">Section 1</p>
       <h2 class="fg-section-title">Disassembly</h2>
-      <p class="fg-section-desc">Remove the Home Assistant Voice Preview Edition from its original enclosure. Work carefully and keep all parts to hand — everything removed here will be reused.</p>
+      <p class="fg-section-desc">Remove the Home Assistant Voice Preview Edition from its original enclosure. Work carefully and keep all parts to hand – some components will be reused.</p>
 
       <div class="fg-steps">
 
@@ -92,13 +105,9 @@
             <span class="fg-step-num">01</span>
             <h3 class="fg-step-title">Remove rubber pads and rear screws</h3>
           </div>
-          <div class="fg-step-img" role="img" aria-label="Placeholder — removing rubber pads and rear screws"></div>
+          <div class="fg-step-img" role="img" aria-label="Placeholder – removing rubber pads and rear screws"></div>
           <div class="fg-step-content">
             <p>Flip the VPE over and peel back the four rubber feet. Beneath each pad you'll find a screw. Remove all four screws using a No. 2 crosshead screwdriver and set them aside with the pads.</p>
-            <div class="fg-caution">
-              <p class="fg-caution-label">Take care</p>
-              <p>Peel the rubber pads back slowly to avoid tearing. They can be re-applied after disassembly if needed.</p>
-            </div>
           </div>
         </div>
 
@@ -107,9 +116,9 @@
             <span class="fg-step-num">02</span>
             <h3 class="fg-step-title">Lift away the original top enclosure</h3>
           </div>
-          <div class="fg-step-img" role="img" aria-label="Placeholder — lifting the original top enclosure"></div>
+          <div class="fg-step-img" role="img" aria-label="Placeholder – lifting the original top enclosure"></div>
           <div class="fg-step-content">
-            <p>With the rear screws removed, the top shell can be lifted away from the base. Gently separate the two halves, starting from the rear edge. There are no clips — the shell should come apart cleanly once the screws are out.</p>
+            <p>With the rear screws removed, the top shell can be lifted away from the base. Gently separate the two halves, starting from the rear edge. There are no clips – the shell should come apart cleanly once the screws are out.</p>
             <div class="fg-caution">
               <p class="fg-caution-label">Take care</p>
               <p>Do not force the shell apart. If it resists, check that all four rear screws have been fully removed.</p>
@@ -122,9 +131,13 @@
             <span class="fg-step-num">03</span>
             <h3 class="fg-step-title">Remove the PCB screws</h3>
           </div>
-          <div class="fg-step-img" role="img" aria-label="Placeholder — removing PCB screws"></div>
+          <div class="fg-step-img" role="img" aria-label="Placeholder – removing PCB screws"></div>
           <div class="fg-step-content">
             <p>With the top shell removed, locate the screws securing the PCB to the base. Remove them carefully and set aside. Do not disconnect any cables at this stage.</p>
+            <div class="fg-caution">
+              <p class="fg-caution-label">Important</p>
+              <p>These are the only screws you'll need to reassemble the Pivot Dial. Keep them somewhere safe and separate from the other VPE hardware.</p>
+            </div>
           </div>
         </div>
 
@@ -133,13 +146,9 @@
             <span class="fg-step-num">04</span>
             <h3 class="fg-step-title">Remove the speaker</h3>
           </div>
-          <div class="fg-step-img" role="img" aria-label="Placeholder — removing the speaker"></div>
+          <div class="fg-step-img" role="img" aria-label="Placeholder – removing the speaker"></div>
           <div class="fg-step-content">
-            <p>Locate the speaker at the rear of the unit. It is secured with small screws — note that these are smaller than the enclosure screws and should be stored separately. Gently disconnect the speaker cable and set the speaker aside.</p>
-            <div class="fg-caution">
-              <p class="fg-caution-label">Take care</p>
-              <p>The speaker screws are small and easy to lose. Move them to a separate section of your tray immediately after removal.</p>
-            </div>
+            <p>Locate the speaker at the rear of the unit. It is secured with small screws – note that these are smaller than the enclosure screws. Gently disconnect the speaker cable and set the speaker aside.</p>
           </div>
         </div>
 
@@ -148,9 +157,9 @@
             <span class="fg-step-num">05</span>
             <h3 class="fg-step-title">Remove the mute switch</h3>
           </div>
-          <div class="fg-step-img" role="img" aria-label="Placeholder — removing the mute switch"></div>
+          <div class="fg-step-img" role="img" aria-label="Placeholder – removing the mute switch"></div>
           <div class="fg-step-content">
-            <p>The mute switch is located on the side of the unit. Carefully detach it from its position and disconnect from the PCB. Note how it is oriented before removing — this will make reassembly easier.</p>
+            <p>The mute switch is located on the side of the unit. Carefully detach it from its position and disconnect from the PCB.</p>
           </div>
         </div>
 
@@ -159,9 +168,9 @@
             <span class="fg-step-num">06</span>
             <h3 class="fg-step-title">Remove the LED diffuser ring</h3>
           </div>
-          <div class="fg-step-img" role="img" aria-label="Placeholder — removing the LED diffuser ring"></div>
+          <div class="fg-step-img" role="img" aria-label="Placeholder – removing the LED diffuser ring"></div>
           <div class="fg-step-content">
-            <p>The LED diffuser ring sits around the dial area and clips or screws into place. Carefully unclip or unscrew it and set aside. This component will be transferred directly into the Pivot Dial front face during reassembly.</p>
+            <p>The LED diffuser ring sits around the dial area and clips or screws into place. Carefully unclip or unscrew it and set aside.</p>
           </div>
         </div>
 
@@ -170,12 +179,12 @@
             <span class="fg-step-num">07</span>
             <h3 class="fg-step-title">Remove the dial and centre button</h3>
           </div>
-          <div class="fg-step-img" role="img" aria-label="Placeholder — removing the dial and centre button"></div>
+          <div class="fg-step-img" role="img" aria-label="Placeholder – removing the dial and centre button"></div>
           <div class="fg-step-content">
-            <p>Carefully lift the dial assembly away from the PCB. The centre button is a separate component — take note of how it sits relative to the dial before removing. The rubber ring around the button should stay with the button.</p>
+            <p>Carefully lift the dial assembly away from the PCB. The centre button is a separate component – take note of how it sits relative to the dial before removing. The rubber ring around the button should stay with the button.</p>
             <div class="fg-caution">
               <p class="fg-caution-label">Note</p>
-              <p>Take a photo of the dial orientation before removing if you're unsure. The rubber ring on the centre button must be kept — it will be transferred to the new Pivot Dial button during reassembly.</p>
+              <p>Take a photo of the dial orientation before removing if you're unsure. The rubber ring on the centre button must be kept – it will be transferred to the new Pivot Dial button during reassembly.</p>
             </div>
           </div>
         </div>
@@ -183,11 +192,18 @@
         <div class="fg-step" id="dis-8">
           <div class="fg-step-header">
             <span class="fg-step-num">08</span>
-            <h3 class="fg-step-title">Confirm all parts are ready</h3>
+            <h3 class="fg-step-title">Confirm all parts are ready for reassembly</h3>
           </div>
-          <div class="fg-step-img" role="img" aria-label="Placeholder — all disassembled parts laid out"></div>
+          <div class="fg-step-img" role="img" aria-label="Placeholder – all disassembled parts laid out"></div>
           <div class="fg-step-content">
-            <p>Before moving to assembly, lay out all components and check nothing is missing. You should have: the PCB, speaker and speaker screws, mute switch, LED diffuser ring, dial, centre button with rubber ring, and all original enclosure screws.</p>
+            <p>Before moving to assembly, confirm you have the components needed for reassembly:</p>
+            <ul style="margin-top: 12px; margin-bottom: 16px; padding-left: 20px; display: flex; flex-direction: column; gap: 6px;">
+              <li style="font-size: 16px; line-height: 1.75; color: var(--grey-2);">PCB</li>
+              <li style="font-size: 16px; line-height: 1.75; color: var(--grey-2);">Speaker</li>
+              <li style="font-size: 16px; line-height: 1.75; color: var(--grey-2);">Dial centre button with rubber ring</li>
+              <li style="font-size: 16px; line-height: 1.75; color: var(--grey-2);">PCB screws (set aside in step 03)</li>
+            </ul>
+            <p>All other parts – the original enclosure, rubber pads, mute switch, LED diffuser ring, and remaining screws – can be discarded or stored safely in case you want to reassemble your VPE in the future.</p>
           </div>
         </div>
 
@@ -200,7 +216,7 @@
     <div class="fg-container">
       <p class="fg-section-eyebrow">Section 2</p>
       <h2 class="fg-section-title">Assembly</h2>
-      <p class="fg-section-desc">Reassemble the hardware inside the Pivot Dial enclosure. Follow each step in order. Take extra care when fitting the dial and button — they may take a little adjustment to seat correctly.</p>
+      <p class="fg-section-desc">Reassemble the hardware inside the Pivot Dial enclosure. Follow each step in order.</p>
 
       <div class="fg-steps">
 
@@ -209,12 +225,13 @@
             <span class="fg-step-num">01</span>
             <h3 class="fg-step-title">Prepare the printed Pivot Dial parts</h3>
           </div>
-          <div class="fg-step-img" role="img" aria-label="Placeholder — printed Pivot Dial parts laid out"></div>
+          <div class="fg-step-img" role="img" aria-label="Placeholder – printed Pivot Dial parts laid out"></div>
           <div class="fg-step-content">
-            <p>Check that all printed parts are clean and free from support material. Remove any supports or stringing before starting. The front face should have no infill — this allows the LED ring to shine through the surface evenly.</p>
-            <div class="fg-caution">
-              <p class="fg-caution-label">Before you continue</p>
-              <p>Do not proceed with parts that have leftover support material in mounting holes or recesses — this can prevent components from seating correctly.</p>
+            <p>Check each printed part before assembly. Remove any remaining support material, loose filament or rough edges. You may need to shave away excess support material using a sharp knife or similar tool.</p>
+            <p>Pay particular attention to the main body, faceplate, backplate, speaker cavity, mute switch opening and mount groove.</p>
+            <div class="fg-tip">
+              <p class="fg-tip-label">Note</p>
+              <p>If the faceplate, backplate or mount does not sit flush later in the assembly, remaining support material is the most likely cause.</p>
             </div>
           </div>
         </div>
@@ -222,137 +239,149 @@
         <div class="fg-step" id="asm-2">
           <div class="fg-step-header">
             <span class="fg-step-num">02</span>
-            <h3 class="fg-step-title">Transfer the rubber ring to the new button</h3>
+            <h3 class="fg-step-title">Fit the mute switch to the PCB</h3>
           </div>
-          <div class="fg-step-img" role="img" aria-label="Placeholder — transferring rubber ring to Pivot Dial button"></div>
+          <div class="fg-step-img" role="img" aria-label="Placeholder – fitting mute switch to PCB"></div>
           <div class="fg-step-content">
-            <p>Carefully remove the rubber ring from the original VPE centre button and transfer it onto the Pivot Dial centre button. The ring should seat cleanly into the groove without needing to be stretched or forced.</p>
+            <p>Place the mute switch onto the PCB, making sure it is facing the correct way up. Check the orientation before moving to the next step, as the switch needs to align with the opening in the Pivot Dial body.</p>
           </div>
         </div>
 
         <div class="fg-step" id="asm-3">
           <div class="fg-step-header">
             <span class="fg-step-num">03</span>
-            <h3 class="fg-step-title">Assemble the button and dial</h3>
+            <h3 class="fg-step-title">Connect right-angle adapters, if required</h3>
           </div>
-          <div class="fg-step-img" role="img" aria-label="Placeholder — assembling the button and dial"></div>
+          <div class="fg-step-img" role="img" aria-label="Placeholder – connecting right-angle USB-C adapter"></div>
           <div class="fg-step-content">
-            <p>Place the centre button into the dial assembly. It should move freely before being fitted to the PCB. Do not force the dial onto the PCB at this stage — this will be done once the PCB is seated in the body.</p>
+            <p>If you are using the Stand Build, connect the right-angle USB-C adapter to the PCB before placing the PCB into the body. If your build uses an aux connection, connect the optional right-angle aux adapter at this stage as well.</p>
+            <div class="fg-tip">
+              <p class="fg-tip-label">Note</p>
+              <p>It is much easier to connect these adapters before the PCB is seated inside the enclosure.</p>
+            </div>
           </div>
         </div>
 
         <div class="fg-step" id="asm-4">
           <div class="fg-step-header">
             <span class="fg-step-num">04</span>
-            <h3 class="fg-step-title">Fit the LED diffuser ring</h3>
+            <h3 class="fg-step-title">Place the PCB into the main body</h3>
           </div>
-          <div class="fg-step-img" role="img" aria-label="Placeholder — fitting the LED diffuser ring into the front face"></div>
+          <div class="fg-step-img" role="img" aria-label="Placeholder – placing PCB into Pivot Dial body"></div>
           <div class="fg-step-content">
-            <p>Place the LED diffuser ring into the front face of the Pivot Dial body. It should sit flush with the surface and click or seat into position. Do not force it — if it resists, check the orientation.</p>
+            <p>Carefully angle the PCB into the main body, with the mute switch entering first. Guide the mute switch through its opening, then gently lower the rest of the PCB into place.</p>
+            <p>The fit may feel a little tight, but the PCB should slide in without being forced. Once seated, the PCB should sit as flat and flush as possible inside the body.</p>
+            <div class="fg-caution">
+              <p class="fg-caution-label">Take care</p>
+              <p>Do not force the PCB down. If it does not sit correctly, remove it and check for support material or obstruction inside the printed body.</p>
+            </div>
           </div>
         </div>
 
         <div class="fg-step" id="asm-5">
           <div class="fg-step-header">
             <span class="fg-step-num">05</span>
-            <h3 class="fg-step-title">Attach the speaker</h3>
+            <h3 class="fg-step-title">Click the faceplate into the main body</h3>
           </div>
-          <div class="fg-step-img" role="img" aria-label="Placeholder — attaching the speaker inside Pivot Dial body"></div>
+          <div class="fg-step-img" role="img" aria-label="Placeholder – fitting faceplate to main body"></div>
           <div class="fg-step-content">
-            <p>Position the speaker into the speaker recess in the Pivot Dial body. Secure it using the small speaker screws removed during disassembly. Reconnect the speaker cable to the PCB.</p>
-            <div class="fg-caution">
-              <p class="fg-caution-label">Take care</p>
-              <p>Do not overtighten the speaker screws — the speaker housing can crack under excessive force.</p>
-            </div>
+            <p>With the PCB seated, click the faceplate into the main body. It may take a firm press to seat the faceplate fully. Make sure it sits squarely and flush against the main body.</p>
+            <p>If the faceplate does not sit properly, remove it and check the inside edges of the main body for excess support material. Carefully shave or clean away any obstruction before trying again.</p>
           </div>
         </div>
 
         <div class="fg-step" id="asm-6">
           <div class="fg-step-header">
             <span class="fg-step-num">06</span>
-            <h3 class="fg-step-title">Attach the mute switch</h3>
+            <h3 class="fg-step-title">Secure the PCB to the faceplate</h3>
           </div>
-          <div class="fg-step-img" role="img" aria-label="Placeholder — fitting the mute switch into Pivot Dial body"></div>
+          <div class="fg-step-img" role="img" aria-label="Placeholder – securing PCB to faceplate"></div>
           <div class="fg-step-content">
-            <p>Fit the mute switch into the mute switch recess in the Pivot Dial body and reconnect it to the PCB. Ensure it is correctly oriented so the toggle is accessible through the opening in the shell.</p>
+            <p>Screw the PCB into the faceplate using the PCB screws set aside during disassembly. This holds the PCB, faceplate and main body together to form the front enclosure. An electric screwdriver can help, but use it carefully.</p>
+            <div class="fg-caution">
+              <p class="fg-caution-label">Take care</p>
+              <p>Tighten the screws enough to hold the faceplate securely, but do not overtighten. Overtightening may damage the PCB or printed parts.</p>
+            </div>
           </div>
         </div>
 
         <div class="fg-step" id="asm-7">
           <div class="fg-step-header">
             <span class="fg-step-num">07</span>
-            <h3 class="fg-step-title">Place the PCB into the Pivot Dial body</h3>
+            <h3 class="fg-step-title">Fit the speaker into the backplate</h3>
           </div>
-          <div class="fg-step-img" role="img" aria-label="Placeholder — placing PCB into Pivot Dial body"></div>
+          <div class="fg-step-img" role="img" aria-label="Placeholder – fitting speaker into backplate"></div>
           <div class="fg-step-content">
-            <p>Lower the PCB into the Pivot Dial body, aligning it with the mounting points. Ensure the USB-C port aligns with the cable exit in the enclosure. For the Stand Build, the port should face downward toward the cable channel.</p>
-            <div class="fg-caution">
-              <p class="fg-caution-label">Stand Build note</p>
-              <p>The Stand Build requires a right-angle USB-C adapter. Route the cable before securing the PCB — it is much harder to fit once the enclosure is closed.</p>
-            </div>
+            <p>Slide the speaker into the speaker cavity in the backplate. The fit is designed to be snug and should hold the speaker without screws. It may need a firm press, but avoid forcing it.</p>
+            <p>Make sure any support material has been removed from the speaker cavity before fitting the speaker.</p>
           </div>
         </div>
 
         <div class="fg-step" id="asm-8">
           <div class="fg-step-header">
             <span class="fg-step-num">08</span>
-            <h3 class="fg-step-title">Secure the PCB</h3>
+            <h3 class="fg-step-title">Connect the speaker wire</h3>
           </div>
-          <div class="fg-step-img" role="img" aria-label="Placeholder — securing PCB with screws"></div>
+          <div class="fg-step-img" role="img" aria-label="Placeholder – connecting speaker wire"></div>
           <div class="fg-step-content">
-            <p>Once the PCB is correctly seated, secure it using the PCB screws removed during disassembly. Tighten gently — the PCB does not need to be under heavy tension.</p>
+            <p>Connect the speaker wire to the PCB. Check that the wire is secure and positioned so it will not be pinched when the backplate is installed.</p>
           </div>
         </div>
 
         <div class="fg-step" id="asm-9">
           <div class="fg-step-header">
             <span class="fg-step-num">09</span>
-            <h3 class="fg-step-title">Fit the front face</h3>
+            <h3 class="fg-step-title">Fit the backplate into the main body</h3>
           </div>
-          <div class="fg-step-img" role="img" aria-label="Placeholder — fitting the Pivot Dial front face"></div>
+          <div class="fg-step-img" role="img" aria-label="Placeholder – fitting backplate into main body"></div>
           <div class="fg-step-content">
-            <p>Align the front face over the body, passing the dial and button through the dial opening. The LED ring window should sit directly over the LED diffuser ring. Press down gently and evenly until the face seats flush with the body.</p>
-            <div class="fg-caution">
-              <p class="fg-caution-label">Take care</p>
-              <p>Do not press down on the dial itself when fitting the front face. Apply pressure to the edges of the face panel only.</p>
-            </div>
+            <p>Slide the backplate into the main body. It should click into place if the tolerances are correct and the printed parts are clean. Check that the backplate sits flat and that the speaker openings remain clear.</p>
           </div>
         </div>
 
         <div class="fg-step" id="asm-10">
           <div class="fg-step-header">
             <span class="fg-step-num">10</span>
-            <h3 class="fg-step-title">Close the enclosure</h3>
+            <h3 class="fg-step-title">Attach the inner dial</h3>
           </div>
-          <div class="fg-step-img" role="img" aria-label="Placeholder — closing and securing the Pivot Dial enclosure"></div>
+          <div class="fg-step-img" role="img" aria-label="Placeholder – attaching inner dial"></div>
           <div class="fg-step-content">
-            <p>Align the backplate with the rear of the body and secure it using the original VPE enclosure screws. Work through each screw progressively rather than fully tightening one at a time — this helps the plate seat evenly.</p>
-            <div class="fg-caution">
-              <p class="fg-caution-label">Take care</p>
-              <p>Do not overtighten. The printed body can crack if screws are driven in too hard. Tighten until snug, then stop.</p>
-            </div>
+            <p>Turn the device over so the backplate is flat on the table. Align the inner dial with the black dial attached to the PCB, then press it down until it clicks into place. This may require a firm press. You should feel or hear it seat properly.</p>
           </div>
         </div>
 
         <div class="fg-step" id="asm-11">
           <div class="fg-step-header">
             <span class="fg-step-num">11</span>
-            <h3 class="fg-step-title">Attach the selected mount</h3>
+            <h3 class="fg-step-title">Fit the outer dial</h3>
           </div>
-          <div class="fg-step-img" role="img" aria-label="Placeholder — attaching the chosen mount to Pivot Dial"></div>
+          <div class="fg-step-img" role="img" aria-label="Placeholder – fitting outer dial"></div>
           <div class="fg-step-content">
-            <p>Attach your chosen mount to the rear of the Pivot Dial body using the mount fixings. Ensure the mount is correctly aligned with the mounting points before securing. All three mount types attach at the same rear interface.</p>
+            <p>Take the outer dial and align the teeth around its outside with the four guiding indents in the faceplate. Slide the outer dial over the inner dial. This may take a little trial and error because the dial needs to support both rotation and button press movement.</p>
+            <p>Without power connected, press the button a few times and rotate the dial. The button should press cleanly, and the dial should turn smoothly.</p>
+            <p>If the button feels too stiff, remove the outer dial, rotate it slightly and try another groove. Repeat until the button press feels reliable and the rotation feels natural.</p>
           </div>
         </div>
 
         <div class="fg-step" id="asm-12">
           <div class="fg-step-header">
             <span class="fg-step-num">12</span>
-            <h3 class="fg-step-title">Connect USB-C power</h3>
+            <h3 class="fg-step-title">Attach the selected mount</h3>
           </div>
-          <div class="fg-step-img" role="img" aria-label="Placeholder — connecting USB-C cable to Pivot Dial"></div>
+          <div class="fg-step-img" role="img" aria-label="Placeholder – attaching the chosen mount to Pivot Dial"></div>
           <div class="fg-step-content">
-            <p>For the Stand Build, connect the right-angle USB-C adapter first, routing the cable down through the stand channel. For the Flat Build, connect directly. Once connected, power on and confirm the device starts normally.</p>
+            <p>Hold your selected mount against the flat section of the backplate, opposite the speaker holes. Slide the mount into place until it feels tight and secure. The groove should help lock the mount in position.</p>
+          </div>
+        </div>
+
+        <div class="fg-step" id="asm-13">
+          <div class="fg-step-header">
+            <span class="fg-step-num">13</span>
+            <h3 class="fg-step-title">Connect the USB-C cable</h3>
+          </div>
+          <div class="fg-step-img" role="img" aria-label="Placeholder – connecting USB-C cable to Pivot Dial"></div>
+          <div class="fg-step-content">
+            <p>If you are using the Stand Build, feed the USB-C cable through the hole in the stand and connect it to the right-angle USB-C adapter. Check that the cable sits naturally and is not placing unnecessary pressure on the PCB or adapter.</p>
           </div>
         </div>
 
@@ -365,11 +394,24 @@
     <div class="fg-container">
       <p class="fg-section-eyebrow">All done</p>
       <h2 class="fg-section-title">Check everything is working.</h2>
-      <p class="fg-section-desc">Once assembled, connect the Pivot Dial to USB-C power and confirm the device starts normally. The LED ring should illuminate and the dial should respond to rotation and press.</p>
+      <p class="fg-section-desc">Connect the Pivot Dial to USB-C power and confirm the device starts normally. Check each of the following before finishing.</p>
 
       <div class="fg-tip" style="margin-top: 40px;">
-        <p class="fg-tip-label">Dial adjustment</p>
-        <p>If the dial feels stiff or doesn't respond cleanly, open the enclosure and re-seat the dial assembly. It may need slight rotation to find the correct position. Take your time — do not force it.</p>
+        <p class="fg-tip-label">Checklist</p>
+        <ul style="margin-top: 8px; padding-left: 20px; display: flex; flex-direction: column; gap: 6px;">
+          <li style="font-size: 13px; line-height: 1.6; color: rgba(0,0,0,0.5);">The device powers on</li>
+          <li style="font-size: 13px; line-height: 1.6; color: rgba(0,0,0,0.5);">The LED ring lights correctly</li>
+          <li style="font-size: 13px; line-height: 1.6; color: rgba(0,0,0,0.5);">The dial turns smoothly</li>
+          <li style="font-size: 13px; line-height: 1.6; color: rgba(0,0,0,0.5);">The button presses cleanly</li>
+          <li style="font-size: 13px; line-height: 1.6; color: rgba(0,0,0,0.5);">The mute switch moves correctly</li>
+          <li style="font-size: 13px; line-height: 1.6; color: rgba(0,0,0,0.5);">The speaker is seated securely</li>
+          <li style="font-size: 13px; line-height: 1.6; color: rgba(0,0,0,0.5);">The mount feels stable</li>
+        </ul>
+      </div>
+
+      <div class="fg-tip">
+        <p class="fg-tip-label">If something doesn't feel right</p>
+        <p>If anything feels stiff, loose or misaligned, disconnect power and inspect the relevant part before continuing.</p>
       </div>
 
       <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 48px;">
