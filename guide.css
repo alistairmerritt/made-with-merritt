@@ -276,11 +276,15 @@
 }
 .g-card-pills {
   position: absolute;
-  bottom: 16px;
-  left: 20px;
+  bottom: 0;
+  left: 0;
+  right: 0;
   display: flex;
   gap: 6px;
   z-index: 2;
+  padding: 40px 20px 16px;
+  background: linear-gradient(to top, rgba(0,0,0,0.35) 0%, transparent 100%);
+  border-radius: 0 0 0 0;
 }
 .g-body-card-text {
   padding: 24px 28px 28px;
