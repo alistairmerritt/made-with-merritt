@@ -657,12 +657,36 @@
   margin-bottom: 64px;
 }
 
-/* ─── Build overview stages (2-col grid) ────────────────── */
+/* ─── Build overview two-col layout ─────────────────────── */
+.g-overview-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+.g-overview-left {
+  position: sticky;
+  top: 120px;
+}
+.g-overview-left .g-lead { margin-bottom: 32px; }
+
+/* ─── Build overview stages ──────────────────────────────── */
 .g-stages {
   display: grid;
   grid-template-columns: 1fr 1fr;
   border-top: 1px solid rgba(255,255,255,0.07);
   margin-top: 48px;
+}
+/* Single-column variant used inside two-col layout */
+.g-stages-col {
+  grid-template-columns: 1fr;
+  margin-top: 0;
+  border-top: none;
+}
+.g-stages-col .g-stage {
+  border-left: none !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 .g-stage {
   display: block;
@@ -706,6 +730,9 @@
 }
 .g-light .g-stage:nth-child(even) {
   border-left-color: rgba(0,0,0,0.07);
+}
+.g-light .g-stages-col .g-stage:first-child {
+  border-top: 1px solid rgba(0,0,0,0.07);
 }
 .g-light .g-stage-num { color: rgba(0,0,0,0.2); }
 .g-light .g-stage-title { color: var(--ink); }
@@ -770,6 +797,8 @@
   .g-stages { grid-template-columns: 1fr; }
   .g-stage:nth-child(even) { padding-left: 0; border-left: none; }
   .g-image-pair { grid-template-columns: 1fr; }
+  .g-overview-grid { grid-template-columns: 1fr; gap: 48px; }
+  .g-overview-left { position: static; }
 }
 
 @media (max-width: 640px) {
