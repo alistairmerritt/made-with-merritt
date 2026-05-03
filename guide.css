@@ -224,7 +224,7 @@
   font-size: 14px;
   color: var(--grey-2);
 }
-.g-needs-optional {
+.g-needs-list li.g-needs-optional {
   font-size: 13px;
   line-height: 1.6;
   color: rgba(0,0,0,0.4);
@@ -249,9 +249,21 @@
 }
 .g-body-card-img {
   aspect-ratio: 4/3;
+  background-color: #1a1a1a;
+  position: relative;
+  overflow: hidden;
+}
+.g-card-slide-layer {
+  position: absolute; inset: 0;
   background-size: cover;
   background-position: center;
-  background-color: #1a1a1a;
+  transition: opacity 0.9s ease;
+  opacity: 0;
+}
+.g-card-pills {
+  display: flex;
+  gap: 6px;
+  margin-top: 20px;
 }
 .g-body-card-text {
   padding: 24px 28px 28px;

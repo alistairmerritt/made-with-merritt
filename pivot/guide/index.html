@@ -136,7 +136,10 @@
 
       <div class="g-body-grid">
         <div class="g-body-card">
-          <div class="g-body-card-img" style="background-image: url('../../assets/pivot-hand.png'); background-color: #111; background-size: cover; background-position: center;"></div>
+          <div class="g-body-card-img">
+            <div class="g-card-slide-layer" id="stand-layer-a"></div>
+            <div class="g-card-slide-layer" id="stand-layer-b"></div>
+          </div>
           <div class="g-body-card-text">
             <p class="g-body-card-label">Option 1</p>
             <p class="g-body-card-title">Stand Build</p>
@@ -146,10 +149,18 @@
               <li>Concealed cable with Desk Stand</li>
               <li>Requires right-angle USB-C adapter</li>
             </ul>
+            <div class="g-card-pills" id="stand-pills">
+              <div class="mwm-pill"><div class="mwm-pill-fill"></div></div>
+              <div class="mwm-pill"><div class="mwm-pill-fill"></div></div>
+              <div class="mwm-pill"><div class="mwm-pill-fill"></div></div>
+            </div>
           </div>
         </div>
         <div class="g-body-card">
-          <div class="g-body-card-img" style="background-image: url('../../assets/diffused-led-ring.png'); background-color: #f0f0f0; background-size: contain; background-repeat: no-repeat; background-position: center;"></div>
+          <div class="g-body-card-img">
+            <div class="g-card-slide-layer" id="flat-layer-a"></div>
+            <div class="g-card-slide-layer" id="flat-layer-b"></div>
+          </div>
           <div class="g-body-card-text">
             <p class="g-body-card-label">Option 2</p>
             <p class="g-body-card-title">Flat Build</p>
@@ -160,6 +171,11 @@
               <li>Low-profile desk placement</li>
               <li>No right-angle adapter needed</li>
             </ul>
+            <div class="g-card-pills" id="flat-pills">
+              <div class="mwm-pill"><div class="mwm-pill-fill"></div></div>
+              <div class="mwm-pill"><div class="mwm-pill-fill"></div></div>
+              <div class="mwm-pill"><div class="mwm-pill-fill"></div></div>
+            </div>
           </div>
         </div>
       </div>
@@ -408,6 +424,62 @@
       window.addEventListener('scroll', updateSubnav, { passive: true });
       updateSubnav();
     })();
+
+    // ─── Build card slideshows ───────────────────────────────
+    function initCardSlideshow(layerAId, layerBId, pillsId, slides) {
+      const SLIDE_MS = 5000;
+      const layerA = document.getElementById(layerAId);
+      const layerB = document.getElementById(layerBId);
+      const pillEls = document.getElementById(pillsId).querySelectorAll('.mwm-pill');
+      let active = layerA;
+      let idx = 0;
+
+      layerA.style.backgroundImage = `url('${slides[0]}')`;
+      layerA.style.opacity = '1';
+      layerB.style.opacity = '0';
+
+      function updatePills(current) {
+        pillEls.forEach((pill, i) => {
+          pill.classList.remove('active', 'done');
+          if (i < current) pill.classList.add('done');
+          else if (i === current) { void pill.offsetWidth; pill.classList.add('active'); }
+        });
+      }
+      updatePills(0);
+
+      function goToSlide(newIdx) {
+        if (newIdx === idx) return;
+        idx = newIdx;
+        const next = active === layerA ? layerB : layerA;
+        next.style.backgroundImage = `url('${slides[idx]}')`;
+        next.style.opacity = '1';
+        active.style.opacity = '0';
+        active = next;
+        updatePills(idx);
+      }
+
+      let timer = setInterval(() => goToSlide((idx + 1) % slides.length), SLIDE_MS);
+
+      pillEls.forEach((pill, i) => {
+        pill.style.cursor = 'pointer';
+        pill.addEventListener('click', () => {
+          goToSlide(i);
+          clearInterval(timer);
+          timer = setInterval(() => goToSlide((idx + 1) % slides.length), SLIDE_MS);
+        });
+      });
+    }
+
+    initCardSlideshow('stand-layer-a', 'stand-layer-b', 'stand-pills', [
+      '../../assets/pivot-hand.png',
+      '../../assets/mount.png',
+      '../../assets/pivot-led.png',
+    ]);
+    initCardSlideshow('flat-layer-a', 'flat-layer-b', 'flat-pills', [
+      '../../assets/diffused-led-ring.png',
+      '../../assets/wall-mount.png',
+      '../../assets/low-profile-mount.png',
+    ]);
   </script>
 
 </body>
