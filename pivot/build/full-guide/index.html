@@ -444,10 +444,19 @@
 
   <script>
     (() => {
-      const nav = document.getElementById('g-nav');
-      window.addEventListener('scroll', () => {
-        nav.classList.toggle('scrolled', window.scrollY > 20);
-      }, { passive: true });
+      // ─── Nav scroll (mirrors main pivot page topbar behaviour) ──
+      const nav    = document.getElementById('g-nav');
+      const subnav = document.getElementById('g-subnav');
+      const TOPBAR_H = 32, NAV_H = 80;
+      const onNavScroll = () => {
+        const y      = window.scrollY;
+        const navTop = Math.max(0, TOPBAR_H - y);
+        nav.style.top = navTop + 'px';
+        if (subnav) subnav.style.top = (navTop + NAV_H) + 'px';
+        nav.classList.toggle('scrolled', y > TOPBAR_H);
+      };
+      window.addEventListener('scroll', onNavScroll, { passive: true });
+      onNavScroll();
 
       const subLinks = document.querySelectorAll('.g-subnav-inner a');
       const sections = Array.from(subLinks).map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
