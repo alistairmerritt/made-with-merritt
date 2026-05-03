@@ -662,14 +662,14 @@
   const arrow = '<svg class="ext-arrow" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.5 8.5L8.5 1.5M8.5 1.5H3.5M8.5 1.5V6.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   const paths = [
     { title: 'Pivot Dial',            body: 'A more refined enclosure for your existing VPE, designed to elevate it both physically and functionally. No additional firmware or software required.', ctas: [
-      { label: 'Get the Dial', s: 'outline' },
+      { label: 'Print the Pivot Dial', s: 'outline', href: '/pivot/guide/' },
     ]},
     { title: 'Pivot Software',        body: 'Install Pivot firmware and integration on your existing VPE to unlock banks, richer control, visual feedback and deeper Home Assistant integration.', ctas: [
       { label: 'Get started', s: 'primary', href: 'https://alistairmerritt.github.io/pivot/getting-started/' },
     ]},
     { title: 'Full Pivot Experience', body: 'Combine Pivot Dial and software for the most complete Pivot experience, uniting a more refined physical form with richer on-device control and deeper Home Assistant integration.', ctas: [
       { label: 'Get started',  s: 'primary', href: 'https://alistairmerritt.github.io/pivot/getting-started/' },
-      { label: 'Get the Dial', s: 'outline' },
+      { label: 'Print the Pivot Dial', s: 'outline', href: '/pivot/guide/' },
     ]},
     { title: 'Source files',          body: 'Browse, fork or contribute to the open-source firmware and Home Assistant integration that power Pivot.', ctas: [
       { label: 'Integration', s: 'dark', href: 'https://github.com/alistairmerritt/pivot-integration' },
