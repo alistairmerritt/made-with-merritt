@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Printing & Assembly Guide — Pivot Dial</title>
-  <meta name="description" content="A guided overview of how to print, prepare and assemble your Pivot Dial.">
+  <title>The Pivot Dial Build — Pivot Dial</title>
+  <meta name="description" content="Explore the enclosure, build formats, mounting options and what's involved in bringing the Pivot Dial to life.">
   <link rel="icon" type="image/svg+xml" href="/assets/pivot-logo-01.svg">
   <link rel="stylesheet" href="/styles.css">
   <link rel="stylesheet" href="/guide.css">
@@ -18,19 +18,19 @@
         <img src="/assets/Pivot.svg" alt="Pivot" height="28">
       </a>
       <span class="g-nav-sep">/</span>
-      <span class="g-nav-page">Printing &amp; Assembly Guide</span>
+      <span class="g-nav-page">The Pivot Dial Build</span>
     </div>
     <div class="g-nav-links">
-      <a href="/pivot/guide/full-guide/">Full assembly and printing guide</a>
-      <a href="https://ko-fi.com/s/0e4e8e3f3a" target="_blank" rel="noopener" class="btn-primary" style="line-height:1; padding: 10px 18px;">Download STL — $24</a>
+      <a href="/pivot/build/full-guide/">Full assembly and printing guide</a>
+      <a href="https://ko-fi.com/s/0e4e8e3f3a" target="_blank" rel="noopener" class="btn-primary" style="line-height:1; padding: 10px 18px;">Download STL — $19 USD</a>
     </div>
   </nav>
 
   <!-- ─── Sub-nav ────────────────────────────────────── -->
   <div class="g-subnav" id="g-subnav">
     <div class="g-subnav-inner">
-      <a href="#before-you-start">Before you start</a>
-      <a href="#build-overview">Build overview</a>
+      <a href="#before-you-start">Project overview</a>
+      <a href="#build-overview">Build process</a>
       <a href="#build-options">Build options</a>
       <a href="#mount-options">Mounts</a>
       <a href="#full-guide">Full guide</a>
@@ -46,10 +46,10 @@
     <div class="g-container g-hero-container">
       <div class="g-hero-content">
         <span class="g-hero-badge">Pivot Dial</span>
-        <h1 class="g-hero-title">Printing &amp;<br>Assembly Guide</h1>
-        <p class="g-hero-desc">Everything you need to print, prepare and assemble your Pivot Dial. A guided overview of the process, with full instructions and video available below.</p>
+        <h1 class="g-hero-title">The physical build.</h1>
+        <p class="g-hero-desc">Explore the enclosure, build formats, mounting options and what's involved in bringing the Pivot Dial to life.</p>
         <div class="g-hero-actions">
-          <a href="/pivot/guide/full-guide/" class="btn-primary">View full guide <svg class="ext-arrow" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.5 8.5L8.5 1.5M8.5 1.5H3.5M8.5 1.5V6.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a href="/pivot/build/full-guide/" class="btn-primary">View full guide</a>
           <a href="https://alistairmerritt.github.io/pivot/" target="_blank" rel="noopener" class="btn-accent">Watch assembly video <svg class="ext-arrow" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.5 8.5L8.5 1.5M8.5 1.5H3.5M8.5 1.5V6.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
       </div>
@@ -62,25 +62,31 @@
 
       <div class="g-bys-grid">
         <div class="g-bys-content">
-          <p class="g-eyebrow">Before you start</p>
-          <h2 class="g-title">What you'll need.</h2>
-          <p class="g-lead">Before you begin, make sure you have everything prepared. Assembly is straightforward, but taking a moment to get set up will make the process smoother.</p>
+          <p class="g-eyebrow">Overview</p>
+          <h2 class="g-title">What's involved.</h2>
+          <p class="g-lead">An overview of the parts, tools and files involved in printing and assembling the Pivot Dial.</p>
           <div class="g-needs-card">
             <p class="g-needs-label">Required</p>
             <ul class="g-needs-list">
               <li>Home Assistant Voice Preview Edition</li>
               <li>3D printer or access to a print service</li>
               <li>PLA or similar filament</li>
-              <li><span>Right-angle USB-C adapter &nbsp;<span class="g-needs-note">(Stand Build only)</span></span></li>
-              <li class="g-needs-optional">If you wish to use an external speaker with the Stand Build, a right-angle 3.5mm adapter will also be required.</li>
+              <li>Crosshead screwdriver</li>
+              <li>
+                <span>Right-angle USB-C adapter &nbsp;<span class="g-needs-note">(Stand Build only)</span></span>
+                <span class="g-note"><a href="https://www.amazon.com.au/Xolixorium-Degree-Adapter-Extender-Smartphone/dp/B0FMYQG4JF" target="_blank" rel="noopener">Tested and recommended adapter →</a> ~$4.50 USD for two</span>
+              </li>
+              <li class="g-needs-optional">
+                If you wish to use an external speaker with the Stand Build, a right-angle 3.5mm adapter will also be required. <span class="g-note" style="display: inline; margin-top: 0;"><a href="https://www.amazon.com.au/CableCreation-Headphone-Connector-Compatible-Controller/dp/B0C3TM8TF4" target="_blank" rel="noopener">Tested and recommended adapter →</a> ~$6 USD</span>
+              </li>
             </ul>
           </div>
           <div class="g-callout g-callout-light" style="border-left: 3px solid rgba(0,0,0,0.12); margin-top: 24px;">
-            <p class="g-callout-label g-callout-label-dark">Before you assemble</p>
-            <p style="color: rgba(0,0,0,0.5);">Pivot Dial involves carefully re-housing the Home Assistant Voice Preview Edition. The process is straightforward when done with care, but it does require removing the VPE from its original enclosure. Take your time and avoid forcing any components.</p>
+            <p class="g-callout-label g-callout-label-dark">A note on assembly</p>
+            <p style="color: rgba(0,0,0,0.5);">Assembling the Pivot Dial involves removing the VPE from its original enclosure. The process is designed to be straightforward, but should be followed carefully using the <a href="/pivot/build/full-guide/" style="color: rgba(0,0,0,0.6); text-decoration: underline; text-underline-offset: 2px;">full guide</a>.</p>
           </div>
         </div>
-        <div class="g-bys-image" style="background-image: url('../../assets/pivot-hand.png');"></div>
+        <div class="g-bys-image" style="background-image: url('../../assets/pivot-hand.png'); aspect-ratio: 7/8;"></div>
       </div>
 
     </div>
@@ -94,11 +100,11 @@
       <div class="g-overview-grid">
 
         <div class="g-overview-left">
-          <p class="g-eyebrow">Build overview</p>
+          <p class="g-eyebrow">Build process</p>
           <h2 class="g-title">How it comes together.</h2>
-          <p class="g-lead"> A simple overview of the build journey. Once the parts are printed, allow around 30 minutes for disassembly and assembly. For the actual build, follow the full written guide or video walkthrough.</p>
+          <p class="g-lead">A simple overview of the build journey. For the actual build, follow the full written guide or video walkthrough.</p>
           <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 0;">
-            <a href="/pivot/guide/full-guide/" class="btn-primary">View full guide <svg class="ext-arrow" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.5 8.5L8.5 1.5M8.5 1.5H3.5M8.5 1.5V6.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            <a href="/pivot/build/full-guide/" class="btn-primary">View full guide</a>
             <a href="https://alistairmerritt.github.io/pivot/" target="_blank" rel="noopener" class="btn-g-back">Watch assembly video <svg class="ext-arrow" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.5 8.5L8.5 1.5M8.5 1.5H3.5M8.5 1.5V6.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
           </div>
         </div>
@@ -114,25 +120,26 @@
             <p class="g-stage-num">02</p>
             <p class="g-stage-title">Print the relevant parts</p>
             <p class="g-stage-desc">Download the STL files or use the prepared 3MF file, which includes the recommended print settings where supported.</p>
+            <a href="https://ko-fi.com/s/0e4e8e3f3a" target="_blank" rel="noopener" class="g-stage-link">Get print files <svg class="ext-arrow" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.5 8.5L8.5 1.5M8.5 1.5H3.5M8.5 1.5V6.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
           </div>
           <div class="g-stage">
             <p class="g-stage-num">03</p>
             <p class="g-stage-title">Prepare your VPE</p>
-            <p class="g-stage-desc">Carefully remove the Voice Preview Edition from its original enclosure. </p>
-            <a href="/pivot/guide/full-guide/#disassembly" class="g-stage-link">View disassembly guide →</a>
+            <p class="g-stage-desc">Carefully remove the Voice Preview Edition PCB from its original enclosure.</p>
+            <a href="/pivot/build/full-guide/#disassembly" class="g-stage-link">View disassembly guide →</a>
           </div>
 
           <div class="g-stage">
             <p class="g-stage-num">04</p>
             <p class="g-stage-title">Assemble the enclosure</p>
-            <p class="g-stage-desc">Fit the body components together, then attach your chosen mount.</p>
-            <a href="/pivot/guide/full-guide/#assembly" class="g-stage-link">View assembly guide →</a>
+            <p class="g-stage-desc">Fit the body components together around the Voice Preview Edition PCB, then attach your chosen mount.</p>
+            <a href="/pivot/build/full-guide/#assembly" class="g-stage-link">View assembly guide →</a>
           </div>
           <div class="g-stage">
             <p class="g-stage-num">05</p>
             <p class="g-stage-title">Connect and check</p>
             <p class="g-stage-desc">Connect a USB power cable and confirm everything is seated and working correctly.</p>
-            <a href="/pivot/guide/full-guide/" class="g-stage-link">View full guide →</a>
+            <a href="/pivot/build/full-guide/" class="g-stage-link">View full guide →</a>
           </div>
         </div>
 
@@ -206,7 +213,7 @@
     <div class="g-container">
       <p class="g-eyebrow g-eyebrow-light">Mounting</p>
       <h2 class="g-title g-title-light">Placement options.</h2>
-      <p class="g-lead g-lead-light">Choose a mount that suits where and how you'll use Pivot Dial.<br><span class="g-lead-note-dark">All mounts are compatible with both builds.</span></p>
+      <p class="g-lead g-lead-light">Choose a mount that suits where and how you'll use the Pivot Dial.<br><span class="g-lead-note-dark">All mounts are compatible with both builds.</span></p>
 
       <div class="g-mount-grid">
         <div class="g-mount-card">
@@ -237,7 +244,7 @@
       <h2 class="g-title g-title-light">Follow the full guide.</h2>
       <p class="g-lead g-lead-light">For detailed instructions, images and exact steps, follow the full assembly guide or watch the video walkthrough. These are the recommended starting points for first-time builds.</p>
       <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: -8px;">
-        <a href="/pivot/guide/full-guide/" class="btn-primary">Full written guide <svg class="ext-arrow" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.5 8.5L8.5 1.5M8.5 1.5H3.5M8.5 1.5V6.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="/pivot/build/full-guide/" class="btn-primary">Full written guide</a>
         <a href="https://alistairmerritt.github.io/pivot/" target="_blank" rel="noopener" class="btn-g-back">Watch assembly video <svg class="ext-arrow" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.5 8.5L8.5 1.5M8.5 1.5H3.5M8.5 1.5V6.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
       <p style="margin-top: 28px; font-size: 13px; line-height: 1.65; color: rgba(255,255,255,0.55); max-width: 560px;">This overview page is intended to help you understand the process before you begin. The full guide should be followed during assembly.</p>
@@ -245,8 +252,8 @@
   </section>
 
   <!-- ─── Build Notes (light, categorised accordion) ── -->
-  <section id="build-notes" class="g-section g-light g-pad">
-    <div class="g-container">
+  <section id="build-notes" class="g-section g-light" style="padding-top: 160px; padding-bottom: 160px;">
+    <div class="g-container" style="max-width: 760px;">
       <p class="g-eyebrow">Printing &amp; assembly</p>
       <h2 class="g-title">Build notes</h2>
       <p class="g-lead">A few things to know before you start printing, and what to expect during assembly.</p>
@@ -283,7 +290,7 @@
             <span class="accordion-trigger-text"><span class="accordion-label">Which print bed should I use?</span></span>
             <span class="accordion-icon">+</span>
           </button>
-          <div class="accordion-panel"><div class="accordion-panel-inner"><p>Print on a smooth bed for the cleanest finish on visible parts. No sanding should be required if parts come out cleanly.</p></div></div>
+          <div class="accordion-panel"><div class="accordion-panel-inner"><p>A smooth bed gives the cleanest finish on visible parts and is what's used in all of the photos on this site. A textured bed will also work and some people may prefer that look – it's entirely a personal choice. No sanding should be required if parts come out cleanly.</p></div></div>
         </div>
 
         <div class="g-accordion-group">
@@ -309,14 +316,21 @@
             <span class="accordion-trigger-text"><span class="accordion-label">Do I need a right-angle USB-C adapter?</span></span>
             <span class="accordion-icon">+</span>
           </button>
-          <div class="accordion-panel"><div class="accordion-panel-inner"><p>Only for the Stand Build. A standard straight cable won't fit within the enclosure. The Flat Build doesn't require one — the cable exits from the side of the body.</p></div></div>
+          <div class="accordion-panel"><div class="accordion-panel-inner"><p>Only for the Stand Build. A standard straight cable won't fit within the enclosure. The Flat Build doesn't require one – the cable exits from the rear of the body. A tested and recommended adapter is available on Amazon for around $4.50 USD for two. <a href="https://www.amazon.com.au/Xolixorium-Degree-Adapter-Extender-Smartphone/dp/B0FMYQG4JF" target="_blank" rel="noopener" style="color: var(--ink); border-bottom: 1px solid var(--grey-3); padding-bottom: 1px;">View recommended adapter <svg class="ext-arrow" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:9px;height:9px;vertical-align:middle;"><path d="M1.5 8.5L8.5 1.5M8.5 1.5H3.5M8.5 1.5V6.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p></div></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger">
+            <span class="accordion-trigger-text"><span class="accordion-label">Do I need a right-angle AUX adapter?</span></span>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-panel"><div class="accordion-panel-inner"><p>Only if you want to connect an external speaker via the 3.5mm output on the Stand Build. It's not required for the Flat Build or if you're using the built-in speaker only. A tested and recommended adapter is available on Amazon for around $6 USD. <a href="https://www.amazon.com.au/CableCreation-Headphone-Connector-Compatible-Controller/dp/B0C3TM8TF4" target="_blank" rel="noopener" style="color: var(--ink); border-bottom: 1px solid var(--grey-3); padding-bottom: 1px;">View recommended adapter <svg class="ext-arrow" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:9px;height:9px;vertical-align:middle;"><path d="M1.5 8.5L8.5 1.5M8.5 1.5H3.5M8.5 1.5V6.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p></div></div>
         </div>
         <div class="accordion-item">
           <button class="accordion-trigger">
             <span class="accordion-trigger-text"><span class="accordion-label">How do I fit the dial?</span></span>
             <span class="accordion-icon">+</span>
           </button>
-          <div class="accordion-panel"><div class="accordion-panel-inner"><p>The dial may take some adjustment to seat correctly. Rotate and adjust slowly until it moves cleanly in both directions — up/down press and clockwise/counterclockwise rotation. Take your time with this step.</p></div></div>
+          <div class="accordion-panel"><div class="accordion-panel-inner"><p>The dial may take some adjustment to seat correctly. Rotate and adjust slowly until it moves cleanly in both directions – up/down press and clockwise/counterclockwise rotation. Take your time with this step.</p></div></div>
         </div>
         <div class="accordion-item">
           <button class="accordion-trigger">
@@ -343,7 +357,7 @@
   </section>
 
   <!-- ─── License + Support (grey) ─────────────────── -->
-  <section class="g-section g-grey g-pad-sm">
+  <section id="license-support" class="g-section g-grey g-pad-sm">
     <div class="g-container">
       <div class="g-license-grid">
         <div class="g-license-card">
@@ -367,8 +381,19 @@
       <p class="g-cta-sub">Download the files and follow the guide when you're ready to begin.</p>
       <div class="g-cta-actions">
         <a href="/pivot/" class="btn-g-back">← Back to Pivot Dial</a>
-        <a href="https://ko-fi.com/s/0e4e8e3f3a" target="_blank" rel="noopener" class="btn-primary">Download STL — $24 <svg class="ext-arrow" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.5 8.5L8.5 1.5M8.5 1.5H3.5M8.5 1.5V6.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-        <a href="/pivot/guide/full-guide/" class="btn-g-back">View full guide <svg class="ext-arrow" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.5 8.5L8.5 1.5M8.5 1.5H3.5M8.5 1.5V6.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="https://ko-fi.com/s/0e4e8e3f3a" target="_blank" rel="noopener" class="btn-primary">Download STL — $19 USD <svg class="ext-arrow" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.5 8.5L8.5 1.5M8.5 1.5H3.5M8.5 1.5V6.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="/pivot/build/full-guide/" class="btn-g-back">View full guide</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── Build Page Sticky Bar ────────────────────── -->
+  <div class="hw-sticky-bar" id="build-sticky-bar" aria-hidden="true">
+    <div class="hw-sticky-inner">
+      <span class="hw-sticky-label">Ready to make your Pivot Dial?</span>
+      <div class="hw-sticky-ctas">
+        <a href="/pivot/build/full-guide/" class="hw-sticky-btn hw-sticky-primary">View full guide</a>
+        <a href="https://ko-fi.com/s/0e4e8e3f3a" target="_blank" rel="noopener" class="hw-sticky-btn hw-sticky-secondary">Get print files — $19 USD <svg class="ext-arrow" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.5 8.5L8.5 1.5M8.5 1.5H3.5M8.5 1.5V6.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
     </div>
   </div>
@@ -483,6 +508,38 @@
       '../../assets/wall-mount.png',
       '../../assets/low-profile-mount.png',
     ]);
+    // ─── Build page sticky bar ──────────────────────────
+    (() => {
+      const bar  = document.getElementById('build-sticky-bar');
+      const hero = document.querySelector('.g-hero');
+      const cta  = document.getElementById('license-support');
+      if (!bar || !hero || !cta) return;
+
+      const darkSections = ['build-options', 'mount-options', 'full-guide']
+        .map(id => document.getElementById(id)).filter(Boolean);
+
+      function isOverDark() {
+        const barTop = window.innerHeight - bar.offsetHeight;
+        return darkSections.some(el => {
+          const r = el.getBoundingClientRect();
+          return r.top < window.innerHeight && r.bottom > barTop;
+        });
+      }
+
+      function updateBuildBar() {
+        const heroBottom = hero.getBoundingClientRect().bottom;
+        const ctaTop     = cta.getBoundingClientRect().top;
+        const show = heroBottom < window.innerHeight * 0.6 && ctaTop > window.innerHeight * 0.97;
+        const visible = bar.classList.contains('hw-sticky-visible');
+        if (show !== visible) {
+          bar.classList.toggle('hw-sticky-visible', show);
+          bar.setAttribute('aria-hidden', show ? 'false' : 'true');
+        }
+        bar.classList.toggle('hw-sticky-dark', show && isOverDark());
+      }
+      window.addEventListener('scroll', updateBuildBar, { passive: true });
+      updateBuildBar();
+    })();
   </script>
 
 </body>

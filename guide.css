@@ -38,6 +38,7 @@
   min-height: 400px;
   display: flex; align-items: center;
   overflow: hidden;
+  padding-left: 60px; padding-right: 60px;
 }
 .g-container.g-hero-container {
   position: relative; z-index: 1;
@@ -118,7 +119,7 @@
 .g-subnav-inner a.active { color: #fff; border-bottom-color: #fff; }
 
 /* ─── Shared section atoms ─────────────────────────────── */
-.g-section { position: relative; }
+.g-section { position: relative; padding-left: 60px; padding-right: 60px; }
 
 .g-light  { background: #fff; }
 .g-dark   { background: #000; }
@@ -126,9 +127,9 @@
 .g-grey   { background: var(--grey-bg); }
 
 .g-container {
-  max-width: 1200px;
+  max-width: 1380px;
   margin: 0 auto;
-  padding: 0 60px;
+  padding: 0;
 }
 
 .g-pad { padding-top: 100px; padding-bottom: 100px; }
@@ -240,6 +241,18 @@
   font-size: 14px;
   color: var(--grey-2);
 }
+.g-note {
+  display: block;
+  font-size: 12px;
+  color: rgba(0,0,0,0.35);
+  margin-top: 5px;
+}
+.g-note a {
+  color: rgba(0,0,0,0.45);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.g-note a:hover { color: var(--ink); }
 .g-needs-list li.g-needs-optional {
   font-size: 13px;
   line-height: 1.6;
@@ -738,22 +751,22 @@
   border-left: 1px solid rgba(255,255,255,0.15);
 }
 .g-stage-num {
-  font-size: 11px; letter-spacing: 0.08em;
+  font-size: 12px; letter-spacing: 0.08em;
   color: rgba(255,255,255,0.2);
   margin-bottom: 10px;
 }
 .g-stage-title {
-  font-size: 15px; font-weight: 500;
+  font-size: 17px; font-weight: 500;
   color: #fff; margin-bottom: 5px;
   letter-spacing: -0.01em;
 }
 .g-stage-desc {
-  font-size: 13px; line-height: 1.6;
+  font-size: 15px; line-height: 1.6;
   color: rgba(255,255,255,0.4);
 }
 .g-stage-link {
   display: inline-block;
-  font-size: 12px;
+  font-size: 13px;
   color: rgba(255,255,255,0.3);
   transition: color 0.2s;
   margin-top: 10px;
@@ -853,7 +866,7 @@
 
   .g-subnav-inner { padding: 0 20px; }
 
-  .g-container { padding: 0 20px; }
+  .g-section { padding-left: 20px; padding-right: 20px; }
   .g-pad { padding-top: 64px; padding-bottom: 64px; }
   .g-pad-sm { padding-top: 48px; padding-bottom: 48px; }
 
@@ -869,7 +882,7 @@
   .g-cta { padding: 64px 20px; }
   .g-cta-title { font-size: 32px; }
   .g-cta-actions { flex-direction: column; width: 100%; }
-  .btn-g-back, .g-cta-actions .btn-primary { width: 100%; justify-content: center; }
+  .g-cta-actions .btn-g-back, .g-cta-actions .btn-primary { width: 100%; justify-content: center; }
 
   .g-needs-card { padding: 24px 20px; }
 }

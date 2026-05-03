@@ -662,18 +662,18 @@
   const arrow = '<svg class="ext-arrow" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.5 8.5L8.5 1.5M8.5 1.5H3.5M8.5 1.5V6.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   const paths = [
     { title: 'Pivot Dial',            body: 'A more refined enclosure for your existing VPE, designed to elevate it both physically and functionally. No additional firmware or software required.', ctas: [
-      { label: 'Print the Pivot Dial', s: 'outline', href: '/pivot/guide/' },
+      { label: 'Explore the build', s: 'primary', href: '/pivot/build/', noArrow: true },
     ]},
     { title: 'Pivot Software',        body: 'Install Pivot firmware and integration on your existing VPE to unlock banks, richer control, visual feedback and deeper Home Assistant integration.', ctas: [
-      { label: 'Get started', s: 'primary', href: 'https://alistairmerritt.github.io/pivot/getting-started/' },
+      { label: 'Set up Pivot software', s: 'outline', href: 'https://alistairmerritt.github.io/pivot/getting-started/', ext: true },
     ]},
     { title: 'Full Pivot Experience', body: 'Combine Pivot Dial and software for the most complete Pivot experience, uniting a more refined physical form with richer on-device control and deeper Home Assistant integration.', ctas: [
-      { label: 'Get started',  s: 'primary', href: 'https://alistairmerritt.github.io/pivot/getting-started/' },
-      { label: 'Print the Pivot Dial', s: 'outline', href: '/pivot/guide/' },
+      { label: 'Set up Pivot software', s: 'outline', href: 'https://alistairmerritt.github.io/pivot/getting-started/', ext: true },
+      { label: 'Explore the build',      s: 'primary', href: '/pivot/build/', noArrow: true },
     ]},
     { title: 'Source files',          body: 'Browse, fork or contribute to the open-source firmware and Home Assistant integration that power Pivot.', ctas: [
-      { label: 'Integration', s: 'dark', href: 'https://github.com/alistairmerritt/pivot-integration' },
-      { label: 'Firmware',    s: 'dark', href: 'https://github.com/alistairmerritt/pivot-firmware' },
+      { label: 'Integration', s: 'dark', href: 'https://github.com/alistairmerritt/pivot-integration', ext: true },
+      { label: 'Firmware',    s: 'dark', href: 'https://github.com/alistairmerritt/pivot-firmware', ext: true },
     ]},
   ];
   document.getElementById('start-grid').innerHTML = paths.map(p => `
@@ -683,10 +683,29 @@
         <div class="start-body">${p.body}</div>
       </div>
       <div class="start-ctas">
-        ${p.ctas.map(c => `<a href="${c.href || '#'}" ${c.href ? 'target="_blank" rel="noopener"' : ''} class="start-cta ${c.s}">${c.label} ${arrow}</a>`).join('')}
+        ${p.ctas.map(c => `<a href="${c.href || '#'}" ${c.ext ? 'target="_blank" rel="noopener"' : ''} class="start-cta ${c.s}">${c.label}${c.noArrow ? '' : ` ${arrow}`}</a>`).join('')}
       </div>
     </div>
   `).join('');
+
+  // ─── Hardware sticky bar ────────────────────────────
+  const hwStickyBar = document.getElementById('hw-sticky-bar');
+  const usecasesEl  = document.getElementById('usecases');
+
+  function updateHwStickyBar() {
+    if (!hwStickyBar || !dialIntroEl || !usecasesEl) return;
+    const dialBottom  = dialIntroEl.getBoundingClientRect().bottom;
+    const usecasesTop = usecasesEl.getBoundingClientRect().top;
+    const show = dialBottom < window.innerHeight * 0.8 && usecasesTop > window.innerHeight * 0.97;
+    const visible = hwStickyBar.classList.contains('hw-sticky-visible');
+    if (show !== visible) {
+      hwStickyBar.classList.toggle('hw-sticky-visible', show);
+      hwStickyBar.setAttribute('aria-hidden', show ? 'false' : 'true');
+    }
+  }
+  window.addEventListener('scroll', updateHwStickyBar, { passive: true });
+  updateHwStickyBar();
+
 })();
 
 // ─── Contact modal ────────────────────────────────────
