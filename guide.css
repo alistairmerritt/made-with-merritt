@@ -92,6 +92,7 @@
   background: rgba(0,0,0,0.96);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(255,255,255,0.15);
   border-bottom: 1px solid rgba(255,255,255,0.15);
 }
 .g-subnav-inner {
@@ -841,6 +842,7 @@
 
   .g-nav { padding: 0 20px; }
   .g-nav-page, .g-nav-sep { display: none; }
+  .g-nav-links a:not(.btn-primary):not(.btn-accent) { display: none; }
 
   .g-hero { padding: 0 20px 60px; }
   .g-hero-title { font-size: 40px; }
