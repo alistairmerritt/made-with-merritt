@@ -1851,28 +1851,31 @@ section { position: relative; }
 }
 /* Sticky bar interest link */
 .hw-sticky-sep {
-  color: rgba(0,0,0,0.15);
+  color: rgba(0,0,0,0.12);
   font-size: 12px;
   padding: 0 2px;
   flex-shrink: 0;
   user-select: none;
 }
-.hw-sticky-bar.hw-sticky-dark .hw-sticky-sep { color: rgba(255,255,255,0.15); }
+.hw-sticky-bar.hw-sticky-dark .hw-sticky-sep { color: rgba(255,255,255,0.12); }
 .hw-sticky-ghost {
+  display: inline-flex;
+  align-items: center;
   background: none;
-  border: none;
+  border: 1px solid rgba(0,0,0,0.18);
+  border-radius: 5px;
   cursor: pointer;
   font-size: 13px;
   font-family: inherit;
-  color: rgba(0,0,0,0.4);
-  padding: 0;
+  color: rgba(0,0,0,0.5);
+  padding: 7px 14px;
   flex-shrink: 0;
-  transition: color 0.2s;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
   white-space: nowrap;
 }
-.hw-sticky-ghost:hover { color: rgba(0,0,0,0.75); }
-.hw-sticky-bar.hw-sticky-dark .hw-sticky-ghost { color: rgba(255,255,255,0.35); }
-.hw-sticky-bar.hw-sticky-dark .hw-sticky-ghost:hover { color: rgba(255,255,255,0.75); }
+.hw-sticky-ghost:hover { border-color: rgba(0,0,0,0.35); color: rgba(0,0,0,0.8); background: rgba(0,0,0,0.03); }
+.hw-sticky-bar.hw-sticky-dark .hw-sticky-ghost { border-color: rgba(255,255,255,0.2); color: rgba(255,255,255,0.55); }
+.hw-sticky-bar.hw-sticky-dark .hw-sticky-ghost:hover { border-color: rgba(255,255,255,0.45); color: #fff; background: rgba(255,255,255,0.05); }
 /* Footer interest nudge (dark footer) */
 .footer-interest {
   display: flex;
