@@ -518,27 +518,27 @@
   // ─── Hardware cards + sticky scroll ────────────────────
   const hwData = [
     {
-      defaultImg: '/assets/pivot-dial-fold-1.png',
+      defaultImg: '/assets/hardware-fold-design.png',
       cards: [
-        { label: 'Dial',              note: 'Combines the dial and button into one tactile control. <br> Turn to adjust, press to select.',                                 img: '/assets/dial.png'              },
-        { label: 'Diffused LED ring', note: '12-segment feedback channels hidden beneath the printed surface for a cleaner face.',                                          img: '/assets/diffused-led-ring.png' },
-        { label: 'Mount',             note: 'Desk, shelf, bench or wall mount options, with the upright desk mount helping conceal the cable.* <br><span class="hw-card-footnote">*Right-angle USBC adapter required</span>',  img: '/assets/mount.png'             },
+        { label: 'Dial',              note: 'Combines the dial and button into one tactile control. <br> Turn to adjust, press to select.',                                 img: '/assets/hardware-dial-detail.png'  },
+        { label: 'Diffused LED ring', note: '12-segment feedback channels hidden beneath the printed surface for a cleaner face.',                                          img: '/assets/hardware-led-ring.png'     },
+        { label: 'Mount',             note: 'Desk, shelf, bench or wall mount options, with the upright desk mount helping conceal the cable.* <br><span class="hw-card-footnote">*Right-angle USBC adapter required</span>',  img: '/assets/hardware-mount-detail.png' },
       ]
     },
     {
-      defaultImg: '/assets/pivot-dial-fold-2.png',
+      defaultImg: '/assets/hardware-fold-mount.png',
       cards: [
-        { label: 'Upright desk mount', note: 'An angled form that brings the dial forward and helps conceal the cable behind the body.',                            img: '/assets/upright-desk-mount.png' },
-        { label: 'Low-profile mount',  note: 'A shorter body and mount combo for desks or walls where a flatter, more minimal footprint might make sense.',         img: '/assets/low-profile-mount.png'  },
-        { label: 'Wall mount',         note: 'A flat mounting option for vertical placement, designed to work with the shorter body.',  img: '/assets/wall-mount.png'         },
+        { label: 'Upright desk mount', note: 'An angled form that brings the dial forward and helps conceal the cable behind the body.',                            img: '/assets/mount-desk-upright.png' },
+        { label: 'Low-profile mount',  note: 'A shorter body and mount combo for desks or walls where a flatter, more minimal footprint might make sense.',         img: '/assets/mount-desk-raised.png'  },
+        { label: 'Wall mount',         note: 'A flat mounting option for vertical placement, designed to work with the shorter body.',  img: '/assets/mount-wall-flat.png'    },
       ]
     },
     {
-      defaultImg: '/assets/pivot-dial-fold-3.png',
+      defaultImg: '/assets/hardware-fold-customise.png',
       cards: [
-        { label: 'Body',   note: 'Choose the body style that suits how and where Pivot Dial will be used.',                                                         img: '/assets/body.png'   },
-        { label: 'Colour', note: 'Explore subtle or contrasting combinations across the enclosure, dial and mount.',                                         img: '/assets/colour.png' },
-        { label: 'Remix', note: 'Edit the STL files to refine details, adjust the form or adapt Pivot Dial to your setup.',                       img: '/assets/modify.png' },
+        { label: 'Body',   note: 'Choose the body style that suits how and where Pivot Dial will be used.',                                                         img: '/assets/hardware-body-options.png'   },
+        { label: 'Colour', note: 'Explore subtle or contrasting combinations across the enclosure, dial and mount.',                                         img: '/assets/hardware-colour-options.png' },
+        { label: 'Remix', note: 'Edit the STL files to refine details, adjust the form or adapt Pivot Dial to your setup.',                       img: '/assets/hardware-remix.png'          },
       ]
     },
   ];

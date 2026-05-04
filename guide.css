@@ -51,7 +51,7 @@
 }
 .g-hero-bg {
   position: absolute; inset: 0;
-  background-image: url('../../assets/pivot-hero-fullbleed.png');
+  background-image: url('../../assets/build-hero-bg.png');
   background-size: cover;
   background-position: center 30%;
 }
@@ -490,7 +490,7 @@
 }
 .g-assembly-bg {
   position: absolute; inset: 0;
-  background-image: url('../../assets/pivot-hand.png');
+  background-image: url('../../assets/assembly-bg.png');
   background-size: cover;
   background-position: center;
 }
@@ -540,7 +540,7 @@
   aspect-ratio: 3/4;
   background-size: cover;
   background-position: center top;
-  background-image: url('../../assets/iphone-mockup.jpg');
+  background-image: url('../../assets/ui-iphone-firmware-mockup.jpg');
 }
 
 /* ─── Config cards ──────────────────────────────────────── */
@@ -631,7 +631,7 @@
 }
 .g-cta-bg {
   position: absolute; inset: 0;
-  background-image: url('../../assets/pivot-dark.jpg');
+  background-image: url('../../assets/build-cta-bg.jpg');
   background-size: cover;
   background-position: center;
 }

@@ -339,7 +339,7 @@ section { position: relative; }
 }
 .hero-bg {
   position: absolute; inset: 0;
-  background-image: url('assets/pivot-hand.png');
+  background-image: url('assets/pivot-hero-bg.png');
   background-size: cover;
   background-position: center center;
 }
@@ -443,7 +443,7 @@ section { position: relative; }
 }
 .scroll-zoom-bg {
   position: absolute; inset: -8%;
-  background-image: url('assets/pivot-dark.jpg');
+  background-image: url('assets/pivot-scroll-zoom-bg.jpg');
   background-size: cover;
   background-position: center;
   transform: scale(1);
@@ -759,7 +759,7 @@ section { position: relative; }
   position: relative;
   height: 100vh;
   overflow: hidden;
-  background-image: url('assets/pivot-hero-fullbleed.png');
+  background-image: url('assets/pivot-dial-intro-bg.png');
   background-size: cover;
   background-position: center;
 }
