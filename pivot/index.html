@@ -275,6 +275,10 @@
           <div class="divider divider-dark"></div>
           <p class="footer-story">Pivot begun as a personal attempt to make the Home Assistant Voice Preview Edition more useful day to day. As its potential expanded, it's grown into a small ecosystem for those who still value touch and feel as well as voice.</p>
           <a href="#" class="footer-build-link">Watch the build story. <svg class="ext-arrow" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.5 8.5L8.5 1.5M8.5 1.5H3.5M8.5 1.5V6.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <div class="footer-interest">
+            <span class="footer-interest-label">Interested in a physical Pivot Dial?</span>
+            <button class="footer-interest-btn" data-interest>Register interest</button>
+          </div>
           <div class="footer-bottom">
             <div class="footer-credit-group">
               <a href="/" class="footer-credit footer-credit-link">By Made with Merritt</a>
@@ -298,9 +302,46 @@
       <div class="hw-sticky-ctas">
         <a href="/pivot/build/" class="hw-sticky-btn hw-sticky-primary">Explore the build</a>
         <a href="https://ko-fi.com/s/0e4e8e3f3a" target="_blank" rel="noopener" class="hw-sticky-btn hw-sticky-secondary">Get print files<span class="hw-price"> – $19 USD</span> <svg class="ext-arrow" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.5 8.5L8.5 1.5M8.5 1.5H3.5M8.5 1.5V6.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <span class="hw-sticky-sep" aria-hidden="true">|</span>
+        <button class="hw-sticky-ghost" data-interest>Register interest</button>
       </div>
     </div>
     <button class="hw-sticky-close" id="hw-sticky-close" aria-label="Dismiss">✕</button>
+  </div>
+
+  <!-- ─── Interest Modal ─────────────────────────── -->
+  <div class="interest-overlay" id="interest-overlay">
+    <div class="interest-modal">
+      <button class="interest-close" id="interest-close" aria-label="Close">✕</button>
+      <p class="contact-modal-heading">Register your interest</p>
+      <p class="interest-intro">I'm considering offering physical versions of Pivot Dial, including a pre-printed enclosure and limited pre-assembled kits. Register your interest to help shape what gets made.</p>
+      <form class="interest-form" id="interest-form">
+        <div class="interest-field">
+          <label class="interest-label" for="interest-email">Email address</label>
+          <input type="email" name="email" id="interest-email" required autocomplete="email">
+        </div>
+        <div class="interest-field">
+          <label class="interest-label">What are you interested in?</label>
+          <div class="interest-checks">
+            <label class="interest-check-item"><input type="checkbox" name="interest" value="Pre-printed enclosure kit (assemble yourself)"><span>Pre-printed enclosure kit<span class="interest-check-note">Assemble yourself</span></span></label>
+            <label class="interest-check-item"><input type="checkbox" name="interest" value="Pre-assembled Pivot Dial (including the VPE)"><span>Pre-assembled Pivot Dial<span class="interest-check-note">Including the VPE</span></span></label>
+            <label class="interest-check-item"><input type="checkbox" name="interest" value="Not sure yet / depends on pricing"><span>Not sure yet / depends on pricing</span></label>
+          </div>
+        </div>
+        <div class="interest-field">
+          <label class="interest-label" for="interest-location">Location / country <span class="interest-optional">Optional</span></label>
+          <input type="text" name="location" id="interest-location" autocomplete="country-name">
+          <p class="interest-helper">This helps estimate shipping options.</p>
+        </div>
+        <div class="interest-field">
+          <label class="interest-label" for="interest-message">Anything you'd like to see? <span class="interest-optional">Optional</span></label>
+          <textarea name="message" id="interest-message" rows="3" placeholder="Colours, filaments, kits, pricing, shipping, or anything else."></textarea>
+        </div>
+        <p class="interest-reassurance">Don't worry — I won't spam you. Your email will only be used to follow up about physical Pivot Dial availability.</p>
+        <button type="submit" class="contact-submit" style="margin-top: 20px;">Register interest</button>
+      </form>
+      <p class="contact-success" id="interest-success">Thanks! I'll keep you updated.</p>
+    </div>
   </div>
 
   <!-- ─── Contact Modal ──────────────────────────── -->

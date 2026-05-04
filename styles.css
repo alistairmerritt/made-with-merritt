@@ -1718,3 +1718,226 @@ section { position: relative; }
 @media (max-width: 640px) {
   .contact-modal { padding: 40px 28px; }
 }
+
+/* ─── Interest Modal ────────────────────────────────── */
+.interest-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 9000;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 40px 20px;
+  opacity: 0;
+  pointer-events: none;
+  overflow-y: auto;
+  transition: opacity 0.3s ease;
+}
+.interest-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+.interest-modal {
+  background: #fff;
+  border-radius: 20px;
+  padding: 56px;
+  width: 100%;
+  max-width: 560px;
+  position: relative;
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+.interest-overlay.open .interest-modal {
+  transform: translateY(0);
+}
+.interest-close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: var(--grey-2);
+  cursor: pointer;
+  line-height: 1;
+  padding: 4px 8px;
+  font-family: inherit;
+  transition: color 0.2s ease;
+}
+.interest-close:hover { color: var(--ink); }
+.interest-intro {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--ink);
+  margin-bottom: 28px;
+}
+.interest-form {
+  display: flex;
+  flex-direction: column;
+}
+.interest-field {
+  border-bottom: 1px solid var(--grey-3);
+  padding: 18px 0;
+}
+.interest-field:first-child { padding-top: 0; }
+.interest-label {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--grey-2);
+  margin-bottom: 10px;
+}
+.interest-optional {
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: var(--grey-3);
+  font-weight: 400;
+  text-transform: none;
+}
+.interest-field input,
+.interest-field textarea {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  font-family: inherit;
+  color: var(--ink);
+  background: transparent;
+  resize: none;
+  line-height: 1.5;
+}
+.interest-field input::placeholder,
+.interest-field textarea::placeholder { color: var(--grey-2); }
+.interest-helper {
+  font-size: 12px;
+  color: var(--grey-2);
+  margin-top: 6px;
+  line-height: 1.5;
+}
+.interest-checks {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.interest-check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink);
+  cursor: pointer;
+}
+.interest-check-item input[type="checkbox"] {
+  width: auto;
+  margin-top: 3px;
+  flex-shrink: 0;
+  accent-color: var(--blue);
+}
+.interest-check-note {
+  display: block;
+  font-size: 12px;
+  color: var(--grey-2);
+  margin-top: 1px;
+}
+.interest-reassurance {
+  font-size: 12px;
+  line-height: 1.65;
+  color: var(--grey-2);
+  margin-top: 20px;
+}
+/* Sticky bar interest link */
+.hw-sticky-sep {
+  color: rgba(0,0,0,0.15);
+  font-size: 12px;
+  padding: 0 2px;
+  flex-shrink: 0;
+  user-select: none;
+}
+.hw-sticky-bar.hw-sticky-dark .hw-sticky-sep { color: rgba(255,255,255,0.15); }
+.hw-sticky-ghost {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  font-family: inherit;
+  color: rgba(0,0,0,0.4);
+  padding: 0;
+  flex-shrink: 0;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+.hw-sticky-ghost:hover { color: rgba(0,0,0,0.75); }
+.hw-sticky-bar.hw-sticky-dark .hw-sticky-ghost { color: rgba(255,255,255,0.35); }
+.hw-sticky-bar.hw-sticky-dark .hw-sticky-ghost:hover { color: rgba(255,255,255,0.75); }
+/* Footer interest nudge (dark footer) */
+.footer-interest {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 20px 0;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  flex-wrap: wrap;
+}
+.footer-interest-label {
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+  flex: 1;
+  min-width: 180px;
+}
+.footer-interest-btn {
+  background: none;
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 5px;
+  color: rgba(255,255,255,0.6);
+  font-size: 12px;
+  font-family: inherit;
+  padding: 7px 16px;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.footer-interest-btn:hover { border-color: rgba(255,255,255,0.45); color: #fff; }
+/* Inline interest nudge (light + dark variants) */
+.g-interest-nudge {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.g-interest-nudge-text {
+  font-size: 13px;
+  color: rgba(0,0,0,0.4);
+}
+.g-interest-nudge-text-light { color: rgba(255,255,255,0.4); }
+.g-interest-nudge-btn {
+  background: none;
+  border: 1px solid rgba(0,0,0,0.18);
+  border-radius: 5px;
+  color: rgba(0,0,0,0.5);
+  font-size: 12px;
+  font-family: inherit;
+  padding: 7px 16px;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.g-interest-nudge-btn:hover { border-color: rgba(0,0,0,0.35); color: rgba(0,0,0,0.8); }
+.g-interest-nudge-btn-light {
+  border-color: rgba(255,255,255,0.18);
+  color: rgba(255,255,255,0.55);
+}
+.g-interest-nudge-btn-light:hover { border-color: rgba(255,255,255,0.45); color: #fff; }
+@media (max-width: 1100px) {
+  .hw-sticky-sep, .hw-sticky-ghost { display: none; }
+}
+@media (max-width: 640px) {
+  .interest-modal { padding: 40px 28px; }
+  .interest-overlay { padding: 20px 12px; }
+}

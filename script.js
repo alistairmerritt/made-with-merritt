@@ -718,6 +718,45 @@
 
 })();
 
+// ─── Interest modal ────────────────────────────────────
+(() => {
+  const overlay  = document.getElementById('interest-overlay');
+  if (!overlay) return;
+  const closeBtn = document.getElementById('interest-close');
+  const form     = document.getElementById('interest-form');
+  const success  = document.getElementById('interest-success');
+
+  function openInterest() {
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeInterest() {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  overlay.addEventListener('click', (e) => { if (e.target === overlay) closeInterest(); });
+  closeBtn.addEventListener('click', closeInterest);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeInterest(); });
+
+  document.querySelectorAll('[data-interest]').forEach(el => {
+    el.addEventListener('click', (e) => { e.preventDefault(); openInterest(); });
+  });
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const res = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    });
+    if (res.ok) {
+      form.style.display = 'none';
+      success.style.display = 'block';
+    }
+  });
+})();
+
 // ─── Contact modal ────────────────────────────────────
 (() => {
   const overlay  = document.getElementById('contact-overlay');
