@@ -754,7 +754,7 @@
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const res = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+    const res = await fetch('https://formspree.io/f/mdabezav', {
       method: 'POST',
       body: new FormData(form),
       headers: { 'Accept': 'application/json' }
