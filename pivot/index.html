@@ -309,11 +309,10 @@
     <div class="interest-modal">
       <button class="interest-close" id="interest-close" aria-label="Close">✕</button>
       <p class="contact-modal-heading">Register your interest</p>
-      <p class="interest-intro">I'm considering offering physical versions of Pivot Dial, including a pre-printed enclosure and limited pre-assembled kits. Register your interest to help shape what gets made.</p>
+      <p class="interest-intro">I'm looking into offering printed Pivot Dial parts and small runs of assembled units. Leave your details below if you'd like to hear when they become available. Your email will only be used for Pivot Dial availability updates.</p>
       <form class="interest-form" id="interest-form">
         <div class="interest-field">
-          <label class="interest-label" for="interest-email">Email address</label>
-          <input type="email" name="email" id="interest-email" required autocomplete="email">
+          <input type="email" name="email" id="interest-email" placeholder="Email address" required autocomplete="email">
         </div>
         <div class="interest-field">
           <label class="interest-label">What are you interested in?</label>
@@ -324,15 +323,8 @@
           </div>
         </div>
         <div class="interest-field">
-          <label class="interest-label" for="interest-location">Location / country <span class="interest-optional">Optional</span></label>
-          <input type="text" name="location" id="interest-location" autocomplete="country-name">
-          <p class="interest-helper">This helps estimate shipping options.</p>
+          <textarea name="message" id="interest-message" rows="3" placeholder="Anything you'd like to see? Colours, filaments, kits, pricing, shipping, or anything else."></textarea>
         </div>
-        <div class="interest-field">
-          <label class="interest-label" for="interest-message">Anything you'd like to see? <span class="interest-optional">Optional</span></label>
-          <textarea name="message" id="interest-message" rows="3" placeholder="Colours, filaments, kits, pricing, shipping, or anything else."></textarea>
-        </div>
-        <p class="interest-reassurance">Don't worry — I won't spam you. Your email will only be used to follow up about physical Pivot Dial availability.</p>
         <button type="submit" class="contact-submit" style="margin-top: 20px;">Register interest</button>
       </form>
       <p class="contact-success" id="interest-success">Thanks! I'll keep you updated.</p>

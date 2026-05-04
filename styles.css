@@ -1779,9 +1779,9 @@ section { position: relative; }
 }
 .interest-field {
   border-bottom: 1px solid var(--grey-3);
-  padding: 18px 0;
+  padding: 16px 0;
 }
-.interest-field:first-child { padding-top: 0; }
+.interest-field:first-child { padding-top: 2px; }
 .interest-label {
   display: block;
   font-size: 11px;
