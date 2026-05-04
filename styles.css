@@ -952,6 +952,19 @@ section { position: relative; }
 .hw-sticky-secondary { background: transparent; color: #000; border: 1px solid rgba(0,0,0,0.2); transition: color 0.4s ease, border-color 0.4s ease, background 0.2s ease; }
 .hw-sticky-secondary:hover { border-color: rgba(0,0,0,0.55); background: rgba(0,0,0,0.04); }
 
+.hw-sticky-close {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none; border: none; cursor: pointer;
+  font-size: 14px; line-height: 1;
+  color: rgba(0,0,0,0.3);
+  padding: 6px;
+  transition: color 0.2s;
+}
+.hw-sticky-close:hover { color: rgba(0,0,0,0.7); }
+
 .hw-sticky-bar.hw-sticky-dark {
   background: rgba(0,0,0,0.94);
   border-top: 1px solid rgba(255,255,255,0.1);
@@ -959,6 +972,8 @@ section { position: relative; }
 .hw-sticky-bar.hw-sticky-dark .hw-sticky-label { color: rgba(255,255,255,0.6); }
 .hw-sticky-bar.hw-sticky-dark .hw-sticky-secondary { color: #fff; border-color: rgba(255,255,255,0.25); }
 .hw-sticky-bar.hw-sticky-dark .hw-sticky-secondary:hover { border-color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.06); }
+.hw-sticky-bar.hw-sticky-dark .hw-sticky-close { color: rgba(255,255,255,0.3); }
+.hw-sticky-bar.hw-sticky-dark .hw-sticky-close:hover { color: rgba(255,255,255,0.8); }
 
 /* ─── HA dashboard ───────────────────────────────────── */
 .ha { background: #000; padding: 220px 60px; }
@@ -1201,6 +1216,8 @@ section { position: relative; }
   .hardware-scroll { grid-template-columns: 1fr; gap: 0; }
   .hardware-scroll-img { position: static; height: auto; padding: 0 0 80px; }
   .hardware-img-wrap { height: 400px; }
+  .hw-sticky-close { display: none; }
+  .hw-price { display: none; }
 }
 @media (max-width: 640px) {
   .topbar { padding: 0 20px; }

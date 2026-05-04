@@ -689,11 +689,21 @@
   `).join('');
 
   // ─── Hardware sticky bar ────────────────────────────
-  const hwStickyBar = document.getElementById('hw-sticky-bar');
-  const usecasesEl  = document.getElementById('usecases');
+  const hwStickyBar   = document.getElementById('hw-sticky-bar');
+  const hwStickyClose = document.getElementById('hw-sticky-close');
+  const usecasesEl    = document.getElementById('usecases');
+  let hwStickyDismissed = false;
+
+  if (hwStickyClose) {
+    hwStickyClose.addEventListener('click', () => {
+      hwStickyDismissed = true;
+      hwStickyBar.classList.remove('hw-sticky-visible');
+      hwStickyBar.setAttribute('aria-hidden', 'true');
+    });
+  }
 
   function updateHwStickyBar() {
-    if (!hwStickyBar || !dialIntroEl || !usecasesEl) return;
+    if (!hwStickyBar || !dialIntroEl || !usecasesEl || hwStickyDismissed) return;
     const dialBottom  = dialIntroEl.getBoundingClientRect().bottom;
     const usecasesTop = usecasesEl.getBoundingClientRect().top;
     const show = dialBottom < window.innerHeight * 0.8 && usecasesTop > window.innerHeight * 0.97;
