@@ -1,5 +1,9 @@
 /* Pivot — landing page interactions */
 (() => {
+  // This IIFE contains pivot landing page–specific interactions.
+  // Exit early on any other page that loads script.js.
+  if (!document.getElementById('hero')) return;
+
   const ACCENT = '#E24D25';
   // Disable scroll animations on any touch-first device (phones, iPads, etc.)
   // Matches the same condition used in CSS for hover effects.
@@ -21,6 +25,7 @@
   const TOPBAR_H   = 32;
   const NAV_H      = 80;
   const onScroll = () => {
+    if (!nav) return;
     const y      = window.scrollY;
     const navTop = Math.max(0, TOPBAR_H - y);
     nav.style.top = navTop + 'px';
@@ -34,21 +39,23 @@
   const hamburger = document.getElementById('nav-hamburger');
   const mobileOverlay = document.getElementById('nav-mobile-overlay');
 
-  function closeMobileMenu() {
-    mobileMenu.classList.remove('open');
-    mobileOverlay.classList.remove('open');
-    hamburger.classList.remove('open');
-    nav.classList.remove('menu-open');
-  }
+  if (hamburger && mobileMenu && mobileOverlay && nav) {
+    function closeMobileMenu() {
+      mobileMenu.classList.remove('open');
+      mobileOverlay.classList.remove('open');
+      hamburger.classList.remove('open');
+      nav.classList.remove('menu-open');
+    }
 
-  hamburger.addEventListener('click', () => {
-    const open = mobileMenu.classList.toggle('open');
-    mobileOverlay.classList.toggle('open', open);
-    hamburger.classList.toggle('open', open);
-    nav.classList.toggle('menu-open', open);
-  });
-  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMobileMenu));
-  mobileOverlay.addEventListener('click', closeMobileMenu);
+    hamburger.addEventListener('click', () => {
+      const open = mobileMenu.classList.toggle('open');
+      mobileOverlay.classList.toggle('open', open);
+      hamburger.classList.toggle('open', open);
+      nav.classList.toggle('menu-open', open);
+    });
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMobileMenu));
+    mobileOverlay.addEventListener('click', closeMobileMenu);
+  }
 
   // ─── Scroll-reveal text ────────────────────────────────
   const reveals = document.querySelectorAll('[data-reveal]');
@@ -321,17 +328,19 @@
   const dialSvg = document.getElementById('dial-ring');
   const dialValue = document.getElementById('dial-value');
   const stepEls = Array.from(document.querySelectorAll('#interaction-steps .step'));
-  let activeStep = 0;
-  function setStep(i) {
-    activeStep = i;
-    stepEls.forEach((el, idx) => el.classList.toggle('active', idx === i));
-    const s = interactionSteps[i];
-    buildRing(dialSvg, { color: s.color, progress: s.progress });
-    dialValue.textContent = s.value;
+  if (dialSvg && dialValue && stepEls.length) {
+    let activeStep = 0;
+    function setStep(i) {
+      activeStep = i;
+      stepEls.forEach((el, idx) => el.classList.toggle('active', idx === i));
+      const s = interactionSteps[i];
+      buildRing(dialSvg, { color: s.color, progress: s.progress });
+      dialValue.textContent = s.value;
+    }
+    stepEls.forEach((el, idx) => el.addEventListener('click', () => setStep(idx)));
+    setStep(0);
+    setInterval(() => setStep((activeStep + 1) % interactionSteps.length), 2600);
   }
-  stepEls.forEach((el, idx) => el.addEventListener('click', () => setStep(idx)));
-  setStep(0);
-  setInterval(() => setStep((activeStep + 1) % interactionSteps.length), 2600);
 
   // ─── Banks ─────────────────────────────────────────────
   const banks = [
@@ -760,6 +769,7 @@
 // ─── Contact modal ────────────────────────────────────
 (() => {
   const overlay  = document.getElementById('contact-overlay');
+  if (!overlay) return;
   const closeBtn = document.getElementById('contact-close');
   const form     = document.getElementById('contact-form');
   const success  = document.getElementById('contact-success');
