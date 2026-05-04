@@ -1940,7 +1940,7 @@ section { position: relative; }
 }
 .g-interest-nudge-btn-light:hover { border-color: rgba(255,255,255,0.45); color: #fff; }
 @media (max-width: 1100px) {
-  .hw-sticky-sep, .hw-sticky-ghost { display: none; }
+  .hw-sticky-sep, .hw-sticky-ghost { display: none !important; }
 }
 @media (max-width: 640px) {
   .interest-modal { padding: 40px 28px; }
