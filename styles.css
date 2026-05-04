@@ -1868,7 +1868,7 @@ section { position: relative; }
   font-size: 13px;
   font-family: inherit;
   color: rgba(0,0,0,0.5);
-  padding: 7px 14px;
+  padding: 9px 18px;
   flex-shrink: 0;
   transition: border-color 0.2s, color 0.2s, background 0.2s;
   white-space: nowrap;
