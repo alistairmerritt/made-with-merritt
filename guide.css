@@ -886,6 +886,7 @@
   }
 
   .g-cta { padding: 64px 20px; }
+  .g-cta-bg { display: none; }
   .g-cta-title { font-size: 32px; }
   .g-cta-actions { flex-direction: column; width: 100%; }
   .g-cta-actions .btn-g-back, .g-cta-actions .btn-primary { width: 100%; justify-content: center; }
