@@ -1231,10 +1231,47 @@ section { position: relative; }
   .nav { padding: 0 20px; }
   .nav-links { display: none; }
   .nav-hamburger { display: flex; }
-  .hero-actions-wrap { bottom: 40px; }
+  /* ── Mobile hero: image top, black content bottom ── */
+  .hero {
+    height: auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+  }
+  .hero-bg {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    flex: 1;
+    background-image: url('assets/pivot-hero-bg-mobile.png');
+    background-position: center center;
+  }
+  .hero-overlay { display: none; }
+  .hero-content {
+    position: relative;
+    inset: auto;
+    flex-shrink: 0;
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 32px 20px 40px;
+  }
+  .hero-content-wrap { padding: 0; max-width: 100%; }
+  .hero-inner { max-width: 100%; }
+  .badge { display: none; }
+  .hero-headline { font-size: 36px; margin-top: 0; margin-bottom: 16px; }
+  .hero-sub { font-size: 16px; margin-bottom: 28px; max-width: 100%; }
+  .hero-actions-wrap {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    width: auto;
+    margin-top: 0;
+  }
   .hw-sticky-bar { display: none; }
-  .hero-content-wrap { padding: 0 20px; }
-  .hero-headline { font-size: 36px; }
   .h-display { font-size: 32px; }
   .interaction-text .h-display { font-size: 36px; }
   .interaction, .banks, .ecosystem, .usecases, .start, .footer, .hardware { padding-left: 20px; padding-right: 20px; }
