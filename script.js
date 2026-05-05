@@ -177,6 +177,7 @@
   const dialIntroEl      = document.getElementById('dial-intro');
   const dialIntroReveal  = document.getElementById('dial-intro-reveal');
   const dialIntroContent = dialIntroEl && dialIntroEl.querySelector('.dial-intro-content');
+  const dialIntroOverlay = dialIntroEl && dialIntroEl.querySelector('.dial-intro-overlay');
   if (dialIntroEl && dialIntroReveal) {
     if (isMobile) {
       dialIntroReveal.style.opacity = '0';
@@ -184,6 +185,7 @@
         dialIntroContent.style.opacity = '1';
         dialIntroContent.style.transform = 'none';
       }
+      if (dialIntroOverlay) dialIntroOverlay.style.opacity = '1';
     } else {
       const updateDialReveal = () => {
         const rect = dialIntroEl.getBoundingClientRect();
@@ -195,6 +197,7 @@
           dialIntroContent.style.opacity   = p.toString();
           dialIntroContent.style.transform = `translateY(${(1 - p) * 36}px)`;
         }
+        if (dialIntroOverlay) dialIntroOverlay.style.opacity = p.toString();
       };
       window.addEventListener('scroll', updateDialReveal, { passive: true });
       window.addEventListener('resize', updateDialReveal);
@@ -427,10 +430,10 @@
 
   // ─── Ecosystem accordion ───────────────────────────────
   const ecosystemItems = [
-    { label: 'Firmware',    subtitle: 'for richer on-device control',                         desc: 'Pivot firmware expands what the Home Assistant Voice Preview Edition (VPE) can do on-device, adding colour-coded banks, tactile knob interaction, LED feedback, and event firing into Home Assistant. It\'s built on ESPHome, using the original Nabu Casa firmware as its foundation.', hoverImage: '/assets/firmware-hover.png',      clickImage: '/assets/firmware-accordian.png'    },
-    { label: 'Integration', subtitle: 'for easy setup and configuration in Home Assistant',   desc: 'The Pivot integration bridges Pivot firmware and Home Assistant, connecting each bank to the entities, scenes and scripts already in your setup. It also provides the configuration layer for feedback, colours, display behaviour and device preferences.',              hoverImage: '/assets/integration-hover.png',   clickImage: '/assets/integration-accordian.png' },
-    { label: 'Dashboard',   subtitle: 'for visual feedback and UI support',                   desc: 'The dashboard adds an optional visual layer to Pivot, offering clearer feedback and UI support for those who want the physical and digital parts of the system to feel more connected.',  hoverImage: '/assets/dashboard-hover.png',     clickImage: '/assets/dashboard-accordian.png'   },
-    { label: 'Hardware',    subtitle: 'for a more functional physical form',                  desc: 'Pivot hardware rethinks the physical form of the VPE, creating a more tactile, more functional, and more intentional object for the home.',                                              hoverImage: '/assets/hardware-hover.png',      clickImage: '/assets/hardware-accordian.png'    },
+    { label: 'Firmware',    subtitle: 'for richer on-device control',                         desc: 'Pivot firmware expands what the Home Assistant Voice Preview Edition (VPE) can do on-device, adding colour-coded banks, tactile knob interaction, LED feedback, and event firing into Home Assistant. It\'s built on ESPHome, and uses the original Nabu Casa firmware as its foundation.', hoverImage: '/assets/firmware-hover.png',      clickImage: '/assets/firmware-accordian.png'    },
+    { label: 'Integration', subtitle: 'for easy setup and configuration in Home Assistant',   desc: 'The Pivot integration bridges Pivot firmware and Home Assistant, connecting each bank to the entities, scenes and scripts already in your setup. It also provides controls for audio feedback, colours, display behaviour and device preferences.',              hoverImage: '/assets/integration-hover.png',   clickImage: '/assets/integration-accordian.png' },
+    { label: 'Dashboard',   subtitle: 'for visual feedback and UI support',                   desc: 'The dashboard adds an optional visual layer to Pivot, offering a clearer UI for those who want the physical and digital parts of the system to be easier to read and digest.',  hoverImage: '/assets/dashboard-hover.png',     clickImage: '/assets/dashboard-accordian.png'   },
+    { label: 'Hardware',    subtitle: 'for a more functional physical form',                  desc: 'The Pivot Dial gives the VPE a more considered form, designed around touch, clearer microphone pickup and placement within the home.',                                              hoverImage: '/assets/hardware-hover.png',      clickImage: '/assets/hardware-accordian.png'    },
   ];
   const ECO_DEFAULT_IMAGE = '/assets/default-accordian.png';
   const ECO_DISCLAIMERS = {
@@ -670,7 +673,7 @@
   // ─── Get started paths ─────────────────────────────────
   const arrow = '<svg class="ext-arrow" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.5 8.5L8.5 1.5M8.5 1.5H3.5M8.5 1.5V6.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   const paths = [
-    { title: 'Pivot Dial',            body: 'A more refined enclosure for your existing VPE, designed to elevate it both physically and functionally. No additional firmware or software required.', ctas: [
+    { title: 'Pivot Dial',            body: 'A redesigned enclosure for your existing VPE, made to elevate it both physically and functionally. No additional firmware or software required.', ctas: [
       { label: 'Explore the build', s: 'primary', href: '/pivot/build/', noArrow: true },
     ]},
     { title: 'Pivot Software',        body: 'Install Pivot firmware and integration on your existing VPE to unlock banks, richer control, visual feedback and deeper Home Assistant integration.', ctas: [
