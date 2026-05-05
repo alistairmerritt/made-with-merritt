@@ -345,7 +345,7 @@ section { position: relative; }
 }
 .hero-overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.1) 45%, rgba(0,0,0,0.72) 100%);
+  background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.05) 45%, rgba(0,0,0,0.45) 100%);
 }
 .hero-content {
   position: absolute; inset: 0;
@@ -1206,6 +1206,8 @@ section { position: relative; }
   .hardware { padding-left: 32px; padding-right: 32px; }
   .interaction-text .h-display { font-size: 48px; }
   .hero-headline { font-size: 48px; }
+  .hero-inner { max-width: 580px; }
+  .hero-sub { max-width: 420px; }
   .start-grid { grid-template-columns: repeat(2, 1fr); }
   .usecases-grid { grid-template-columns: repeat(2, 1fr); }
   .usecases { background-attachment: scroll; }
@@ -1219,7 +1221,10 @@ section { position: relative; }
   .hw-sticky-close { display: none; }
   .hw-price { display: none; }
 }
+.btn-label-short { display: none; }
 @media (max-width: 640px) {
+  .btn-label-full { display: none; }
+  .btn-label-short { display: inline; }
   .topbar { padding: 0 20px; }
   .topbar-links { gap: 14px; }
   .topbar-link:not(:last-child) { display: none; }
