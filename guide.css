@@ -866,6 +866,7 @@
 
   .g-hero { padding: 0 20px 60px; margin-top: 112px; }
   .g-hero-bg { display: none; }
+  .g-fullguide-bg { display: none; }
   .g-hero-title { font-size: 40px; }
   .g-hero-desc { font-size: 16px; }
   .g-hero-actions { flex-direction: column; align-items: flex-start; }
