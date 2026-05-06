@@ -1154,6 +1154,12 @@ section { position: relative; }
   max-width: 520px;
   padding: 40px 0 8px;
 }
+.footer-disclaimer {
+  font-size: 11px;
+  color: rgba(255,255,255,0.25);
+  line-height: 1.5;
+  padding-top: 32px;
+}
 .footer-bottom {
   padding-top: 32px;
   display: flex;
