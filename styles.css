@@ -1323,7 +1323,7 @@ section { position: relative; }
   .accordion-subtitle { font-size: 14px; margin-left: 0; }
 
   /* Hardware intro heading */
-  .dial-intro-heading { white-space: normal; font-size: clamp(40px, 10.5vw, 52px); }
+  .dial-intro-heading { white-space: normal; font-size: clamp(32px, 8.5vw, 44px); }
 
   /* Hardware panels: show per-panel image, hide shared sticky image */
   .hw-panel-mobile-img {
