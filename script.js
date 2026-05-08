@@ -430,15 +430,15 @@
 
   // ─── Ecosystem accordion ───────────────────────────────
   const ecosystemItems = [
-    { label: 'Firmware',    subtitle: 'for richer on-device control',                         desc: 'Pivot firmware expands what the Home Assistant Voice Preview Edition (VPE) can do on-device, adding colour-coded banks, tactile knob interaction, LED feedback, and event firing into Home Assistant. It\'s built on ESPHome, and uses the original Nabu Casa firmware as its foundation.', hoverImage: '/assets/firmware-hover.png',      clickImage: '/assets/firmware-accordian.png'    },
-    { label: 'Integration', subtitle: 'for easy setup and configuration in Home Assistant',   desc: 'The Pivot integration bridges Pivot firmware and Home Assistant, connecting each bank to the entities, scenes and scripts already in your setup. It also provides controls for audio feedback, colours, display behaviour and device preferences.',              hoverImage: '/assets/integration-hover.png',   clickImage: '/assets/integration-accordian.png' },
-    { label: 'Dashboard',   subtitle: 'for visual feedback and UI support',                   desc: 'The dashboard adds an optional visual layer to Pivot, offering a clearer UI for those who want the physical and digital parts of the system to be easier to read and digest.',  hoverImage: '/assets/dashboard-hover.png',     clickImage: '/assets/dashboard-accordian.png'   },
-    { label: 'Hardware',    subtitle: 'for a more functional physical form',                  desc: 'The Pivot Dial gives the VPE a more considered form, designed around touch, clearer microphone pickup and placement within the home.',                                              hoverImage: '/assets/hardware-hover.png',      clickImage: '/assets/hardware-accordian.png'    },
+    { label: 'Firmware',    subtitle: 'for richer on-device control',                         desc: 'Pivot firmware expands what the Home Assistant Voice Preview Edition (VPE) can do on-device, adding colour-coded banks, tactile knob interaction, LED feedback, and event firing into Home Assistant. It\'s built on ESPHome, and uses the original Nabu Casa firmware as its foundation.', hoverImage: '/assets/firmware-hover.jpg',      clickImage: '/assets/firmware-accordian.jpg'    },
+    { label: 'Integration', subtitle: 'for easy setup and configuration in Home Assistant',   desc: 'The Pivot integration bridges Pivot firmware and Home Assistant, connecting each bank to the entities, scenes and scripts already in your setup. It also provides controls for audio feedback, colours, display behaviour and device preferences.',              hoverImage: '/assets/integration-hover.jpg',   clickImage: '/assets/integration-accordian.jpg' },
+    { label: 'Dashboard',   subtitle: 'for visual feedback and UI support',                   desc: 'The dashboard adds an optional visual layer to Pivot, offering a clearer UI for those who want the physical and digital parts of the system to be easier to read and digest.',  hoverImage: '/assets/dashboard-hover.jpg',     clickImage: '/assets/dashboard-accordian.jpg'   },
+    { label: 'Hardware',    subtitle: 'for a more functional physical form',                  desc: 'The Pivot Dial gives the VPE a more considered form, designed around touch, clearer microphone pickup and placement within the home.',                                              hoverImage: '/assets/hardware-hover.jpg',      clickImage: '/assets/hardware-accordian.jpg'    },
   ];
-  const ECO_DEFAULT_IMAGE = '/assets/default-accordian.png';
+  const ECO_DEFAULT_IMAGE = '/assets/default-accordian.jpg';
   const ECO_DISCLAIMERS = {
-    '/assets/integration-accordian.png': 'For illustrative purposes only.',
-    '/assets/dashboard-accordian.png':   'Actual dashboard shown.',
+    '/assets/integration-accordian.jpg': 'For illustrative purposes only.',
+    '/assets/dashboard-accordian.jpg':   'Actual dashboard shown.',
   };
   const accordionEl = document.getElementById('ecosystem-accordion');
   const imgA = document.getElementById('eco-img-a');
@@ -530,27 +530,27 @@
   // ─── Hardware cards + sticky scroll ────────────────────
   const hwData = [
     {
-      defaultImg: '/assets/hardware-fold-design.png',
+      defaultImg: '/assets/hardware-fold-design.jpg',
       cards: [
-        { label: 'Dial',              note: 'Combines the dial and button into one tactile control. <br> Turn to adjust, press to select.',                                 img: '/assets/hardware-dial-detail.png'  },
-        { label: 'Diffused LED ring', note: '12-segment feedback channels hidden beneath the printed surface for a cleaner face.',                                          img: '/assets/hardware-led-ring.png'     },
-        { label: 'Mount',             note: 'Desk, shelf, bench or wall mount options, with the upright desk mount helping conceal the cable.* <br><span class="hw-card-footnote">*Right-angle USBC adapter required</span>',  img: '/assets/hardware-mount-detail.png' },
+        { label: 'Dial',              note: 'Combines the dial and button into one tactile control. <br> Turn to adjust, press to select.',                                 img: '/assets/hardware-dial-detail.jpg'  },
+        { label: 'Diffused LED ring', note: '12-segment feedback channels hidden beneath the printed surface for a cleaner face.',                                          img: '/assets/hardware-led-ring.jpg'     },
+        { label: 'Mount',             note: 'Desk, shelf, bench or wall mount options, with the upright desk mount helping conceal the cable.* <br><span class="hw-card-footnote">*Right-angle USBC adapter required</span>',  img: '/assets/hardware-mount-detail.jpg' },
       ]
     },
     {
-      defaultImg: '/assets/hardware-fold-mount.png',
+      defaultImg: '/assets/hardware-fold-mount.jpg',
       cards: [
-        { label: 'Upright desk mount', note: 'An angled form that brings the dial forward and helps conceal the cable behind the body.',                            img: '/assets/mount-desk-upright.png' },
-        { label: 'Low-profile mount',  note: 'A shorter body and mount combo for desks or walls where a flatter, more minimal footprint might make sense.',         img: '/assets/mount-desk-raised.png'  },
-        { label: 'Wall mount',         note: 'A flat mounting option for vertical placement, designed to work with the shorter body.',  img: '/assets/mount-wall-flat.png'    },
+        { label: 'Upright desk mount', note: 'An angled form that brings the dial forward and helps conceal the cable behind the body.',                            img: '/assets/mount-desk-upright.jpg' },
+        { label: 'Low-profile mount',  note: 'A shorter body and mount combo for desks or walls where a flatter, more minimal footprint might make sense.',         img: '/assets/mount-desk-raised.jpg'  },
+        { label: 'Wall mount',         note: 'A flat mounting option for vertical placement, designed to work with the shorter body.',  img: '/assets/mount-wall-flat.jpg'    },
       ]
     },
     {
-      defaultImg: '/assets/hardware-fold-customise.png',
+      defaultImg: '/assets/hardware-fold-customise.jpg',
       cards: [
-        { label: 'Body',   note: 'Choose the body style that suits how and where Pivot Dial will be used.',                                                         img: '/assets/hardware-body-options.png'   },
-        { label: 'Colour', note: 'Explore subtle or contrasting combinations across the enclosure, dial and mount.',                                         img: '/assets/hardware-colour-options.png' },
-        { label: 'Remix', note: 'Edit the STL files to refine details, adjust the form or adapt Pivot Dial to your setup.',                       img: '/assets/hardware-remix.png'          },
+        { label: 'Body',   note: 'Choose the body style that suits how and where Pivot Dial will be used.',                                                         img: '/assets/hardware-body-options.jpg'   },
+        { label: 'Colour', note: 'Explore subtle or contrasting combinations across the enclosure, dial and mount.',                                         img: '/assets/hardware-colour-options.jpg' },
+        { label: 'Remix', note: 'Edit the STL files to refine details, adjust the form or adapt Pivot Dial to your setup.',                       img: '/assets/hardware-remix.jpg'          },
       ]
     },
   ];

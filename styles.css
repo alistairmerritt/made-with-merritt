@@ -339,7 +339,7 @@ section { position: relative; }
 }
 .hero-bg {
   position: absolute; inset: 0;
-  background-image: url('assets/pivot-hero-bg.png');
+  background-image: url('assets/pivot-hero-bg.jpg');
   background-size: cover;
   background-position: center center;
 }
@@ -759,7 +759,7 @@ section { position: relative; }
   position: relative;
   height: 100vh;
   overflow: hidden;
-  background-image: url('assets/pivot-dial-intro-bg.png');
+  background-image: url('assets/pivot-dial-intro-bg.jpg');
   background-size: cover;
   background-position: center;
 }
@@ -1252,7 +1252,7 @@ section { position: relative; }
     inset: auto;
     width: 100%;
     flex: 1;
-    background-image: url('assets/pivot-hero-bg-mobile.png');
+    background-image: url('assets/pivot-hero-bg-mobile.jpg');
     background-position: center center;
   }
   .hero-overlay { display: none; }

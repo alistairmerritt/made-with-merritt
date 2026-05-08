@@ -52,7 +52,7 @@
 }
 .g-hero-bg {
   position: absolute; inset: 0;
-  background-image: url('../../assets/build-hero-bg.png');
+  background-image: url('../../assets/build-hero-bg.jpg');
   background-size: cover;
   background-position: center 30%;
 }
@@ -490,7 +490,7 @@
 }
 .g-assembly-bg {
   position: absolute; inset: 0;
-  background-image: url('../../assets/assembly-bg.png');
+  background-image: url('../../assets/assembly-bg.jpg');
   background-size: cover;
   background-position: center;
 }
