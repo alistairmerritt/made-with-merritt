@@ -434,42 +434,6 @@ section { position: relative; }
 .reveal-line { display: block; }
 .reveal-line > span { transition: color 0.12s ease; }
 
-/* ─── Scroll zoom break ──────────────────────────────── */
-.scroll-zoom { height: 200vh; position: relative; }
-.scroll-zoom-sticky {
-  position: sticky; top: 0;
-  height: 100vh;
-  overflow: hidden;
-}
-.scroll-zoom-bg {
-  position: absolute; inset: -8%;
-  background-image: url('assets/pivot-scroll-zoom-bg.jpg');
-  background-size: cover;
-  background-position: center;
-  transform: scale(1);
-  transform-origin: center;
-  will-change: transform;
-}
-.scroll-zoom-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(160deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.55) 100%);
-}
-.scroll-zoom-text {
-  position: absolute;
-  bottom: 80px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  max-width: 1380px;
-  padding: 0 60px;
-  padding-right: max(60px, 30%);
-}
-.scroll-zoom-text .section-label-dark {
-  color: rgba(255,255,255,0.45);
-  letter-spacing: 0.1em;
-  margin-bottom: 20px;
-}
-
 /* ─── Interaction ────────────────────────────────────── */
 .interaction {
   background: #000;
@@ -1299,9 +1263,6 @@ section { position: relative; }
   .why { height: auto; }
   .why-sticky { position: static; height: auto; padding: 60px 20px; mask-image: none; -webkit-mask-image: none; }
   .why-inner { padding-top: 40px; }
-  .scroll-zoom { height: auto; }
-  .scroll-zoom-sticky { position: static; height: 60vh; }
-  .scroll-zoom-text { left: 0; right: 0; bottom: 40px; transform: none; padding: 0 20px; }
   .dial-intro-content { padding: 0 20px; bottom: 48px; }
   .hardware-scroll-panel { padding: 60px 0; min-height: auto; }
   .hardware-scroll-panel[data-hw-panel="0"] { padding-top: 60px; }
@@ -1361,9 +1322,6 @@ section { position: relative; }
    Disable scroll-driven animations and curtain effects.
    Matches the JS isMobile check: !matchMedia('(hover:hover) and (pointer:fine)'). */
 @media (hover: none), (pointer: coarse) {
-  .scroll-zoom { height: auto; }
-  .scroll-zoom-sticky { position: static; height: 60vh; }
-  .scroll-zoom-text { left: 0; right: 0; bottom: 40px; transform: none; padding: 0 40px; }
   .dial-intro-content { padding: 0 40px; bottom: 48px; }
 }
 

@@ -256,21 +256,6 @@
     makeCurtain(dialIntroEl, document.getElementById('hardware-stack'));
   }
 
-  // ─── Scroll zoom on dark hero break ────────────────────
-  const zoomSection = document.getElementById('scroll-zoom');
-  const zoomBg = document.getElementById('scroll-zoom-bg');
-  if (zoomSection && zoomBg) {
-    const updateZoom = () => {
-      const rect = zoomSection.getBoundingClientRect();
-      const range = zoomSection.offsetHeight - window.innerHeight;
-      const p = Math.max(0, Math.min(1, -rect.top / range));
-      zoomBg.style.transform = `scale(${1 + p * 0.14})`;
-    };
-    window.addEventListener('scroll', updateZoom, { passive: true });
-    window.addEventListener('resize', updateZoom);
-    updateZoom();
-  }
-
   // ─── DialRing SVG generator ────────────────────────────
   function buildRing(svg, { color, progress, size = 300, segments = 12, segGap = 0.05, inset = 7, hubRatio = 14 }) {
     const r = size / 2 - 12;
