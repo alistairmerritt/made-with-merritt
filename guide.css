@@ -589,8 +589,8 @@
 
 /* ─── License / Support ─────────────────────────────────── */
 .g-license-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
   gap: 20px;
 }
 .g-license-card {
@@ -843,7 +843,6 @@
   .g-mount-grid { grid-template-columns: 1fr 1fr; }
   .g-parts-wrap { grid-template-columns: 1fr; }
   .g-config-grid { grid-template-columns: 1fr; }
-  .g-license-grid { grid-template-columns: 1fr; }
   .g-bys-grid { grid-template-columns: 1fr; }
   .g-bys-image { aspect-ratio: 16/9; position: static; order: -1; }
 }
