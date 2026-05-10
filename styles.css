@@ -1452,7 +1452,7 @@ section { position: relative; }
   transform: scaleX(1);
 }
 .mwm-pill.active .mwm-pill-fill {
-  animation: pillFill 6s linear forwards;
+  animation: pillFill 10s linear forwards;
 }
 @keyframes pillFill {
   from { transform: scaleX(0); }
