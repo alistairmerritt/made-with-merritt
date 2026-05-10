@@ -519,15 +519,15 @@
       cards: [
         { label: 'Dial',              note: 'Combines the dial and button into one tactile control. <br> Turn to adjust, press to select.',                                 img: '/assets/hardware-dial-detail.jpg'  },
         { label: 'Diffused LED ring', note: '12-segment feedback channels hidden beneath the printed surface for a cleaner face.',                                          img: '/assets/hardware-led-ring.jpg'     },
-        { label: 'Mount',             note: 'Desk, shelf, bench or wall mount options, with the upright desk mount helping conceal the cable.* <br><span class="hw-card-footnote">*Right-angle USBC adapter required</span>',  img: '/assets/hardware-mount-detail.jpg' },
+        { label: 'Mount',             note: 'Three mount options to suit any surface or placement, with the upright angled mount helping conceal the cable.* <br><span class="hw-card-footnote">*Right-angle USBC adapter required</span>',  img: '/assets/hardware-mount-detail.jpg' },
       ]
     },
     {
       defaultImg: '/assets/hardware-fold-mount.jpg',
       cards: [
-        { label: 'Upright desk mount', note: 'An angled form that brings the dial forward and helps conceal the cable behind the body.',                            img: '/assets/mount-desk-upright.jpg' },
-        { label: 'Low-profile mount',  note: 'A shorter body and mount combo for desks or walls where a flatter, more minimal footprint might make sense.',         img: '/assets/hardware-mount-lowprofile.jpg'  },
-        { label: 'Wall mount',         note: 'A flat mounting option for vertical placement, designed to work with the shorter body.',  img: '/assets/mount-wall-flat.jpg'    },
+        { label: 'Upright angled mount', note: 'An angled form that brings the dial forward and helps conceal the cable behind the body.',                            img: '/assets/mount-desk-upright.jpg' },
+        { label: 'Raised flat mount',   note: 'A lower-profile mount for horizontal surfaces, or for fixing the Flat Build at a slight angle.',                      img: '/assets/hardware-mount-lowprofile.jpg'  },
+        { label: 'Flat mount',          note: 'A simple, low-profile mount for vertical or fixed surfaces. Works best with the Flat Build.',                         img: '/assets/mount-wall-flat.jpg'    },
       ]
     },
     {
