@@ -526,7 +526,7 @@
       defaultImg: '/assets/hardware-fold-mount.jpg',
       cards: [
         { label: 'Upright desk mount', note: 'An angled form that brings the dial forward and helps conceal the cable behind the body.',                            img: '/assets/mount-desk-upright.jpg' },
-        { label: 'Low-profile mount',  note: 'A shorter body and mount combo for desks or walls where a flatter, more minimal footprint might make sense.',         img: '/assets/mount-desk-raised.jpg'  },
+        { label: 'Low-profile mount',  note: 'A shorter body and mount combo for desks or walls where a flatter, more minimal footprint might make sense.',         img: '/assets/hardware-mount-lowprofile.jpg'  },
         { label: 'Wall mount',         note: 'A flat mounting option for vertical placement, designed to work with the shorter body.',  img: '/assets/mount-wall-flat.jpg'    },
       ]
     },
