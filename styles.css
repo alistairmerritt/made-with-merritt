@@ -1323,6 +1323,7 @@ section { position: relative; }
    Matches the JS isMobile check: !matchMedia('(hover:hover) and (pointer:fine)'). */
 @media (hover: none), (pointer: coarse) {
   .dial-intro-content { padding: 0 40px; bottom: 48px; }
+  .usecases { background-attachment: scroll; }
 }
 
 /* ─── Made with Merritt page ──────────────────────────── */

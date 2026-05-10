@@ -1072,3 +1072,7 @@
   /* Assembly steps: tighter gap on mobile */
   .fg-steps { gap: 48px; }
 }
+
+@media (hover: none), (pointer: coarse) {
+  .g-fullguide-bg { background-attachment: scroll; }
+}
