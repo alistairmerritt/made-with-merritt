@@ -294,7 +294,7 @@
   transition: opacity 0.9s ease, transform 0.7s ease;
   opacity: 0;
 }
-@media (hover: hover) and (pointer: fine) {
+@media (hover: hover) and (pointer: fine) and (min-width: 1101px) {
   .g-body-card:hover .g-card-slide-layer { transform: scale(1.07); }
 }
 .g-card-pills {
@@ -417,7 +417,7 @@
   background-position: inherit;
   transition: transform 0.7s ease;
 }
-@media (hover: hover) and (pointer: fine) {
+@media (hover: hover) and (pointer: fine) and (min-width: 1101px) {
   .g-mount-card:hover .g-mount-img::before { transform: scale(1.07); }
 }
 .g-mount-name {
