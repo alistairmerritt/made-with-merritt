@@ -30,20 +30,19 @@
 
     <!-- ─── Featured project ─────────────────────────── -->
     <section class="mwm-featured" id="work">
-      <a href="/pivot/" class="mwm-featured-card">
+      <a href="/pivot/" class="mwm-featured-card" id="mwm-featured-card">
         <div class="mwm-slide-layer" id="mwm-slide-a"></div>
         <div class="mwm-slide-layer" id="mwm-slide-b"></div>
         <div class="mwm-featured-overlay"></div>
         <div class="mwm-featured-text">
           <div class="mwm-featured-meta">
             <div class="section-label section-label-dark">Featured project</div>
-            <h2 class="h-display h-display-light">Pivot Dial</h2>
-            <p class="body-copy body-copy-dark">A tactile smart home controller built for Home Assistant.</p>
+            <h2 class="h-display h-display-light" id="mwm-slide-title">Pivot Dial</h2>
+            <p class="body-copy body-copy-dark" id="mwm-slide-desc">A tactile smart home controller built for Home Assistant.</p>
           </div>
           <div class="mwm-featured-bottom">
-            <span class="btn-primary mwm-featured-btn">View project <svg class="ext-arrow" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.5 8.5L8.5 1.5M8.5 1.5H3.5M8.5 1.5V6.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="btn-primary mwm-featured-btn" id="mwm-slide-btn">View project <svg class="ext-arrow" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.5 8.5L8.5 1.5M8.5 1.5H3.5M8.5 1.5V6.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             <div class="mwm-slide-pills" id="mwm-slide-pills">
-              <div class="mwm-pill"><div class="mwm-pill-fill"></div></div>
               <div class="mwm-pill"><div class="mwm-pill-fill"></div></div>
               <div class="mwm-pill"><div class="mwm-pill-fill"></div></div>
             </div>
@@ -159,19 +158,35 @@
       // ─── Featured slideshow + pills ───────────────────
       const SLIDE_MS = 6000;
       const slides = [
-        'assets/mwm-pivot-slide-software.jpg',
-        'assets/mwm-pivot-slide-dark.jpg',
-        'assets/mwm-pivot-slide-lifestyle.jpg',
+        { image: 'assets/mwm-pivot-slide-lifestyle.jpg', title: 'Pivot Dial',        desc: 'A tactile smart home controller built for Home Assistant.', href: '/pivot/',                                                                                                           btn: 'View project' },
+        { image: 'assets/cubes.jpg',                     title: 'Qube Modular Lamp', desc: 'A modular bollard lamp system, free to print and build.',    href: 'https://makerworld.com/en/models/1763478-modular-bollard-light-for-led-lamp-kit-001#profileId-1876265', btn: 'View on Makerworld' },
       ];
       const layerA  = document.getElementById('mwm-slide-a');
       const layerB  = document.getElementById('mwm-slide-b');
       const pillEls = document.querySelectorAll('.mwm-pill');
+      const card    = document.getElementById('mwm-featured-card');
+      const titleEl = document.getElementById('mwm-slide-title');
+      const descEl  = document.getElementById('mwm-slide-desc');
+      const btnEl   = document.getElementById('mwm-slide-btn');
+      const svg     = '<svg class="ext-arrow" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.5 8.5L8.5 1.5M8.5 1.5H3.5M8.5 1.5V6.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>';
       let active = layerA;
       let idx = 0;
 
-      layerA.style.backgroundImage = `url('${slides[0]}')`;
+      layerA.style.backgroundImage = `url('${slides[0].image}')`;
       layerA.style.opacity = '1';
       layerB.style.opacity = '0';
+
+      function updateMeta(i) {
+        titleEl.textContent = slides[i].title;
+        descEl.textContent  = slides[i].desc;
+        btnEl.innerHTML     = slides[i].btn + ' ' + svg;
+        card.href           = slides[i].href;
+        if (slides[i].href.startsWith('http')) {
+          card.target = '_blank'; card.rel = 'noopener';
+        } else {
+          card.removeAttribute('target'); card.removeAttribute('rel');
+        }
+      }
 
       function updatePills(current) {
         pillEls.forEach((pill, i) => {
@@ -179,7 +194,6 @@
           if (i < current) {
             pill.classList.add('done');
           } else if (i === current) {
-            // Force animation restart
             void pill.offsetWidth;
             pill.classList.add('active');
           }
@@ -191,17 +205,16 @@
         if (newIdx === idx) return;
         idx = newIdx;
         const next = active === layerA ? layerB : layerA;
-        next.style.backgroundImage = `url('${slides[idx]}')`;
+        next.style.backgroundImage = `url('${slides[idx].image}')`;
         next.style.opacity = '1';
         active.style.opacity = '0';
         active = next;
         updatePills(idx);
+        updateMeta(idx);
       }
 
-      // Auto-advance — store ID so clicks can reset it
       let timer = setInterval(() => goToSlide((idx + 1) % slides.length), SLIDE_MS);
 
-      // Make pills clickable — restart timer on click
       pillEls.forEach((pill, i) => {
         pill.style.cursor = 'pointer';
         pill.addEventListener('click', (e) => {
