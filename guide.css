@@ -321,7 +321,7 @@
   background: rgba(255,255,255,0.9);
 }
 .g-card-pills .mwm-pill.active .mwm-pill-fill {
-  animation-duration: 2.5s;
+  animation-duration: 5s;
 }
 .g-body-card-text {
   padding: 24px 28px 28px;
