@@ -525,7 +525,7 @@
     {
       defaultImg: '/assets/hardware-fold-mount.jpg',
       cards: [
-        { label: 'Upright angled mount', note: 'An angled form that brings the dial forward and helps conceal the cable behind the body.',                            img: '/assets/mount-desk-upright.jpg' },
+        { label: 'Upright angled mount', note: 'An angled form that brings the dial forward and helps conceal the cable behind the body.',                            img: '/assets/hardware-mount-desk-upright.jpg' },
         { label: 'Raised flat mount',   note: 'A lower-profile mount for horizontal surfaces, or for fixing the Flat Build at a slight angle.',                      img: '/assets/hardware-mount-lowprofile.jpg'  },
         { label: 'Flat mount',          note: 'A simple, low-profile mount for vertical or fixed surfaces. Works best with the Flat Build.',                         img: '/assets/mount-wall-flat.jpg'    },
       ]
