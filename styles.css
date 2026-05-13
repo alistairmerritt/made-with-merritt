@@ -437,7 +437,7 @@ section { position: relative; }
 /* ─── Interaction ────────────────────────────────────── */
 .interaction {
   background: #000;
-  padding: 140px 60px;
+  padding: 220px 60px;
 }
 .tpk-grid {
   display: grid;
