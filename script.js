@@ -307,28 +307,13 @@
     }
   }
 
-  // ─── Interaction: cycling Turn / Press / Know ──────────
-  const interactionSteps = [
-    { progress: 0.65, color: ACCENT, value: '65%' },
-    { progress: 0.50, color: '#FFFFFF', value: 'On' },
-    { progress: 0.85, color: '#3DBA6A', value: '85%' },
-  ];
-  const dialSvg = document.getElementById('dial-ring');
-  const dialValue = document.getElementById('dial-value');
-  const stepEls = Array.from(document.querySelectorAll('#interaction-steps .step'));
-  if (dialSvg && dialValue && stepEls.length) {
-    let activeStep = 0;
-    function setStep(i) {
-      activeStep = i;
-      stepEls.forEach((el, idx) => el.classList.toggle('active', idx === i));
-      const s = interactionSteps[i];
-      buildRing(dialSvg, { color: s.color, progress: s.progress });
-      dialValue.textContent = s.value;
-    }
-    stepEls.forEach((el, idx) => el.addEventListener('click', () => setStep(idx)));
-    setStep(0);
-    setInterval(() => setStep((activeStep + 1) % interactionSteps.length), 2600);
-  }
+  // ─── Interaction: hover-to-play videos ─────────────────
+  document.querySelectorAll('.tpk-col').forEach(col => {
+    const video = col.querySelector('.tpk-video');
+    if (!video) return;
+    col.addEventListener('mouseenter', () => { video.play(); });
+    col.addEventListener('mouseleave', () => { video.pause(); video.currentTime = 0; });
+  });
 
   // ─── Banks ─────────────────────────────────────────────
   const banks = [
