@@ -307,13 +307,44 @@
     }
   }
 
-  // ─── Interaction: hover-to-play videos ─────────────────
-  document.querySelectorAll('.tpk-col').forEach(col => {
-    const video = col.querySelector('.tpk-video');
-    if (!video) return;
-    col.addEventListener('mouseenter', () => { video.play(); });
-    col.addEventListener('mouseleave', () => { video.pause(); video.currentTime = 0; });
-  });
+  // ─── Interaction: hover (desktop) / scroll-center (mobile) videos ───
+  const tpkCols  = Array.from(document.querySelectorAll('.tpk-col'));
+  const tpkIsMobile = !window.matchMedia('(hover: hover) and (pointer: fine)').matches || window.innerWidth <= 1100;
+
+  if (!tpkIsMobile) {
+    tpkCols.forEach(col => {
+      const video = col.querySelector('.tpk-video');
+      if (!video) return;
+      col.addEventListener('mouseenter', () => { video.play(); });
+      col.addEventListener('mouseleave', () => { video.pause(); video.currentTime = 0; });
+    });
+  } else {
+    let tpkActive = -1;
+
+    function tpkUpdate() {
+      const vc = window.innerHeight / 2;
+      let closest = 0, minDist = Infinity;
+      tpkCols.forEach((col, i) => {
+        const r = col.getBoundingClientRect();
+        const dist = Math.abs((r.top + r.height / 2) - vc);
+        if (dist < minDist) { minDist = dist; closest = i; }
+      });
+      if (closest === tpkActive) return;
+      tpkActive = closest;
+      tpkCols.forEach((col, i) => {
+        const video = col.querySelector('.tpk-video');
+        col.classList.toggle('tpk-active', i === closest);
+        if (i === closest) {
+          video?.play().catch(() => {});
+        } else {
+          if (video) { video.pause(); video.currentTime = 0; }
+        }
+      });
+    }
+
+    window.addEventListener('scroll', tpkUpdate, { passive: true });
+    tpkUpdate();
+  }
 
   // ─── Banks ─────────────────────────────────────────────
   const banks = [
