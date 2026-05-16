@@ -256,56 +256,6 @@
     makeCurtain(dialIntroEl, document.getElementById('hardware-stack'));
   }
 
-  // ─── DialRing SVG generator ────────────────────────────
-  function buildRing(svg, { color, progress, size = 300, segments = 12, segGap = 0.05, inset = 7, hubRatio = 14 }) {
-    const r = size / 2 - 12;
-    const cx = size / 2;
-    while (svg.firstChild) svg.removeChild(svg.firstChild);
-    svg.setAttribute('viewBox', `0 0 ${size} ${size}`);
-    svg.setAttribute('width', size);
-    svg.setAttribute('height', size);
-    for (let i = 0; i < segments; i++) {
-      const a = (i / segments) * 2 * Math.PI - Math.PI / 2;
-      const b = ((i + 1) / segments) * 2 * Math.PI - Math.PI / 2;
-      const lit = i / segments < progress;
-      const x1 = cx + (r - inset) * Math.cos(a + segGap), y1 = cx + (r - inset) * Math.sin(a + segGap);
-      const x2 = cx + (r + inset) * Math.cos(a + segGap), y2 = cx + (r + inset) * Math.sin(a + segGap);
-      const x3 = cx + (r + inset) * Math.cos(b - segGap), y3 = cx + (r + inset) * Math.sin(b - segGap);
-      const x4 = cx + (r - inset) * Math.cos(b - segGap), y4 = cx + (r - inset) * Math.sin(b - segGap);
-      const poly = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
-      poly.setAttribute('points', `${x1},${y1} ${x2},${y2} ${x3},${y3} ${x4},${y4}`);
-      poly.setAttribute('fill', lit ? color : 'rgba(255,255,255,0.07)');
-      if (lit) poly.style.filter = `drop-shadow(0 0 5px ${color}99)`;
-      svg.appendChild(poly);
-    }
-    const hub = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-    hub.setAttribute('cx', cx); hub.setAttribute('cy', cx);
-    hub.setAttribute('r', r - hubRatio);
-    hub.setAttribute('fill', 'rgba(255,255,255,0.05)');
-    svg.appendChild(hub);
-  }
-
-  function buildLightRing(svg, { color, progress, size = 72, segments = 10, gap = 0.06, inset = 5 }) {
-    const r = size / 2 - 6;
-    const cx = size / 2;
-    while (svg.firstChild) svg.removeChild(svg.firstChild);
-    svg.setAttribute('viewBox', `0 0 ${size} ${size}`);
-    svg.setAttribute('width', size);
-    svg.setAttribute('height', size);
-    for (let i = 0; i < segments; i++) {
-      const a = (i / segments) * 2 * Math.PI - Math.PI / 2;
-      const b = ((i + 1) / segments) * 2 * Math.PI - Math.PI / 2;
-      const lit = i / segments < progress;
-      const x1 = cx + (r - inset) * Math.cos(a + gap), y1 = cx + (r - inset) * Math.sin(a + gap);
-      const x2 = cx + (r + inset) * Math.cos(a + gap), y2 = cx + (r + inset) * Math.sin(a + gap);
-      const x3 = cx + (r + inset) * Math.cos(b - gap), y3 = cx + (r + inset) * Math.sin(b - gap);
-      const x4 = cx + (r - inset) * Math.cos(b - gap), y4 = cx + (r - inset) * Math.sin(b - gap);
-      const poly = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
-      poly.setAttribute('points', `${x1},${y1} ${x2},${y2} ${x3},${y3} ${x4},${y4}`);
-      poly.setAttribute('fill', lit ? color : 'rgba(0,0,0,0.07)');
-      svg.appendChild(poly);
-    }
-  }
 
   // ─── Interaction: hover (desktop) / tap (tablet) / scroll-center (phone) ───
   const tpkCols    = Array.from(document.querySelectorAll('.tpk-col'));
