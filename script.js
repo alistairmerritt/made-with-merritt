@@ -307,18 +307,38 @@
     }
   }
 
-  // ─── Interaction: hover (desktop) / scroll-center (mobile) videos ───
-  const tpkCols  = Array.from(document.querySelectorAll('.tpk-col'));
-  const tpkIsMobile = !window.matchMedia('(hover: hover) and (pointer: fine)').matches || window.innerWidth <= 1100;
+  // ─── Interaction: hover (desktop) / tap (tablet) / scroll-center (phone) ───
+  const tpkCols    = Array.from(document.querySelectorAll('.tpk-col'));
+  const tpkIsTouch = !window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const tpkIsPhone = tpkIsTouch && window.innerWidth <= 640;
 
-  if (!tpkIsMobile) {
+  if (!tpkIsTouch) {
+    // Desktop: hover plays video
     tpkCols.forEach(col => {
       const video = col.querySelector('.tpk-video');
       if (!video) return;
       col.addEventListener('mouseenter', () => { video.play(); });
       col.addEventListener('mouseleave', () => { video.pause(); video.currentTime = 0; });
     });
+  } else if (!tpkIsPhone) {
+    // Tablet: all cards static at full opacity, tap to play/pause video
+    tpkCols.forEach(col => {
+      const video = col.querySelector('.tpk-video');
+      col.addEventListener('click', () => {
+        const isActive = col.classList.contains('tpk-active');
+        tpkCols.forEach(c => {
+          c.classList.remove('tpk-active');
+          const v = c.querySelector('.tpk-video');
+          if (v) { v.pause(); v.currentTime = 0; }
+        });
+        if (!isActive) {
+          col.classList.add('tpk-active');
+          video?.play().catch(() => {});
+        }
+      });
+    });
   } else {
+    // Phone: scroll to centre highlights closest card
     let tpkActive = -1;
 
     function tpkUpdate() {

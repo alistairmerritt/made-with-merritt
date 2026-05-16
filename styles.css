@@ -446,9 +446,11 @@ section { position: relative; }
   margin-top: 48px;
 }
 .tpk-col { display: flex; flex-direction: column; transition: opacity 0.4s ease; }
-@media (hover: none), (pointer: coarse) {
+@media (pointer: coarse) and (max-width: 640px) {
   .tpk-col { opacity: 0.35; }
   .tpk-col.tpk-active { opacity: 1; }
+}
+@media (pointer: coarse) {
   .tpk-col.tpk-active .tpk-video { opacity: 1; }
 }
 .tpk-num {
