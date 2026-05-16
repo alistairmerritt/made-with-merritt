@@ -1324,7 +1324,7 @@ section { position: relative; }
    devices so the extra height just creates dead scroll space. */
 @media (pointer: coarse) and (min-width: 641px) {
   .why { height: auto; }
-  .why-sticky { position: static; height: auto; padding: 100px 60px; mask-image: none; -webkit-mask-image: none; }
+  .why-sticky { position: static; height: auto; padding: 220px 60px; mask-image: none; -webkit-mask-image: none; }
   .why-inner { padding-top: 0; }
 }
 
