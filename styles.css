@@ -1318,6 +1318,16 @@ section { position: relative; }
   .usecases { background-attachment: scroll; }
 }
 
+/* ─── iPad/tablet overrides (touch, wider than phone) ───
+   Remove the 240vh scroll-distance created for the desktop
+   sticky animation — the animation doesn't run on touch
+   devices so the extra height just creates dead scroll space. */
+@media (pointer: coarse) and (min-width: 641px) {
+  .why { height: auto; }
+  .why-sticky { position: static; height: auto; mask-image: none; -webkit-mask-image: none; }
+  .why-inner { padding-top: 40px; }
+}
+
 /* ─── Made with Merritt page ──────────────────────────── */
 .mwm-body { background: #fff; }
 
