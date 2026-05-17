@@ -225,17 +225,26 @@
     return top;
   }
 
-  function makeReverseCurtain(fixedEl) {
-    if (!fixedEl) return;
+  // Pins `pinnedStack` in place while `scrollZoneEl` slides up over it
+  function makePinAbove(scrollZoneEl, pinnedStack, options) {
+    if (!scrollZoneEl || !pinnedStack) return;
+    const stickyEls = options && options.stickyFix
+      ? Array.from(pinnedStack.querySelectorAll(options.stickyFix))
+      : [];
+
     const update = () => {
-      const scrollY = window.scrollY;
-      const elTop   = naturalDocTop(fixedEl);
-      if (scrollY > elTop) {
-        fixedEl.style.transform  = `translateY(${scrollY - elTop}px)`;
-        fixedEl.style.willChange = 'transform';
+      const scrollY  = window.scrollY;
+      const zoneTop  = naturalDocTop(scrollZoneEl);
+      const pinStart = zoneTop - window.innerHeight;
+
+      if (scrollY >= pinStart && scrollY < zoneTop) {
+        pinnedStack.style.transform  = `translateY(${scrollY - pinStart}px)`;
+        pinnedStack.style.willChange = 'transform';
+        stickyEls.forEach(el => { el.style.position = 'relative'; });
       } else {
-        fixedEl.style.transform  = '';
-        fixedEl.style.willChange = '';
+        pinnedStack.style.transform  = '';
+        pinnedStack.style.willChange = '';
+        stickyEls.forEach(el => { el.style.position = ''; });
       }
     };
     window.addEventListener('scroll', update, { passive: true });
@@ -285,8 +294,12 @@
     // Dial-intro → Hardware curtain (no sticky children inside)
     makeCurtain(dialIntroEl, document.getElementById('hardware-stack'));
 
-    // Docs (black) stays fixed while Start (white) scrolls up over it
-    makeReverseCurtain(document.getElementById('docs'));
+    // Ha (black) slides up over pinned hardware (white)
+    makePinAbove(
+      document.getElementById('docs'),
+      document.getElementById('hardware-stack'),
+      { stickyFix: '.hardware-scroll-img' }
+    );
   }
 
 
