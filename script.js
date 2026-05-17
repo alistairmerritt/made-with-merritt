@@ -225,33 +225,6 @@
     return top;
   }
 
-  // Pins `pinnedStack` in place while `scrollZoneEl` slides up over it
-  function makePinAbove(scrollZoneEl, pinnedStack, options) {
-    if (!scrollZoneEl || !pinnedStack) return;
-    const stickyEls = options && options.stickyFix
-      ? Array.from(pinnedStack.querySelectorAll(options.stickyFix))
-      : [];
-
-    const update = () => {
-      const scrollY  = window.scrollY;
-      const zoneTop  = naturalDocTop(scrollZoneEl);
-      const pinStart = zoneTop - window.innerHeight;
-
-      if (scrollY >= pinStart && scrollY < zoneTop) {
-        pinnedStack.style.transform  = `translateY(${scrollY - pinStart}px)`;
-        pinnedStack.style.willChange = 'transform';
-        stickyEls.forEach(el => { el.style.position = 'relative'; });
-      } else {
-        pinnedStack.style.transform  = '';
-        pinnedStack.style.willChange = '';
-        stickyEls.forEach(el => { el.style.position = ''; });
-      }
-    };
-    window.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update);
-    update();
-  }
-
   function makeCurtain(upperEl, lowerStack, options) {
     if (!upperEl || !lowerStack) return;
     // position:sticky inside a CSS-transformed ancestor is a known browser bug —
@@ -294,12 +267,6 @@
     // Dial-intro → Hardware curtain (no sticky children inside)
     makeCurtain(dialIntroEl, document.getElementById('hardware-stack'));
 
-    // Ha (black) slides up over pinned hardware (white)
-    makePinAbove(
-      document.getElementById('docs'),
-      document.getElementById('hardware-stack'),
-      { stickyFix: '.hardware-scroll-img' }
-    );
   }
 
 
