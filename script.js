@@ -225,6 +225,24 @@
     return top;
   }
 
+  function makeReverseCurtain(fixedEl) {
+    if (!fixedEl) return;
+    const update = () => {
+      const scrollY = window.scrollY;
+      const elTop   = naturalDocTop(fixedEl);
+      if (scrollY > elTop) {
+        fixedEl.style.transform  = `translateY(${scrollY - elTop}px)`;
+        fixedEl.style.willChange = 'transform';
+      } else {
+        fixedEl.style.transform  = '';
+        fixedEl.style.willChange = '';
+      }
+    };
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  }
+
   function makeCurtain(upperEl, lowerStack, options) {
     if (!upperEl || !lowerStack) return;
     // position:sticky inside a CSS-transformed ancestor is a known browser bug —
@@ -266,6 +284,9 @@
 
     // Dial-intro → Hardware curtain (no sticky children inside)
     makeCurtain(dialIntroEl, document.getElementById('hardware-stack'));
+
+    // Docs (black) stays fixed while Start (white) scrolls up over it
+    makeReverseCurtain(document.getElementById('docs'));
   }
 
 
