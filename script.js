@@ -618,9 +618,9 @@
   const proofPoints = [
     { title: 'Local communication',              desc: 'Communicates locally with Home Assistant through ESPHome.' },
     { title: 'VPE functionality preserved',      desc: 'Wake word, voice interaction, and the core Voice Preview Edition experience remain central.' },
-    { title: 'Reversible setup',                 desc: 'Firmware can be rolled back, software layers can be removed, and the original enclosure can be reassembled.' },
+    { title: 'Reversible setup',                 desc: 'Firmware can be rolled back, software layers can be safely removed, and the original enclosure can be reassembled.' },
     { title: `Open ${docsLink('documentation')}`, desc: `Source files, setup steps, architecture, and build guidance are documented so the system stays transparent.` },
-    { title: 'Flexible hardware',                desc: 'Different mount options, self-printable parts, and an adaptable design give you more freedom in how Pivot comes together.' },
+    { title: 'Flexible hardware',                desc: 'Different mount and body options, self-printable parts, and an adaptable design give you more freedom in how Pivot comes together.' },
   ];
   document.getElementById('proof-list').innerHTML = proofPoints.map(p => `
     <div>
