@@ -19,6 +19,18 @@
     return Math.max(0, Math.min(1, (window.scrollY - heroTop) / heroH));
   };
 
+  // ─── Hero hand parallax (desktop only) ────────────────
+  const heroHandEl = document.getElementById('hero-hand');
+  if (heroHandEl && !isMobile) {
+    const updateHandParallax = () => {
+      const scrolled = window.scrollY;
+      if (scrolled <= (heroEl ? heroEl.offsetHeight : window.innerHeight)) {
+        heroHandEl.style.transform = `translateY(${scrolled * 0.18}px)`;
+      }
+    };
+    window.addEventListener('scroll', updateHandParallax, { passive: true });
+  }
+
   // ─── Nav scroll state ──────────────────────────────────
   const nav        = document.getElementById('nav');
   const mobileMenu = document.getElementById('nav-mobile-menu');

@@ -227,6 +227,28 @@ section { position: relative; }
   letter-spacing: -0.01em;
 }
 .nav-wordmark { display: block; }
+.nav-brand-group {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.nav-badge { position: relative; top: 2px; left: 10px; opacity: 0.5; }
+.nav-badge {
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: rgba(255,255,255,0.45);
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 50px;
+  padding: 4px 12px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  white-space: nowrap;
+  display: inline-block;
+}
+@media (max-width: 1100px) {
+  .nav-badge { display: none; }
+}
 .nav-byline {
   font-size: 10px;
   color: rgba(255,255,255,0.3);
@@ -336,12 +358,42 @@ section { position: relative; }
   height: 100vh;
   min-height: 700px;
   overflow: hidden;
+  background: #000;
+}
+@keyframes hero-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 .hero-bg {
   position: absolute; inset: 0;
   background-image: url('assets/pivot-hero-bg.jpg');
   background-size: cover;
   background-position: center center;
+  background-color: #000;
+}
+@media (min-width: 641px) {
+  .hero-hand {
+    animation: hero-fade-in 2.5s ease forwards;
+  }
+}
+.hero-hand {
+  display: none;
+}
+@media (min-width: 641px) {
+  .hero-hand {
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 44%;
+    background-image: url('assets/hand.png');
+    background-size: contain;
+    background-position: right center;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    will-change: transform;
+  }
 }
 .hero-overlay {
   position: absolute; inset: 0;
@@ -1198,7 +1250,7 @@ section { position: relative; }
   /* ── Mobile hero: image top, black content bottom ── */
   .hero {
     height: auto;
-    min-height: 100vh;
+    min-height: 100svh;
     display: flex;
     flex-direction: column;
     overflow: visible;
@@ -1220,7 +1272,8 @@ section { position: relative; }
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding: 32px 20px 40px;
+    padding: 4px 20px env(safe-area-inset-bottom, 40px);
+    padding-bottom: max(40px, env(safe-area-inset-bottom, 40px));
   }
   .hero-content-wrap { padding: 0; max-width: 100%; }
   .hero-inner { max-width: 100%; }
@@ -1242,7 +1295,7 @@ section { position: relative; }
   .interaction { padding-top: 80px; padding-bottom: 80px; }
   .banks { padding-top: 80px; padding-bottom: 80px; }
   .ecosystem { padding-top: 80px; padding-bottom: 80px; }
-  .usecases { padding-top: 80px; padding-bottom: 80px; background-attachment: scroll; }
+  .usecases { padding-top: 80px; padding-bottom: 80px; background-attachment: scroll; background-size: cover; background-position: center; }
   .start { padding-top: 80px; padding-bottom: 80px; }
   .footer { padding-top: 80px; padding-bottom: 40px; }
   .ha { padding: 80px 20px; }
