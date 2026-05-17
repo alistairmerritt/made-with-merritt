@@ -391,7 +391,7 @@ section { position: relative; }
     right: 0;
     top: -50px;
     bottom: 0;
-    width: 36%;
+    width: 50%;
     background-image: url('assets/hand.png');
     background-size: contain;
     background-position: right center;
