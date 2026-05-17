@@ -604,10 +604,11 @@
   const docsArrow = '<svg class="ext-arrow" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.5 8.5L8.5 1.5M8.5 1.5H3.5M8.5 1.5V6.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   const docsLink  = (text) => `<a href="${docsUrl}" target="_blank" rel="noopener" class="proof-doc-link">${text} ${docsArrow}</a>`;
   const proofPoints = [
-    { title: 'Local communication',       desc: 'Only communicates with Home Assistant through ESPHome. ' },
-    { title: 'VPE functionality preserved',      desc: 'Wake word, voice interaction and the existing ESPHome integration remain a core part of the experience.' },
-    { title: 'Reversible setup',                 desc: 'Firmware installation can be rolled back, and the software layers can be safely removed at any time.' },
-    { title: `Open ${docsLink('documentation')}`, desc: `Source files, setup steps and architecture are documented so the system stays transparent.` },
+    { title: 'Local communication',              desc: 'Communicates locally with Home Assistant through ESPHome.' },
+    { title: 'VPE functionality preserved',      desc: 'Wake word, voice interaction, and the core Voice Preview Edition experience remain central.' },
+    { title: 'Reversible setup',                 desc: 'Firmware can be rolled back, software layers can be removed, and the original enclosure can be reassembled.' },
+    { title: `Open ${docsLink('documentation')}`, desc: `Source files, setup steps, architecture, and build guidance are documented so the system stays transparent.` },
+    { title: 'Flexible hardware',                desc: 'Different mount options, self-printable parts, and an adaptable design give you more freedom in how Pivot comes together.' },
   ];
   document.getElementById('proof-list').innerHTML = proofPoints.map(p => `
     <div>
@@ -674,7 +675,7 @@
   // ─── Hardware sticky bar ────────────────────────────
   const hwStickyBar   = document.getElementById('hw-sticky-bar');
   const hwStickyClose = document.getElementById('hw-sticky-close');
-  const usecasesEl    = document.getElementById('usecases');
+  const hwStickyEndEl = document.getElementById('docs');
   let hwStickyDismissed = false;
 
   if (hwStickyClose) {
@@ -686,9 +687,9 @@
   }
 
   function updateHwStickyBar() {
-    if (!hwStickyBar || !dialIntroEl || !usecasesEl || hwStickyDismissed) return;
+    if (!hwStickyBar || !dialIntroEl || !hwStickyEndEl || hwStickyDismissed) return;
     const dialBottom  = dialIntroEl.getBoundingClientRect().bottom;
-    const usecasesTop = usecasesEl.getBoundingClientRect().top;
+    const usecasesTop = hwStickyEndEl.getBoundingClientRect().top;
     const show = dialBottom < window.innerHeight * 0.8 && usecasesTop > window.innerHeight * 0.97;
     const visible = hwStickyBar.classList.contains('hw-sticky-visible');
     if (show !== visible) {
