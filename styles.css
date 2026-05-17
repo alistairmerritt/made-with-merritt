@@ -275,6 +275,7 @@ section { position: relative; }
   margin-left: 8px;
   padding: 12px 18px !important;
   transition: background 0.35s ease !important;
+  color: #fff !important;
 }
 .nav-cta:hover { background: #0055d4 !important; }
 
