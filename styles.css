@@ -1266,6 +1266,7 @@ section { position: relative; }
     width: 100%;
     flex: 1;
     background-image: url('assets/pivot-hero-bg-mobile.jpg');
+    background-size: cover;
     background-position: center center;
   }
   .hero-overlay { display: none; }
@@ -1277,8 +1278,8 @@ section { position: relative; }
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding: 4px 20px env(safe-area-inset-bottom, 80px);
-    padding-bottom: max(80px, env(safe-area-inset-bottom, 80px));
+    padding: 4px 20px env(safe-area-inset-bottom, 32px);
+    padding-bottom: max(32px, env(safe-area-inset-bottom, 32px));
   }
   .hero-content-wrap { padding: 0; max-width: 100%; }
   .hero-inner { max-width: 100%; }
