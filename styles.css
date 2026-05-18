@@ -1075,11 +1075,18 @@ section { position: relative; }
   border: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 0;
   cursor: default;
 }
 .usecase-card .usecase-title { color: #fff; }
 .usecase-card .usecase-body  { color: rgba(255, 255, 255, 0.8); }
+.usecase-header {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+.usecase-chevron { display: none; }
+.usecase-body-wrap { margin-top: 8px; }
 .usecase-icon-row {
   display: flex;
   align-items: center;
@@ -1373,12 +1380,17 @@ section { position: relative; }
   .usecases { position: static; background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('assets/use-cases-background.jpg'); background-size: cover; background-position: center; background-attachment: scroll; padding: 60px 20px 80px; }
   .usecases-bg { display: none; }
   .usecases .container { position: static; z-index: auto; padding: 0; }
-  .usecases-grid { grid-template-columns: 1fr; }
-  .usecase-card { flex-direction: row; align-items: flex-start; gap: 16px; padding: 20px; }
-  .usecase-icon-row { flex-shrink: 0; padding-top: 2px; }
-  .usecase-icon { font-size: 26px; }
-  .usecase-title { font-size: 17px; margin-bottom: 4px; }
-  .usecase-body { font-size: 13px; }
+  .usecases-grid { grid-template-columns: 1fr; gap: 8px; }
+  .usecase-card { padding: 0; cursor: pointer; }
+  .usecase-header { flex-direction: row; align-items: center; gap: 14px; padding: 18px 20px; }
+  .usecase-icon-row { flex-shrink: 0; }
+  .usecase-icon { font-size: 22px; margin-left: 0; }
+  .usecase-title { flex: 1; font-size: 17px; margin-bottom: 0; }
+  .usecase-chevron { display: block; font-size: 20px; color: rgba(255,255,255,0.5); transition: transform 0.25s ease; flex-shrink: 0; }
+  .usecase-card.is-open .usecase-chevron { transform: rotate(180deg); }
+  .usecase-body-wrap { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.3s ease; overflow: hidden; margin-top: 0; }
+  .usecase-body-wrap > .usecase-body { min-height: 0; padding: 0 20px 20px; font-size: 14px; }
+  .usecase-card.is-open .usecase-body-wrap { grid-template-rows: 1fr; }
 
   /* Footer headline */
   .footer-headline { font-size: 22px; }

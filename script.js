@@ -645,15 +645,31 @@
   const useGrid = document.getElementById('usecases-grid');
   useGrid.innerHTML = useCases.map((u, i) => `
     <div class="usecase-card" data-uc="${i}">
-      <div class="usecase-icon-row">
-        <i class="mdi mdi-${u.icon} usecase-icon"></i>
-      </div>
-      <div>
+      <div class="usecase-header">
+        <div class="usecase-icon-row">
+          <i class="mdi mdi-${u.icon} usecase-icon"></i>
+        </div>
         <div class="usecase-title">${u.title}</div>
+        <i class="mdi mdi-chevron-down usecase-chevron" aria-hidden="true"></i>
+      </div>
+      <div class="usecase-body-wrap">
         <div class="usecase-body">${u.body}</div>
       </div>
     </div>
   `).join('');
+
+  // ─── Mobile accordion ─────────────────────────────────
+  const isMobileQ = window.matchMedia('(max-width: 640px)');
+  const ucCards = useGrid.querySelectorAll('.usecase-card');
+  ucCards.forEach(card => {
+    card.querySelector('.usecase-header').addEventListener('click', () => {
+      if (!isMobileQ.matches) return;
+      const isOpen = card.classList.contains('is-open');
+      ucCards.forEach(c => c.classList.remove('is-open'));
+      if (!isOpen) card.classList.add('is-open');
+    });
+  });
+  if (isMobileQ.matches) ucCards[0].classList.add('is-open');
 
   // ─── Get started paths ─────────────────────────────────
   const arrow = '<svg class="ext-arrow" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.5 8.5L8.5 1.5M8.5 1.5H3.5M8.5 1.5V6.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>';
