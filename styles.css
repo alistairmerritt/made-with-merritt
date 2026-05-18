@@ -1398,9 +1398,10 @@ section { position: relative; }
   .usecase-title { flex: 1; font-size: 17px; margin-bottom: 0; }
   .usecase-chevron { display: block; font-size: 20px; color: rgba(255,255,255,0.5); transition: transform 0.25s ease; flex-shrink: 0; }
   .usecase-card.is-open .usecase-chevron { transform: rotate(180deg); }
-  .usecase-body-wrap { overflow: hidden; max-height: 0; transition: max-height 0.35s ease; margin-top: 0; }
-  .usecase-body-wrap > .usecase-body { padding: 0 20px 20px; font-size: 14px; }
-  .usecase-card.is-open .usecase-body-wrap { max-height: 300px; }
+  .usecase-body-wrap { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.35s ease-in-out; margin-top: 0; }
+  .usecase-body-inner { overflow: hidden; }
+  .usecase-body-inner > .usecase-body { padding: 0 20px 20px; font-size: 14px; }
+  .usecase-card.is-open .usecase-body-wrap { grid-template-rows: 1fr; }
 
   /* Footer headline */
   .footer-headline { font-size: 22px; }

@@ -653,7 +653,9 @@
         <i class="mdi mdi-chevron-down usecase-chevron" aria-hidden="true"></i>
       </div>
       <div class="usecase-body-wrap">
-        <div class="usecase-body">${u.body}</div>
+        <div class="usecase-body-inner">
+          <div class="usecase-body">${u.body}</div>
+        </div>
       </div>
     </div>
   `).join('');
