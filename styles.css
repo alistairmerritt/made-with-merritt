@@ -356,6 +356,18 @@ section { position: relative; }
   transition: background 0.35s ease;
 }
 .nav-mobile-menu .nav-mobile-cta:hover { background: #0055d4; }
+.nav-mobile-menu .nav-mobile-cta-secondary {
+  margin-top: 10px;
+  text-align: center;
+  background: transparent;
+  color: rgba(255,255,255,0.7);
+  border-radius: 8px;
+  padding: 14px 0;
+  border: 1px solid rgba(255,255,255,0.2);
+  transition: border-color 0.2s ease, color 0.2s ease;
+  display: block;
+}
+.nav-mobile-menu .nav-mobile-cta-secondary:hover { border-color: rgba(255,255,255,0.4); color: #fff; }
 
 /* ─── Hero ───────────────────────────────────────────── */
 .hero {
