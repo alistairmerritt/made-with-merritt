@@ -779,6 +779,11 @@
     el.addEventListener('click', (e) => { e.preventDefault(); openContact(); });
   });
 
+  if (new URLSearchParams(window.location.search).get('contact') === '1') {
+    openContact();
+    history.replaceState(null, '', window.location.pathname);
+  }
+
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const res = await fetch('https://formspree.io/f/xojraoga', {
