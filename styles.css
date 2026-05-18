@@ -1376,10 +1376,20 @@ section { position: relative; }
   }
   .hardware-scroll-img { display: none; }
 
-  /* Use cases: simple stretched background on mobile */
-  .usecases { position: static; background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('assets/use-cases-background.jpg'); background-size: cover; background-position: center; background-attachment: scroll; padding: 60px 20px 80px; }
-  .usecases-bg { display: none; }
-  .usecases .container { position: static; z-index: auto; padding: 0; }
+  /* Use cases: fixed-height bg layer so accordion changes don't shift the image */
+  .usecases { position: relative; background: #1a1a1a; background-image: none; padding: 60px 20px 80px; overflow: hidden; }
+  .usecases-bg {
+    display: block;
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 120vh;
+    background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('assets/use-cases-background.jpg');
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .usecases .container { position: relative; z-index: 1; padding: 0; }
   .usecases-grid { grid-template-columns: 1fr; gap: 8px; }
   .usecase-card { padding: 0; cursor: pointer; }
   .usecase-header { flex-direction: row; align-items: center; gap: 14px; padding: 18px 20px; }
