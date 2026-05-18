@@ -1369,17 +1369,10 @@ section { position: relative; }
   }
   .hardware-scroll-img { display: none; }
 
-  /* Use cases: sticky background + row card layout */
-  .usecases { position: relative; background: #000; padding: 0; }
-  .usecases-bg {
-    display: block;
-    position: sticky; top: 0;
-    height: 100vh; height: 100lvh; width: 100%;
-    background-image: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)), url('../assets/use-cases-background.jpg');
-    background-size: cover; background-position: center;
-    margin-bottom: -100vh; margin-bottom: -100lvh;
-  }
-  .usecases .container { position: relative; z-index: 1; padding: 60px 20px 80px; }
+  /* Use cases: simple stretched background on mobile */
+  .usecases { position: static; background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('assets/use-cases-background.jpg'); background-size: cover; background-position: center; background-attachment: scroll; padding: 60px 20px 80px; }
+  .usecases-bg { display: none; }
+  .usecases .container { position: static; z-index: auto; padding: 0; }
   .usecases-grid { grid-template-columns: 1fr; }
   .usecase-card { flex-direction: row; align-items: flex-start; gap: 16px; padding: 20px; }
   .usecase-icon-row { flex-shrink: 0; padding-top: 2px; }
