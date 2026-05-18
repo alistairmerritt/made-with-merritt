@@ -780,8 +780,8 @@
   });
 
   if (new URLSearchParams(window.location.search).get('contact') === '1') {
-    openContact();
     history.replaceState(null, '', window.location.pathname);
+    setTimeout(openContact, 50);
   }
 
   form.addEventListener('submit', async (e) => {
