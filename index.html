@@ -177,6 +177,7 @@
       layerA.style.backgroundImage = `url('${slides[0].image}')`;
       layerA.style.opacity = '1';
       layerB.style.opacity = '0';
+      layerA.classList.add('mwm-zoom');
 
       function updateMeta(i) {
         titleEl.textContent = slides[i].title;
@@ -208,8 +209,12 @@
         idx = newIdx;
         const next = active === layerA ? layerB : layerA;
         next.style.backgroundImage = `url('${slides[idx].image}')`;
+        next.classList.remove('mwm-zoom');
+        void next.offsetWidth;
+        next.classList.add('mwm-zoom');
         next.style.opacity = '1';
         active.style.opacity = '0';
+        active.classList.remove('mwm-zoom');
         active = next;
         updatePills(idx);
         updateMeta(idx);

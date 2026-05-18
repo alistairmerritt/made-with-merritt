@@ -1465,12 +1465,19 @@ section { position: relative; }
   overflow: hidden;
   flex: 1;
 }
+@keyframes mwm-slide-zoom {
+  from { transform: scale(1); }
+  to   { transform: scale(1.06); }
+}
 .mwm-slide-layer {
   position: absolute;
   inset: 0;
   background-size: cover;
   background-position: center;
   transition: opacity 0.9s ease;
+}
+.mwm-slide-layer.mwm-zoom {
+  animation: mwm-slide-zoom 8s ease-out forwards;
 }
 .mwm-featured-overlay {
   position: absolute;
