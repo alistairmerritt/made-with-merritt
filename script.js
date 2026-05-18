@@ -669,7 +669,6 @@
       if (!isOpen) card.classList.add('is-open');
     });
   });
-  if (isMobileQ.matches) ucCards[0].classList.add('is-open');
 
   // ─── Get started paths ─────────────────────────────────
   const arrow = '<svg class="ext-arrow" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.5 8.5L8.5 1.5M8.5 1.5H3.5M8.5 1.5V6.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>';
