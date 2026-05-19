@@ -795,6 +795,8 @@ section { position: relative; }
   background-size: cover;
   background-position: center;
 }
+.dial-intro-bg-img { display: none; }
+.usecases-bg-img { display: none; }
 .dial-intro-reveal {
   position: absolute;
   inset: 0;
@@ -1391,13 +1393,35 @@ section { position: relative; }
     position: absolute;
     top: 0; left: 0; right: 0;
     height: 120vh;
-    background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('assets/use-cases-background.jpg');
-    background-size: cover;
-    background-position: center;
+    background-image: none;
     z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .usecases-bg-img {
+    display: block;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  .usecases-bg::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: rgba(0,0,0,0.2);
     pointer-events: none;
   }
   .usecases .container { position: relative; z-index: 1; padding: 0; }
+
+  /* Dial intro: img tag instead of ::before for iOS Safari */
+  .dial-intro::before { display: none; }
+  .dial-intro-bg-img {
+    display: block;
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
+  }
   .usecases-grid { grid-template-columns: 1fr; gap: 8px; }
   .usecase-card { padding: 0; cursor: pointer; }
   .usecase-header { flex-direction: row; align-items: center; gap: 14px; padding: 18px 20px; }
