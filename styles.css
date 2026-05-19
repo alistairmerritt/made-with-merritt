@@ -1386,13 +1386,12 @@ section { position: relative; }
   }
   .hardware-scroll-img { display: none; }
 
-  /* Use cases: fixed-height bg layer so accordion changes don't shift the image */
+  /* Use cases bg fills section dynamically (inset: 0 matches Chrome background-size: cover behavior) */
   .usecases { position: relative; background: #1a1a1a; background-image: none; padding: 60px 20px 80px; overflow: hidden; }
   .usecases-bg {
     display: block;
     position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 120vh;
+    inset: 0;
     background-image: none;
     z-index: 0;
     pointer-events: none;
