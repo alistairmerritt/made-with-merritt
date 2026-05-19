@@ -389,6 +389,7 @@ section { position: relative; }
   background-position: center center;
   background-color: #000;
 }
+.hero-bg-mobile { display: none; }
 @media (min-width: 641px) {
   .hero-hand {
     animation: hero-fade-in 2.5s ease forwards;
@@ -782,7 +783,7 @@ section { position: relative; }
 /* ─── Dial intro ─────────────────────────────────────── */
 .dial-intro {
   position: relative;
-  height: 100vh;
+  height: 70vh;
   overflow: hidden;
 }
 .dial-intro::before {
@@ -1291,9 +1292,14 @@ section { position: relative; }
   .hero-bg {
     position: absolute;
     inset: 0;
-    background-image: url('assets/pivot-hero-bg-mobile.jpg');
-    background-size: cover;
-    background-position: center top;
+    background-image: none;
+  }
+  .hero-bg-mobile {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
   }
   .hero-overlay {
     display: block;
@@ -1405,6 +1411,10 @@ section { position: relative; }
 
   /* Footer headline */
   .footer-headline { font-size: 22px; }
+
+  /* Footer bottom: links wrap onto their own line */
+  .footer-bottom { flex-wrap: wrap; align-items: flex-start; }
+  .footer-links { width: 100%; margin-top: 14px; }
 }
 
 /* ─── Touch devices (phones + tablets/iPad) ──────────────
