@@ -783,7 +783,7 @@ section { position: relative; }
 /* ─── Dial intro ─────────────────────────────────────── */
 .dial-intro {
   position: relative;
-  height: 70vh;
+  height: 100vh;
   overflow: hidden;
 }
 .dial-intro::before {
