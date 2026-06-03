@@ -533,7 +533,7 @@
       defaultImg: '/assets/hardware-fold-hero.jpg',
       cards: [
         { label: 'Body',   note: 'Choose the body style that suits how and where Pivot Dial will be used.',                                                         img: '/assets/hardware-body.jpg'   },
-        { label: 'Colour', note: 'Explore subtle or contrasting combinations across the enclosure, dial and mount.',                                         img: '/assets/hardware-colour.jpg' },
+        { label: 'Colour', note: 'Explore subtle or contrasting combinations across the enclosure, dial and mount.',                                         img: '/assets/hardware-color.jpg' },
         { label: 'Remix', note: 'Edit the STL files to refine details, adjust the form or adapt Pivot Dial to your setup.',                       img: '/assets/hardware-remix.jpg'  },
       ]
     },
