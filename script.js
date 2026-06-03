@@ -530,7 +530,7 @@
       ]
     },
     {
-      defaultImg: '/assets/hardware-fold-customise.jpg',
+      defaultImg: '/assets/hardware-body-options.jpg',
       cards: [
         { label: 'Body',   note: 'Choose the body style that suits how and where Pivot Dial will be used.',                                                         img: '/assets/hardware-body-options.jpg'   },
         { label: 'Colour', note: 'Explore subtle or contrasting combinations across the enclosure, dial and mount.',                                         img: '/assets/hardware-colour-options.jpg' },
