@@ -607,14 +607,18 @@
   });
 
   const hwPanels = Array.from(document.querySelectorAll('.hardware-scroll-panel'));
-  let _hwPanelRects = hwPanels.map(panel => {
-    const top = naturalDocTop(panel);
-    return { top, bottom: top + panel.offsetHeight };
-  });
+  // Panel heights are stable — only read on resize. Tops must be read live via
+  // getBoundingClientRect because the panels live inside #hardware-stack, which
+  // receives a transform from makeCurtain; naturalDocTop ignores transforms and
+  // would produce wrong trigger points while the curtain animation is active.
+  let _hwPanelHeights = hwPanels.map(p => p.offsetHeight);
 
   function updateHwPanel() {
-    const mid = window.scrollY + window.innerHeight * 0.5;
-    _hwPanelRects.forEach(({ top, bottom }, i) => {
+    const mid     = window.scrollY + window.innerHeight * 0.5;
+    const scrollY = window.scrollY;
+    hwPanels.forEach((panel, i) => {
+      const top    = panel.getBoundingClientRect().top + scrollY;
+      const bottom = top + _hwPanelHeights[i];
       if (mid >= top && mid < bottom && i !== hwCurrentPanel) {
         hwCurrentPanel = i;
         if (!hwHoverActive) {
@@ -626,10 +630,7 @@
   }
   window.addEventListener('scroll', updateHwPanel, { passive: true });
   window.addEventListener('resize', () => {
-    _hwPanelRects = hwPanels.map(panel => {
-      const top = naturalDocTop(panel);
-      return { top, bottom: top + panel.offsetHeight };
-    });
+    _hwPanelHeights = hwPanels.map(p => p.offsetHeight);
     updateHwPanel();
   });
   updateHwPanel();
