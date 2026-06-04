@@ -1,22 +1,34 @@
 /* Pivot — landing page interactions */
 (() => {
-  // This IIFE contains pivot landing page–specific interactions.
   // Exit early on any other page that loads script.js.
   if (!document.getElementById('hero')) return;
 
   const ACCENT = '#E24D25';
   // Disable scroll animations on any touch-first device (phones, iPads, etc.)
-  // Matches the same condition used in CSS for hover effects.
   const isMobile = !window.matchMedia('(hover: hover) and (pointer: fine)').matches || window.innerWidth <= 1100;
 
+  // ─── Layout helper ────────────────────────────────────
+  // offsetTop traversal — not affected by CSS transforms or load timing.
+  // Returns a static document-relative top that is safe to cache.
+  function naturalDocTop(el) {
+    let top = 0, e = el;
+    while (e) { top += e.offsetTop; e = e.offsetParent; }
+    return top;
+  }
+
   // ─── Hero curtain departure progress (0→1 as hero scrolls away) ───────────
-  // naturalDocTop is declared later in this scope and is hoisted (fn declaration)
   const heroEl = document.getElementById('hero');
+  // Cached once; refreshed on resize. Avoids layout reads inside scroll handlers.
+  let _heroTop = heroEl ? naturalDocTop(heroEl) : 0;
+  let _heroH   = heroEl ? heroEl.offsetHeight   : 0;
+  // Register hero recache first so curtainP() is always up-to-date for subsequent resize handlers.
+  window.addEventListener('resize', () => {
+    if (heroEl) { _heroTop = naturalDocTop(heroEl); _heroH = heroEl.offsetHeight; }
+  });
+
   const curtainP = () => {
-    if (!heroEl || !heroEl.offsetHeight) return 0;
-    const heroTop = naturalDocTop(heroEl);
-    const heroH   = heroEl.offsetHeight;
-    return Math.max(0, Math.min(1, (window.scrollY - heroTop) / heroH));
+    if (!_heroH) return 0;
+    return Math.max(0, Math.min(1, (window.scrollY - _heroTop) / _heroH));
   };
 
   // ─── Hero hand parallax (desktop only) ────────────────
@@ -24,7 +36,7 @@
   if (heroHandEl && !isMobile) {
     const updateHandParallax = () => {
       const scrolled = window.scrollY;
-      if (scrolled <= (heroEl ? heroEl.offsetHeight : window.innerHeight)) {
+      if (scrolled <= _heroH) {
         heroHandEl.style.transform = `translateY(${scrolled * 0.18}px)`;
       }
     };
@@ -48,7 +60,7 @@
   onScroll();
 
   // ─── Hamburger menu ────────────────────────────────────
-  const hamburger = document.getElementById('nav-hamburger');
+  const hamburger     = document.getElementById('nav-hamburger');
   const mobileOverlay = document.getElementById('nav-mobile-overlay');
 
   if (hamburger && mobileMenu && mobileOverlay && nav) {
@@ -58,7 +70,6 @@
       hamburger.classList.remove('open');
       nav.classList.remove('menu-open');
     }
-
     hamburger.addEventListener('click', () => {
       const open = mobileMenu.classList.toggle('open');
       mobileOverlay.classList.toggle('open', open);
@@ -72,7 +83,7 @@
   // ─── Scroll-reveal text ────────────────────────────────
   const reveals = document.querySelectorAll('[data-reveal]');
   reveals.forEach(el => {
-    const dark = el.classList.contains('reveal-text-dark');
+    const dark  = el.classList.contains('reveal-text-dark');
     const track = el.closest('[data-reveal-track]');
     const rawLines = el.innerHTML.split(/<br\s*\/?>/i);
     el.innerHTML = '';
@@ -80,9 +91,6 @@
     const lines = rawLines.map(lineHtml => {
       const lineEl = document.createElement('span');
       lineEl.className = 'reveal-line';
-      // <br> with attributes (e.g. class="visual") acts as a visual-only break:
-      // it stays within the same animation segment but creates a real <br> in the DOM.
-      // Plain <br>, <br/>, <br /> are animation-segment breaks (handled above).
       const visualParts = lineHtml.split(/<br\s+\w[^>]*>/i);
       const wordSpans = [];
       visualParts.forEach((part, pi) => {
@@ -102,40 +110,46 @@
     const mergeLastTwo = el.hasAttribute('data-merge-last') && n > 1;
     const nSegs = mergeLastTwo ? n - 1 : n;
 
+    // Cached layout — only read on load/resize, never inside scroll handler
+    let _trackTop = 0, _trackH = 0, _lineTops = [];
+    const recache = () => {
+      if (track) {
+        _trackTop = naturalDocTop(track);
+        _trackH   = track.offsetHeight;
+      } else {
+        _lineTops = lines.map(({ el: lineEl }) => naturalDocTop(lineEl));
+      }
+    };
+
     const update = () => {
-      const vh = window.innerHeight;
+      const vh      = window.innerHeight;
+      const scrollY = window.scrollY;
 
       if (track) {
-        // Sticky section: drive each line's translateY from scroll progress
-        const rect = track.getBoundingClientRect();
-        const range = Math.max(1, track.offsetHeight - vh);
-        const p = Math.max(0, Math.min(1, -rect.top / range));
-        // Additive curtain offset: line 1 fades in during curtain (cp drives
-        // the first segment), then p picks up immediately after with no dead zone.
-        // At curtainP=1, ep = p + 0.2125, so line 2 starts the moment the
-        // curtain ends rather than after another full segment of scrolling.
+        const trackTopVP = _trackTop - scrollY;
+        const range = Math.max(1, _trackH - vh);
+        const p  = Math.max(0, Math.min(1, -trackTopVP / range));
         const ep = Math.min(1, p + curtainP() * 0.2125);
 
         lines.forEach(({ el: lineEl, wordSpans }, i) => {
-          const segIdx = (mergeLastTwo && i === n - 1) ? nSegs - 1 : i;
+          const segIdx  = (mergeLastTwo && i === n - 1) ? nSegs - 1 : i;
           const segStart = (segIdx / nSegs) * 0.85;
-          const segEnd = ((segIdx + 1) / nSegs) * 0.85;
-          const segP = Math.max(0, Math.min(1, (ep - segStart) / (segEnd - segStart)));
-          const maxTy = p > 0 ? vh * 0.25 : 0;
+          const segEnd   = ((segIdx + 1) / nSegs) * 0.85;
+          const segP     = Math.max(0, Math.min(1, (ep - segStart) / (segEnd - segStart)));
+          const maxTy    = p > 0 ? vh * 0.25 : 0;
           lineEl.style.transform = `translateY(${(1 - segP) * maxTy}px)`;
-          lineEl.style.opacity = Math.min(1, segP * 8).toString();
-          lineEl.style.filter = `blur(${(1 - Math.min(1, segP / 0.85)) * 6}px)`;
-          const fadeP = Math.max(0, Math.min(1, (segP - 0.65) / 0.35));
-          const alpha = dark ? 0.15 + fadeP * 0.85 : 0.12 + fadeP * 0.88;
+          lineEl.style.opacity   = Math.min(1, segP * 8).toString();
+          lineEl.style.filter    = `blur(${(1 - Math.min(1, segP / 0.85)) * 6}px)`;
+          const fadeP  = Math.max(0, Math.min(1, (segP - 0.65) / 0.35));
+          const alpha  = dark ? 0.15 + fadeP * 0.85 : 0.12 + fadeP * 0.88;
           const colour = dark ? `rgba(255,255,255,${alpha})` : `rgba(0,0,0,${alpha})`;
           wordSpans.forEach(s => s.style.color = colour);
         });
       } else {
-        // Non-sticky: colour driven by live viewport position
-        lines.forEach(({ el: lineEl, wordSpans }) => {
-          const rect = lineEl.getBoundingClientRect();
-          const p = Math.max(0, Math.min(1, (vh - rect.top) / (vh * 0.7)));
-          const alpha = dark ? 0.15 + p * 0.85 : 0.12 + p * 0.88;
+        lines.forEach(({ el: lineEl, wordSpans }, i) => {
+          const lineTopVP = _lineTops[i] - scrollY;
+          const p      = Math.max(0, Math.min(1, (vh - lineTopVP) / (vh * 0.7)));
+          const alpha  = dark ? 0.15 + p * 0.85 : 0.12 + p * 0.88;
           const colour = dark ? `rgba(255,255,255,${alpha})` : `rgba(0,0,0,${alpha})`;
           wordSpans.forEach(s => s.style.color = colour);
           lineEl.style.filter = `blur(${(1 - p) * 3}px)`;
@@ -146,13 +160,14 @@
     if (isMobile) {
       lines.forEach(({ el: lineEl, wordSpans }) => {
         lineEl.style.opacity = '1';
-        lineEl.style.filter = '';
+        lineEl.style.filter  = '';
         const colour = dark ? 'rgba(255,255,255,1)' : 'rgba(0,0,0,1)';
         wordSpans.forEach(s => s.style.color = colour);
       });
     } else {
+      recache();
       window.addEventListener('scroll', update, { passive: true });
-      window.addEventListener('resize', update);
+      window.addEventListener('resize', () => { recache(); update(); });
       update();
     }
   });
@@ -163,25 +178,29 @@
   const whyLabel = document.querySelector('.why-label');
   if (!isMobile && whyTrack && whyInner) {
     if (whyLabel) whyLabel.style.transformOrigin = 'left center';
+    let _whyTrackTop = naturalDocTop(whyTrack);
+    let _whyTrackH   = whyTrack.offsetHeight;
     const updateWhyBlock = () => {
-      const vh = window.innerHeight;
+      const vh      = window.innerHeight;
+      const scrollY = window.scrollY;
       const cp = curtainP();
-      // Move the entire content block as one unit during the curtain phase.
       const ty = (1 - cp) * (vh * 0.5 + 149);
       whyInner.style.transform = `translateY(${ty}px)`;
-      // Scale label down from 1.5× to 1× as line 2 comes in (ep 0.2125→0.425).
       if (whyLabel) {
-        const rect  = whyTrack.getBoundingClientRect();
-        const range = Math.max(1, whyTrack.offsetHeight - vh);
-        const p     = Math.max(0, Math.min(1, -rect.top / range));
+        const trackTopVP  = _whyTrackTop - scrollY;
+        const range = Math.max(1, _whyTrackH - vh);
+        const p     = Math.max(0, Math.min(1, -trackTopVP / range));
         const ep    = Math.min(1, p + cp * 0.2125);
-        // Scale 1.5→1 while line 1 reveals (ep 0→0.2125), fully settled by the time line 2 starts.
         const shrinkP = Math.max(0, Math.min(1, ep / 0.2125));
         whyLabel.style.transform = `scale(${1.5 - shrinkP * 0.5})`;
       }
     };
     window.addEventListener('scroll', updateWhyBlock, { passive: true });
-    window.addEventListener('resize', updateWhyBlock);
+    window.addEventListener('resize', () => {
+      _whyTrackTop = naturalDocTop(whyTrack);
+      _whyTrackH   = whyTrack.offsetHeight;
+      updateWhyBlock();
+    });
     updateWhyBlock();
   }
 
@@ -194,16 +213,16 @@
     if (isMobile) {
       dialIntroReveal.style.opacity = '0';
       if (dialIntroContent) {
-        dialIntroContent.style.opacity = '1';
+        dialIntroContent.style.opacity   = '1';
         dialIntroContent.style.transform = 'none';
       }
       if (dialIntroOverlay) dialIntroOverlay.style.opacity = '1';
     } else {
+      let _dialIntroTop = naturalDocTop(dialIntroEl);
       const updateDialReveal = () => {
-        const rect = dialIntroEl.getBoundingClientRect();
-        const vh   = window.innerHeight;
-        // p: 0 when section top hits viewport bottom, 1 when section fills viewport
-        const p = Math.max(0, Math.min(1, (vh - rect.top) / vh));
+        const vh        = window.innerHeight;
+        const rectTopVP = _dialIntroTop - window.scrollY;
+        const p = Math.max(0, Math.min(1, (vh - rectTopVP) / vh));
         dialIntroReveal.style.opacity = (1 - p).toString();
         if (dialIntroContent) {
           dialIntroContent.style.opacity   = p.toString();
@@ -212,37 +231,29 @@
         if (dialIntroOverlay) dialIntroOverlay.style.opacity = p.toString();
       };
       window.addEventListener('scroll', updateDialReveal, { passive: true });
-      window.addEventListener('resize', updateDialReveal);
+      window.addEventListener('resize', () => {
+        _dialIntroTop = naturalDocTop(dialIntroEl);
+        updateDialReveal();
+      });
       updateDialReveal();
     }
   }
 
   // ─── Curtain reveal helper ─────────────────────────────────────────
-  // offsetTop traversal — not affected by CSS transforms or load timing
-  function naturalDocTop(el) {
-    let top = 0, e = el;
-    while (e) { top += e.offsetTop; e = e.offsetParent; }
-    return top;
-  }
-
   function makeCurtain(upperEl, lowerStack, options) {
     if (!upperEl || !lowerStack) return;
-    // position:sticky inside a CSS-transformed ancestor is a known browser bug —
-    // the transformed parent becomes the sticky container instead of the viewport,
-    // causing snapping. We temporarily override affected elements to relative
-    // during the curtain phase (sticky isn't active in that scroll zone anyway)
-    // then restore it cleanly when the curtain exits.
     const stickyEls = options && options.stickyFix
       ? Array.from(lowerStack.querySelectorAll(options.stickyFix))
       : [];
 
+    let _upperTop = naturalDocTop(upperEl);
+    let _upperH   = upperEl.offsetHeight;
+    let _lowerTop = naturalDocTop(lowerStack);
+
     const update = () => {
-      const scrollY  = window.scrollY;
-      const upperTop = naturalDocTop(upperEl);
-      const upperH   = upperEl.offsetHeight;
-      const lowerTop = naturalDocTop(lowerStack);
-      if (scrollY >= upperTop && scrollY < upperTop + upperH) {
-        lowerStack.style.transform  = `translateY(${-(lowerTop - scrollY)}px)`;
+      const scrollY = window.scrollY;
+      if (scrollY >= _upperTop && scrollY < _upperTop + _upperH) {
+        lowerStack.style.transform  = `translateY(${-(_lowerTop - scrollY)}px)`;
         lowerStack.style.willChange = 'transform';
         stickyEls.forEach(el => { el.style.position = 'relative'; });
       } else {
@@ -252,7 +263,12 @@
       }
     };
     window.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update);
+    window.addEventListener('resize', () => {
+      _upperTop = naturalDocTop(upperEl);
+      _upperH   = upperEl.offsetHeight;
+      _lowerTop = naturalDocTop(lowerStack);
+      update();
+    });
     update();
   }
 
@@ -263,12 +279,9 @@
       document.getElementById('why-stack'),
       { stickyFix: '.why-sticky' }
     );
-
     // Dial-intro → Hardware curtain (no sticky children inside)
     makeCurtain(dialIntroEl, document.getElementById('hardware-stack'));
-
   }
-
 
   // ─── Interaction: hover (desktop) / tap (tablet) / scroll-center (phone) ───
   const tpkCols    = Array.from(document.querySelectorAll('.tpk-col'));
@@ -279,54 +292,62 @@
     // Desktop: hover plays video
     tpkCols.forEach(col => {
       const video = col.querySelector('.tpk-video');
-      if (!video) return;
-      col.addEventListener('mouseenter', () => { video.play(); });
-      col.addEventListener('mouseleave', () => { video.pause(); video.currentTime = 0; });
-    });
-  } else if (!tpkIsPhone) {
-    // Tablet: all cards static at full opacity, tap to play/pause video
-    tpkCols.forEach(col => {
-      const video = col.querySelector('.tpk-video');
-      col.addEventListener('click', () => {
-        const isActive = col.classList.contains('tpk-active');
-        tpkCols.forEach(c => {
-          c.classList.remove('tpk-active');
-          const v = c.querySelector('.tpk-video');
-          if (v) { v.pause(); v.currentTime = 0; }
-        });
-        if (!isActive) {
-          col.classList.add('tpk-active');
-          video?.play().catch(() => {});
-        }
+      col.addEventListener('mouseenter', () => {
+        tpkCols.forEach(c => { c.classList.remove('tpk-active'); const v = c.querySelector('.tpk-video'); if (v) { v.pause(); v.currentTime = 0; } });
+        col.classList.add('tpk-active');
+        if (!video) return;
+        video.play().catch(() => {});
+      });
+      col.addEventListener('mouseleave', () => {
+        col.classList.remove('tpk-active');
+        if (video) { video.pause(); video.currentTime = 0; }
       });
     });
   } else {
-    // Phone: scroll to centre highlights closest card
-    let tpkActive = -1;
-
-    function tpkUpdate() {
-      const vc = window.innerHeight / 2;
-      let closest = 0, minDist = Infinity;
-      tpkCols.forEach((col, i) => {
-        const r = col.getBoundingClientRect();
-        const dist = Math.abs((r.top + r.height / 2) - vc);
-        if (dist < minDist) { minDist = dist; closest = i; }
-      });
-      if (closest === tpkActive) return;
-      tpkActive = closest;
-      tpkCols.forEach((col, i) => {
+    // Tablet: all cards static at full opacity, tap to play/pause video
+    if (!tpkIsPhone) {
+      tpkCols.forEach(col => {
         const video = col.querySelector('.tpk-video');
-        col.classList.toggle('tpk-active', i === closest);
-        if (i === closest) {
-          video?.play().catch(() => {});
-        } else {
-          if (video) { video.pause(); video.currentTime = 0; }
-        }
+        if (!video) return;
+        col.addEventListener('click', () => {
+          const playing = !video.paused;
+          tpkCols.forEach(c => { const v = c.querySelector('.tpk-video'); if (v) { v.pause(); v.currentTime = 0; } });
+          if (!playing) video.play().catch(() => {});
+        });
       });
-    }
+    } else {
+      // Phone: scroll to centre highlights closest card
+      let tpkActive = -1;
+      let _tpkCenters = tpkCols.map(col => naturalDocTop(col) + col.offsetHeight / 2);
 
-    window.addEventListener('scroll', tpkUpdate, { passive: true });
-    tpkUpdate();
+      function tpkUpdate() {
+        const vc      = window.innerHeight / 2;
+        const scrollY = window.scrollY;
+        let closest = 0, minDist = Infinity;
+        _tpkCenters.forEach((center, i) => {
+          const dist = Math.abs((center - scrollY) - vc);
+          if (dist < minDist) { minDist = dist; closest = i; }
+        });
+        if (closest === tpkActive) return;
+        tpkActive = closest;
+        tpkCols.forEach((col, i) => {
+          const video = col.querySelector('.tpk-video');
+          col.classList.toggle('tpk-active', i === closest);
+          if (i === closest) {
+            video?.play().catch(() => {});
+          } else {
+            if (video) { video.pause(); video.currentTime = 0; }
+          }
+        });
+      }
+
+      window.addEventListener('scroll', tpkUpdate, { passive: true });
+      window.addEventListener('resize', () => {
+        _tpkCenters = tpkCols.map(col => naturalDocTop(col) + col.offsetHeight / 2);
+        tpkUpdate();
+      });
+      tpkUpdate();
+    }
   }
 
   // ─── Banks ─────────────────────────────────────────────
@@ -368,7 +389,7 @@
   }
 
   const pillEls = Array.from(document.querySelectorAll('.bank-pill'));
-  let bankAutoIdx = 0;
+  let bankAutoIdx  = 0;
   let bankHoverIdx = null;
 
   function bankDisplayIdx() {
@@ -379,12 +400,12 @@
     const di = bankDisplayIdx();
     pillEls.forEach((pill, idx) => {
       const b = banks[idx];
-      const dot = pill.querySelector('.bank-pill-dot');
+      const dot  = pill.querySelector('.bank-pill-dot');
       const fill = pill.querySelector('.bank-pill-bar-fill');
       const isActive = idx === di;
       pill.classList.toggle('active', isActive);
-      dot.style.background = isActive ? b.color : '#C0C0C0';
-      dot.style.boxShadow = isActive ? `0 0 6px ${b.color}80` : 'none';
+      dot.style.background  = isActive ? b.color : '#C0C0C0';
+      dot.style.boxShadow   = isActive ? `0 0 6px ${b.color}80` : 'none';
       fill.style.background = isActive ? b.color : '#C0C0C0';
       pill.style.background = isActive ? b.bg : 'var(--grey-bg)';
     });
@@ -424,17 +445,17 @@
     '/assets/integration-accordian.jpg': 'For illustrative purposes only.',
     '/assets/dashboard-accordian.jpg':   'Actual dashboard shown.',
   };
-  const accordionEl = document.getElementById('ecosystem-accordion');
-  const imgA = document.getElementById('eco-img-a');
-  const imgB = document.getElementById('eco-img-b');
+  const accordionEl   = document.getElementById('ecosystem-accordion');
+  const imgA          = document.getElementById('eco-img-a');
+  const imgB          = document.getElementById('eco-img-b');
   const ecoDisclaimer = document.getElementById('eco-disclaimer');
   let activeLayer = imgA;
   let ecoZ = 1;
   imgA.style.backgroundImage = `url('${ECO_DEFAULT_IMAGE}')`;
   imgA.style.opacity = '1';
-  imgA.style.zIndex = '1';
+  imgA.style.zIndex  = '1';
   imgB.style.opacity = '0';
-  imgB.style.zIndex = '0';
+  imgB.style.zIndex  = '0';
   accordionEl.innerHTML = ecosystemItems.map((item) => `
     <div class="accordion-item" data-hover-image="${item.hoverImage}" data-click-image="${item.clickImage}">
       <button class="accordion-trigger">
@@ -450,23 +471,16 @@
   function setEcosystemImage(src) {
     const prev = activeLayer;
     const next = activeLayer === imgA ? imgB : imgA;
-
     const disclaimer = ECO_DISCLAIMERS[src] || '';
     ecoDisclaimer.textContent = disclaimer;
     ecoDisclaimer.classList.toggle('visible', !!disclaimer);
-
-    // Snap the current active to full opacity so there's always a solid base
     prev.style.transition = 'none';
     prev.style.opacity = '1';
-
-    // Prep the incoming layer behind prev (invisible while setting up)
     next.style.transition = 'none';
     next.style.opacity = '0';
     next.style.backgroundImage = `url('${src}')`;
     next.style.zIndex = String(++ecoZ);
-
     activeLayer = next;
-
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         next.style.transition = 'opacity 0.5s ease';
@@ -489,7 +503,6 @@
         trigger.querySelector('.accordion-icon').textContent = '−';
         if (!isMobile) setEcosystemImage(item.dataset.clickImage);
       }
-      // Re-sync disclaimer after any post-click synthetic mouse events settle
       if (!isMobile) requestAnimationFrame(() => {
         const active = accordionEl.querySelector('.accordion-item.active');
         const src  = active ? active.dataset.clickImage : ECO_DEFAULT_IMAGE;
@@ -499,7 +512,6 @@
       });
     });
   });
-
   accordionEl.querySelectorAll('.accordion-item').forEach(item => {
     item.addEventListener('mouseenter', () => {
       const activeItem = accordionEl.querySelector('.accordion-item.active');
@@ -561,9 +573,9 @@
 
   const hwImgA = document.getElementById('hw-img-a');
   const hwImgB = document.getElementById('hw-img-b');
-  let hwActiveLayer = hwImgA;
+  let hwActiveLayer  = hwImgA;
   let hwCurrentPanel = 0;
-  let hwHoverActive = false;
+  let hwHoverActive  = false;
   hwImgA.style.backgroundImage = `url('${hwData[0].defaultImg}')`;
   hwImgA.style.opacity = '1';
   hwImgB.style.opacity = '0';
@@ -595,11 +607,14 @@
   });
 
   const hwPanels = Array.from(document.querySelectorAll('.hardware-scroll-panel'));
+  let _hwPanelRects = hwPanels.map(panel => {
+    const top = naturalDocTop(panel);
+    return { top, bottom: top + panel.offsetHeight };
+  });
+
   function updateHwPanel() {
     const mid = window.scrollY + window.innerHeight * 0.5;
-    hwPanels.forEach((panel, i) => {
-      const top = panel.getBoundingClientRect().top + window.scrollY;
-      const bottom = top + panel.offsetHeight;
+    _hwPanelRects.forEach(({ top, bottom }, i) => {
       if (mid >= top && mid < bottom && i !== hwCurrentPanel) {
         hwCurrentPanel = i;
         if (!hwHoverActive) {
@@ -610,6 +625,13 @@
     });
   }
   window.addEventListener('scroll', updateHwPanel, { passive: true });
+  window.addEventListener('resize', () => {
+    _hwPanelRects = hwPanels.map(panel => {
+      const top = naturalDocTop(panel);
+      return { top, bottom: top + panel.offsetHeight };
+    });
+    updateHwPanel();
+  });
   updateHwPanel();
 
   // ─── Proof points ──────────────────────────────────────
@@ -716,11 +738,16 @@
     });
   }
 
+  let _dialIntroDocBottom = dialIntroEl  ? naturalDocTop(dialIntroEl)  + dialIntroEl.offsetHeight  : 0;
+  let _hwStickyEndTop     = hwStickyEndEl ? naturalDocTop(hwStickyEndEl) : 0;
+
   function updateHwStickyBar() {
     if (!hwStickyBar || !dialIntroEl || !hwStickyEndEl || hwStickyDismissed) return;
-    const dialBottom  = dialIntroEl.getBoundingClientRect().bottom;
-    const usecasesTop = hwStickyEndEl.getBoundingClientRect().top;
-    const show = dialBottom < window.innerHeight * 0.8 && usecasesTop > window.innerHeight * 0.97;
+    const scrollY     = window.scrollY;
+    const vh          = window.innerHeight;
+    const dialBottom  = _dialIntroDocBottom - scrollY;
+    const usecasesTop = _hwStickyEndTop - scrollY;
+    const show = dialBottom < vh * 0.8 && usecasesTop > vh * 0.97;
     const visible = hwStickyBar.classList.contains('hw-sticky-visible');
     if (show !== visible) {
       hwStickyBar.classList.toggle('hw-sticky-visible', show);
@@ -728,6 +755,11 @@
     }
   }
   window.addEventListener('scroll', updateHwStickyBar, { passive: true });
+  window.addEventListener('resize', () => {
+    if (dialIntroEl)   _dialIntroDocBottom = naturalDocTop(dialIntroEl)   + dialIntroEl.offsetHeight;
+    if (hwStickyEndEl) _hwStickyEndTop     = naturalDocTop(hwStickyEndEl);
+    updateHwStickyBar();
+  });
   updateHwStickyBar();
 
 })();
@@ -765,7 +797,7 @@
       headers: { 'Accept': 'application/json' }
     });
     if (res.ok) {
-      form.style.display = 'none';
+      form.style.display    = 'none';
       success.style.display = 'block';
     }
   });
@@ -810,8 +842,8 @@
     });
     if (res.ok) {
       overlay.querySelector('.contact-modal-heading').style.display = 'none';
-      overlay.querySelector('.contact-modal-desc').style.display = 'none';
-      form.style.display = 'none';
+      overlay.querySelector('.contact-modal-desc').style.display    = 'none';
+      form.style.display    = 'none';
       success.style.display = 'block';
     }
   });
