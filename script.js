@@ -110,13 +110,15 @@
     const mergeLastTwo = el.hasAttribute('data-merge-last') && n > 1;
     const nSegs = mergeLastTwo ? n - 1 : n;
 
-    // For the sticky track case, top is read live (track is inside #why-stack which
-    // receives a curtain transform — naturalDocTop would ignore it). Height is stable.
-    // For non-sticky lines, naturalDocTop is fine (not inside a transformed ancestor).
-    let _trackH = 0, _lineTops = [];
+    // Heights are cached (stable); tops for non-sticky lines use naturalDocTop
+    // (those elements are not inside a transformed ancestor).
+    // For the sticky track, top is also cached — the curtain additive offset
+    // (curtainP) already accounts for the why-stack transform in the formula.
+    let _trackTop = 0, _trackH = 0, _lineTops = [];
     const recache = () => {
       if (track) {
-        _trackH = track.offsetHeight;
+        _trackTop = naturalDocTop(track);
+        _trackH   = track.offsetHeight;
       } else {
         _lineTops = lines.map(({ el: lineEl }) => naturalDocTop(lineEl));
       }
@@ -127,7 +129,7 @@
       const scrollY = window.scrollY;
 
       if (track) {
-        const trackTopVP = track.getBoundingClientRect().top;
+        const trackTopVP = _trackTop - scrollY;
         const range = Math.max(1, _trackH - vh);
         const p  = Math.max(0, Math.min(1, -trackTopVP / range));
         const ep = Math.min(1, p + curtainP() * 0.2125);
@@ -179,14 +181,16 @@
   const whyLabel = document.querySelector('.why-label');
   if (!isMobile && whyTrack && whyInner) {
     if (whyLabel) whyLabel.style.transformOrigin = 'left center';
-    let _whyTrackH = whyTrack.offsetHeight;
+    let _whyTrackTop = naturalDocTop(whyTrack);
+    let _whyTrackH   = whyTrack.offsetHeight;
     const updateWhyBlock = () => {
-      const vh = window.innerHeight;
+      const vh      = window.innerHeight;
+      const scrollY = window.scrollY;
       const cp = curtainP();
       const ty = (1 - cp) * (vh * 0.5 + 149);
       whyInner.style.transform = `translateY(${ty}px)`;
       if (whyLabel) {
-        const trackTopVP  = whyTrack.getBoundingClientRect().top;
+        const trackTopVP  = _whyTrackTop - scrollY;
         const range = Math.max(1, _whyTrackH - vh);
         const p     = Math.max(0, Math.min(1, -trackTopVP / range));
         const ep    = Math.min(1, p + cp * 0.2125);
@@ -196,7 +200,8 @@
     };
     window.addEventListener('scroll', updateWhyBlock, { passive: true });
     window.addEventListener('resize', () => {
-      _whyTrackH = whyTrack.offsetHeight;
+      _whyTrackTop = naturalDocTop(whyTrack);
+      _whyTrackH   = whyTrack.offsetHeight;
       updateWhyBlock();
     });
     updateWhyBlock();
@@ -216,11 +221,10 @@
       }
       if (dialIntroOverlay) dialIntroOverlay.style.opacity = '1';
     } else {
-      let _dialIntroTop = naturalDocTop(dialIntroEl);
       const updateDialReveal = () => {
-        const vh        = window.innerHeight;
-        const rectTopVP = _dialIntroTop - window.scrollY;
-        const p = Math.max(0, Math.min(1, (vh - rectTopVP) / vh));
+        const rect = dialIntroEl.getBoundingClientRect();
+        const vh   = window.innerHeight;
+        const p = Math.max(0, Math.min(1, (vh - rect.top) / vh));
         dialIntroReveal.style.opacity = (1 - p).toString();
         if (dialIntroContent) {
           dialIntroContent.style.opacity   = p.toString();
@@ -229,10 +233,7 @@
         if (dialIntroOverlay) dialIntroOverlay.style.opacity = p.toString();
       };
       window.addEventListener('scroll', updateDialReveal, { passive: true });
-      window.addEventListener('resize', () => {
-        _dialIntroTop = naturalDocTop(dialIntroEl);
-        updateDialReveal();
-      });
+      window.addEventListener('resize', updateDialReveal);
       updateDialReveal();
     }
   }
