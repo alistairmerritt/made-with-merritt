@@ -110,12 +110,13 @@
     const mergeLastTwo = el.hasAttribute('data-merge-last') && n > 1;
     const nSegs = mergeLastTwo ? n - 1 : n;
 
-    // Cached layout — only read on load/resize, never inside scroll handler
-    let _trackTop = 0, _trackH = 0, _lineTops = [];
+    // For the sticky track case, top is read live (track is inside #why-stack which
+    // receives a curtain transform — naturalDocTop would ignore it). Height is stable.
+    // For non-sticky lines, naturalDocTop is fine (not inside a transformed ancestor).
+    let _trackH = 0, _lineTops = [];
     const recache = () => {
       if (track) {
-        _trackTop = naturalDocTop(track);
-        _trackH   = track.offsetHeight;
+        _trackH = track.offsetHeight;
       } else {
         _lineTops = lines.map(({ el: lineEl }) => naturalDocTop(lineEl));
       }
@@ -126,7 +127,7 @@
       const scrollY = window.scrollY;
 
       if (track) {
-        const trackTopVP = _trackTop - scrollY;
+        const trackTopVP = track.getBoundingClientRect().top;
         const range = Math.max(1, _trackH - vh);
         const p  = Math.max(0, Math.min(1, -trackTopVP / range));
         const ep = Math.min(1, p + curtainP() * 0.2125);
@@ -178,16 +179,14 @@
   const whyLabel = document.querySelector('.why-label');
   if (!isMobile && whyTrack && whyInner) {
     if (whyLabel) whyLabel.style.transformOrigin = 'left center';
-    let _whyTrackTop = naturalDocTop(whyTrack);
-    let _whyTrackH   = whyTrack.offsetHeight;
+    let _whyTrackH = whyTrack.offsetHeight;
     const updateWhyBlock = () => {
-      const vh      = window.innerHeight;
-      const scrollY = window.scrollY;
+      const vh = window.innerHeight;
       const cp = curtainP();
       const ty = (1 - cp) * (vh * 0.5 + 149);
       whyInner.style.transform = `translateY(${ty}px)`;
       if (whyLabel) {
-        const trackTopVP  = _whyTrackTop - scrollY;
+        const trackTopVP  = whyTrack.getBoundingClientRect().top;
         const range = Math.max(1, _whyTrackH - vh);
         const p     = Math.max(0, Math.min(1, -trackTopVP / range));
         const ep    = Math.min(1, p + cp * 0.2125);
@@ -197,8 +196,7 @@
     };
     window.addEventListener('scroll', updateWhyBlock, { passive: true });
     window.addEventListener('resize', () => {
-      _whyTrackTop = naturalDocTop(whyTrack);
-      _whyTrackH   = whyTrack.offsetHeight;
+      _whyTrackH = whyTrack.offsetHeight;
       updateWhyBlock();
     });
     updateWhyBlock();
