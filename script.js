@@ -699,6 +699,7 @@
   const paths = [
     { title: 'Pivot Dial',            body: 'A redesigned enclosure for your existing VPE, made to elevate it both physically and functionally. No additional firmware or software required.', ctas: [
       { label: 'Explore the build', s: 'primary', href: '/pivot/build/', noArrow: true },
+      { label: 'Get the print files', s: 'outline', href: 'https://pivotonian.gumroad.com/l/pivot-dial', ext: true },
     ]},
     { title: 'Pivot Software',        body: 'Install Pivot firmware and integration on your existing VPE to unlock banks, richer control, visual feedback and deeper Home Assistant integration.', ctas: [
       { label: 'Set up Pivot software', s: 'outline', href: 'https://alistairmerritt.github.io/pivot/getting-started/', ext: true },
