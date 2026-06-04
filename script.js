@@ -762,6 +762,12 @@
   });
   updateHwStickyBar();
 
+  // ─── Post-load cache refresh ──────────────────────────
+  // Images above the fold can shift layout after the script's initial cache run.
+  // Firing a synthetic resize after load refreshes all cached positions with the
+  // correct fully-loaded layout, fixing curtain trigger points.
+  window.addEventListener('load', () => window.dispatchEvent(new Event('resize')));
+
 })();
 
 // ─── Interest modal ────────────────────────────────────
