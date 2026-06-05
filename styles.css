@@ -1361,11 +1361,12 @@ section { position: relative; }
   .footer-top { margin-bottom: 60px; }
 
   /* Why section — static display, no scroll pinning, one sentence per line */
-  .why { height: auto; }
+  .why { height: auto; min-height: 100svh; display: flex; flex-direction: column; }
   .why-sticky {
-    position: relative; height: auto; overflow: visible;
+    position: relative; height: auto; overflow: visible; flex: 1;
     padding: 60px 20px;
     mask-image: none; -webkit-mask-image: none;
+    display: flex; align-items: center;
   }
   .why-inner { padding-top: 0; }
   .reveal-line br { display: none; }
