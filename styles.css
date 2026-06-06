@@ -462,7 +462,7 @@ section { position: relative; }
   max-width: 520px;
   margin-bottom: 40px;
 }
-.hero-sub-link { color: #fff; text-decoration: none; transition: color 0.2s ease; }
+.hero-sub-link { color: rgba(255,255,255,0.9); text-decoration: none; transition: color 0.2s ease; }
 .hero-sub-link:hover { color: rgba(255,255,255,0.52); }
 .hero-actions-wrap { position: absolute; bottom: 80px; left: 0; right: 0; }
 .hero-actions { display: flex; gap: 12px; align-items: center; }
