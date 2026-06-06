@@ -135,8 +135,7 @@
         const ep = Math.min(1, p + curtainP() * 0.2125);
 
         const linePause   = 0.05;
-        const totalPause  = linePause * (nSegs - 1);
-        const segW        = (0.85 - totalPause) / nSegs;
+        const segW        = 0.85 / nSegs;
         lines.forEach(({ el: lineEl, wordSpans }, i) => {
           const segIdx  = (mergeLastTwo && i === n - 1) ? nSegs - 1 : i;
           const segStart = segIdx * (segW + linePause);
