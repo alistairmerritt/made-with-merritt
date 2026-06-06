@@ -132,10 +132,10 @@
         const trackTopVP = _trackTop - scrollY;
         const range = Math.max(1, _trackH - vh);
         const p  = Math.max(0, Math.min(1, -trackTopVP / range));
-        const ep = Math.min(1, p + curtainP() * 0.2125);
+        const ep = p + curtainP() * 0.2125;
 
         const linePause   = 0.05;
-        const segW        = 0.85 / nSegs;
+        const segW        = (1.2125 - linePause * (nSegs - 1)) / nSegs;
         lines.forEach(({ el: lineEl, wordSpans }, i) => {
           const segIdx  = (mergeLastTwo && i === n - 1) ? nSegs - 1 : i;
           const segStart = segIdx * (segW + linePause);
