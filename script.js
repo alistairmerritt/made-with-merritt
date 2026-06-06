@@ -134,12 +134,15 @@
         const p  = Math.max(0, Math.min(1, -trackTopVP / range));
         const ep = p + curtainP() * 0.2125;
 
-        const linePause   = 0.05;
-        const segW        = (1.2125 - linePause * (nSegs - 1)) / nSegs;
+        const cOff      = 0.2125;
+        const linePause = 0.05;
+        // Line 0 ends at cOff (fully resolved when curtain completes, no entry jank).
+        // Lines 1+ share the remaining range evenly up to ep=1+cOff at p=1.
+        const segWRest  = nSegs > 1 ? (1.0 - linePause * (nSegs - 1)) / (nSegs - 1) : cOff;
         lines.forEach(({ el: lineEl, wordSpans }, i) => {
-          const segIdx  = (mergeLastTwo && i === n - 1) ? nSegs - 1 : i;
-          const segStart = segIdx * (segW + linePause);
-          const segEnd   = segStart + segW;
+          const segIdx   = (mergeLastTwo && i === n - 1) ? nSegs - 1 : i;
+          const segStart = segIdx === 0 ? 0 : cOff + linePause + (segIdx - 1) * (segWRest + linePause);
+          const segEnd   = segIdx === 0 ? cOff : segStart + segWRest;
           const segP     = Math.max(0, Math.min(1, (ep - segStart) / (segEnd - segStart)));
           const maxTy    = p > 0 ? vh * 0.25 : 0;
           lineEl.style.transform = `translateY(${(1 - segP) * maxTy}px)`;
