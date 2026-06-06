@@ -462,7 +462,7 @@ section { position: relative; }
   max-width: 520px;
   margin-bottom: 40px;
 }
-.hero-sub-link { color: inherit; text-decoration: underline; text-underline-offset: 3px; transition: color 0.2s ease; }
+.hero-sub-link { color: #fff; text-decoration: none; }
 .hero-sub-link:hover { color: #fff; }
 .hero-actions-wrap { position: absolute; bottom: 80px; left: 0; right: 0; }
 .hero-actions { display: flex; gap: 12px; align-items: center; }
