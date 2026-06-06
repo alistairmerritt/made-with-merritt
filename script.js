@@ -134,10 +134,13 @@
         const p  = Math.max(0, Math.min(1, -trackTopVP / range));
         const ep = Math.min(1, p + curtainP() * 0.2125);
 
+        const linePause   = 0.05;
+        const totalPause  = linePause * (nSegs - 1);
+        const segW        = (0.85 - totalPause) / nSegs;
         lines.forEach(({ el: lineEl, wordSpans }, i) => {
           const segIdx  = (mergeLastTwo && i === n - 1) ? nSegs - 1 : i;
-          const segStart = (segIdx / nSegs) * 0.85;
-          const segEnd   = ((segIdx + 1) / nSegs) * 0.85;
+          const segStart = segIdx * (segW + linePause);
+          const segEnd   = segStart + segW;
           const segP     = Math.max(0, Math.min(1, (ep - segStart) / (segEnd - segStart)));
           const maxTy    = p > 0 ? vh * 0.25 : 0;
           lineEl.style.transform = `translateY(${(1 - segP) * maxTy}px)`;
