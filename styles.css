@@ -457,18 +457,18 @@ section { position: relative; }
 }
 .hero-sub {
   font-size: 18px;
-  color: rgba(255,255,255,0.62);
+  color: rgba(255,255,255,0.52);
   line-height: 1.55;
   max-width: 520px;
   margin-bottom: 40px;
 }
 .hero-sub-link { color: #fff; text-decoration: none; transition: color 0.2s ease; }
-.hero-sub-link:hover { color: rgba(255,255,255,0.62); }
+.hero-sub-link:hover { color: rgba(255,255,255,0.52); }
 .hero-actions-wrap { position: absolute; bottom: 80px; left: 0; right: 0; }
 .hero-actions { display: flex; gap: 12px; align-items: center; }
 
 /* ─── Why ────────────────────────────────────────────── */
-.why { background: #fff; height: 180vh; }
+.why { background: #fff; height: 120vh; }
 .why-label { color: var(--accent); margin-bottom: 28px; }
 .why-sticky {
   position: sticky;
