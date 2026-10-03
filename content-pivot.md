@@ -206,7 +206,7 @@ Start with the part of Pivot that suits you best. Hardware, software, or both.
 
 ---
 
-Pivot begun as a personal attempt to make the Home Assistant Voice Preview Edition more useful day to day. As the project expanded, it's grown into a small ecosystem for people who still value touch and feel as well as voice.
+Pivot began as a personal attempt to make the Home Assistant Voice Preview Edition more useful day to day. As the project expanded, it grew into a small ecosystem that adds physical controls to the voice experience.
 
 Watch the build story.
 
