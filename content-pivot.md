@@ -98,7 +98,7 @@ A tactile enclosure for the Home Assistant Voice Preview Edition. Designed aroun
 
 ### Tactile control – The VPE enclosure, reimagined.
 
-Pivot Dial reshapes the Home Assistant Voice Preview Edition around the way it's used within the Pivot ecosystem, with the dial brought forward for control, the LED ring more clearly defined for glanceable feedback, and an upright design for clearer microphone pickup.
+Pivot Dial reshapes the Home Assistant Voice Preview Edition around the way it's used within the Pivot ecosystem, with the dial brought forward for control, the LED ring more clearly defined for glanceable feedback, and an upright design for better voice pickup.
 
 **Features:**
 - **Dial** – Combines the dial and button into one tactile control. Turn to adjust, press to select.
