@@ -665,7 +665,7 @@
   { title: 'Lights',  icon: 'lightbulb-on',   body: 'Dim, brighten and toggle lights from one physical control, with LED feedback that can also mirror RGB colour for supported lights.', color: '#D0D0D0', progress: 0.65, bg: '#F8F8F8' },
   { title: 'Media',   icon: 'music-note',           body: 'Adjust volume instantly without opening an app or speaking over the room, with clear LED feedback as you turn.', color: '#E24D25', progress: 0.40, bg: '#FDF1EE' },
   { title: 'Climate', icon: 'thermometer',           body: 'Raise or lower temperature from a single tactile control, with optional colour feedback to make changes easier to read.', color: '#3DBA6A', progress: 0.55, bg: '#EFF9F3' },
-  { title: 'Scenes',  icon: 'palette',        body: 'Trigger scenes, automations and presets with a single press, so the moments you use most are always within reach.', color: '#B46FE8', progress: 0.30, bg: '#F5EEF9' },
+  { title: 'Scenes',  icon: 'palette',        body: 'Trigger scenes or presets with a single press, so the moments you use most are always within reach.', color: '#B46FE8', progress: 0.30, bg: '#F5EEF9' },
   { title: 'Timers',  icon: 'timer-outline',         body: 'Set, start and pause timers directly from the device, with LED ring progress and full visibility in Home Assistant.', color: '#F0C61D', progress: 0.75, bg: '#FEFAEE' },
   { title: 'Scripts & Custom Automations', icon: 'code-braces', body: 'Assign turns and presses to scripts or automations, unlocking anything Home Assistant can control.', color: '#006AFF', progress: 0.50, bg: '#EEF3FE' },
   ];

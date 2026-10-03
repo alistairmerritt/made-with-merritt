@@ -149,7 +149,7 @@ Because the files can be modified, Pivot Dial can keep evolving, whether you wan
 - **Lights** – Dim, brighten and toggle lights from one physical control, with LED feedback that can also mirror RGB colour for supported lights.
 - **Media** – Adjust volume instantly without opening an app or speaking over the room, with clear LED feedback as you turn.
 - **Climate** – Raise or lower temperature from a single tactile control, with optional colour feedback to make changes easier to read.
-- **Scenes** – Trigger scenes, automations and presets with a single press, so the moments you use most are always within reach.
+- **Scenes** – Trigger scenes or presets with a single press, so the moments you use most are always within reach.
 - **Timers** – Set, start and pause timers directly from the device, with LED ring progress and full visibility in Home Assistant.
 - **Scripts & Custom Automations** – Assign turns and presses to scripts or automations, unlocking anything Home Assistant can control.
 
