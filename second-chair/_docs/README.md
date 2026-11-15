@@ -34,14 +34,13 @@ Then open http://localhost:4174/second-chair/. It serves the whole repository, t
 
 ## Before publishing
 
-Search both pages for `TODO` and `class="todo"`. The yellow notes show on the page on purpose, so nothing unconfirmed ships by accident.
+Feedback: TestFlight's own (Share Beta Feedback) or the contact form. What the relay keeps: on unpair it deletes the pairing's storage at once (`deleteAll()` in `Relay/src/pairing.ts`); Cloudflare keeps a 30-day recovery history the relay never uses. The privacy page says so; keep it true if that changes.
+
+Search the pages for `TODO` and `todo` (none left on 15 November 2026). The yellow notes show on the page on purpose, so nothing unconfirmed ships by accident.
 
 | Where | What's needed |
 | --- | --- |
-| Home, Get it, iPhone column | The TestFlight link, or how to ask for an invitation |
-| Guide, step 2a | The same |
-| Guide, Feedback | How testers send feedback |
-| Privacy page, What the relay keeps | How long a pairing's state and artwork stay on the relay after unpairing |
+| Home, Get it, iPhone column; guide, step 2a | Invitations go through the Made with Merritt contact form (`/?contact=1`). With a public TestFlight link, link that instead |
 | Guide | The four illustrations, once screenshots exist (below) |
 | Home, Try it with your own song | Check Apple's terms for showing catalogue results, artwork and previews on a website (the Apple Music identity guidelines and the iTunes Search API's terms). Each picked song links to Apple Music as attribution |
 

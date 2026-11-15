@@ -68,9 +68,8 @@
 
       <section id="kept" aria-labelledby="kept-h">
         <h2 id="kept-h">What the relay keeps</h2>
-        <p>For each pairing, the relay keeps the latest playback state and artwork, so your iPhone can fetch them when it wakes.</p>
-        <!-- TODO: how long the relay keeps a pairing's state and artwork after unpairing (an open question in the handover). -->
-        <p><span class="todo">To confirm: how long the latest state and artwork stay on the relay after you unpair.</span></p>
+        <p>For each pairing, the relay keeps the latest playback state and the most recent artwork, up to 64 covers, so your iPhone can fetch them when it wakes.</p>
+        <p>When you unpair, from either device, the relay deletes everything it holds for that pairing straight away. The relay runs on Cloudflare, whose storage keeps a recovery history for 30 days; Second Chair never uses it, and after 30 days nothing is left. If you delete the apps without unpairing, the pairing and its latest state stay on the relay, so unpair first.</p>
         <p>Pairing is protected like this:</p>
         <ul class="plain">
           <li>The pairing code is six random digits, valid for five minutes, used once, and stored only as a hash.</li>
