@@ -119,6 +119,44 @@ ul, ol { margin: 0; padding: 0; }
 .mwm-bar nav { display: flex; gap: 20px; }
 @media (max-width: 640px) { .mwm-bar nav { gap: 14px; } .mwm-bar nav a:not(:last-child) { display: none; } }
 
+/* The Made with Merritt contact form (assets/js/contact.js), styled as on the home page (styles.css at the site root). */
+.mwm-contact {
+  position: fixed; inset: 0; z-index: 9000; display: flex; align-items: center; justify-content: center;
+  background: rgba(0, 0, 0, .5); opacity: 0; pointer-events: none; transition: opacity .3s ease;
+  font: 400 15px/1.5 "Aeonik", var(--sans); color: #000; letter-spacing: 0; text-transform: none;
+}
+.mwm-contact.open { opacity: 1; pointer-events: auto; }
+.mwm-contact-modal {
+  position: relative; width: calc(100% - 40px); max-width: 520px; max-height: calc(100% - 40px); overflow: auto;
+  padding: 56px; border-radius: 20px; background: #fff; transform: translateY(20px); transition: transform .3s ease;
+}
+.mwm-contact.open .mwm-contact-modal { transform: none; }
+.mwm-contact-close {
+  position: absolute; top: 24px; right: 24px; padding: 4px 8px; border: 0; background: none;
+  font: inherit; font-size: 20px; line-height: 1; color: #808080; cursor: pointer; transition: color .2s;
+}
+.mwm-contact-close:hover { color: #000; }
+.mwm-contact-h { margin: 0 0 20px; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #808080; }
+.mwm-contact-desc { margin: 0 0 20px; font-size: 16px; line-height: 1.65; }
+.mwm-contact-form { display: flex; flex-direction: column; }
+.mwm-contact-form input, .mwm-contact-form textarea {
+  width: 100%; padding: 16px 0; border: 0; border-bottom: 1px solid #d9d9d9; border-radius: 0; outline: none;
+  background: transparent; font: inherit; color: #000; resize: none;
+}
+.mwm-contact-form input:first-child { padding-top: 2px; }
+.mwm-contact-form input:focus-visible, .mwm-contact-form textarea:focus-visible { border-bottom-color: #006aff; }
+.mwm-contact-form ::placeholder { color: #808080; }
+.mwm-contact-send {
+  align-self: flex-start; margin-top: 32px; padding: 12px 24px; border: 0; border-radius: 5px;
+  background: #006aff; color: #fff; font: inherit; font-size: 13px; cursor: pointer; transition: background .35s ease;
+}
+.mwm-contact-send:hover { background: #0055d4; }
+.mwm-contact-send:disabled { opacity: .6; cursor: default; }
+.mwm-contact-error { margin: 12px 0 0; font-size: 13px; color: #c4281c; }
+.mwm-contact-done { margin: 0; padding-top: 8px; font-size: 16px; line-height: 1.65; color: #808080; }
+.mwm-contact [hidden] { display: none; }
+@media (max-width: 640px) { .mwm-contact-modal { padding: 40px 28px; } }
+
 /* ---------- Header: on a Mac it reads as a menu bar ---------- */
 .site-header {
   position: relative; z-index: 20;

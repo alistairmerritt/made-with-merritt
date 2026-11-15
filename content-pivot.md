@@ -247,4 +247,4 @@ I'm looking into offering printed Pivot Dial parts and small runs of assembled u
 
 ### Let's chat
 
-Whether it's a project, a question about Pivot, or something still taking shape, I'd love to hear from you.
+Whether it’s a project, a question, or an idea still taking shape, I’d love to hear from you.
