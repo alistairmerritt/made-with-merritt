@@ -5,7 +5,7 @@
 .stage {
   position: relative; overflow: hidden; isolation: isolate;
   display: flex; flex-direction: column;
-  min-height: 100vh; min-height: 100svh;          /* the first fold is the window */
+  min-height: calc(100vh - var(--mwm-bar)); min-height: calc(100svh - var(--mwm-bar));   /* the first fold is the window, under the Made with Merritt bar */
   background: var(--stage); color: var(--stage-ink);
   transition: background-color 1.2s var(--ease), color 1.2s var(--ease);
 }
@@ -112,7 +112,7 @@ html:not(.js) .try { display: none; }
 /* The desktop composition: the space between the label and the headline grows with the window (up to 14% of
    its height) but gives way first, so the copy always stays 24px clear of "Try it with your own song" below. */
 @media (min-width: 960px) and (min-aspect-ratio: 5/4) and (min-height: 521px) {
-  .stage { height: 100vh; height: 100svh; }                  /* exactly the window, so the gap gives way rather than the page growing */
+  .stage { height: calc(100vh - var(--mwm-bar)); height: calc(100svh - var(--mwm-bar)); }                  /* exactly the window, so the gap gives way rather than the page growing */
   .stage > main, .hero, .hero-copy { min-height: 0; }
   .hero { display: flex; flex-direction: column; }
   .hero-copy { flex: 1; display: flex; flex-direction: column; pointer-events: none; padding-bottom: max(0px, calc(var(--gap) + 36px + 24px - clamp(16px, 4vh, 40px))); }
