@@ -2,7 +2,7 @@
 
 **Tagline:** Design that earns its place
 
-The design explorations of Alistair Merritt. Intentional design, considered UX, and products that feel intuitive and well made.
+A collection of ideas, experiments and things I've made. Exploring the intersection of design and technology, with a focus on making everyday experiences better.
 
 [More info](#about)
 
@@ -34,9 +34,9 @@ I'm a Design Director by day, but I spend my spare time designing products, expl
 
 With a background in visual communication, I've always been interested in the intersection of user experience and form – not just how things look, but how they work, feel, and fit into everyday life.
 
-In the past year, that interest has grown beyond the screen and into physical products – and a broader exploration of form complementing function.
+Lately, that curiosity has taken me further into building digital and physical products, especially exploring how design can make technology feel more intuitive and considered.
 
-Made with Merritt is a place to share those ideas, experiments, and projects as they take shape. Thanks for being a part of my journey.
+Made with Merritt is a place to share those ideas, experiments, and projects as they take shape. Thanks for being a part of the journey.
 
 [Get in touch]
 
