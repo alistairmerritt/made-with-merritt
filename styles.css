@@ -1622,7 +1622,7 @@ section { position: relative; }
 }
 .mwm-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 16px;
 }
 .mwm-card {
@@ -1722,6 +1722,7 @@ section { position: relative; }
   .mwm-intro, .mwm-experiments, .mwm-about, .mwm-footer { padding-left: 32px; padding-right: 32px; }
   .mwm-featured-card { height: 70vh; min-height: 400px; }
   .mwm-featured-text { gap: 20px; }
+  .mwm-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 640px) {
   .mwm-intro-inner { grid-template-columns: 1fr; gap: 32px; }

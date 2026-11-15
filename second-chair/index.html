@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Second Chair: your Mac’s music on your iPhone</title>
+<meta name="description" content="Second Chair shows the music playing on your Mac in your iPhone’s own Now Playing, on the Lock Screen, in StandBy and on Apple Watch, and its controls work the Mac. A free beta for Mac and iPhone.">
+<meta name="theme-color" content="#cc231d">
+<link rel="icon" type="image/png" href="assets/img/favicon.png">
+<link rel="apple-touch-icon" href="assets/img/icon-180.png">
+<link rel="canonical" href="https://madewithmerritt.com/second-chair/">
+<meta property="og:url" content="https://madewithmerritt.com/second-chair/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Second Chair">
+<meta property="og:description" content="Music on your Mac. Now Playing on your iPhone. The music playing on your Mac, in your iPhone’s own Now Playing.">
+<meta property="og:image" content="https://madewithmerritt.com/second-chair/assets/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://use.typekit.net" crossorigin>
+<link rel="stylesheet" href="https://use.typekit.net/fiv2yhs.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/home.css">
+<script>document.documentElement.classList.add('js')</script>
+<script src="assets/js/session.js" defer></script>
+<script src="assets/js/home.js" defer></script>
+<script src="assets/js/clock.js" defer></script>
+</head>
+<body class="home">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M6.6 4.4v15.2c0 .9 1 1.5 1.8 1l12-7.6c.7-.5.7-1.5 0-2L8.4 3.4c-.8-.5-1.8.1-1.8 1z"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><rect x="5" y="3.6" width="4.6" height="16.8" rx="1.3"/><rect x="14.4" y="3.6" width="4.6" height="16.8" rx="1.3"/></symbol>
+  <symbol id="i-next" viewBox="0 0 24 24"><path d="M1.6 6.5v11c0 .8.9 1.3 1.6.8L11.4 13v4.5c0 .8.9 1.3 1.6.8l8.6-5.5c.6-.4.6-1.3 0-1.6L13 5.7c-.7-.5-1.6 0-1.6.8V11L3.2 5.7c-.7-.5-1.6 0-1.6.8z"/></symbol>
+  <symbol id="i-prev" viewBox="0 0 24 24"><path d="M22.4 6.5v11c0 .8-.9 1.3-1.6.8L12.6 13v4.5c0 .8-.9 1.3-1.6.8l-8.6-5.5c-.6-.4-.6-1.3 0-1.6L11 5.7c.7-.5 1.6 0 1.6.8V11l8.2-5.3c.7-.5 1.6 0 1.6.8z"/></symbol>
+  <symbol id="i-note" viewBox="0 0 24 24"><path d="M12.6 3.2c0-.6.5-1 1.1-.9l.3.1c.4 1.9 1.6 3.1 3 4.2 1.5 1.2 2.6 2.6 2.4 4.9-.1 1-.5 2-1 2.8-.2.3-.6.1-.5-.2.3-.8.5-1.6.4-2.5-.2-1.9-1.9-3.2-4.1-3.9v9.5c0 2.3-2.1 4.1-4.7 4.1-1.9 0-3.1-1-3.1-2.4 0-2.1 2.3-3.8 5-3.8.5 0 1 .1 1.2.2z"/></symbol>
+  <symbol id="i-airplay" viewBox="0 0 24 24"><path d="M5 17H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1v-1.8h1c.1 0 .2-.1.2-.2V5c0-.1-.1-.2-.2-.2H4c-.1 0-.2.1-.2.2v10c0 .1.1.2.2.2h1z"/><path d="M12 13.2 18 21H6z"/></symbol>
+  <symbol id="i-vol-lo" viewBox="0 0 24 24"><path d="M4 9h3.6L12 5v14l-4.4-4H4z"/></symbol>
+  <symbol id="i-airplay-audio" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M5.5 17A8.5 8.5 0 1 1 18.5 17"/><path d="M8.5 14.7A5.5 5.5 0 1 1 15.5 14.7"/></g><circle cx="12" cy="10.5" r="2.2"/><path d="M12 13.6 16.4 20.2H7.6z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></symbol>
+  <symbol id="i-vol-mid" viewBox="0 0 24 24"><path d="M3.5 8.6h3.2l4.4-3.9c.6-.5 1.4-.1 1.4.6v13.4c0 .7-.8 1.1-1.4.6l-4.4-3.9H3.5c-.6 0-1-.4-1-1V9.6c0-.6.4-1 1-1z"/><path d="M15.4 8.2a5.4 5.4 0 0 1 0 7.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-vol-hi" viewBox="0 0 24 24"><path d="M2 9h3.6L10 5v14l-4.4-4H2z"/><path d="M13.6 8.4a5 5 0 0 1 0 7.2l-1.1-1.1a3.4 3.4 0 0 0 0-5zM16.4 5.6a9 9 0 0 1 0 12.8l-1.1-1.1a7.4 7.4 0 0 0 0-10.6z"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="m15.4 15.4 5.1 5.1" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 3.5v12.2m0 0 5-5m-5 5-5-5M4.5 20.5h15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-laptop" viewBox="0 0 24 24"><path d="M4.5 5.5c0-.6.4-1 1-1h13c.6 0 1 .4 1 1v9.5h-15zM6 6v7.5h12V6zM2 16.2h20v.6c0 1-.8 1.7-1.7 1.7H3.7c-1 0-1.7-.8-1.7-1.7z"/></symbol>
+  <symbol id="i-iphone-arrow" viewBox="0 0 24 24"><path d="M5.6 2h4.8C11.8 2 13 3.2 13 4.6v14.8c0 1.4-1.2 2.6-2.6 2.6H5.6C4.2 22 3 20.8 3 19.4V4.6C3 3.2 4.2 2 5.6 2zm0 1.6c-.6 0-1 .4-1 1v14.8c0 .6.4 1 1 1h4.8c.6 0 1-.4 1-1V4.6c0-.6-.4-1-1-1z"/><path d="M15.4 12h6m0 0-2.7-2.7m2.7 2.7-2.7 2.7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-iphone" viewBox="0 0 24 24"><path d="M8.6 2h6.8c1.4 0 2.4 1 2.4 2.4v15.2c0 1.4-1 2.4-2.4 2.4H8.6c-1.4 0-2.4-1-2.4-2.4V4.4C6.2 3 7.2 2 8.6 2zm0 1.6c-.5 0-.8.3-.8.8v15.2c0 .5.3.8.8.8h6.8c.5 0 .8-.3.8-.8V4.4c0-.5-.3-.8-.8-.8h-1.2c0 .5-.3.8-.8.8h-2.4c-.5 0-.8-.3-.8-.8z"/></symbol>
+</svg>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="stage" id="stage">
+  <header class="site-header">
+    <a class="brand" href="./" aria-label="Second Chair, home"><img src="assets/img/icon-180.png" alt="" width="20" height="20">Second Chair</a>
+    <nav aria-label="Main">
+      <a href="getting-started/">Getting started</a>
+      <a href="#get">Download</a>
+    </nav>
+    <div class="status" aria-hidden="true">
+      <span class="status-item is-open"><svg><use href="#i-note"/></svg></span>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- 1. The proposition -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="hero-kicker">A companion app for Apple Music, on Mac and iPhone.</p>
+        <h1 id="hero-title" class="display hero-title"><span class="l1">Music on your Mac.</span> <em class="l2"><span>Now Playing</span> <span>on your iPhone.</span></em></h1>
+        <p class="lede hero-lede">Music playing on your Mac appears in your iPhone’s native Now Playing, on the Lock Screen and in StandBy. Control playback from your iPhone while the sound stays on your Mac, or pick up where you left off on either device with Continue Listening.</p>
+        <div class="hero-actions">
+          <a class="btn" href="#get">Get Second Chair</a>
+          <a class="link-arrow" href="getting-started/">How to set it up</a>
+        </div>
+        <p class="hero-fine small">A free beta, for Mac and iPhone.</p>
+      </div>
+
+      <!-- Try it with your own song: bottom left of the first screen. -->
+      <div class="try">
+        <button type="button" class="try-open" aria-haspopup="dialog" aria-controls="try-dialog">
+          <svg class="ico" aria-hidden="true"><use href="#i-search"/></svg><span class="try-label">Try it with your own song</span>
+        </button>
+        <div class="try-now" hidden>
+          <button type="button" class="try-hear" aria-pressed="false"><svg class="ico i-play" aria-hidden="true"><use href="#i-play"/></svg><svg class="ico i-pause" aria-hidden="true"><use href="#i-pause"/></svg><span>Play preview</span></button>
+          <a class="try-apple" href="https://music.apple.com/" target="_blank" rel="noopener">Open in Apple Music</a>
+        </div>
+      </div>
+
+      <div class="scene hero-scene" role="group" aria-label="Illustration: the same song in Second Chair’s menu on a Mac and on an iPhone. The buttons work, on this page only.">
+        <!-- The Mac: Second Chair's menu, hanging from the menu bar above. Mirrors MenuContent.swift. -->
+        <!-- The Mac: Second Chair's menu, and beside it the way to try the demo with your own song. -->
+        <div class="hero-mac">
+          <div class="mac-menu hero-menu" data-surface="mac">
+            <div class="mm-track">
+              <div class="mm-art"><img class="art" data-bind="art" src="assets/art/low-sun.svg" alt="" width="64" height="64"></div>
+              <div class="mm-meta"><b data-bind="title">Low Sun</b><span data-bind="artist">Hollow Coast</span><span class="album" data-bind="album">Breakwater</span><small data-bind="state">Playing</small></div>
+            </div>
+            <div class="mm-progress" aria-hidden="true"><div class="mm-bar"><i data-bind="progress" style="--p:.87"></i></div><div class="mm-times"><span data-bind="elapsed">3:06</span><span data-bind="remaining">-0:28</span></div></div>
+            <div class="mm-transport">
+              <button type="button" data-cmd="previous" aria-label="Previous, on the Mac"><svg><use href="#i-prev"/></svg></button>
+              <button type="button" class="pp" data-cmd="toggle" data-where="on the Mac" aria-label="Pause on the Mac"><svg class="i-pause"><use href="#i-pause"/></svg><svg class="i-play"><use href="#i-play"/></svg></button>
+              <button type="button" data-cmd="next" aria-label="Next, on the Mac"><svg><use href="#i-next"/></svg></button>
+            </div>
+            <hr>
+            <div class="mm-conn" aria-hidden="true"><i></i>Connected</div>
+            <div class="mm-row" aria-hidden="true"><span>iPhone</span><span>Your iPhone</span></div>
+          </div>
+          <p class="device-tag device-tag--mac">Mac, playing in Music</p>
+        </div>
+
+        <!-- The iPhone, in StandBy -->
+        <div class="phone phone--landscape hero-phone hero-standby is-asleep" data-surface="iphone">
+          <p class="device-tag device-tag--phone">iPhone, on the Lock Screen and in StandBy</p>
+          <div class="phone-body"><div class="phone-bezel"><div class="screen">
+            <span class="island" aria-hidden="true"></span>
+            <!-- StandBy's Now Playing, laid out as iOS draws it: artwork left; title, artist, controls and scrubber centred on the right. -->
+            <div class="standby-ui">
+              <div class="wall" aria-hidden="true"></div>
+              <div class="sb-art" data-swap="spin"><img class="art" data-bind="art" src="assets/art/low-sun.svg" alt="" width="300" height="300"></div>
+              <div class="sb-side">
+                <div class="sb-top" aria-hidden="true"><svg><use href="#i-vol-mid"/></svg><svg><use href="#i-airplay-audio"/></svg></div>
+                <div class="sb-meta"><b class="sb-title" data-bind="title">Low Sun</b><span class="sb-artist" data-bind="artist">Hollow Coast</span></div>
+                <div class="sb-controls">
+                  <button type="button" class="ios-btn" data-cmd="previous" aria-label="Previous, from the iPhone"><svg class="glyph-fill"><use href="#i-prev"/></svg></button>
+                  <button type="button" class="ios-btn pp" data-cmd="toggle" data-where="from the iPhone" aria-label="Pause from the iPhone"><svg class="i-pause glyph-fill"><use href="#i-pause"/></svg><svg class="i-play glyph-fill"><use href="#i-play"/></svg></button>
+                  <button type="button" class="ios-btn" data-cmd="next" aria-label="Next, from the iPhone"><svg class="glyph-fill"><use href="#i-next"/></svg></button>
+                </div>
+                <div class="sb-scrub" aria-hidden="true"><div class="ios-bar"><i data-bind="progress" style="--p:.87"></i></div><div class="sb-times"><span data-bind="elapsed">3:06</span><span data-bind="remaining">−0:28</span></div></div>
+              </div>
+              <span class="sb-home" aria-hidden="true"></span>
+            </div>
+          </div></div></div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+</div>
+
+<div class="after">
+  <!-- 2. The controls -->
+  <section class="controls" aria-labelledby="controls-title">
+    <h2 id="controls-title" class="display section-title controls-title"><span>Press it here.</span> <span>It happens there.</span></h2>
+    <div class="controls-copy">
+      <p class="lede">Play, pause, skip and scrub from the Lock Screen, Control Centre, StandBy or your Apple Watch, and turn Music up or down on the Mac. When the song changes on the Mac, your iPhone keeps up by itself – whether you’re at home, the office or anywhere with a signal.</p>
+      <p class="small controls-note">Swiped the player away? An optional reminder brings it back when the music starts again.</p>
+      <figure class="ctl-mac" aria-label="Second Chair’s menu on the Mac, which follows what you press on the iPhone">
+        <figcaption class="small">There: your Mac</figcaption>
+        <div class="mac-menu ctl-menu" data-surface="mac">
+          <div class="mm-track">
+            <div class="mm-art"><img class="art" data-bind="art" src="assets/art/low-sun.svg" alt="" width="64" height="64"></div>
+            <div class="mm-meta"><b data-bind="title">Low Sun</b><span data-bind="artist">Hollow Coast</span><span class="album" data-bind="album">Breakwater</span><small data-bind="state">Playing</small></div>
+          </div>
+          <div class="mm-progress" aria-hidden="true"><div class="mm-bar"><i data-bind="progress" style="--p:.87"></i></div><div class="mm-times"><span data-bind="elapsed">3:06</span><span data-bind="remaining">-0:28</span></div></div>
+          <div class="mm-transport" aria-hidden="true">
+            <button type="button" tabindex="-1" data-cmd="previous" aria-label="Previous, on the Mac"><svg><use href="#i-prev"/></svg></button>
+            <button type="button" tabindex="-1" class="pp" data-cmd="toggle" data-where="on the Mac" aria-label="Pause on the Mac"><svg class="i-pause"><use href="#i-pause"/></svg><svg class="i-play"><use href="#i-play"/></svg></button>
+            <button type="button" tabindex="-1" data-cmd="next" aria-label="Next, on the Mac"><svg><use href="#i-next"/></svg></button>
+          </div>
+        </div>
+      </figure>
+    </div>
+    <div class="scene controls-scene" role="group" aria-label="Illustration: an iPhone Lock Screen and an Apple Watch controlling Second Chair on a Mac. The buttons work, on this page only.">
+      <div class="phone phone--portrait ctl-lock" data-surface="iphone">
+        <div class="phone-body"><div class="phone-bezel"><div class="screen">
+          <span class="island" aria-hidden="true"></span>
+          <div class="lock-ui">
+            <div class="wall" aria-hidden="true"></div>
+            <div class="lock-status" aria-hidden="true"><i class="sig"></i><i class="bat"></i></div>
+            <p class="lock-date" aria-hidden="true" data-clock="date">Thursday 12 November</p>
+            <p class="lock-time" aria-hidden="true" data-clock="time">18:24</p>
+            <div class="np">
+              <div class="np-head">
+                <div class="np-art"><img class="art" data-bind="art" src="assets/art/low-sun.svg" alt="" width="120" height="120"></div>
+                <div class="np-meta"><b data-bind="title">Low Sun</b><span data-bind="artist">Hollow Coast</span></div>
+                <svg class="np-route" aria-hidden="true"><use href="#i-airplay"/></svg>
+              </div>
+              <div class="np-scrub">
+                <div class="ios-bar"><i data-bind="progress" style="--p:.87"></i></div>
+                <input class="scrub-input" type="range" min="0" max="214" step="1" value="0" data-bind="seek" aria-label="Song position, from the iPhone">
+                <div class="np-times" aria-hidden="true"><span data-bind="elapsed">3:06</span><span data-bind="remaining">-0:28</span></div>
+              </div>
+              <div class="np-controls">
+                <button type="button" class="ios-btn" data-cmd="previous" aria-label="Previous, from the iPhone"><svg class="glyph-fill"><use href="#i-prev"/></svg></button>
+                <button type="button" class="ios-btn pp" data-cmd="toggle" data-where="from the iPhone" aria-label="Pause from the iPhone"><svg class="i-pause glyph-fill"><use href="#i-pause"/></svg><svg class="i-play glyph-fill"><use href="#i-play"/></svg></button>
+                <button type="button" class="ios-btn" data-cmd="next" aria-label="Next, from the iPhone"><svg class="glyph-fill"><use href="#i-next"/></svg></button>
+              </div>
+              <div class="np-vol">
+                <svg class="ico" aria-hidden="true"><use href="#i-vol-lo"/></svg>
+                <div class="vol-track"><div class="ios-bar"><i data-bind="volume" style="--p:.62"></i></div><input class="vol-input" type="range" min="0" max="100" step="1" value="62" aria-label="Volume of Music on the Mac, from the iPhone"></div>
+                <svg class="ico" aria-hidden="true"><use href="#i-vol-hi"/></svg>
+              </div>
+            </div>
+            <div class="lock-corners" aria-hidden="true"><i></i><i></i></div>
+            <span class="lock-home" aria-hidden="true"></span>
+          </div>
+        </div></div></div>
+      </div>
+
+      <div class="watch ctl-watch" data-surface="iphone" aria-hidden="true">
+        <div class="watch-band watch-band--top"></div>
+        <div class="watch-case">
+          <span class="watch-crown"></span><span class="watch-button"></span><span class="watch-action"></span>
+          <div class="watch-glass"><div class="watch-screen">
+            <!-- watchOS Now Playing, as Apple's Apple Watch User Guide shows it: Back and More in round buttons either side of the time,
+                 the artwork, title and artist centred, then the three controls with the progress ring round Pause.
+                 Volume is the Digital Crown, so there's no slider. -->
+            <img class="art w-bg" data-bind="art" src="assets/art/low-sun.svg" alt="" width="60" height="60">
+            <div class="w-top"><span class="w-round"><svg viewBox="0 0 24 24"><path d="M14.5 5.5 8 12l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><time class="w-time" data-clock="time">18:24</time><span class="w-round w-dots"><i></i><i></i><i></i></span></div>
+            <div class="w-cover"><img class="art" data-bind="art" src="assets/art/low-sun.svg" alt="" width="120" height="120"></div>
+            <div class="w-meta"><b class="w-title" data-bind="title">Low Sun</b><span class="w-artist" data-bind="artist">Hollow Coast</span></div>
+            <div class="w-controls">
+              <button type="button" tabindex="-1" class="w-btn" data-cmd="previous" aria-label="Previous, from Apple Watch"><svg class="glyph-fill"><use href="#i-prev"/></svg></button>
+              <button type="button" tabindex="-1" class="w-btn pp" data-cmd="toggle" data-where="from Apple Watch" aria-label="Pause from Apple Watch">
+                <svg class="w-ring" viewBox="0 0 40 40"><circle cx="20" cy="20" r="18.5" pathLength="100"/><circle class="w-ring-fill" cx="20" cy="20" r="18.5" pathLength="100" data-bind="progress" style="--p:.87"/></svg>
+                <svg class="i-pause glyph-fill"><use href="#i-pause"/></svg><svg class="i-play glyph-fill"><use href="#i-play"/></svg>
+              </button>
+              <button type="button" tabindex="-1" class="w-btn" data-cmd="next" aria-label="Next, from Apple Watch"><svg class="glyph-fill"><use href="#i-next"/></svg></button>
+            </div>
+          </div></div>
+        </div>
+        <div class="watch-band watch-band--bottom"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Continue Listening: both ways. Each device pulls the song to itself, from its own interface. -->
+  <section class="handover" id="continue" aria-labelledby="handover-title">
+    <div class="handover-copy">
+      <h2 id="handover-title" class="display section-title"><span>Take your music with you.</span> <span>Then bring it back.</span></h2>
+      <p class="lede lede-leave">Leaving your desk? On your iPhone, tap <span class="ui">Continue on iPhone</span> to pick up where you left off on your Mac. Your Mac pauses automatically.</p>
+      <p class="lede lede-back">When you’re back, either tap <span class="ui">Continue on Mac</span> on your iPhone, or choose <span class="ui">Continue from iPhone</span> in your Mac’s menu to pick up where you left off on your iPhone.</p>
+    </div>
+
+    <div class="hand" data-where="mac" role="group" aria-label="Illustration: moving a song between Music on a Mac and Apple Music on an iPhone. The buttons work, on this page only.">
+      <div class="place place-mac">
+        <div class="hand-card" data-surface="hand-mac">
+          <div class="hand-art"><img class="art" data-bind="art" src="assets/art/low-sun.svg" alt="" width="300" height="300"></div>
+          <div class="hand-side">
+            <div class="hand-meta"><b data-bind="title">Low Sun</b><span data-bind="artist">Hollow Coast</span></div>
+            <p class="hand-state"><span class="hs-word" data-bind="state">Playing</span> <span class="hs-time" data-bind="elapsed"></span></p>
+            <p class="queue-label">Up Next</p>
+            <ol class="queue queue-mac" aria-label="Up Next on the Mac" data-for="0"><li><img src="assets/art/small-hours.svg" alt="Small Hours, Fen Lights" width="40" height="40"></li><li><img src="assets/art/overcast.svg" alt="Overcast, Brightening, Juniper Hall" width="40" height="40"></li><li><img src="assets/art/ticket-hall.svg" alt="Ticket Hall, Polly Atlas" width="40" height="40"></li><li><img src="assets/art/tidewater.svg" alt="Tidewater, Brennan &amp; Hale" width="40" height="40"></li><li><img src="assets/art/allotment.svg" alt="Allotment, The Small Holdings" width="40" height="40"></li><li class="more">and up to 20 more</li></ol>
+          </div>
+        </div>
+        <p class="place-name display" aria-hidden="true">Mac</p>
+        <p class="place-app">Music on the Mac</p>
+        <!-- The Mac's side: Second Chair's menu offers it once Continue on iPhone has paused this Mac. -->
+        <div class="pull-wrap" data-pull="mac" hidden>
+          <div class="pull-menu">
+            <button type="button" class="pull pull--mac" data-hand="to-mac"><svg class="ico" aria-hidden="true"><use href="#i-iphone-arrow"/></svg>Continue from iPhone</button>
+            <p class="pull-status" aria-live="polite"></p>
+          </div>
+          <p class="pull-where">In Second Chair’s menu on the Mac</p>
+        </div>
+      </div>
+
+      <div class="place place-iphone">
+        <div class="hand-card hand-card--iphone" data-surface="hand-iphone" data-state="empty">
+          <div class="hand-art"><img class="art" data-bind="art" alt="" width="300" height="300"><svg class="hand-note" aria-hidden="true"><use href="#i-note"/></svg></div>
+          <div class="hand-side">
+            <div class="hand-meta"><b data-bind="title">Not Playing</b><span data-bind="artist"></span></div>
+            <p class="hand-state"><span class="hs-word" data-bind="state"></span> <span class="hs-time" data-bind="elapsed"></span></p>
+            <p class="queue-label queue-label--iphone">Up Next</p>
+            <ol class="queue queue-iphone" aria-label="Up Next on the iPhone"></ol>
+          </div>
+        </div>
+        <p class="place-name display" aria-hidden="true">iPhone</p>
+        <p class="place-app">Apple Music on the iPhone</p>
+        <!-- The iPhone's side: the Continue Listening box in the Second Chair app (HomeView.swift): whichever way is open. -->
+        <div class="pull-wrap" data-pull="iphone">
+          <button type="button" class="pull pull--ios" data-hand="to-iphone"><svg class="ico" aria-hidden="true"><use href="#i-iphone"/></svg><span>Continue on iPhone</span></button>
+          <button type="button" class="pull pull--ios" data-hand="back-to-mac" hidden><svg class="ico" aria-hidden="true"><use href="#i-laptop"/></svg><span>Continue on Mac</span></button>
+          <p class="pull-where">In the Second Chair app on your iPhone</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="small handover-fine">Optional. It needs an Apple Music subscription on your iPhone and a one-time connection on the Mac. <a href="getting-started/#continue">Setting it up</a></p>
+  </section>
+
+  <!-- 4. Get it -->
+  <section class="get" id="get" aria-labelledby="get-title">
+    <div class="get-head">
+      <h2 id="get-title" class="display section-title">Pull up a chair.</h2>
+      <p class="lede">Second Chair is free while it’s in beta. There’s an app for your Mac and one for your iPhone, and you’ll need both.</p>
+    </div>
+
+    <ul class="apps">
+      <li class="app">
+        <img class="app-icon" src="assets/img/icon-256.png" alt="" width="256" height="256" loading="lazy">
+        <h3 class="display app-name">Second Chair for Mac</h3>
+        <p class="app-meta">Version 0.3.0 · notarised by Apple<br>Apple silicon, macOS 27 · lives in the menu bar</p>
+        <div class="app-actions">
+          <a class="btn" href="https://github.com/alistairmerritt/music-standby/releases/download/mac-v0.3.0/Second-Chair-0.3.0.zip"><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-down"/></svg>Download for Mac</a>
+          <a class="small app-sub" href="https://github.com/alistairmerritt/music-standby/releases/tag/mac-v0.3.0">Release notes on GitHub</a>
+        </div>
+      </li>
+      <li class="app">
+        <img class="app-icon" src="assets/img/icon-256.png" alt="" width="256" height="256" loading="lazy">
+        <h3 class="display app-name">Second Chair for iPhone</h3>
+        <p class="app-meta">TestFlight build 202611152035 or later · by invitation<br>iOS 27 · needs Apple’s TestFlight app</p>
+        <div class="app-actions">
+          <!-- TODO: link the TestFlight invitation here, or say how to ask for one. -->
+          <a class="btn btn-quiet" href="getting-started/#iphone">How to join the beta</a>
+          <p class="small app-sub todo">To confirm: the TestFlight link, or how to ask for an invitation.</p>
+        </div>
+      </li>
+    </ul>
+
+    <div class="setup">
+      <h3 class="setup-title">Setting up takes a few minutes</h3>
+      <ol class="setup-steps">
+        <li><span class="who">Mac</span><p>Download Second Chair, move it to Applications and open it. It lives in the menu bar.</p></li>
+        <li><span class="who">iPhone</span><p>Install Second Chair from TestFlight and open it.</p></li>
+        <li><span class="who">Both</span><p>Choose <span class="ui">Pair iPhone…</span> on the Mac, type its six-digit code on the iPhone, then click <span class="ui">Allow</span> on the Mac.</p></li>
+        <li class="key"><span class="who">iPhone</span><p>Play something on the Mac, then tap <span class="ui">Show in Now Playing</span>. Pairing alone won’t put it on your Lock Screen.</p></li>
+      </ol>
+      <a class="link-arrow" href="getting-started/">The full setup guide</a>
+    </div>
+
+    <p class="fine small">Second Chair works with Apple’s Music app and needs to be running on your Mac. You can pair one iPhone per Mac, and both devices need an internet connection. Older operating systems and Intel Macs haven’t been tested yet.</p>
+  </section>
+
+  <footer class="site-footer">
+    <p>Second Chair is an independent project by <a href="/">Made with Merritt</a>. Mac 0.3.0 beta.</p>
+    <nav aria-label="Footer">
+      <a href="getting-started/">Getting started</a>
+      <a href="privacy/">Privacy</a>
+      <a href="https://github.com/alistairmerritt/music-standby/releases">Releases on GitHub</a>
+    </nav>
+  </footer>
+</div>
+
+<!-- Try it with your own song: a search of Apple's public catalogue. Nothing is sent anywhere else, and nothing reaches anyone's Mac or iPhone. -->
+<dialog class="try-dialog" id="try-dialog" aria-labelledby="try-title">
+  <form method="dialog" class="try-close-form"><button class="try-close" aria-label="Close">×</button></form>
+  <h2 id="try-title" class="display try-title">Try it with your own song.</h2>
+  <p class="try-intro">Search Apple Music for any song, and the demo on this page plays its 30-second preview. It’s only a demo: nothing reaches your Mac or iPhone.</p>
+  <label class="try-field"><span class="visually-hidden">Song or artist</span><svg class="ico" aria-hidden="true"><use href="#i-search"/></svg><input type="search" placeholder="Song or artist" autocomplete="off" spellcheck="false" enterkeyhint="search"></label>
+  <p class="try-status" role="status" aria-live="polite"></p>
+  <ul class="try-results"></ul>
+  <p class="try-fine">Search by Apple Music. What you type goes to Apple’s catalogue search; this site keeps nothing.</p>
+</dialog>
+
+<p class="visually-hidden" aria-live="polite" id="announce"></p>
+</body>
+</html>

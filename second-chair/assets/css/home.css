@@ -1,0 +1,426 @@
+/* Second Chair — the home page.
+   1 the proposition (song-coloured stage) · 2 the controls (paper) · 3 Continue Listening (night) · 4 get it (paper) */
+
+/* ---------- The stage: wears the colour of the song the iPhone is showing ---------- */
+.stage {
+  position: relative; overflow: hidden; isolation: isolate;
+  display: flex; flex-direction: column;
+  min-height: 100vh; min-height: 100svh;          /* the first fold is the window */
+  background: var(--stage); color: var(--stage-ink);
+  transition: background-color 1.2s var(--ease), color 1.2s var(--ease);
+}
+.stage > main { flex: 1; display: flex; flex-direction: column; }
+.stage[data-tone="light"] { --stage-ink-2: rgba(22, 18, 15, .72); }
+.stage[data-tone="light"] .site-header a:hover { background: rgba(0, 0, 0, .07); }
+.stage[data-tone="light"] .status-item.is-open { background: rgba(0, 0, 0, .1); }
+.stage::before { /* the screen's light, falling on the room */
+  content: ""; position: absolute; z-index: -1; pointer-events: none;
+  right: -10vw; bottom: -30vh; width: 80vw; height: 110vh;
+  background: radial-gradient(closest-side, color-mix(in oklab, var(--stage-glow) 38%, transparent), transparent);
+  opacity: var(--lit, 0); transition: opacity 1.6s var(--ease), background 1.2s var(--ease);
+}
+.stage > .sound { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }   /* the sound, drawn by home.js */
+.stage .btn { --bg: var(--stage-ink); --fg: var(--stage); }
+.stage .site-header { color: var(--stage-ink); }
+/* A hairline under the nav, between the margins, in the song's ink. The Mac menu hangs over it. */
+.stage .site-header::after { content: ""; position: absolute; left: var(--gutter); right: var(--gutter); bottom: 0; height: 1px; background: currentColor; opacity: .22; pointer-events: none; }
+.stage[data-tone="light"] .site-header::after { opacity: .16; }
+
+/* ---------- 1. Hero: fills the window under the header; everything sizes from the window's height ---------- */
+.hero {
+  --gap: max(28px, 6.5vh);                 /* StandBy's margin: below it and to its right */
+  position: relative; flex: 1;
+  padding: clamp(14px, 2.6vh, 32px) var(--gutter) clamp(16px, 4vh, 40px);
+}
+.hero-copy { position: relative; z-index: 3; width: fit-content; max-width: 100%; }
+/* The label: small capitals just under the nav, saying what it is before the headline says what it does. */
+.hero-kicker { margin-bottom: clamp(28px, 10.4vh, 150px); font: 600 clamp(.6875rem, .62rem + .2vw, .8125rem)/1.35 var(--sans); letter-spacing: .13em; text-transform: uppercase; text-wrap: balance; color: var(--stage-ink-2); transition: color 1.2s var(--ease); }
+.hero-title { font-size: min(.8rem + 5.04vw, 10.08vh, 6.6rem); }
+.hero-title .l1, .hero-title .l2 { display: block; }
+.hero-title .l1 { white-space: nowrap; }
+.hero-title .l2 > span { display: block; }   /* "Now Playing" kept together, as Apple names it */
+.hero-lede { margin-top: clamp(16px, 3.2vh, 36px); max-width: 27rem; color: var(--stage-ink-2); transition: color 1.2s var(--ease); }
+.hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 26px; margin-top: clamp(16px, 3.4vh, 34px); }
+.hero-fine { margin-top: clamp(10px, 1.8vh, 16px); color: var(--stage-ink-2); }
+
+.hero-scene { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+.hero-scene > * { pointer-events: auto; }
+.hero-mac { position: absolute; top: 6px; right: calc(var(--gutter) - 4px); width: 300px; }
+.hero-menu { width: 100%; }
+/* Small labels naming the two devices in the first screen. */
+.device-tag { margin: 0; font: 500 .75rem/1.2 var(--sans); letter-spacing: .005em; white-space: nowrap; color: var(--stage-ink); transition: color 1.2s var(--ease); }   /* full ink: at 12px it needs the contrast */
+.device-tag--mac { margin-top: 10px; text-align: right; }                 /* right-aligned with the menu's edge */
+.device-tag--phone { position: absolute; right: 1.4cqw; bottom: 100%; margin-bottom: 12px; }   /* and with the phone's */
+
+/* Try it with your own song: bottom left of the first screen, in the stage's ink. */
+.try { position: absolute; left: var(--gutter); bottom: var(--gap); z-index: 3; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; color: var(--stage-ink); }
+html:not(.js) .try { display: none; }
+.try-open {
+  display: inline-flex; align-items: center; gap: 8px; min-height: 36px; padding: 0 14px 0 12px; border: 0; border-radius: 999px; cursor: pointer;
+  background: color-mix(in oklab, var(--stage) 88%, transparent); color: inherit; font: 600 .8125rem/1 var(--sans); letter-spacing: -.005em;
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, currentColor 45%, transparent);
+  transition: background-color .25s, box-shadow .25s, transform .2s var(--ease);
+}
+.try-open:hover { background: color-mix(in oklab, currentColor 12%, transparent); box-shadow: inset 0 0 0 1px currentColor; }
+.try-open:active, .try-hear:active { transform: scale(.97); }
+.try-open .ico { width: 15px; height: 15px; }
+/* The preview's play and pause: a quiet text control beside the Apple Music link, a level below "Try another song". */
+.try-hear {
+  display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 0 8px; margin: 0 -8px; border: 0; border-radius: 8px; cursor: pointer;
+  background: none; color: var(--stage-ink-2); font: 500 .75rem/1 var(--sans); letter-spacing: -.003em;
+  transition: color .2s, background-color .2s, transform .2s var(--ease);
+}
+.try-hear:hover { color: var(--stage-ink); background: color-mix(in oklab, currentColor 10%, transparent); }
+.try-hear .ico { width: 11px; height: 11px; }
+.try-hear .i-pause, .try-hear[aria-pressed="true"] .i-play { display: none; }
+.try-hear[aria-pressed="true"] .i-pause { display: block; }
+.try-now { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; }
+.try-now[hidden] { display: none; }
+.try-apple { font: 500 .75rem/1 var(--sans); color: var(--stage-ink-2); text-decoration: underline; text-underline-offset: .2em; }
+
+/* The search window */
+.try-dialog {
+  width: min(460px, calc(100vw - 32px)); max-height: min(640px, calc(100svh - 48px)); padding: 28px 24px 18px; border: 0; border-radius: 22px;
+  background: var(--paper); color: var(--ink); box-shadow: 0 30px 80px -20px rgba(0, 0, 0, .45);
+  display: none; flex-direction: column; overflow: hidden;
+}
+.try-dialog[open] { display: flex; }
+.try-dialog::backdrop { background: rgba(10, 8, 6, .42); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.try-close-form { position: absolute; top: 12px; right: 12px; }
+.try-close { width: 34px; height: 34px; border: 0; border-radius: 50%; background: rgba(0, 0, 0, .06); color: var(--ink-2); font: 400 22px/1 var(--sans); cursor: pointer; }
+.try-close:hover { background: rgba(0, 0, 0, .1); }
+.try-title { font-size: 1.75rem; line-height: 1.05; padding-right: 36px; }
+.try-intro { margin-top: 10px; font-size: .9375rem; color: var(--ink-2); }
+.try-field { margin-top: 18px; display: flex; align-items: center; gap: 10px; height: 46px; padding: 0 14px; border-radius: 12px; background: #fff; box-shadow: inset 0 0 0 1px var(--rule); color: var(--ink-3); }
+.try-field:focus-within { box-shadow: inset 0 0 0 2px var(--ink); }
+.try-field .ico { width: 17px; height: 17px; flex: none; }
+.try-field input { flex: 1; min-width: 0; height: 100%; border: 0; background: none; outline: none; font: 400 1rem/1 var(--sans); color: var(--ink); }
+.try-field input::-webkit-search-cancel-button { cursor: pointer; }
+.try-status { min-height: 1.4em; margin-top: 10px; font-size: .8125rem; color: var(--ink-3); }
+.try-results { list-style: none; margin: 4px -8px 0; overflow-y: auto; flex: 1; min-height: 0; }
+.try-results button { display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 12px; align-items: center; width: 100%; padding: 7px 8px; border: 0; border-radius: 10px; background: none; text-align: left; cursor: pointer; color: inherit; }
+.try-results button:hover, .try-results button:focus-visible { background: rgba(0, 0, 0, .06); outline: none; }
+.try-results img { width: 48px; height: 48px; border-radius: 6px; background: var(--paper-2); }
+.try-results b, .try-results span { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.try-results b { font-weight: 600; font-size: .9375rem; }
+.try-results span { font-size: .8125rem; color: var(--ink-2); }
+.try-fine { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--rule); font-size: .75rem; color: var(--ink-3); }
+.hero-standby {
+  --phone-shadow: 0 5cqw 9cqw -3cqw color-mix(in oklab, var(--stage) 25%, #000 75%), 0 1.6cqw 3cqw -1cqw rgba(0, 0, 0, .3);
+  position: absolute; right: var(--gap); bottom: var(--gap); width: min(56vw, 92vh, 1060px, calc(100vw - var(--gap) - var(--gutter) - 29.5rem));   /* never under the copy */
+}
+/* The desktop composition: the space between the label and the headline grows with the window (up to 14% of
+   its height) but gives way first, so the copy always stays 24px clear of "Try it with your own song" below. */
+@media (min-width: 960px) and (min-aspect-ratio: 5/4) and (min-height: 521px) {
+  .stage { height: 100vh; height: 100svh; }                  /* exactly the window, so the gap gives way rather than the page growing */
+  .stage > main, .hero, .hero-copy { min-height: 0; }
+  .hero { display: flex; flex-direction: column; }
+  .hero-copy { flex: 1; display: flex; flex-direction: column; pointer-events: none; padding-bottom: max(0px, calc(var(--gap) + 36px + 24px - clamp(16px, 4vh, 40px))); }
+  .hero-copy > * { flex-shrink: 0; pointer-events: auto; }
+  .hero-kicker { margin-bottom: 0; flex: 0 1 auto; height: calc(1.35em + clamp(28px, 13.9vh, 190px)); min-height: calc(1.35em + 28px); }
+}
+@media (min-width: 960px) and (min-aspect-ratio: 5/4) and (max-height: 640px) {
+  .hero-kicker { height: calc(1.35em + 30px); }
+}
+
+/* Short desktop windows: the Mac menu keeps its song and controls, drops its connection rows. */
+@media (max-height: 760px) and (min-width: 960px) {
+  .hero-menu hr, .hero-menu .mm-conn, .hero-menu .mm-row { display: none; }
+  .hero-lede { font-size: 1rem; line-height: 1.45; }
+  .hero-fine { display: none; }        /* the Get it section says it too */
+}
+@media (max-height: 640px) and (min-width: 960px) {
+  .hero-lede { font-size: .9375rem; margin-top: 12px; }
+  .hero-actions { margin-top: 14px; }
+}
+
+/* Narrower or taller screens: copy at the top, the devices settled at the bottom of the window. */
+@media (max-width: 959px), (max-aspect-ratio: 5/4) {
+  .hero { --gap: clamp(28px, 5vh, 64px); display: flex; flex-direction: column; padding-bottom: var(--gap); }
+  .hero-copy { max-width: calc(100% - 300px); }
+  .hero-scene { position: static; margin-top: auto; padding-top: 40px; }
+  .hero-mac { width: 280px; }
+  .try { position: static; margin-top: clamp(18px, 3vh, 32px); }
+  .hero-standby { position: relative; right: auto; bottom: auto; width: min(calc(100vw - var(--gutter) - var(--gap)), 118svh); margin: 0 calc(var(--gap) - var(--gutter)) 0 auto; }
+}
+/* Phones held upright. */
+@media (max-width: 719px) {
+  .site-header { padding: 0 6px 0 calc(var(--gutter) - 8px); }
+  .hero { --gap: clamp(14px, 2.6svh, 26px); padding-top: 12px; padding-bottom: var(--gap); }
+  .hero-kicker { font-size: .625rem; letter-spacing: .06em; margin-bottom: clamp(14px, 2.6svh, 36px); }
+  .hero-copy { max-width: none; }
+  .hero-title { font-size: min(clamp(2rem, .8rem + 6.88vw, 2.88rem), 5.04svh); letter-spacing: -.028em; }
+  .hero-lede { font-size: 1rem; line-height: 1.45; margin-top: clamp(12px, 2svh, 24px); }
+  .hero-actions { margin-top: clamp(14px, 2.2svh, 26px); }
+  .hero-scene { padding-top: clamp(12px, 2svh, 36px); }
+  .hero-mac { position: relative; top: auto; right: auto; left: auto; width: min(276px, 74vw); z-index: 2; }
+  .try { margin-top: clamp(10px, 1.6svh, 18px); gap: 8px 12px; }
+  .try-open { min-height: 32px; }
+  .try-hear { min-height: 32px; }
+  .hero-menu hr, .hero-menu .mm-conn, .hero-menu .mm-row, .hero-menu .mm-progress { display: none; }
+  .hero-menu .mm-transport { margin-top: 8px; }
+  .hero-standby { width: calc(100vw - var(--gutter) - var(--gap)); margin: -16px calc(var(--gap) - var(--gutter)) 0 auto; }
+  .hero-mac { display: flex; flex-direction: column; }
+  .device-tag--mac { order: -1; margin: 0 0 4px; }
+  .device-tag--phone { bottom: auto; top: 100%; margin: 4px 0 0; }
+  .hero { padding-bottom: calc(var(--gap) + 16px); }
+}
+/* Short phones: a little less of everything. */
+@media (max-width: 719px) and (max-height: 900px) {
+  .hero-fine { display: none; }        /* the Get it section says it too */
+}
+@media (max-width: 719px) and (max-height: 760px) {
+  .hero-title { font-size: min(clamp(1.8rem, .8rem + 6.88vw, 2.88rem), 4.6svh); }
+  .hero-lede { font-size: .9375rem; line-height: 1.4; }
+  .hero-actions .btn { min-height: 44px; }
+  .hero-menu .mm-progress { display: none; }
+  .hero-menu .mm-transport { margin-top: 8px; }
+}
+/* The shortest phones (iPhone SE): the Mac menu keeps just its song; StandBy has the buttons. */
+@media (max-width: 719px) and (max-height: 700px) {
+  .hero { --gap: 12px; padding-top: 8px; }
+  .hero-kicker { margin-bottom: 10px; font-size: .625rem; letter-spacing: .05em; }
+  .hero-lede { font-size: .875rem; margin-top: 10px; }
+  .hero-actions { margin-top: 10px; }
+  .hero-scene { padding-top: 4px; }
+  .hero-menu .mm-transport { display: none; }
+  .device-tag { display: none; }
+  .hero { padding-bottom: var(--gap); }
+  .hero-menu .mm-art { width: 46px; height: 46px; }
+  .hero-menu .mm-meta .album { display: none; }
+  .try { margin-top: 8px; }
+  .try-open { min-height: 30px; }
+  .try-hear { min-height: 30px; }
+}
+/* Phones held sideways: StandBy, as the phone itself would be. */
+@media (max-height: 520px) and (orientation: landscape) {
+  .hero { --gap: 20px; display: block; padding-top: 10px; padding-bottom: 20px; }
+  .hero-kicker { font-size: .625rem; margin-bottom: 10px; width: max-content; max-width: calc(100vw - 2 * var(--gutter)); }
+  .hero-copy { max-width: 46%; }
+  .hero-title { font-size: min(6.4vh + .8rem, 2.56rem); }
+  .hero-lede { font-size: .875rem; line-height: 1.42; margin-top: 10px; }
+  .hero-fine { display: none; }
+  .hero-scene { position: absolute; inset: 0; margin: 0; padding: 0; }
+  .hero-menu, .device-tag--mac { display: none; }
+  .try { position: absolute; left: auto; right: var(--gap); top: 10px; bottom: auto; justify-content: flex-end; }
+  .hero-standby { position: absolute; margin: 0; right: var(--gap); bottom: var(--gap); width: 50vw; }
+}
+
+/* ---------- Section rhythm ---------- */
+.after { background: var(--paper); }
+.section-title { font-size: clamp(2.6rem, 1.2rem + 4.6vw, 5.75rem); }
+.section-title > span, .section-title > em { display: block; }
+
+/* ---------- 2. The controls: the iPhone here, the Mac there ---------- */
+.controls {
+  position: relative; overflow: hidden;
+  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); grid-template-areas: "title title" "copy scene"; gap: 0 clamp(24px, 4vw, 72px);
+  padding: clamp(80px, 10vw, 144px) var(--gutter) 0;
+  max-width: var(--max); margin: 0 auto;
+}
+.controls-title { grid-area: title; margin-bottom: clamp(32px, 4.5vw, 64px); }
+.controls-copy { grid-area: copy; padding-bottom: clamp(72px, 9vw, 128px); }
+.controls .lede { margin-top: 0; color: var(--ink-2); }
+.controls-note { margin-top: 16px; color: var(--ink-3); max-width: 26rem; }
+.ctl-mac { margin: clamp(40px, 6vw, 72px) 0 0; }
+.ctl-mac figcaption { display: flex; align-items: center; gap: 12px; color: var(--ink-3); margin-bottom: 14px; max-width: 300px; }
+.ctl-mac figcaption::after { content: ""; flex: 1; height: 1px; background: var(--rule); }
+.ctl-menu { width: 300px; box-shadow: 0 0 0 .5px rgba(0, 0, 0, .14), 0 18px 40px -16px rgba(60, 30, 10, .35), 0 2px 8px rgba(60, 30, 10, .08); }
+
+/* The iPhone and the Watch at their real relative size: an Apple Watch Ultra is 44 mm wide, an iPhone about 71.5 mm. */
+/* The section's bottom edge crops the phone well below its player, with the whole Watch in view. */
+.controls-scene { grid-area: scene; position: relative; container-type: inline-size; align-self: end; aspect-ratio: 100 / 107; }
+.ctl-lock {
+  --phone-shadow: 0 6cqw 14cqw -6cqw rgba(70, 30, 10, .5), 0 2cqw 4cqw -1cqw rgba(70, 30, 10, .22);
+  position: absolute; right: 0; top: 0; width: 53cqw;
+}
+/* On the phone's left: between the Mac and the iPhone. */
+.ctl-watch { position: absolute; left: 11cqw; top: 38cqw; width: 32.6cqw; z-index: 3; }
+
+.np-scrub, .vol-track { position: relative; }
+.vol-track { flex: 1; }
+.scrub-input, .vol-input {
+  position: absolute; left: -2%; width: 104%; top: 50%; height: max(7cqw, 30px); translate: 0 -50%; margin: 0;
+  opacity: 0; cursor: pointer; -webkit-appearance: none; appearance: none; background: transparent;
+}
+.scrub-input { top: .8cqw; }
+.np-scrub:focus-within .ios-bar, .vol-track:focus-within .ios-bar { outline: 2px solid #fff; outline-offset: 3px; }
+.np-scrub:hover .ios-bar, .vol-track:hover .ios-bar { transform: scaleY(1.6); }
+.np .ios-bar { transition: transform .25s var(--ease); }
+
+/* A command arriving: the Mac menu answers with a brief ring. */
+.mac-menu { transition: box-shadow .45s var(--ease); }
+.mac-menu.is-hit { box-shadow: 0 0 0 .5px rgba(0, 0, 0, .22), 0 0 0 5px rgba(10, 132, 255, .28), 0 16px 40px -10px rgba(0, 0, 0, .35); transition-duration: .12s; }
+
+@media (max-width: 899px) {
+  .controls { grid-template-columns: 1fr; grid-template-areas: "title" "copy" "scene"; gap: 0; }
+  .controls-copy { padding-bottom: 48px; }
+  .controls-scene { width: 100%; max-width: 640px; justify-self: center; aspect-ratio: 100 / 112; }
+  .ctl-lock { width: 62cqw; }
+  .ctl-watch { left: 0; top: 49cqw; width: 38.2cqw; }
+}
+@media (max-width: 519px) {
+  .ctl-menu { width: 100%; max-width: 300px; }
+}
+
+/* ---------- 3. Continue Listening ---------- */
+.handover { overflow-x: clip; background: #110e0c; color: #f3eee6; --rule: rgba(243, 238, 230, .16); padding: clamp(96px, 12vw, 176px) var(--gutter) clamp(72px, 8vw, 120px); }
+/* One grid for the whole section, on the same edges as the rest of the page: the heading across the top,
+   then "leaving" over the Mac's column and "coming back" over the iPhone's. */
+.handover > * { max-width: calc(var(--max) - 2 * var(--gutter)); margin-left: auto; margin-right: auto; }
+.handover-copy, .hand { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 6fr); column-gap: clamp(16px, 3vw, 56px); }
+.handover-copy { grid-template-areas: "title title" "leave back"; align-items: start; }
+.handover .section-title { grid-area: title; margin-bottom: clamp(32px, 4.5vw, 64px); }
+.handover .lede { margin: 0; color: rgba(243, 238, 230, .74); }
+.handover .lede-leave { grid-area: leave; max-width: 29rem; }
+.handover .lede-back { grid-area: back; max-width: 33rem; }
+.handover .lede .ui { color: #f3eee6; }
+/* The small print, at the foot of the section. */
+.handover-fine { margin-top: clamp(64px, 8vw, 112px); padding-top: 18px; border-top: 1px solid var(--rule); font-size: .8125rem; color: rgba(243, 238, 230, .62); }
+.handover-fine a { color: #f3eee6; }
+
+.hand { position: relative; margin-top: clamp(64px, 8vw, 120px); grid-template-areas: "mac iphone"; align-items: start; }
+.place { position: relative; display: flex; flex-direction: column; align-items: flex-start; min-width: 0; }
+.place-mac { grid-area: mac; }
+.place-iphone { grid-area: iphone; }
+/* The device's name is the seat the song sits on. */
+.place-name {
+  position: relative; z-index: 1; margin-top: -.11em; margin-left: -.02em;   /* the glyphs' own side space: stems on the column edge */
+  font-size: clamp(5.5rem, 1rem + 15.5vw, 16.5rem); line-height: .82; letter-spacing: -.035em;
+  color: rgba(243, 238, 230, .1); transition: color 1s var(--ease);
+}
+.place-name em { letter-spacing: -.03em; }
+.hand[data-where="mac"] .place-mac .place-name,
+.hand[data-where="iphone"] .place-iphone .place-name { color: #f3eee6; }
+.place-app { margin-top: 24px; font: 500 .8125rem/1 var(--sans); color: rgba(243, 238, 230, .62); }
+.hand-card { position: relative; z-index: 2; display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 22px; align-items: start; }
+.hand-art {
+  width: clamp(112px, 15vw, 232px); aspect-ratio: 1; border-radius: 10px; overflow: hidden; position: relative;
+  box-shadow: 0 30px 44px -18px rgba(0, 0, 0, .9), 0 0 0 .5px rgba(255, 255, 255, .06);
+  transition: opacity .7s var(--ease), transform .8s var(--ease), filter .7s var(--ease), box-shadow .5s;
+}
+.hand-side { padding-top: 2px; min-width: 0; }
+/* Each device pulls the song to itself, in its own interface, under its own name. Only the destination's shows. */
+.pull-wrap { margin-top: 22px; display: grid; justify-items: start; gap: 10px; }
+/* The Mac's control keeps its place when it isn't offered, so the section holds one height. */
+.pull-wrap[hidden] { display: grid; visibility: hidden; }
+.pull[hidden], html:not(.js) .pull-wrap { display: none; }
+.pull { display: inline-flex; align-items: center; border: 0; cursor: pointer; font-family: var(--sans); white-space: nowrap; transition: background-color .2s, transform .2s var(--ease), box-shadow .3s var(--ease); }
+.pull:active { transform: scale(.97); }
+.pull:focus-visible { outline: 2px solid #f3eee6; outline-offset: 3px; }
+/* iPhone: a row from the app's Continue Listening box (dark appearance) */
+.pull--ios { gap: 14px; min-height: 52px; padding: 0 22px 0 16px; border-radius: 16px; background: #1c1c1e; color: #0a84ff; font-size: 17px; letter-spacing: -.01em; box-shadow: inset 0 0 0 .5px rgba(255, 255, 255, .07); }
+.pull--ios:hover { background: #262629; }
+.pull--ios .ico { width: 22px; height: 22px; }
+/* Mac: the button in Second Chair's menu (dark appearance) */
+.pull-menu { display: grid; justify-items: center; gap: 6px; min-width: 260px; padding: 12px 14px; border-radius: 13px; background: rgba(38, 38, 41, .96); box-shadow: 0 0 0 .5px rgba(255, 255, 255, .14), inset 0 .5px 0 rgba(255, 255, 255, .08), 0 18px 36px -14px rgba(0, 0, 0, .9); }
+.pull--mac { gap: 7px; height: 30px; padding: 0 13px 0 10px; border-radius: 7px; background: rgba(255, 255, 255, .15); color: #f5f5f7; font-size: 14px; box-shadow: inset 0 .5px 0 rgba(255, 255, 255, .18), 0 1px 2px rgba(0, 0, 0, .45); }
+.pull--mac:hover { background: rgba(255, 255, 255, .22); }
+.pull--mac .ico { width: 17px; height: 17px; }
+.pull-status { display: flex; align-items: center; gap: 6px; font: 400 11.5px/1.2 var(--sans); color: rgba(235, 235, 245, .62); }
+.pull-status { min-height: 1.2em; }   /* a line kept for the menu's status, so it can come and go */
+.pull-status.is-waiting::before { content: ""; width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid currentColor; border-right-color: transparent; animation: spin .7s linear infinite; }
+.pull-where { font: 500 .8125rem/1.3 var(--sans); color: rgba(243, 238, 230, .62); }
+.pull[aria-busy="true"] { cursor: progress; opacity: .7; }
+.pull--ios[aria-busy="true"]::after { content: ""; width: 14px; height: 14px; margin-left: 4px; border-radius: 50%; border: 2px solid currentColor; border-right-color: transparent; animation: spin .7s linear infinite; }
+@keyframes spin { to { transform: rotate(1turn); } }
+/* Once, when the section comes into view: the move that's open calls. */
+@keyframes beckon-ios { 0% { box-shadow: inset 0 0 0 .5px rgba(255, 255, 255, .07), 0 0 0 0 rgba(10, 132, 255, .5); } 100% { box-shadow: inset 0 0 0 .5px rgba(255, 255, 255, .07), 0 0 0 18px rgba(10, 132, 255, 0); } }
+@keyframes beckon-mac { 0% { box-shadow: 0 0 0 .5px rgba(255, 255, 255, .14), 0 0 0 0 rgba(243, 238, 230, .35), 0 18px 36px -14px rgba(0, 0, 0, .9); } 100% { box-shadow: 0 0 0 .5px rgba(255, 255, 255, .14), 0 0 0 18px rgba(243, 238, 230, 0), 0 18px 36px -14px rgba(0, 0, 0, .9); } }
+.hand.is-seen .pull-wrap:not([hidden]) .pull--ios { animation: beckon-ios 1.6s var(--ease) .5s 2; }
+.hand.is-seen .pull-wrap:not([hidden]) .pull-menu { animation: beckon-mac 1.6s var(--ease) .5s 2; }
+.hand-meta b { display: block; font: 600 1.0625rem/1.25 var(--sans); }
+.hand-meta span { display: block; color: rgba(243, 238, 230, .6); }
+.hand-state { margin-top: 6px; display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; font: 500 .875rem/1.2 var(--sans); color: rgba(243, 238, 230, .55); min-height: 1.2em; }
+.hs-time { font-family: var(--mono); font-size: .8125rem; font-variant-numeric: tabular-nums; }
+.hand-card[data-state="playing"] .hs-word { color: #f3eee6; }
+.hand-card[data-state="playing"] .hs-word::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #30d158; margin-right: 8px; translate: 0 -1px; }
+.hand-card[data-state="paused"] .hand-art { opacity: .4; filter: saturate(.5); transform: scale(.94); }
+/* Before anything arrives, the iPhone's seat is Apple Music's own Not Playing: a grey artwork square with a
+   music note, and "Not Playing". The song's artwork lands on that same square. */
+.hand-note { position: absolute; left: 50%; top: 50%; width: 34%; height: 34%; translate: -50% -50%; fill: rgba(243, 238, 230, .26); opacity: 0; transition: opacity .5s var(--ease); pointer-events: none; }
+.hand-card[data-state="empty"] .hand-art { background: linear-gradient(160deg, #2b2826, #1f1c1a); box-shadow: inset 0 0 0 .5px rgba(243, 238, 230, .08), 0 24px 40px -22px rgba(0, 0, 0, .8); }
+.hand-card[data-state="empty"] .hand-art img { opacity: 0; }
+.hand-card[data-state="empty"] .hand-note { opacity: 1; }
+.hand-card[data-state="empty"] .hand-meta b { color: rgba(243, 238, 230, .78); }
+.queue-label { margin-top: 12px; font: 500 .75rem/1 var(--sans); color: rgba(243, 238, 230, .62); }
+.queue { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; min-height: 34px; align-items: center; }
+.queue li { width: 34px; height: 34px; border-radius: 4px; overflow: hidden; flex: none; transition: opacity .6s var(--ease), transform .6s var(--ease); }
+.queue li img { width: 100%; height: 100%; }
+.queue .more { flex-basis: 100%; width: auto; height: auto; overflow: visible; font: 500 .75rem/1.3 var(--sans); color: rgba(243, 238, 230, .62); }
+.queue-mac.is-left li:not(.more) { opacity: .35; }
+.queue-iphone li { opacity: 0; transform: translateY(6px); }
+.queue-iphone.is-here li { opacity: 1; transform: none; }
+.hand-card[data-state="empty"] .queue-label--iphone { visibility: hidden; }
+/* Mid-width screens: the Mac column is narrow, so Up Next stays on one row with smaller covers, above the word. */
+@media (min-width: 720px) and (max-width: 1359px) {
+  .queue { gap: 4px; margin-top: 6px; } .queue li:not(.more) { width: 28px; height: 28px; border-radius: 3px; } .queue .more { display: none; }
+  .hand-art { width: clamp(140px, 16.5vw, 232px); }
+  .hand-state { margin-top: 6px; } .queue-label { margin-top: 12px; }
+  .place-name { margin-top: -.08em; }
+}
+@media (min-width: 720px) and (max-width: 899px) { .queue li:nth-child(5) { display: none; } }
+
+.hand-ghost { position: absolute; z-index: 50; pointer-events: none; overflow: hidden; box-shadow: 0 30px 50px -20px rgba(0, 0, 0, .7); will-change: transform; }
+.hand-ghost img { width: 100%; height: 100%; }
+
+@media (max-width: 719px) {
+  .handover-copy { grid-template-columns: 1fr; grid-template-areas: "title" "leave" "back"; }
+  .handover .lede-back { margin-top: 14px; }
+  .hand { grid-template-columns: 1fr; grid-template-areas: "mac" "iphone"; row-gap: 56px; }
+  /* Stacked, nothing needs to line up across, so the Mac's hidden button takes no space. */
+  .pull-wrap[hidden] { display: none; }
+  .place-name { font-size: min(28vw, 9rem); }
+  .hand-art { width: min(40vw, 180px); }
+  .queue li { width: 26px; height: 26px; border-radius: 3px; }
+  .queue { gap: 5px; flex-wrap: wrap; }
+  .hand-card { column-gap: 16px; margin-left: 0; }
+  .queue .more { display: none; } .hand-state { margin-top: 6px; } .queue-label { margin-top: 12px; }   /* Up Next ends above the word */
+}
+
+/* ---------- 4. Get it ---------- */
+.get { max-width: var(--max); margin: 0 auto; padding: clamp(88px, 12vw, 168px) var(--gutter); }
+.get-head .lede { margin-top: 24px; color: var(--ink-2); max-width: 34rem; }
+/* The two apps as a ruled list: icon, name, details, action. */
+.apps { list-style: none; margin-top: clamp(48px, 6vw, 80px); border-top: 1.5px solid var(--ink); }
+.app {
+  display: grid; grid-template-columns: 64px minmax(0, 1.25fr) minmax(0, 1fr) minmax(220px, 15rem);
+  grid-template-areas: "icon name meta actions"; gap: 0 clamp(16px, 2.6vw, 40px); align-items: center;
+  padding: clamp(22px, 2.6vw, 32px) 0; border-bottom: 1px solid var(--rule);
+}
+.app-icon { grid-area: icon; width: 64px; height: 64px; filter: drop-shadow(0 10px 14px rgba(10, 80, 180, .22)); }   /* the icon's own blue */
+.app-name { grid-area: name; font-size: clamp(1.75rem, 1.15rem + 1.5vw, 2.6rem); line-height: 1.05; }
+.app-meta { grid-area: meta; color: var(--ink-2); font-size: .9375rem; line-height: 1.6; }
+.app-actions { grid-area: actions; display: grid; justify-items: end; gap: 10px; text-align: right; }
+.app-sub { color: var(--ink-2); }
+.todo { background: #fff1a8; color: #3b3200; padding: 2px 6px; border-radius: 4px; }
+
+.setup { margin-top: clamp(64px, 9vw, 120px); }
+.setup-title { font: 600 .9375rem/1 var(--sans); color: var(--ink-2); }
+.setup-steps { list-style: none; counter-reset: step; display: grid; grid-template-columns: repeat(4, 1fr); margin: 22px 0 28px; border-top: 1px solid var(--rule); }
+.setup-steps li { counter-increment: step; position: relative; padding: 22px 28px 26px 0; display: grid; gap: 10px; align-content: start; }
+.setup-steps li + li { padding-left: 24px; border-left: 1px solid var(--rule); }
+.setup-steps li::before { content: counter(step); font: 300 3.25rem/1 var(--serif); color: var(--ink); }
+.setup-steps .who { font: 600 .75rem/1 var(--sans); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); }
+.setup-steps .who em { font-style: normal; }
+.setup-steps p { font-size: .9375rem; color: var(--ink-2); max-width: 22rem; }
+.setup-steps .key::before { color: var(--red); }
+.setup-steps .key p { color: var(--ink); }
+.setup-steps .key { background: linear-gradient(var(--red), var(--red)) top left / 100% 3px no-repeat; }
+.get .fine { margin-top: clamp(56px, 7vw, 88px); padding-top: 20px; border-top: 1px solid var(--rule); color: var(--ink-2); max-width: 56rem; }
+.get .fine b { color: var(--ink); }
+
+@media (max-width: 899px) {
+  .app { grid-template-columns: 56px minmax(0, 1fr); grid-template-areas: "icon name" "meta meta" "actions actions"; row-gap: 16px; }
+  .app-icon { width: 56px; height: 56px; }
+  .app-actions { justify-items: start; text-align: left; }
+  .setup-steps { grid-template-columns: 1fr 1fr; }
+  .setup-steps li:nth-child(3) { padding-left: 0; border-left: 0; }
+  .setup-steps li:nth-child(n+3) { border-top: 1px solid var(--rule); }
+}
+@media (max-width: 519px) {
+  .setup-steps { grid-template-columns: 1fr; }
+  .setup-steps li, .setup-steps li + li { padding-left: 0; border-left: 0; grid-template-columns: 3rem 1fr; column-gap: 12px; }
+  .setup-steps li::before { grid-row: 1 / span 2; font-size: 2.5rem; }
+  .setup-steps li + li { border-top: 1px solid var(--rule); }
+}
