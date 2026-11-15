@@ -106,7 +106,7 @@ html:not(.js) .try { display: none; }
 .try-results span { font-size: .8125rem; color: var(--ink-2); }
 .try-fine { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--rule); font-size: .75rem; color: var(--ink-3); }
 .hero-standby {
-  --phone-shadow: 0 5cqw 9cqw -3cqw color-mix(in oklab, var(--stage) 25%, #000 75%), 0 1.6cqw 3cqw -1cqw rgba(0, 0, 0, .3);
+  --phone-drop: drop-shadow(0 2.6cqw 3.6cqw color-mix(in oklab, var(--stage) 25%, #000 75%)) drop-shadow(0 .8cqw 1.4cqw rgba(0, 0, 0, .3));
   position: absolute; right: var(--gap); bottom: var(--gap); width: min(56vw, 92vh, 1060px, calc(100vw - var(--gap) - var(--gutter) - 29.5rem));   /* never under the copy */
 }
 /* The desktop composition: the space between the label and the headline grows with the window (up to 14% of
@@ -231,7 +231,7 @@ html:not(.js) .try { display: none; }
 /* The section's bottom edge crops the phone well below its player, with the whole Watch in view. */
 .controls-scene { grid-area: scene; position: relative; container-type: inline-size; align-self: end; aspect-ratio: 100 / 107; }
 .ctl-lock {
-  --phone-shadow: 0 6cqw 14cqw -6cqw rgba(70, 30, 10, .5), 0 2cqw 4cqw -1cqw rgba(70, 30, 10, .22);
+  --phone-drop: drop-shadow(0 3.5cqw 6cqw rgba(70, 30, 10, .42)) drop-shadow(0 1.2cqw 2cqw rgba(70, 30, 10, .2));
   position: absolute; right: 0; top: 0; width: 53cqw;
 }
 /* On the phone's left: between the Mac and the iPhone. */
@@ -256,8 +256,8 @@ html:not(.js) .try { display: none; }
   .controls { grid-template-columns: 1fr; grid-template-areas: "title" "copy" "scene"; gap: 0; }
   .controls-copy { padding-bottom: 48px; }
   .controls-scene { width: 100%; max-width: 640px; justify-self: center; aspect-ratio: 100 / 112; }
-  .ctl-lock { width: 62cqw; }
-  .ctl-watch { left: 0; top: 49cqw; width: 38.2cqw; }
+  .ctl-lock { width: 62cqw; right: auto; left: 19cqw; }   /* centred: on mobile the Lock Screen stands alone */
+  .ctl-watch { display: none; }
 }
 @media (max-width: 519px) {
   .ctl-menu { width: 100%; max-width: 300px; }

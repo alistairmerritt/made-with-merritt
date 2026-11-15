@@ -191,15 +191,17 @@ ul, ol { margin: 0; padding: 0; }
 .mm-row { display: flex; justify-content: space-between; margin-top: 8px; }
 .mm-row span + span { color: rgba(0, 0, 0, .5); }
 
-/* ---- iPhone hardware: iPhone 18 Pro, Silver ----
+/* ---- iPhone hardware: iPhone 18 Pro, in the Watch's natural titanium ----
    The hardware is a pre-rendered frame (assets/img/devices), built from Apple's published dimensions and measured
    product images; its display window is transparent, and the live screen sits beneath it. Window positions are the
    display's exact place in the frame (66.59 x 144.78 mm active area in a 73.3 x 151.4 mm frame incl. buttons). */
 .phone { container-type: inline-size; position: relative; }
 .phone-body { position: relative; aspect-ratio: 73.30 / 151.40; }
 .phone-body::after { content: ""; position: absolute; inset: 0; z-index: 20; pointer-events: none; background: url("../img/devices/iphone18pro-portrait.webp") center / 100% 100% no-repeat; }
-.phone-body::before { content: ""; position: absolute; inset: .46% .96%; z-index: -1; border-radius: 16% / 7.7%;   /* the shadow, under the silhouette */
-  box-shadow: var(--phone-shadow, 0 40px 80px -24px rgba(0, 0, 0, .55), 0 14px 30px -10px rgba(0, 0, 0, .35)); }
+/* The shadow is cast by a solid silhouette of the same outline (covered by the frame), so it follows the continuous corners. */
+.phone-body::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: url("../img/devices/iphone18pro-portrait-shadow.webp") center / 100% 100% no-repeat;
+  filter: var(--phone-drop, drop-shadow(0 6cqw 7cqw rgba(0, 0, 0, .35)) drop-shadow(0 2cqw 2.5cqw rgba(0, 0, 0, .22))); }
 /* Corners: a 9.9 mm radius, just inside the largest circle (10.8 mm) that still fills the window's continuous-curve
    corners; the frame's black border hides the rest. */
 .phone-bezel { position: absolute; left: 4.576%; top: 2.186%; width: 90.849%; height: 95.627%; background: #000; border-radius: 14.93% / 6.87%; }
@@ -210,7 +212,7 @@ ul, ol { margin: 0; padding: 0; }
 }
 .phone--landscape .phone-body { aspect-ratio: 151.40 / 73.30; }
 .phone--landscape .phone-body::after { background-image: url("../img/devices/iphone18pro-landscape.webp"); }
-.phone--landscape .phone-body::before { inset: .96% .46%; border-radius: 7.7% / 16%; }
+.phone--landscape .phone-body::before { background-image: url("../img/devices/iphone18pro-landscape-shadow.webp"); }
 .phone--landscape .phone-bezel { left: 2.186%; top: 4.576%; width: 95.627%; height: 90.849%; border-radius: 6.87% / 14.93%; }
 .island { display: none; }    /* the Dynamic Island is part of the frame */
 
@@ -328,7 +330,9 @@ ul, ol { margin: 0; padding: 0; }
    (32.88 x 40.05 mm in a 46.9 x 49.8 mm frame that includes the crown). */
 .watch-case { position: relative; z-index: 1; aspect-ratio: 46.90 / 49.80; }
 .watch-case::after { content: ""; position: absolute; inset: 0; z-index: 5; pointer-events: none; background: url("../img/devices/watch-ultra4.webp") center / 100% 100% no-repeat; }
-.watch-case::before { content: ""; position: absolute; inset: .8% 5.5%; z-index: -1; border-radius: 35% / 33%; box-shadow: 0 16cqw 22cqw -9cqw rgba(60, 30, 10, .45), 0 4cqw 6cqw -2cqw rgba(60, 30, 10, .2); }
+.watch-case::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: url("../img/devices/watch-ultra4-shadow.webp") center / 100% 100% no-repeat;
+  filter: drop-shadow(0 6cqw 8cqw rgba(60, 30, 10, .40)) drop-shadow(0 1.6cqw 2.4cqw rgba(60, 30, 10, .22)); }
 .watch-crown, .watch-button, .watch-action { display: none; }    /* part of the rendered case */
 .watch-glass { position: absolute; left: 14.947%; top: 9.791%; width: 70.106%; height: 80.417%; background: #000; border-radius: 25.73% / 21.12%; }   /* 8.46 mm: fills the window's corners (limit 9.2) */
 .watch-screen {   /* sizes in cqw of the whole watch, fitted to the 32.88 mm display */

@@ -3,7 +3,7 @@
 The Apple Watch and iPhone hardware on the site are pre-rendered frames (`assets/img/devices/*.webp`) with a transparent display window; the live, interactive screens sit beneath them. Rendered 16 November 2026.
 
 - **Apple Watch Ultra 4**, 49 mm, Natural titanium (`watch.py`)
-- **iPhone 18 Pro**, Silver, portrait and landscape (`phone.py`, rendered with `phone.P['f0'] = (0.86, 0.86, 0.875)`; the script's default is the measured Burgundy)
+- **iPhone 18 Pro**, portrait and landscape (`phone.py`), coloured to match the Watch: rendered with `phone.P['f0'] = watch.ENV['f0']` (natural titanium). Not a real 18 Pro finish (it's aluminium: Black, Silver, Glacier, Burgundy); the script's default is the measured Burgundy
 
 Geometry is in millimetres: overall sizes and display resolutions from Apple's published specifications; corner curves, rim and frame cross-sections, crown, buttons and Dynamic Island measured from Apple's front-on product images; lighting fitted to Apple's Watch photo (`fit.py`, `env_fit.json`). Each script's docstring says which values are documented, measured, derived or estimated. `compare.py` scores a render against the reference photo.
 
