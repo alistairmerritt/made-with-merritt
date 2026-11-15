@@ -54,7 +54,7 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; background: #000; }   /* Safari tints the status bar from this; it continues the black Made with Merritt bar */
 body {
   margin: 0; background: var(--paper); color: var(--ink);
   font: 400 1.0625rem/1.55 var(--sans);
