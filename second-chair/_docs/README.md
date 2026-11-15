@@ -120,7 +120,7 @@ The first screen's bottom-left control opens a search of Apple's public catalogu
 
 Committing to `main` in `made-with-merritt` publishes it: GitHub Pages serves the repository as is, and Jekyll copies the HTML untouched.
 
-- **Adobe Fonts:** add `madewithmerritt.com` to the web project's domains on fonts.adobe.com before publishing, or every heading falls back to Newsreader.
+- **Adobe Fonts:** nothing to set up. Web projects no longer have a domain list, and the kit's files were checked on 15 November 2026 to load for a madewithmerritt.com page.
 - **Addresses:** canonical links, `og:url` and `og:image` are absolute `https://madewithmerritt.com/second-chair/…` URLs. Change all three pages if the address ever changes.
 - **Links out of the folder** are root-relative: `/` (Made with Merritt), `/privacy/` (the site's own policy) and `/?contact=1` (opens its contact form). Everything else is relative to the folder.
 - **For TestFlight and the App Store:** privacy policy URL `https://madewithmerritt.com/second-chair/privacy/`; for a support URL, the guide's Need help section or the contact form.
