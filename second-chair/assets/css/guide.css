@@ -162,7 +162,9 @@
 .app-screen .np-row .a { width: 13cqw; height: 13cqw; border-radius: 2cqw; overflow: hidden; flex: none; }
 .app-screen .np-row b { display: block; font-weight: 600; }
 .app-screen .np-row span { color: rgba(60, 60, 67, .6); font-size: 4.4cqw; }
-.app-screen .hot { position: relative; z-index: 1; box-shadow: inset 0 0 0 .7cqw #ff383c; border-radius: 6cqw; }
+/* The ring sits above the rows, so their dividers can't cut through it. */
+.app-screen .hot { position: relative; z-index: 1; border-radius: 6cqw; }
+.app-screen .hot::after { content: ""; position: absolute; inset: 0; z-index: 2; border-radius: inherit; box-shadow: inset 0 0 0 .7cqw #ff383c; pointer-events: none; }
 .app-screen .key-label { color: #007aff; font-weight: 600; }
 .fig .phone { width: 230px; }
 .fig .phone.small { width: 200px; }

@@ -273,6 +273,9 @@ html:not(.js) .try { display: none; }
 .handover .lede-back { grid-area: back; max-width: 33rem; }
 .handover .lede .ui { color: #f3eee6; }
 /* The small print, at the foot of the section. */
+.handover-auto { margin: clamp(48px, 6vw, 88px) 0 0; max-width: 40rem; color: rgba(243, 238, 230, .78); }
+.handover-auto b { color: #f3eee6; font-weight: 600; }
+.handover-auto + .handover-fine { margin-top: clamp(32px, 4vw, 56px); }
 .handover-fine { margin-top: clamp(64px, 8vw, 112px); padding-top: 18px; border-top: 1px solid var(--rule); font-size: .8125rem; color: rgba(243, 238, 230, .62); }
 .handover-fine a { color: #f3eee6; }
 
