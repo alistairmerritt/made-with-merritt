@@ -191,35 +191,26 @@ ul, ol { margin: 0; padding: 0; }
 .mm-row { display: flex; justify-content: space-between; margin-top: 8px; }
 .mm-row span + span { color: rgba(0, 0, 0, .5); }
 
-/* ---- iPhone hardware ---- */
+/* ---- iPhone hardware: iPhone 18 Pro, Burgundy ----
+   The hardware is a pre-rendered frame (assets/img/devices), built from Apple's published dimensions and measured
+   product images; its display window is transparent, and the live screen sits beneath it. Window positions are the
+   display's exact place in the frame (66.59 x 144.78 mm active area in a 73.3 x 151.4 mm frame incl. buttons). */
 .phone { container-type: inline-size; position: relative; }
-.phone-body {
-  position: relative; border-radius: var(--r-outer); padding: var(--edge);
-  background: linear-gradient(145deg, #a7a8ad, #4a4b50 22%, #2b2c30 50%, #55565b 78%, #b8b9be);
-  box-shadow:
-    0 0 0 .5px rgba(0, 0, 0, .6),
-    inset 0 0 0 .5px rgba(255, 255, 255, .5),
-    var(--phone-shadow, 0 40px 80px -24px rgba(0, 0, 0, .55), 0 14px 30px -10px rgba(0, 0, 0, .35));
-}
-.phone-bezel { position: relative; border-radius: calc(var(--r-outer) - var(--edge)); padding: var(--bezel); background: #050506; box-shadow: inset 0 0 0 .5px rgba(255, 255, 255, .08); }
-.screen { position: relative; overflow: hidden; border-radius: calc(var(--r-outer) - var(--edge) - var(--bezel)); background: #000; isolation: isolate; }
+.phone-body { position: relative; aspect-ratio: 73.30 / 151.40; }
+.phone-body::after { content: ""; position: absolute; inset: 0; z-index: 20; pointer-events: none; background: url("../img/devices/iphone18pro-portrait.webp") center / 100% 100% no-repeat; }
+.phone-body::before { content: ""; position: absolute; inset: .46% .96%; z-index: -1; border-radius: 16% / 7.7%;   /* the shadow, under the silhouette */
+  box-shadow: var(--phone-shadow, 0 40px 80px -24px rgba(0, 0, 0, .55), 0 14px 30px -10px rgba(0, 0, 0, .35)); }
+.phone-bezel { position: absolute; left: 4.576%; top: 2.186%; width: 90.849%; height: 95.627%; background: #000; border-radius: 18% / 8.3%; }
+.screen { position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: inherit; background: #000; isolation: isolate; }
 .screen::after { /* glass: a faint sheen across the top */
   content: ""; position: absolute; inset: 0; z-index: 9; pointer-events: none; border-radius: inherit;
   background: linear-gradient(115deg, rgba(255, 255, 255, .07), rgba(255, 255, 255, 0) 38%);
 }
-.phone--landscape { --edge: .42cqw; --bezel: .9cqw; --r-outer: 7.4cqw; }
-.phone--landscape .screen { aspect-ratio: 2556 / 1179; }
-.phone--portrait { --edge: .95cqw; --bezel: 2cqw; --r-outer: 16.5cqw; }
-.phone--portrait .screen { aspect-ratio: 1179 / 2556; }
-.island { position: absolute; z-index: 8; background: #000; border-radius: 99px; }
-.phone--landscape .island { left: 1.7%; top: 50%; width: 3.6%; height: 29%; translate: 0 -50%; }
-.phone--portrait .island { top: 1.6%; left: 50%; width: 32%; height: 3.6%; translate: -50% 0; }
-/* Side buttons, for the silhouette. */
-.phone-body::before, .phone-body::after { content: ""; position: absolute; background: #6d6e73; border-radius: 2px; }
-.phone--landscape .phone-body::before { top: -.25cqw; left: 16%; width: 6%; height: .3cqw; }
-.phone--landscape .phone-body::after { bottom: -.25cqw; left: 22%; width: 10%; height: .3cqw; }
-.phone--portrait .phone-body::before { left: -.6cqw; top: 18%; width: .6cqw; height: 6%; }
-.phone--portrait .phone-body::after { right: -.6cqw; top: 25%; width: .6cqw; height: 11%; }
+.phone--landscape .phone-body { aspect-ratio: 151.40 / 73.30; }
+.phone--landscape .phone-body::after { background-image: url("../img/devices/iphone18pro-landscape.webp"); }
+.phone--landscape .phone-body::before { inset: .96% .46%; border-radius: 7.7% / 16%; }
+.phone--landscape .phone-bezel { left: 2.186%; top: 4.576%; width: 95.627%; height: 90.849%; border-radius: 8.3% / 18%; }
+.island { display: none; }    /* the Dynamic Island is part of the frame */
 
 /* ---- StandBy, Now Playing (landscape) ---- */
 /* Shared iOS pieces: progress bars and the transport buttons (Lock Screen, StandBy, Watch). */
@@ -314,10 +305,10 @@ ul, ol { margin: 0; padding: 0; }
 .js .is-asleep .lock-ui > :not(.wall):not(.np) { opacity: .0; }
 .lock-ui > :not(.wall):not(.np) { transition: opacity .7s var(--ease); }
 
-/* ---- Apple Watch: silver aluminium case, Sport Band, watchOS Now Playing ---- */
+/* ---- Apple Watch Ultra 4: rendered case, band, watchOS Now Playing ---- */
 .watch { container-type: inline-size; position: relative; width: 100%; --band: #3f4b60; }
 .watch-band {
-  position: relative; width: 63%; height: 46cqw; margin: 0 auto;
+  position: relative; width: 59%; height: 46cqw; margin: 0 auto;
   background:
     linear-gradient(90deg, rgba(0, 0, 0, .34), rgba(255, 255, 255, .07) 18%, rgba(255, 255, 255, .12) 46%, rgba(255, 255, 255, .05) 76%, rgba(0, 0, 0, .36)),
     var(--band);
@@ -330,62 +321,39 @@ ul, ol { margin: 0; padding: 0; }
 }
 .watch-band--top::after { bottom: 5cqw; --dir: to top; }
 .watch-band--bottom::after { top: 5cqw; --dir: to bottom; }
-/* Apple Watch Ultra, natural titanium: a 49 × 44 mm case with squarer corners and a flat sapphire front set in a
-   titanium rim. The crown and side button sit in a raised guard on the right; the orange Action button is on the left. */
-.watch-case {
-  position: relative; z-index: 1; aspect-ratio: 44 / 49; padding: 3.2cqw; border-radius: 29.5% / 26.5%;   /* about 13 mm on a 44 × 49 mm case */
-  background:
-    radial-gradient(80% 45% at 26% 3%, rgba(255, 255, 255, .85), transparent 60%),
-    linear-gradient(158deg, #ece8e1 0%, #c9c4bb 28%, #9e9990 60%, #bdb8af 82%, #e6e2db 100%);
-  box-shadow:
-    inset 0 0 0 .5cqw rgba(255, 255, 255, .55),
-    inset 0 -1.4cqw 2.2cqw rgba(40, 36, 30, .22),
-    0 0 0 .3cqw rgba(30, 28, 24, .22),
-    0 16cqw 22cqw -9cqw rgba(60, 30, 10, .45), 0 4cqw 6cqw -2cqw rgba(60, 30, 10, .2);
-}
-.watch-case::after { /* the crown guard */
-  content: ""; position: absolute; z-index: -1; right: -2.4cqw; top: 22%; width: 5cqw; height: 52%; border-radius: 2.4cqw / 4cqw;
-  background: linear-gradient(90deg, #c9c4bb, #a29d94 70%, #8d887f); box-shadow: 0 0 0 .25cqw rgba(30, 28, 24, .18);
-}
-.watch-crown {
-  position: absolute; z-index: -2; right: -5.4cqw; top: 27%; width: 6cqw; height: 18%; border-radius: 1.8cqw;
-  background: repeating-linear-gradient(180deg, #e9e5df 0 .6cqw, #97928a .6cqw 1.2cqw);
-  box-shadow: inset -.8cqw 0 1.2cqw rgba(0, 0, 0, .28), 0 0 0 .25cqw rgba(30, 28, 24, .18);
-}
-.watch-button {
-  position: absolute; z-index: -2; right: -3.6cqw; top: 53%; width: 3cqw; height: 17%; border-radius: 1.5cqw;
-  background: linear-gradient(90deg, #d2cdc5, #8f8a82); box-shadow: 0 0 0 .25cqw rgba(30, 28, 24, .16);
-}
-.watch-action {
-  position: absolute; z-index: -2; left: -1.9cqw; top: 25%; width: 2.8cqw; height: 19%; border-radius: 1.4cqw;
-  background: linear-gradient(90deg, #c24a12, #ff7a2a 60%, #ff9a50); box-shadow: 0 0 0 .25cqw rgba(30, 28, 24, .18);
-}
-.watch-glass { height: 100%; padding: 3.8cqw; border-radius: 28.2% / 25.1%;   /* concentric with the case */ background: #050506; box-shadow: inset 0 0 0 .4cqw rgba(255, 255, 255, .08), 0 0 0 .35cqw rgba(60, 56, 50, .35); }
-.watch-screen {
+/* Apple Watch Ultra 4, 49 mm, natural titanium: a pre-rendered case (assets/img/devices) from Apple's published
+   dimensions and its front-on product photo, with the live screen in its transparent display window
+   (32.88 x 40.05 mm in a 46.9 x 49.8 mm frame that includes the crown). */
+.watch-case { position: relative; z-index: 1; aspect-ratio: 46.90 / 49.80; }
+.watch-case::after { content: ""; position: absolute; inset: 0; z-index: 5; pointer-events: none; background: url("../img/devices/watch-ultra4.webp") center / 100% 100% no-repeat; }
+.watch-case::before { content: ""; position: absolute; inset: .8% 5.5%; z-index: -1; border-radius: 35% / 33%; box-shadow: 0 16cqw 22cqw -9cqw rgba(60, 30, 10, .45), 0 4cqw 6cqw -2cqw rgba(60, 30, 10, .2); }
+.watch-crown, .watch-button, .watch-action { display: none; }    /* part of the rendered case */
+.watch-glass { position: absolute; left: 14.947%; top: 9.791%; width: 70.106%; height: 80.417%; background: #000; border-radius: 26% / 23%; }
+.watch-screen {   /* sizes in cqw of the whole watch, fitted to the 32.88 mm display */
   position: relative; isolation: isolate; height: 100%; border-radius: 26.1% / 23.1%; overflow: hidden; color: #fff; font-family: var(--sans);
-  padding: 5.6cqw 7cqw 5.2cqw; display: flex; flex-direction: column;   /* keeps the corner buttons inside the rounded corners */ align-items: center; justify-content: space-between; background: #1c1b1d;
+  padding: 4.57cqw 5.71cqw 4.24cqw; display: flex; flex-direction: column;   /* keeps the corner buttons inside the rounded corners */ align-items: center; justify-content: space-between; background: #1c1b1d;
 }
 /* The ground: dark, faintly tinted by the artwork, the way watchOS draws it. */
 .watch-screen .w-bg { position: absolute; left: -30%; top: -30%; z-index: -2; width: 160%; height: 160%; max-width: none; filter: blur(12px) saturate(.9) brightness(.42); }
 .watch-screen::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(40, 40, 44, .55), rgba(20, 20, 22, .35) 45%, rgba(60, 60, 64, .4)); }
 .w-top { align-self: stretch; display: grid; grid-template-columns: auto 1fr auto; align-items: center; }
-.w-round { display: grid; place-items: center; width: 13cqw; height: 13cqw; border-radius: 50%; background: rgba(255, 255, 255, .16); box-shadow: inset 0 .3cqw .4cqw rgba(255, 255, 255, .12); }
-.w-round svg { width: 6cqw; height: 6cqw; }
-.w-dots { display: flex; justify-content: center; gap: 1cqw; }
-.w-dots i { width: 1.5cqw; height: 1.5cqw; border-radius: 50%; background: #fff; }
-.w-time { justify-self: center; align-self: start; margin-top: -.6cqw; font: 600 6.6cqw/1 var(--sans); font-variant-numeric: tabular-nums; letter-spacing: -.01em; }
-.w-cover { position: relative; width: 35cqw; margin-top: -3cqw; }
-.w-cover .art { display: block; width: 100%; aspect-ratio: 1; border-radius: 2.4cqw; box-shadow: 0 1.6cqw 3cqw rgba(0, 0, 0, .35); }
+.w-round { display: grid; place-items: center; width: 10.6cqw; height: 10.6cqw; border-radius: 50%; background: rgba(255, 255, 255, .16); box-shadow: inset 0 0.245cqw 0.326cqw rgba(255, 255, 255, .12); }
+.w-round svg { width: 4.89cqw; height: 4.89cqw; }
+.w-dots { display: flex; justify-content: center; gap: 0.815cqw; }
+.w-dots i { width: 1.22cqw; height: 1.22cqw; border-radius: 50%; background: #fff; }
+.w-time { justify-self: center; align-self: start; margin-top: -0.489cqw; font: 600 5.38cqw/1 var(--sans); font-variant-numeric: tabular-nums; letter-spacing: -.01em; }
+.w-cover { position: relative; width: 28.5cqw; margin-top: -2.45cqw; }
+.w-cover .art { display: block; width: 100%; aspect-ratio: 1; border-radius: 1.96cqw; box-shadow: 0 1.3cqw 2.45cqw rgba(0, 0, 0, .35); }
 .w-meta { width: 100%; min-width: 0; text-align: center; }
-.w-title { display: block; font: 600 5.6cqw/1.2 var(--sans); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.w-artist { display: block; font: 400 5.4cqw/1.2 var(--sans); color: rgba(255, 255, 255, .62); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.w-title { display: block; font: 600 4.57cqw/1.2 var(--sans); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.w-artist { display: block; font: 400 4.4cqw/1.2 var(--sans); color: rgba(255, 255, 255, .62); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .w-controls { align-self: stretch; display: flex; justify-content: space-between; align-items: center; }
-.w-btn { position: relative; display: grid; place-items: center; width: 13.6cqw; height: 13.6cqw; padding: 0; border: 0; border-radius: 50%; color: #fff; background: rgba(255, 255, 255, .16); cursor: pointer; transition: transform .2s var(--ease), background-color .2s; }
+.w-btn { position: relative; display: grid; place-items: center; width: 11.1cqw; height: 11.1cqw; padding: 0; border: 0; border-radius: 50%; color: #fff; background: rgba(255, 255, 255, .16); cursor: pointer; transition: transform .2s var(--ease), background-color .2s; }
 .w-btn:hover { background: rgba(255, 255, 255, .24); }
 .w-btn:active { transform: scale(.88); }
-.w-btn svg { width: 6cqw; height: 6cqw; pointer-events: none; }
-.w-btn.pp { width: 17.6cqw; height: 17.6cqw; background: rgba(255, 255, 255, .1); }
-.w-btn.pp svg:not(.w-ring) { width: 7.4cqw; height: 7.4cqw; }
+.w-btn svg { width: 4.89cqw; height: 4.89cqw; pointer-events: none; }
+.w-btn.pp { width: 14.3cqw; height: 14.3cqw; background: rgba(255, 255, 255, .1); }
+.w-btn.pp svg:not(.w-ring) { width: 6.03cqw; height: 6.03cqw; }
 .w-btn .w-ring { position: absolute; inset: 0; width: 100%; height: 100%; rotate: -90deg; fill: none; stroke-width: 2.2; }
 .w-ring circle { stroke: rgba(255, 255, 255, .2); }
 .w-ring .w-ring-fill { stroke: #fff; stroke-linecap: round; stroke-dasharray: 100 100; stroke-dashoffset: calc((1 - var(--p, 0)) * 100px); }
