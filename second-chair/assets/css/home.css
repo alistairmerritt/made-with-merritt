@@ -285,7 +285,7 @@ html:not(.js) .try { display: none; }
 .place-iphone { grid-area: iphone; }
 /* The device's name is the seat the song sits on. */
 .place-name {
-  position: relative; z-index: 1; margin-top: -.11em; margin-left: -.02em;   /* the glyphs' own side space: stems on the column edge */
+  position: relative; z-index: 1; margin-top: calc(-.11em - 25px); margin-left: -.02em;   /* tucked 25px further under the artwork; the glyphs' own side space puts the stems on the column edge */
   font-size: clamp(5.5rem, 1rem + 15.5vw, 16.5rem); line-height: .82; letter-spacing: -.035em;
   color: rgba(243, 238, 230, .1); transition: color 1s var(--ease);
 }
@@ -357,7 +357,7 @@ html:not(.js) .try { display: none; }
   .queue { gap: 4px; margin-top: 6px; } .queue li:not(.more) { width: 28px; height: 28px; border-radius: 3px; } .queue .more { display: none; }
   .hand-art { width: clamp(140px, 16.5vw, 232px); }
   .hand-state { margin-top: 6px; } .queue-label { margin-top: 12px; }
-  .place-name { margin-top: -.08em; }
+  .place-name { margin-top: calc(-.08em - 25px); }
 }
 @media (min-width: 720px) and (max-width: 899px) { .queue li:nth-child(5) { display: none; } }
 
@@ -370,7 +370,7 @@ html:not(.js) .try { display: none; }
   .hand { grid-template-columns: 1fr; grid-template-areas: "mac" "iphone"; row-gap: 56px; }
   /* Stacked, nothing needs to line up across, so the Mac's hidden button takes no space. */
   .pull-wrap[hidden] { display: none; }
-  .place-name { font-size: min(28vw, 9rem); }
+  .place-name { font-size: min(28vw, 9rem); margin-top: -.11em; }   /* on phones the smaller name isn't tucked further under the artwork */
   .hand-art { width: min(40vw, 180px); }
   .queue li { width: 26px; height: 26px; border-radius: 3px; }
   .queue { gap: 5px; flex-wrap: wrap; }
