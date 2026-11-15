@@ -55,14 +55,18 @@ The display face, IvyPresto Headline Light (roman and italic), is served by Adob
 
 ## Product claims to keep true
 
-The copy was checked against the apps on 15 November 2026 (Mac 0.3.0; iPhone TestFlight 202611152035):
+The copy was checked against the apps on 16 November 2026 (Mac 0.3.1; iPhone TestFlight 202611160929):
 
 - **Play To is gone.** It was removed from the iPhone app on 12 November, so neither page mentions choosing speakers. If it comes back, it goes in the guide under "You're ready", not on the home page.
 - **The volume slider sets Music's own volume on the Mac**, not the Mac's system volume. The copy says "turn Music up or down on the Mac".
-- **Continue Listening** runs both ways. The iPhone app has Continue on iPhone and Continue on Mac; the Mac's menu has Continue from iPhone (Mac 0.3.0), offered only once Continue on iPhone has paused the Mac, until Music plays there again. Its status lines ("Asking your iPhone…", "Your iPhone is handing over…", "Answer the notification on your iPhone or Apple Watch.") are quoted from `MacCompanion`; the notification's button is **Continue on Mac**.
+- **Continue Listening** runs both ways. The iPhone app has Continue on iPhone and Continue on Mac; the Mac's menu has Continue from iPhone, shown whenever Music on the Mac is paused or stopped (hidden while it plays, or isn't open). After Continue on iPhone, until Music plays there again, the menu's song and controls dim, its "On This Mac" heading says "Continued on iPhone", and Continue from iPhone is the blue, prominent button. Its status lines ("Asking your iPhone…", "Your iPhone is handing over…", "Answer the notification on your iPhone or Apple Watch.") are quoted from `MacCompanion`; the notification's button is **Continue on Mac**.
 - **Continue on Mac works for any song.** A song the Mac's queue doesn't have plays as that song's station: from the same point when the station starts with it, otherwise from the station's first song ("Your Mac is playing this song's station, which started with another song."). "This song is no longer in your Mac's queue" no longer exists; don't bring it back.
+- **The iPhone app says whether Continue Listening can work.** Its Continue Listening section starts with Status: Ready, Set Up on Your Mac, Reconnect on Your Mac, Allow Apple Music or Needs Apple Music. The guide's "If it isn't ready" list quotes each note.
+- **Mac menu labels:** "Connected" with no address (never show the relay's address); "iPhone · Paired", not the phone's name; the Music section is headed "Continue Listening", with Connect to Music…, Disconnect from Music, and "Music no longer recognises Second Chair…" when Music has forgotten it. The iPhone app's Mac section has Reconnect to Mac and Unpair Mac.
+- **Don't promise** that Continue on Mac's station starts with the song: in tries, about half began with another.
 - **Continue on iPhone** adds a station made from the song when the Mac has fewer than three songs to come, and run again with nothing new on the Mac it carries on with the phone's own music.
-- **Privacy:** the iPhone asks Apple Music for the song's station. The guide's privacy list says so.
+- **Privacy:** the iPhone asks Apple Music for the song's station. For Continue on Mac with a song the Mac's queue doesn't have, its Apple Music ID, title and the phone's position go to the Mac through the relay. Only whether Second Chair is connected to Music goes to the iPhone. Both privacy lists say so.
+- **App icon:** the apps' Icon Composer file (`AppIcon.icon`, the same in both apps) renders as a blue tile with two glass play shapes, which is what `assets/img` has. Re-export with Xcode's `ictool` if it changes.
 - **Shortcuts:** every control is an action in the Shortcuts app (verified on the device). Siri phrases and the Action button weren't tried, so the guide doesn't promise them.
 
 ## Screenshots

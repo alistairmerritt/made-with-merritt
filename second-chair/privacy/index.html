@@ -40,7 +40,7 @@
     <p class="g-eyebrow">Second Chair for Mac and iPhone</p>
     <h1 class="display g-title">Privacy Policy</h1>
     <p class="lede g-lede">Second Chair shows the music playing on your Mac on your iPhone. To do that, some details of what’s playing have to travel between them. This page says what, where it goes, and why. There are no accounts, no analytics and no advertising.</p>
-    <p class="g-updated">Last updated 15 November 2026 · Mac 0.3.0 and the iPhone beta</p>
+    <p class="g-updated">Last updated 16 November 2026 · Mac 0.3.1 and the iPhone beta</p>
   </div>
 
   <div class="g-body g-body--solo">
@@ -53,6 +53,7 @@
           <li><strong>Whenever playback changes:</strong> the song’s title, artist, album, length and position, whether it’s playing, the artwork, the volume of Music on your Mac, the names of your Mac’s speakers, and the names of your Mac and iPhone, which are used for pairing.</li>
           <li><strong>Only if you’ve connected Second Chair to Music for Continue Listening:</strong> the song’s Apple Music ID and up to 25 songs of Up Next (title, artist, album, length and ID). The Apple Music ID and Up Next are never put in push notifications.</li>
           <li><strong>Your commands:</strong> play, pause, skip, seek, volume and Continue Listening requests travel back the same way, from your iPhone to your Mac.</li>
+          <li><strong>Continue on Mac, for a song your Mac’s queue doesn’t have:</strong> the song’s Apple Music ID, its title and how far through it your iPhone is go from your iPhone to your Mac through the relay, so your Mac can start the song’s station at the same point.</li>
           <li><strong>Reminders:</strong> if you turn on Remind When Music Starts, the reminder is sent through Apple’s push notification service.</li>
         </ul>
       </section>
@@ -68,7 +69,7 @@
 
       <section id="stays" aria-labelledby="stays-h">
         <h2 id="stays-h">What stays on your Mac</h2>
-        <p>The connection between Second Chair and Music, used for Continue Listening, never leaves your Mac. That’s why macOS asks about the local network.</p>
+        <p>The connection between Second Chair and Music, used for Continue Listening, stays on your Mac. That’s why macOS asks about the local network. Only whether it’s connected goes to your iPhone, so the iPhone app can show the Continue Listening status.</p>
       </section>
 
       <section id="kept" aria-labelledby="kept-h">
@@ -88,8 +89,8 @@
         <h2 id="choices-h">Your choices</h2>
         <ul class="plain">
           <li><strong>Hide the player:</strong> tap Stop Showing in the iPhone app.</li>
-          <li><strong>Stop Continue Listening:</strong> choose Disconnect under Continue on iPhone in the Mac’s menu. Up Next is no longer sent.</li>
-          <li><strong>Unpair:</strong> choose Unpair iPhone on the Mac, or Unpair in the iPhone app. Do this before deleting the apps.</li>
+          <li><strong>Stop Continue Listening:</strong> choose Disconnect from Music under Continue Listening in the Mac’s menu. Up Next is no longer sent.</li>
+          <li><strong>Unpair:</strong> choose Unpair iPhone on the Mac, or Unpair Mac in the iPhone app. Do this before deleting the apps.</li>
           <li><strong>Turn off catalogue searches:</strong> see <a href="../getting-started/#privacy">Privacy in the setup guide</a> for the Terminal command.</li>
         </ul>
       </section>
@@ -113,7 +114,7 @@
 </main>
 
 <footer class="site-footer">
-  <p>Second Chair is an independent project by <a href="/">Made with Merritt</a>. Mac 0.3.0 beta.</p>
+  <p>Second Chair is an independent project by <a href="/">Made with Merritt</a>. Mac 0.3.1 beta.</p>
   <nav aria-label="Footer">
     <a href="../">Home</a>
     <a href="../getting-started/">Getting started</a>

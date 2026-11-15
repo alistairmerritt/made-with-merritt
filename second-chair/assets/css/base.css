@@ -190,6 +190,12 @@ ul, ol { margin: 0; padding: 0; }
 .mm-conn i { width: 8px; height: 8px; border-radius: 50%; background: #30c94f; }
 .mm-row { display: flex; justify-content: space-between; margin-top: 8px; }
 .mm-row span + span { color: rgba(0, 0, 0, .5); }
+/* "On This Mac" above the song; once Continue on iPhone has taken the music, the song steps back. */
+.mm-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; font-size: 10px; color: rgba(0, 0, 0, .5); }
+.mm-head b { font-weight: 600; }
+.mm-head span { display: inline-flex; align-items: center; gap: 3px; }
+.mm-head svg { width: 11px; height: 11px; fill: currentColor; }
+.mm-dim { opacity: .45; }
 
 /* ---- iPhone hardware: iPhone 18 Pro, in the Watch's natural titanium ----
    The hardware is a pre-rendered frame (assets/img/devices), built from Apple's published dimensions and measured
