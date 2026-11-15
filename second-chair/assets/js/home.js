@@ -374,7 +374,7 @@ const sound = { phone: null, hold: 0, sync: () => {}, heard: () => null };
 
 // ---------- The opening: the song is on the Mac; then it arrives on the iPhone ----------
 // The opening waits a moment after landing, so the page is read before anything moves.
-const OPENING_WAIT = 1500;
+const OPENING_WAIT = 600;
 function wake() {
   const phone = $$('.hero-phone').find((p) => p.offsetParent !== null);
   const from = $('.hero-menu .mm-art');
