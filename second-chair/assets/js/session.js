@@ -3,7 +3,8 @@
 // One listening session, shared by every device picture on the page.
 // The Mac leads; the iPhone follows a beat later. Nothing here talks to a real device.
 
-// Artwork lives beside this script: assets/art/<id>.svg
+// Artwork lives beside this script: assets/art/<id>.webp (720 px, for StandBy and Continue Listening's big covers)
+// and <id>-sm.webp (144 px, for every small one: menus, Lock Screen, Watch, Up Next).
 const ART_BASE = (document.currentScript ? new URL('../art/', document.currentScript.src).href : 'assets/art/');
 
 const RECORDS = [
@@ -21,7 +22,9 @@ const RECORDS = [
     stage: '#3a6535', ink: '#ffffff', glow: '#f2a03f', wall: ['#142812', '#4c7f45'] },
 ];
 
-const artURL = (r) => r.art || `${ART_BASE}${r.id}.svg`;   // a song picked from Apple Music brings its own artwork
+const artURL = (r, small) => r.art || `${ART_BASE}${r.id}${small ? '-sm' : ''}.webp`;   // a song picked from Apple Music brings its own artwork
+const BIG_ART = '.sb-art, .hand-art';   // the only places a cover is shown larger than 72 px
+const artFor = (img, r) => artURL(r, !img.closest(BIG_ART));
 
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
 
@@ -146,7 +149,7 @@ class Surface {
   }
 
   #swapArt(img, r, instant, dir = 1) {
-    const src = artURL(r);
+    const src = artFor(img, r);
     if (instant || reducedMotion.matches || !img.getAttribute('src')) { img.src = src; img.alt = ''; return; }
     const pre = new Image(); pre.src = src;
     const ready = pre.decode ? pre.decode().catch(() => {}) : Promise.resolve();

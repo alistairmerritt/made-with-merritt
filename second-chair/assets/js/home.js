@@ -430,12 +430,12 @@ if (hand) {
 
   const upNext = (i) => Array.from({ length: 5 }, (_, k) => RECORDS[(i + 1 + k) % RECORDS.length]);
   const fillQueue = (ol, i) => {
-    ol.innerHTML = upNext(i).map((r) => `<li><img src="${artURL(r)}" alt="${r.title}, ${r.artist}" width="40" height="40"></li>`).join('') + '<li class="more">and up to 20 more</li>';
+    ol.innerHTML = upNext(i).map((r) => `<li><img src="${artURL(r, true)}" alt="${r.title}, ${r.artist}" width="40" height="40"></li>`).join('') + '<li class="more">and up to 20 more</li>';
   };
 
   const fill = (card, r) => {
     const img = $('[data-bind="art"]', card);
-    if (!img.src.endsWith(`${r.id}.svg`)) img.src = artURL(r);
+    if (!img.src.endsWith(`/${r.id}.webp`)) img.src = artURL(r);
     $('[data-bind="title"]', card).textContent = r.title;
     $('[data-bind="artist"]', card).textContent = r.artist;
   };

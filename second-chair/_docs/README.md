@@ -16,7 +16,7 @@ second-chair/
   assets/js/home.js          Home: the opening, Continue Listening, scrub and volume
   assets/js/guide.js         Guide: contents highlight, copy button
   assets/js/clock.js         Both: every clock shows the visitor's current time and date
-  assets/art/                Six made-up record covers (original SVGs, drawn for the site)
+  assets/art/                Six made-up record covers (AI-generated images, made for the site), each in two sizes
   assets/fonts/              Newsreader Regular, roman and italic: the fallback display face (SIL Open Font Licence, OFL.txt)
   assets/img/                App icon, favicon, social image (og.png)
   _docs/                     This README, DESIGN.md and serve.py. GitHub Pages runs Jekyll, which never publishes a folder starting with _
@@ -95,7 +95,14 @@ On the home page, keep the drawn devices: they're the demonstration. A real Stan
 
 ## The records
 
-The six records are made up: titles, artists and covers. The covers are original SVGs in `assets/art/`. To add or change one, edit `RECORDS` at the top of `assets/js/session.js`: `stage` is the colour the hero takes while it plays, `ink` is white or near-black to suit it (check 4.5:1 for small text), and `wall` is the two colours behind StandBy and the Lock Screen. The file name in `art/` is the `id`.
+The six records are made up: titles, artists and covers. The covers are AI-generated images made for the site (16 November 2026; they replaced the original flat SVGs), each in `assets/art/` twice: `<id>.webp` at 720 px for the two big places (StandBy and Continue Listening, up to 357 CSS px wide) and `<id>-sm.webp` at 144 px for every small one (menus, Lock Screen, Watch, Up Next), so the first screen loads one big cover rather than six. `BIG_ART` in `session.js` says which places are big. To make them from a new square master:
+
+```bash
+cwebp -q 82 -m 6 -sharp_yuv -resize 720 720 cover.png -o assets/art/<id>.webp
+cwebp -q 80 -m 6 -sharp_yuv -resize 144 144 cover.png -o assets/art/<id>-sm.webp
+```
+
+To add or change a record, edit `RECORDS` at the top of `assets/js/session.js`: `stage` is the colour the hero takes while it plays, `ink` is white or near-black to suit it (check 4.5:1 for small text), and `wall` is the two colours behind StandBy and the Lock Screen. The file name in `art/` is the `id`. The colours are chosen by eye, not read from the covers: the site's own reading (the one "Try it with your own song" uses) gave muddy browns for these. If Low Sun's cover changes, re-render `og.png` and the Made with Merritt card and slides (`_docs/card.html`, `_docs/slide.html`), which all show it.
 
 ## When a new version ships
 
