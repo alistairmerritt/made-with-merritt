@@ -183,8 +183,8 @@
       let idx = 0;
 
       // A slide can have a taller version for narrow cards (phones), where the wide one would be cropped hard.
-      // Whichever is nearer the card's shape: the 4:3 tall version or the 2:1 wide one (they meet at about 1.63:1).
-      const imageFor = (sl) => (sl.tall && card.offsetWidth < card.offsetHeight * 1.63) ? sl.tall : sl.image;
+      // The 2:1 wide version keeps its centred phone whole down to about 1.3:1; narrower cards (phones) get the 4:3 one.
+      const imageFor = (sl) => (sl.tall && card.offsetWidth < card.offsetHeight * 1.3) ? sl.tall : sl.image;
       layerA.style.backgroundImage = `url('${imageFor(slides[0])}')`;
       layerA.style.opacity = '1';
       layerB.style.opacity = '0';
