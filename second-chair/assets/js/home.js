@@ -332,7 +332,8 @@ const sound = { phone: null, hold: 0, sync: () => {}, heard: () => null };
   // One switch, the only control for whether anything is heard. Off on every visit; nothing sounds until it's touched.
   // What's heard is whatever the demo is showing, on the Mac:
   //   - a made-up record: its own track (assets/audio/<id>.mp3, original music made for this site: whole-bar loops
-  //     of about 25-28 s), played as a decoded buffer so the loop has no gap, from the top whenever the record changes;
+  //     of about 25-28 s), played as a decoded buffer so the loop has no gap, from the top whenever the record changes,
+  //     crossfading over 1.5 s from the record before;
   //   - a song picked in Try it: Apple's 30-second preview, on an <audio> element, at the demo's point in the song.
   // The demo's Play and Pause, Next and Previous, and the volume drive it. Off, or with the tab hidden, the sound fades
   // out over 0.3 s and the demo carries on silently. Picking a song turns Sound on. Until the tracks exist the switch
@@ -387,19 +388,37 @@ const sound = { phone: null, hold: 0, sync: () => {}, heard: () => null };
     const len = track.end - track.start;
     return ((live.ctx.currentTime - track.t0) % len + len) % len;
   }
+  // Each track has its own level, so when the record changes the old one fades out as the new one fades in.
+  const CROSSFADE = 1.5;   // seconds
+  let leaving = [];        // tracks fading out under a crossfade
+  function end(t) { try { t.node.stop(); } catch (e) {} t.node.disconnect(); t.level.disconnect(); }
   function stopTrack() {
-    if (track) { try { track.node.stop(); } catch (e) {} track.node.disconnect(); track = null; }
+    if (track) { end(track); track = null; }
+    for (const t of leaving) end(t);
+    leaving = [];
   }
   async function playTrack(r, from) {
     trackWant = r.id;
     const got = await bufferFor(r);
     if (!got || trackWant !== r.id || !wantTrack(r)) return;    // missing, or something else is wanted by now
-    stopTrack();
-    const node = live.ctx.createBufferSource();
+    const ctx = live.ctx, now = ctx.currentTime;
+    const node = ctx.createBufferSource(), level = ctx.createGain();
     node.buffer = got.buf; node.loop = true; node.loopStart = got.start; node.loopEnd = got.end;
-    node.connect(live.analyser);
+    node.connect(level); level.connect(live.analyser);
+    // Crossfade only from a track that's actually being heard; otherwise start cleanly.
+    const from_ = track && track.id !== r.id && live.fade.gain.value > 0.5 ? track : null;
+    if (from_) {
+      level.gain.setValueAtTime(0, now); level.gain.linearRampToValueAtTime(1, now + CROSSFADE);
+      const g = from_.level.gain;
+      g.cancelScheduledValues(now); g.setValueAtTime(g.value, now); g.linearRampToValueAtTime(0, now + CROSSFADE);
+      leaving.push(from_);
+      setTimeout(() => { if (leaving.includes(from_)) { end(from_); leaving = leaving.filter((t) => t !== from_); } }, CROSSFADE * 1000 + 60);
+    } else {
+      stopTrack();
+      level.gain.value = 1;
+    }
     node.start(0, got.start + from);
-    track = { id: r.id, node, start: got.start, end: got.end, t0: live.ctx.currentTime - from };
+    track = { id: r.id, node, level, start: got.start, end: got.end, t0: now - from };
     fadeTo(1);
   }
   const wantTrack = (r) => soundOn && !document.hidden && owner().playing && owner().record.id === r.id;
@@ -418,6 +437,7 @@ const sound = { phone: null, hold: 0, sync: () => {}, heard: () => null };
     const id = track && track.id, at = trackOffset();
     fadeTimer = setTimeout(() => {
       if (track && track.id === id) { trackPaused = keepTrackPlace ? { id, at } : null; stopTrack(); }
+      else { for (const t of leaving) end(t); leaving = []; }
       if (!audio.paused) audio.pause();
     }, live.fade ? 300 : 0);
   }
