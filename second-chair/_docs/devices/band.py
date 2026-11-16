@@ -4,7 +4,7 @@ Alpine Loop is a two-layer textile knit from two yarns: seen front-on it's fine 
 alternately left and right in narrow columns (a chevron, or herringbone, texture), the rows alternating between the
 two yarn colours so the band reads as a speckled, heathered single colour. No edge stitching (that's Trail Loop).
 
-Size and placement (watch.py, base.css): 28 mm wide, behind the case, so it disappears into the slot between the
+Size and placement (watch.py, base.css): 27 mm wide (the slot's width, flush with the posts), behind the case, so it disappears into the slot between the
 lugs' posts; its free end is cut across with slightly rounded corners and fades darker, as the band curves away
 around the wrist.
 
@@ -13,7 +13,7 @@ around the wrist.
 import numpy as np
 from PIL import Image
 
-W, H = 644, 330               # 28 x 14.4 mm (59.7% of the watch's width x 30cqw), ~23 px/mm
+W, H = 620, 330               # 27 x 14.4 mm (57.6% of the watch's width x 30cqw), ~23 px/mm
 SS = 3
 rng = np.random.default_rng(11)
 w, h = W * SS, H * SS
@@ -39,8 +39,9 @@ yarn = np.where(((row % 2) == 0)[..., None], yarn_a, yarn_b)
 c = yarn * (1 + .07 * tone[..., None]) * (.5 + .7 * bump[..., None])   # dark gaps between stitches
 
 # The band's thick, rounded edges and its curve over the wrist: darker towards the sides.
-edge = np.clip(np.minimum(u, 1 - u) / .035, 0, 1)
-c = c * (.55 + .45 * edge ** .7)[..., None] * (1 - .18 * (2 * u - 1) ** 6)[..., None]
+edge = np.clip(np.minimum(u, 1 - u) / .07, 0, 1)
+edge = edge * edge * (3 - 2 * edge)                         # feathered, not a hard line
+c = c * (.78 + .22 * edge)[..., None] * (1 - .14 * (2 * u - 1) ** 6)[..., None]
 
 # Into the slot: the band darkens over its last ~1.2 mm, most of it hidden behind the slot's floor.
 mm = h / 14.4

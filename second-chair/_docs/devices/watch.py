@@ -22,12 +22,12 @@ P = dict(
     # crown side, re-measured from Apple's Alpine Loop photo (29 px/mm on the crown's 8.9 mm): guard 11.1-37.3,
     # crown 0.69 mm proud of the guard, side button 26.4-36.0 and only 0.41 mm proud of it
     guard=(11.1, 37.3, 1.35), crown=(13.7, 22.6, 2.05), button=(26.4, 36.0, 1.76), action=(21.9, 35.2),
-    # band lugs (horns), measured from Apple's front-on Alpine Loop photo at ~17.2 px/mm (body 41.7 mm = 718 px):
-    # 31.6 mm across, rising 3.5 mm above the body's top and below its bottom: two posts either side of a 27 mm
-    # slot for the band, whose floor is a straight bridge 0.75 mm above the body line; outer corners r 2.0, inner
-    # corners r 0.9. Each post flows into the body (and the slot's floor) through a concave
-    # fillet: 2.4 mm on the shoulder outside, 1.2 mm inside, where the case's edge curves up to meet the band.
-    lug_w=31.6, lug_h=3.5, lug_r=2.0, lug_r_in=0.9, slot_w=27.0, lug_fillet=2.4, slot_fillet=1.2, slot_floor=0.75,
+    # band lugs, measured from Apple's front-on Alpine Loop photo at ~17.2 px/mm (body 41.7 mm = 718 px): the band
+    # (27 mm slot) comes straight out from under the case's edge on the body line; either side, a chunky post 1.9 mm
+    # wide reaches 1.75 mm past that edge and ends in a rounded nub (outer corner r 1.3, inner r 0.5). The post's
+    # inner face meets the case edge in a small concave curve (r 0.45) with a dark hollow where the band tucks in;
+    # outside, the post flows into the case's shoulder through a 2.4 mm fillet.
+    lug_w=30.8, lug_h=1.75, lug_r=1.3, lug_r_in=0.5, slot_w=27.0, lug_fillet=2.4, slot_fillet=0.45, slot_floor=0.0,
 )
 ENV = dict(front=0.717, front_pow=0.318, soft=0.173, soft_el=0.537, soft_w=0.343, below=0.47, side=0.265, back=0.153, lip_tilt=0.078, roll_R=1.509, groove=0.067,
            f0=(0.84, 0.75, 0.665), polish=1.22, brush=0.05, roll_h=1.5)   # fitted to Apple's photo (fit.py)
@@ -145,6 +145,20 @@ def render(scale=7.388, ss=3, margin=6.0, screen=None, e=None, out=None, shadow=
     act = case & (X < -P['body_w']/2 + 0.6) & (yt > P['action'][0]) & (yt < P['action'][1])
     orange = np.array([0.80, 0.20, 0.035])
     metal = np.where(act[...,None], orange * (0.55 + 0.6*np.clip(L, 0, 1))[...,None], metal)
+    # the hollow on each post's inner face, where the band tucks in: shade the case close to the slot, beside it
+    slot = (np.abs(X) < P['slot_w']/2) & (np.abs(Y) > P['body_h']/2 + P['slot_floor'])
+    d_slot = cv2.distanceTransform((~slot).astype(np.uint8), cv2.DIST_L2, 5) * px
+    # a soft shadow: light, narrow (falls off over ~0.15 mm) and feathered at its inner edges, no hard boundary
+    feather = sstep(P['slot_w']/2 - 0.9, P['slot_w']/2 - 0.2, np.abs(X)) * sstep(P['body_h']/2 - 0.2, P['body_h']/2 + 0.35, np.abs(Y))
+    metal = metal * (1 - 0.32 * feather * np.exp(-d_slot/0.15) * case)[...,None]
+    # the outline's dark roll-off: lighter, and feathered on its inside rather than stepping up to the lit metal
+    # (16 Nov, after Apple's Alpine Loop photo, whose edges only soften)
+    m3 = case.astype(np.float32)
+    sig = 0.2*S
+    blur = cv2.GaussianBlur((metal*m3[...,None]).astype(np.float32), (0, 0), sig) / np.maximum(cv2.GaussianBlur(m3, (0, 0), sig), 1e-4)[...,None]
+    w_edge = sstep(1.0, 0.35, d_out) * case
+    metal = metal*(1 - w_edge[...,None]) + blur*w_edge[...,None]
+    metal = metal * (1 + 0.22*np.exp(-d_out/0.3)*sstep(0.0, 0.08, d_out)*case)[...,None]
     vent = case & (X < -P['body_w']/2 + 0.35) & (yt > 17.6) & (yt < 20.4) & (np.abs(np.sin((yt-17.6)/2.8*np.pi*3)) > 0.55)
     metal = np.where(vent[...,None], metal*0.40, metal)
     img = metal
