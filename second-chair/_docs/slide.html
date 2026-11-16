@@ -4,7 +4,8 @@
 <!-- Renders assets/second-chair-slide.jpg, the home page slideshow image (2000×1500):
      "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless --hide-scrollbars --force-device-scale-factor=1 \
        --virtual-time-budget=4000 --window-size=2000,1500 --screenshot=slide.png http://localhost:4174/second-chair/_docs/slide.html
-     then: sips -s format jpeg -s formatOptions 88 slide.png --out ../../assets/second-chair-slide.jpg -->
+     then: sips -s format jpeg -s formatOptions 88 slide.png --out ../../assets/second-chair-slide-mobile.jpg
+     For desktop, add #desktop to the address, use --window-size=2400,1200 and save as second-chair-slide.jpg. -->
 <link rel="stylesheet" href="../assets/css/base.css">
 <link rel="stylesheet" href="../assets/css/home.css">
 <style>
@@ -20,7 +21,13 @@
            background: radial-gradient(closest-side, rgba(255, 110, 70, .3), transparent); filter: blur(30px); z-index: -2; }
   .hero .hero-standby { position: absolute; left: 50%; top: 500px; width: 800px; transform: translate(-50%, -50%); right: auto; bottom: auto; margin: 0;
           --phone-drop: drop-shadow(0 3cqw 5cqw rgba(0, 0, 0, .85)) drop-shadow(0 .8cqw 1.4cqw rgba(0, 0, 0, .6)); }
+  /* #desktop: the wider desktop crop (2400×1200), with a bigger phone right of the title. */
+  html.desktop, html.desktop body, .desktop .hero { width: 2400px; height: 1200px; }
+  .desktop .glow { left: 1300px; top: 450px; width: 2000px; height: 1000px; }
+  .desktop .floor { left: 1300px; top: 760px; width: 1500px; height: 200px; }
+  .desktop .hero .hero-standby { left: 1300px; top: 450px; width: 1180px; }
 </style>
+<script>if (location.hash === '#desktop') document.documentElement.classList.add('desktop');</script>
 </head><body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="i-play" viewBox="0 0 24 24"><path d="M6.6 4.4v15.2c0 .9 1 1.5 1.8 1l12-7.6c.7-.5.7-1.5 0-2L8.4 3.4c-.8-.5-1.8.1-1.8 1z"/></symbol>
