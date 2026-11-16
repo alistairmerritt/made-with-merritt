@@ -7,8 +7,8 @@ Geometry in millimetres.
     sapphire (black) 36.0 x 43.3; corner extent 14.2, n 2.87; rim 2.84 all round
     rim cross-section from the outer edge: roll-off 0-0.27, brushed flank to 1.2, groove 1.35, polished ridge 1.62,
       flat brushed lip 1.75-2.7, dark seam 2.7-2.84
-    crown y 13.7-22.6 (from case top) protruding 2.2; guard y 11.2-38.0 protruding 1.35; side button y 26.7-37.2
-      protruding 1.9; Action button sliver y 21.9-35.2 on the left
+    crown y 13.7-22.6 (from case top) protruding 2.05; guard y 11.1-37.3 protruding 1.35; side button y 26.4-36.0
+      protruding 1.76 (re-measured 16 Nov from the Alpine Loop photo); Action button sliver y 21.9-35.2 on the left
   derived: display corner (circular-equivalent) radius 9.15 from 32.88 x 40.05 mm and 1245 mm2
 Surfaces are height profiles; shading reflects a fitted studio environment off titanium.
 """
@@ -19,7 +19,9 @@ P = dict(
     body_w=41.7, body_h=49.0, body_a=16.4, body_n=2.58,
     glass_w=36.0, glass_h=43.3, glass_a=14.2, glass_n=2.87,
     disp_w=422/326*25.4, disp_h=514/326*25.4,
-    guard=(11.2, 38.0, 1.35), crown=(13.7, 22.6, 2.2), button=(26.7, 37.2, 1.9), action=(21.9, 35.2),
+    # crown side, re-measured from Apple's Alpine Loop photo (29 px/mm on the crown's 8.9 mm): guard 11.1-37.3,
+    # crown 0.69 mm proud of the guard, side button 26.4-36.0 and only 0.41 mm proud of it
+    guard=(11.1, 37.3, 1.35), crown=(13.7, 22.6, 2.05), button=(26.4, 36.0, 1.76), action=(21.9, 35.2),
     # band lugs (horns), measured from Apple's front-on Alpine Loop photo at ~17.2 px/mm (body 41.7 mm = 718 px):
     # 31.6 mm across, rising 3.5 mm above the body's top and below its bottom, corners r 2.0, flowing into the
     # body's shoulders through a ~2.4 mm concave fillet. The band (27 mm) runs between them into a slot 0.75 mm
@@ -72,7 +74,8 @@ def render(scale=7.388, ss=3, margin=6.0, screen=None, e=None, out=None, shadow=
     case = body | guard | crown | button
     # concave fillets where the guard meets the body: close the outline with a 0.5 mm disc
     k = max(3, int(1.4*S)) | 1          # concave fillets where the guard swells out of the case side
-    case = cv2.morphologyEx(case.astype(np.uint8), cv2.MORPH_CLOSE, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (k, k))).astype(bool)
+    padded = cv2.copyMakeBorder(case.astype(np.uint8), k, k, k, k, cv2.BORDER_CONSTANT, value=0)   # so the frame's edge doesn't hold the crown and button out to it
+    case = cv2.morphologyEx(padded, cv2.MORPH_CLOSE, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (k, k)))[k:-k, k:-k].astype(bool)
     d_out = cv2.distanceTransform(case.astype(np.uint8), cv2.DIST_L2, 5) * px          # in from the outline
     g = cv2.distanceTransform((~glass).astype(np.uint8), cv2.DIST_L2, 5) * px          # out from the sapphire
     # ---- rim cross-section (heights in mm, relative) ----
@@ -123,6 +126,9 @@ def render(scale=7.388, ss=3, margin=6.0, screen=None, e=None, out=None, shadow=
         return dil & ~m & case
     metal = np.where(ring(cr, 0.30)[...,None], metal*0.38, metal)
     metal = np.where(ring(bt, 0.10)[...,None], metal*0.70, metal)
+    # the seam where the side button meets the guard: seen front-on, a fine dark line down its inner edge
+    seam = button & (X > right + P['guard'][2] - 0.10) & (X < right + P['guard'][2] + 0.04) & (yt > P['button'][0] + 0.5) & (yt < P['button'][1] - 0.5)
+    metal = np.where(seam[...,None], metal*0.5, metal)
     # Action button: anodised orange, visible only as the sliver on the outer left edge
     act = case & (X < -P['body_w']/2 + 0.6) & (yt > P['action'][0]) & (yt < P['action'][1])
     orange = np.array([0.80, 0.20, 0.035])
