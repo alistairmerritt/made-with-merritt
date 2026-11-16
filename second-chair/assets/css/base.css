@@ -354,28 +354,23 @@ ul, ol { margin: 0; padding: 0; }
 .lock-ui > :not(.wall):not(.np) { transition: opacity .7s var(--ease); }
 
 /* ---- Apple Watch Ultra 4: rendered case, band, watchOS Now Playing ---- */
-.watch { container-type: inline-size; position: relative; width: 100%; --band: #3f4b60; }
-/* The band: a woven loop after Apple's Trail Loop, rendered by _docs/devices/band.py. As in Apple's product shots:
-   cut straight across about a quarter of the case's height beyond it (26cqw showing), no fade. */
-.watch-band { position: relative; width: 59%; height: 31cqw; margin: 0 auto; background: center / 100% 100% no-repeat; }
-.watch-band--top { margin-bottom: -5cqw; background-image: url("../img/devices/watch-band-top.webp"); }
-.watch-band--bottom { margin-top: -5cqw; background-image: url("../img/devices/watch-band-bottom.webp"); }
-.watch-band::after { /* the shadow the case throws on the band where they meet */
-  content: ""; position: absolute; left: 0; right: 0; height: 9cqw;
-  background: linear-gradient(var(--dir, to top), rgba(0, 0, 0, .45), transparent);
-}
-.watch-band--top::after { bottom: 5cqw; --dir: to top; }
-.watch-band--bottom::after { top: 5cqw; --dir: to bottom; }
+.watch { container-type: inline-size; position: relative; isolation: isolate; width: 100%; }
+/* The band: Alpine Loop in navy (_docs/devices/band.py), 27 mm wide between the case's horns. It runs down to the
+   case's rim (5.4 mm into the case frame, 11.51cqw) in front of the case, so the horns show either side of it; its
+   free end is cut straight across, as in Apple's product shots. */
+.watch-band { position: relative; z-index: 2; width: 57.6%; height: 30cqw; margin: 0 auto; background: center / 100% 100% no-repeat; }
+.watch-band--top { margin-bottom: -11.51cqw; background-image: url("../img/devices/watch-band-top.webp"); }
+.watch-band--bottom { margin-top: -11.51cqw; background-image: url("../img/devices/watch-band-bottom.webp"); }
 /* Apple Watch Ultra 4, 49 mm, natural titanium: a pre-rendered case (assets/img/devices) from Apple's published
    dimensions and its front-on product photo, with the live screen in its transparent display window
-   (32.88 x 40.05 mm in a 46.9 x 49.8 mm frame that includes the crown). */
-.watch-case { position: relative; z-index: 1; aspect-ratio: 46.90 / 49.80; }
+   (32.88 x 40.05 mm in a 46.9 x 57.84 mm frame that includes the crown and the band lugs). */
+.watch-case { position: relative; z-index: 1; aspect-ratio: 46.90 / 57.84; }
 .watch-case::after { content: ""; position: absolute; inset: 0; z-index: 5; pointer-events: none; background: url("../img/devices/watch-ultra4.webp") center / 100% 100% no-repeat; }
 .watch-case::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
   background: url("../img/devices/watch-ultra4-shadow.webp") center / 100% 100% no-repeat;
   filter: drop-shadow(0 6cqw 8cqw rgba(60, 30, 10, .40)) drop-shadow(0 1.6cqw 2.4cqw rgba(60, 30, 10, .22)); }
 .watch-crown, .watch-button, .watch-action { display: none; }    /* part of the rendered case */
-.watch-glass { position: absolute; left: 14.947%; top: 9.791%; width: 70.106%; height: 80.417%; background: #000; border-radius: 25.73% / 21.12%; }   /* 8.46 mm: fills the window's corners (limit 9.2) */
+.watch-glass { position: absolute; left: 14.947%; top: 15.344%; width: 70.106%; height: 69.243%; background: #000; border-radius: 25.73% / 21.12%; }   /* 8.46 mm: fills the window's corners (limit 9.2) */
 .watch-screen {   /* sizes in cqw of the whole watch, fitted to the 32.88 mm display */
   position: relative; isolation: isolate; height: 100%; border-radius: inherit; overflow: hidden; color: #fff; font-family: var(--sans);
   padding: 4.57cqw 5.71cqw 4.24cqw; display: flex; flex-direction: column;   /* keeps the corner buttons inside the rounded corners */ align-items: center; justify-content: space-between; background: #1c1b1d;

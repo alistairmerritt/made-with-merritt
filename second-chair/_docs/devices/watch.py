@@ -20,6 +20,11 @@ P = dict(
     glass_w=36.0, glass_h=43.3, glass_a=14.2, glass_n=2.87,
     disp_w=422/326*25.4, disp_h=514/326*25.4,
     guard=(11.2, 38.0, 1.35), crown=(13.7, 22.6, 2.2), button=(26.7, 37.2, 1.9), action=(21.9, 35.2),
+    # band lugs (horns), measured from Apple's front-on Alpine Loop photo at ~17.2 px/mm (body 41.7 mm = 718 px):
+    # 31.6 mm across, rising 3.5 mm above the body's top and below its bottom, corners r 2.0, flowing into the
+    # body's shoulders through a ~2.4 mm concave fillet. The band (27 mm) runs between them into a slot 0.75 mm
+    # above the body line; that slot and the band are drawn in the page (base.css), not here.
+    lug_w=31.6, lug_h=3.5, lug_r=2.0, lug_fillet=2.4,
 )
 ENV = dict(front=0.717, front_pow=0.318, soft=0.173, soft_el=0.537, soft_w=0.343, below=0.47, side=0.265, back=0.153, lip_tilt=0.078, roll_R=1.509, groove=0.067,
            f0=(0.84, 0.75, 0.665), polish=1.22, brush=0.05, roll_h=1.5)   # fitted to Apple's photo (fit.py)
@@ -53,6 +58,12 @@ def render(scale=7.388, ss=3, margin=6.0, screen=None, e=None, out=None, shadow=
     X, Y = np.meshgrid(xs, ys); px = 1/S
     yt = Y + P['body_h']/2; right = P['body_w']/2
     body = superrect(X, Y, P['body_w'], P['body_h'], P['body_a'], P['body_n']) <= 0
+    # lugs: one rounded block across the top and bottom, merged into the shoulders with a concave fillet
+    lugs = superrect(X, Y, P['lug_w'], P['body_h'] + 2*P['lug_h'], P['lug_r'], 2.0) <= 0
+    kf = max(3, int(2*P['lug_fillet']*S)) | 1
+    # padded first, so the frame's edge doesn't erode the lugs' tops
+    padded = cv2.copyMakeBorder((body | lugs).astype(np.uint8), kf, kf, kf, kf, cv2.BORDER_CONSTANT, value=0)
+    body = cv2.morphologyEx(padded, cv2.MORPH_CLOSE, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (kf, kf)))[kf:-kf, kf:-kf].astype(bool)
     glass = superrect(X, Y, P['glass_w'], P['glass_h'], P['glass_a'], P['glass_n']) <= 0
     def part(y0, y1, prot, r):
         cy = (y0+y1)/2 - P['body_h']/2

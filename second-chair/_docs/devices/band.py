@@ -1,68 +1,57 @@
-"""A woven loop band for the Apple Watch Ultra on the home page, after Apple's Trail Loop: a knitted centre in
-heathered navy, near-black edges each carrying a dashed line of light stitching, cut straight across.
+"""The Watch band: Apple's Alpine Loop, in navy, as in Apple's front-on Ultra photograph.
 
-The texture is built stitch by stitch (each a small rounded bump, with per-stitch variation in the yarn's tone),
-then lit gently across the width as the band curves over the wrist. No fade: the band is solid to its end.
+Alpine Loop is a two-layer textile knit from two yarns: seen front-on it's fine rows of small stitches that lean
+alternately left and right in narrow columns (a chevron, or herringbone, texture), the rows alternating between the
+two yarn colours so the band reads as a speckled, heathered single colour. No edge stitching (that's Trail Loop).
+
+Size and placement (watch.py, base.css): 27 mm wide, between the case's horns; it runs down to the case's rim,
+where it disappears into the slot's shadow. The free end is cut straight across, as in Apple's product shots.
 
     python3 band.py    # writes ../../assets/img/devices/watch-band-top.webp and watch-band-bottom.webp
 """
 import numpy as np
 from PIL import Image
 
-W, H = 600, 316                        # matches .watch-band: 59% of the watch's width, 31cqw tall, at 2x
-SS = 3                                 # supersampling for smooth stitch edges
-rng = np.random.default_rng(7)
-
+W, H = 620, 330               # 27 x 14.4 mm (57.6% of the watch's width x 30cqw), ~23 px/mm
+SS = 3
+rng = np.random.default_rng(11)
 w, h = W * SS, H * SS
-ys, xs = np.mgrid[0:h, 0:w].astype(float)
-u = xs / w                              # 0..1 across the band
-v = ys / h                              # 0..1 along it (0 = free end, 1 = at the case)
+ys, xs = np.mgrid[0:h, 0:w].astype(float) + .5
+u = xs / w
 
-# Knit: rows of small stitches, alternate rows offset by half a stitch.
-px, py = 4.6 * SS, 3.6 * SS
+# Stitch grid: ~0.5 x 0.43 mm, the scale of the zigzag rows in Apple's photo.
+px, py = 11.5 * SS, 10.0 * SS
 row = np.floor(ys / py)
-off = (row % 2) * px / 2
-cx = np.floor((xs + off) / px)
-fx = ((xs + off) / px) - cx - .5
-fy = (ys / py) - row - .5
-bump = np.clip(1 - (fx / .5) ** 2 * .9 - (fy / .5) ** 2 * .8, 0, 1) ** .6     # each stitch a rounded bump
-cell_tone = rng.normal(0, 1, (int(row.max()) + 2, int(cx.max()) + 2))
-tone = cell_tone[row.astype(int), cx.astype(int)]
+col = np.floor(xs / px)
+fx = xs / px - col - .5
+fy = ys / py - row - .5
+lean = np.where((np.floor(col / 2) % 2) == 0, 1.0, -1.0)          # columns in pairs lean left, then right
+ang = np.deg2rad(38) * lean
+rx = fx * np.cos(ang) + fy * np.sin(ang)
+ry = -fx * np.sin(ang) + fy * np.cos(ang)
+bump = np.clip(1 - (rx / .66) ** 2 - (ry / .36) ** 2, 0, 1) ** .6  # each stitch a small leaning oval
 
-# Display (sRGB) values, as in Apple's photograph.
-brown = np.array([0.09, 0.12, 0.24])      # navy
-brown_hi = np.array([0.14, 0.18, 0.33])
-black = np.array([0.06, 0.065, 0.08])
-stitch = np.array([0.74, 0.72, 0.70])
+tone = rng.normal(0, 1, (int(row.max()) + 2, int(col.max()) + 2))[row.astype(int), col.astype(int)]
+yarn_a = np.array([0.17, 0.22, 0.42])        # navy
+yarn_b = np.array([0.11, 0.15, 0.31])        # a deeper navy
+yarn = np.where(((row % 2) == 0)[..., None], yarn_a, yarn_b)
+c = yarn * (1 + .07 * tone[..., None]) * (.5 + .7 * bump[..., None])   # dark gaps between stitches
 
-heather = np.clip(.5 + .2 * tone, 0, 1)[..., None]
-col = brown * (1 - heather) + brown_hi * heather
-col = col * (.78 + .3 * bump[..., None])
+# The band's thick, rounded edges and its curve over the wrist: darker towards the sides.
+edge = np.clip(np.minimum(u, 1 - u) / .035, 0, 1)
+c = c * (.55 + .45 * edge ** .7)[..., None] * (1 - .18 * (2 * u - 1) ** 6)[..., None]
 
-# The edges: near-black knit, each with a dashed line of light stitches.
-edge = 0.16
-in_edge = (u < edge) | (u > 1 - edge)
-col = np.where(in_edge[..., None], black * (.8 + .4 * bump[..., None]) * (1 + .12 * tone[..., None]), col)
-for c in (edge * .42, 1 - edge * .42):
-    near = np.abs(u - c) < 0.011
-    dash = ((ys / (7 * SS)) % 1) < .45
-    col = np.where((near & dash)[..., None], stitch * (.8 + .25 * bump[..., None]), col)
-# A thin seam where edge meets centre.
-seam = (np.abs(u - edge) < .004) | (np.abs(u - (1 - edge)) < .004)
-col = np.where(seam[..., None], col * .55, col)
+# Into the slot: the band darkens over its last ~1 mm and ends in a near-black line of shadow.
+mm = h / 14.4
+d_slot = (h - ys) / mm                                      # mm from the slot end
+c = c * (1 - .75 * np.exp(-d_slot / .55))[..., None]
+c = np.where((d_slot < .28)[..., None], c * .25, c)
 
-# The band curves over the wrist: gently darker towards its sides, slightly lit along the middle.
-curve = 1 - .3 * (2 * u - 1) ** 4
-col = col * curve[..., None]
-
-# Shape: as in Apple's product shots, the band is cut straight across, square, about a quarter of the case's
-# height beyond it.
 alpha = np.ones(xs.shape)
-
-rgba = np.concatenate([np.clip(col, 0, 1), alpha[..., None]], -1)
+rgba = np.concatenate([np.clip(c, 0, 1), alpha[..., None]], -1)
 rgba = rgba.reshape(H, SS, W, SS, 4).mean(axis=(1, 3))
 img = Image.fromarray((rgba * 255 + .5).astype(np.uint8), 'RGBA')
 out = '../../assets/img/devices/'
-img.save(out + 'watch-band-top.webp', quality=90)
-img.transpose(Image.FLIP_TOP_BOTTOM).save(out + 'watch-band-bottom.webp', quality=90)
+img.save(out + 'watch-band-top.webp', quality=92)
+img.transpose(Image.FLIP_TOP_BOTTOM).save(out + 'watch-band-bottom.webp', quality=92)
 print('wrote', out + 'watch-band-top.webp', 'and -bottom')
