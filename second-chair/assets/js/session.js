@@ -7,19 +7,21 @@
 // and <id>-sm.webp (144 px, for every small one: menus, Lock Screen, Watch, Up Next).
 const ART_BASE = (document.currentScript ? new URL('../art/', document.currentScript.src).href : 'assets/art/');
 
+// Each record's colours are read from its cover by coloursFrom() in home.js, the same reading a song picked in
+// "Try it with your own song" gets. They're written out here so the first paint is right and every browser agrees.
 const RECORDS = [
   { id: 'low-sun', title: 'Low Sun', artist: 'Hollow Coast', album: 'Breakwater', duration: 214, bpm: 96,
-    stage: '#cc231d', ink: '#ffffff', glow: '#ffbfa3', wall: ['#4a0907', '#b81c17'] },
+    stage: '#af583b', ink: '#ffffff', glow: '#e2c5bb', wall: ['#462318', '#b85c3e'] },
   { id: 'small-hours', title: 'Small Hours', artist: 'Fen Lights', album: 'Lit Windows', duration: 252, bpm: 72,
-    stage: '#17214b', ink: '#ffffff', glow: '#f6bb48', wall: ['#070b22', '#22336f'] },
+    stage: '#857152', ink: '#ffffff', glow: '#d0c7b9', wall: ['#352d21', '#8b7756'] },
   { id: 'overcast', title: 'Overcast, Brightening', artist: 'Juniper Hall', album: 'Weather for Walking', duration: 231, bpm: 84,
-    stage: '#cbd3c3', ink: '#16201a', glow: '#ffffff', wall: ['#3d4c40', '#8fa18e'] },
+    stage: '#78725e', ink: '#ffffff', glow: '#cac8bf', wall: ['#302e26', '#7e7863'] },
   { id: 'ticket-hall', title: 'Ticket Hall', artist: 'Polly Atlas', album: 'Concourse', duration: 178, bpm: 122,
-    stage: '#e2a722', ink: '#1a1406', glow: '#fff3cc', wall: ['#2a1f06', '#b8861a'] },
+    stage: '#9a6e13', ink: '#ffffff', glow: '#e1c17f', wall: ['#3e2c08', '#a27314'] },
   { id: 'tidewater', title: 'Tidewater', artist: 'Brennan & Hale', album: 'Estuary', duration: 306, bpm: 68,
-    stage: '#0e5357', ink: '#ffffff', glow: '#8fd6c9', wall: ['#04282c', '#0f6a6c'] },
+    stage: '#657c6b', ink: '#ffffff', glow: '#c5cec7', wall: ['#28322b', '#6a8270'] },
   { id: 'allotment', title: 'Allotment', artist: 'The Small Holdings', album: 'Seed Catalogue', duration: 197, bpm: 104,
-    stage: '#3a6535', ink: '#ffffff', glow: '#f2a03f', wall: ['#142812', '#4c7f45'] },
+    stage: '#aa662c', ink: '#ffffff', glow: '#e0c2a9', wall: ['#442912', '#b36b2e'] },
 ];
 
 const artURL = (r, small) => r.art || `${ART_BASE}${r.id}${small ? '-sm' : ''}.webp`;   // a song picked from Apple Music brings its own artwork

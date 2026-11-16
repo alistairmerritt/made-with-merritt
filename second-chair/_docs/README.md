@@ -102,7 +102,7 @@ cwebp -q 82 -m 6 -sharp_yuv -resize 720 720 cover.png -o assets/art/<id>.webp
 cwebp -q 80 -m 6 -sharp_yuv -resize 144 144 cover.png -o assets/art/<id>-sm.webp
 ```
 
-To add or change a record, edit `RECORDS` at the top of `assets/js/session.js`: `stage` is the colour the hero takes while it plays, `ink` is white or near-black to suit it (check 4.5:1 for small text), and `wall` is the two colours behind StandBy and the Lock Screen. The file name in `art/` is the `id`. The colours are chosen by eye, not read from the covers: the site's own reading (the one "Try it with your own song" uses) gave muddy browns for these. If Low Sun's cover changes, re-render `og.png` and the Made with Merritt card and slides (`_docs/card.html`, `_docs/slide.html`), which all show it.
+To add or change a record, edit `RECORDS` at the top of `assets/js/session.js`: `stage` is the colour the hero takes while it plays, `ink` is white or near-black to suit it (check 4.5:1 for small text), and `wall` is the two colours behind StandBy and the Lock Screen. The file name in `art/` is the `id`. The colours aren't chosen by eye: they're what `coloursFrom()` in `home.js` reads from the cover, the same reading a song picked in "Try it with your own song" gets, written out so the first paint is right and every browser agrees. For a new cover, run it on the 720 px file in Chrome on the preview and paste the result. Low Sun's set also appears in `base.css` (the stage before the script runs), the `theme-color` in `index.html`, `og.png` and the Made with Merritt card and slides (`_docs/card.html`, `_docs/slide.html`); if Low Sun's cover changes, update and re-render those.
 
 ## When a new version ships
 
