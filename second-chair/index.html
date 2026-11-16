@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Second Chair: your Mac’s music on your iPhone</title>
 <meta name="description" content="Second Chair shows the music playing on your Mac in your iPhone’s own Now Playing, on the Lock Screen, in StandBy and on Apple Watch, and its controls work the Mac. A free beta for Mac and iPhone.">
-<meta name="theme-color" content="#af583b">
+<meta name="theme-color" content="#b35638">
 <link rel="icon" type="image/png" href="assets/img/favicon.png">
 <link rel="apple-touch-icon" href="assets/img/icon-180.png">
 <link rel="canonical" href="https://madewithmerritt.com/second-chair/">
@@ -38,6 +38,7 @@
   <symbol id="i-vol-lo" viewBox="0 0 24 24"><path d="M4 9h3.6L12 5v14l-4.4-4H4z"/></symbol>
   <symbol id="i-airplay-audio" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M5.5 17A8.5 8.5 0 1 1 18.5 17"/><path d="M8.5 14.7A5.5 5.5 0 1 1 15.5 14.7"/></g><circle cx="12" cy="10.5" r="2.2"/><path d="M12 13.6 16.4 20.2H7.6z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></symbol>
   <symbol id="i-vol-mid" viewBox="0 0 24 24"><path d="M3.5 8.6h3.2l4.4-3.9c.6-.5 1.4-.1 1.4.6v13.4c0 .7-.8 1.1-1.4.6l-4.4-3.9H3.5c-.6 0-1-.4-1-1V9.6c0-.6.4-1 1-1z"/><path d="M15.4 8.2a5.4 5.4 0 0 1 0 7.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-sound-off" viewBox="0 0 24 24"><path d="M2 9h3.6L10 5v14l-4.4-4H2z"/><path d="m13.5 9 5.5 6m0-6-5.5 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
   <symbol id="i-vol-hi" viewBox="0 0 24 24"><path d="M2 9h3.6L10 5v14l-4.4-4H2z"/><path d="M13.6 8.4a5 5 0 0 1 0 7.2l-1.1-1.1a3.4 3.4 0 0 0 0-5zM16.4 5.6a9 9 0 0 1 0 12.8l-1.1-1.1a7.4 7.4 0 0 0 0-10.6z"/></symbol>
   <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="m15.4 15.4 5.1 5.1" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
   <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 3.5v12.2m0 0 5-5m-5 5-5-5M4.5 20.5h15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
@@ -81,6 +82,10 @@
 
       <!-- Try it with your own song: bottom left of the first screen. -->
       <div class="try">
+        <!-- Sound: off on every visit; shown only once the records' own tracks exist (assets/audio/<id>.mp3). -->
+        <button type="button" class="sound-switch" role="switch" aria-checked="false" aria-label="Sound" hidden>
+          <svg class="ico i-off" aria-hidden="true"><use href="#i-sound-off"/></svg><svg class="ico i-on" aria-hidden="true"><use href="#i-vol-hi"/></svg><span>Sound</span>
+        </button>
         <button type="button" class="try-open" aria-haspopup="dialog" aria-controls="try-dialog">
           <svg class="ico" aria-hidden="true"><use href="#i-search"/></svg><span class="try-label">Try it with your own song</span>
         </button>
@@ -98,7 +103,7 @@
             <div class="mm-head"><b>On This Mac</b></div>
             <div class="mm-track">
               <div class="mm-art"><img class="art" data-bind="art" src="assets/art/low-sun-sm.webp" alt="" width="64" height="64"></div>
-              <div class="mm-meta"><b data-bind="title">Low Sun</b><span data-bind="artist">Hollow Coast</span><span class="album" data-bind="album">Breakwater</span><small data-bind="state">Playing</small></div>
+              <div class="mm-meta"><b data-bind="title">Low Sun</b><span data-bind="artist">Drift Hotel</span><span class="album" data-bind="album">Breakwater</span><small data-bind="state">Playing</small></div>
             </div>
             <div class="mm-progress" aria-hidden="true"><div class="mm-bar"><i data-bind="progress" style="--p:.953"></i></div><div class="mm-times"><span data-bind="elapsed">3:24</span><span data-bind="remaining">-0:10</span></div></div>
             <div class="mm-transport">
@@ -124,7 +129,7 @@
               <div class="sb-art" data-swap="spin"><img class="art" data-bind="art" src="assets/art/low-sun.webp" alt="" width="300" height="300"></div>
               <div class="sb-side">
                 <div class="sb-top" aria-hidden="true"><svg><use href="#i-vol-mid"/></svg><svg><use href="#i-airplay-audio"/></svg></div>
-                <div class="sb-meta"><b class="sb-title" data-bind="title">Low Sun</b><span class="sb-artist" data-bind="artist">Hollow Coast</span></div>
+                <div class="sb-meta"><b class="sb-title" data-bind="title">Low Sun</b><span class="sb-artist" data-bind="artist">Drift Hotel</span></div>
                 <div class="sb-controls">
                   <button type="button" class="ios-btn" data-cmd="previous" aria-label="Previous, from the iPhone"><svg class="glyph-fill"><use href="#i-prev"/></svg></button>
                   <button type="button" class="ios-btn pp" data-cmd="toggle" data-where="from the iPhone" aria-label="Pause from the iPhone"><svg class="i-pause glyph-fill"><use href="#i-pause"/></svg><svg class="i-play glyph-fill"><use href="#i-play"/></svg></button>
@@ -154,7 +159,7 @@
         <div class="mac-menu ctl-menu" data-surface="mac">
           <div class="mm-track">
             <div class="mm-art"><img class="art" data-bind="art" src="assets/art/low-sun-sm.webp" alt="" width="64" height="64"></div>
-            <div class="mm-meta"><b data-bind="title">Low Sun</b><span data-bind="artist">Hollow Coast</span><span class="album" data-bind="album">Breakwater</span><small data-bind="state">Playing</small></div>
+            <div class="mm-meta"><b data-bind="title">Low Sun</b><span data-bind="artist">Drift Hotel</span><span class="album" data-bind="album">Breakwater</span><small data-bind="state">Playing</small></div>
           </div>
           <div class="mm-progress" aria-hidden="true"><div class="mm-bar"><i data-bind="progress" style="--p:.953"></i></div><div class="mm-times"><span data-bind="elapsed">3:24</span><span data-bind="remaining">-0:10</span></div></div>
           <div class="mm-transport" aria-hidden="true">
@@ -177,7 +182,7 @@
             <div class="np">
               <div class="np-head">
                 <div class="np-art"><img class="art" data-bind="art" src="assets/art/low-sun-sm.webp" alt="" width="120" height="120"></div>
-                <div class="np-meta"><b data-bind="title">Low Sun</b><span data-bind="artist">Hollow Coast</span></div>
+                <div class="np-meta"><b data-bind="title">Low Sun</b><span data-bind="artist">Drift Hotel</span></div>
                 <svg class="np-route" aria-hidden="true"><use href="#i-airplay"/></svg>
               </div>
               <div class="np-scrub">
@@ -213,7 +218,7 @@
             <img class="art w-bg" data-bind="art" src="assets/art/low-sun-sm.webp" alt="" width="60" height="60">
             <div class="w-top"><span class="w-round"><svg viewBox="0 0 24 24"><path d="M14.5 5.5 8 12l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><time class="w-time" data-clock="time">18:24</time><span class="w-round w-dots"><i></i><i></i><i></i></span></div>
             <div class="w-cover"><img class="art" data-bind="art" src="assets/art/low-sun-sm.webp" alt="" width="120" height="120"></div>
-            <div class="w-meta"><b class="w-title" data-bind="title">Low Sun</b><span class="w-artist" data-bind="artist">Hollow Coast</span></div>
+            <div class="w-meta"><b class="w-title" data-bind="title">Low Sun</b><span class="w-artist" data-bind="artist">Drift Hotel</span></div>
             <div class="w-controls">
               <button type="button" tabindex="-1" class="w-btn" data-cmd="previous" aria-label="Previous, from Apple Watch"><svg class="glyph-fill"><use href="#i-prev"/></svg></button>
               <button type="button" tabindex="-1" class="w-btn pp" data-cmd="toggle" data-where="from Apple Watch" aria-label="Pause from Apple Watch">
@@ -242,10 +247,10 @@
         <div class="hand-card" data-surface="hand-mac">
           <div class="hand-art"><img class="art" data-bind="art" src="assets/art/low-sun.webp" alt="" width="300" height="300"></div>
           <div class="hand-side">
-            <div class="hand-meta"><b data-bind="title">Low Sun</b><span data-bind="artist">Hollow Coast</span></div>
+            <div class="hand-meta"><b data-bind="title">Low Sun</b><span data-bind="artist">Drift Hotel</span></div>
             <p class="hand-state"><span class="hs-word" data-bind="state">Playing</span> <span class="hs-time" data-bind="elapsed"></span></p>
             <p class="queue-label">Up Next</p>
-            <ol class="queue queue-mac" aria-label="Up Next on the Mac" data-for="0"><li><img src="assets/art/small-hours-sm.webp" alt="Small Hours, Fen Lights" width="40" height="40"></li><li><img src="assets/art/overcast-sm.webp" alt="Overcast, Brightening, Juniper Hall" width="40" height="40"></li><li><img src="assets/art/ticket-hall-sm.webp" alt="Ticket Hall, Polly Atlas" width="40" height="40"></li><li><img src="assets/art/tidewater-sm.webp" alt="Tidewater, Brennan &amp; Hale" width="40" height="40"></li><li><img src="assets/art/allotment-sm.webp" alt="Allotment, The Small Holdings" width="40" height="40"></li><li class="more">and up to 20 more</li></ol>
+            <ol class="queue queue-mac" aria-label="Up Next on the Mac" data-for="0"><li><img src="assets/art/small-hours-sm.webp" alt="Small Hours, Fen Lights" width="40" height="40"></li><li><img src="assets/art/rooftop-season-sm.webp" alt="Rooftop Season, Tavi Rhodes" width="40" height="40"></li><li><img src="assets/art/ticket-hall-sm.webp" alt="Ticket Hall, Polly Atlas" width="40" height="40"></li><li><img src="assets/art/tidewater-sm.webp" alt="Tidewater, Brennan &amp; Hale" width="40" height="40"></li><li><img src="assets/art/allotment-sm.webp" alt="Allotment, The Small Holdings" width="40" height="40"></li><li class="more">and up to 20 more</li></ol>
           </div>
         </div>
         <p class="place-name display" aria-hidden="true">Mac</p>

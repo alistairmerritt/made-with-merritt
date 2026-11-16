@@ -1,15 +1,15 @@
 <!doctype html>
 <html lang="en-GB"><head><meta charset="utf-8">
 <title>Second Chair card</title>
-<!-- Renders assets/second-chair-card.jpg for the Made with Merritt home page (1200×900):
+<!-- Renders assets/second-chair-card.jpg for the Made with Merritt home page (1200×900), on Rooftop Season, so the home page shows a second record beside the slideshow's Low Sun:
      "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless --hide-scrollbars --force-device-scale-factor=1 \
        --window-size=1200,900 --screenshot=card.png http://localhost:4174/second-chair/_docs/card.html
      then: sips -s format jpeg -s formatOptions 88 card.png --out ../../assets/second-chair-card.jpg -->
 <link rel="stylesheet" href="../assets/css/base.css">
 <link rel="stylesheet" href="../assets/css/home.css">
 <style>
-  html, body { margin: 0; width: 1200px; height: 900px; overflow: hidden; background: #af583b; }
-  .card { position: relative; isolation: isolate; background: #af583b; width: 1200px; height: 900px; display: grid; place-items: center; --stage: #af583b; --wall-a: #462318; --wall-b: #b85c3e; }
+  html, body { margin: 0; width: 1200px; height: 900px; overflow: hidden; background: #dccbbc; }
+  .card { position: relative; isolation: isolate; background: #dccbbc; width: 1200px; height: 900px; display: grid; place-items: center; --stage: #dccbbc; --wall-a: #6b4f38; --wall-b: #b59071; }
   .card .hero-standby { position: relative; right: auto; bottom: auto; width: 900px; margin-top: 30px; }
 </style>
 </head><body>
@@ -39,16 +39,16 @@
             <!-- StandBy's Now Playing, laid out as iOS draws it: artwork left; title, artist, controls and scrubber centred on the right. -->
             <div class="standby-ui">
               <div class="wall" aria-hidden="true"></div>
-              <div class="sb-art" data-swap="spin"><img class="art" data-bind="art" src="../assets/art/low-sun.webp" alt="" width="300" height="300"></div>
+              <div class="sb-art" data-swap="spin"><img class="art" data-bind="art" src="../assets/art/rooftop-season.webp" alt="" width="300" height="300"></div>
               <div class="sb-side">
                 <div class="sb-top" aria-hidden="true"><svg><use href="#i-vol-mid"/></svg><svg><use href="#i-airplay-audio"/></svg></div>
-                <div class="sb-meta"><b class="sb-title" data-bind="title">Low Sun</b><span class="sb-artist" data-bind="artist">Hollow Coast</span></div>
+                <div class="sb-meta"><b class="sb-title" data-bind="title">Rooftop Season</b><span class="sb-artist" data-bind="artist">Tavi Rhodes</span></div>
                 <div class="sb-controls">
                   <button type="button" class="ios-btn" data-cmd="previous" aria-label="Previous, from the iPhone"><svg class="glyph-fill"><use href="#i-prev"/></svg></button>
                   <button type="button" class="ios-btn pp" data-cmd="toggle" data-where="from the iPhone" aria-label="Pause from the iPhone"><svg class="i-pause glyph-fill"><use href="#i-pause"/></svg><svg class="i-play glyph-fill"><use href="#i-play"/></svg></button>
                   <button type="button" class="ios-btn" data-cmd="next" aria-label="Next, from the iPhone"><svg class="glyph-fill"><use href="#i-next"/></svg></button>
                 </div>
-                <div class="sb-scrub" aria-hidden="true"><div class="ios-bar"><i data-bind="progress" style="--p:.87"></i></div><div class="sb-times"><span data-bind="elapsed">3:06</span><span data-bind="remaining">−0:28</span></div></div>
+                <div class="sb-scrub" aria-hidden="true"><div class="ios-bar"><i data-bind="progress" style="--p:.596"></i></div><div class="sb-times"><span data-bind="elapsed">1:52</span><span data-bind="remaining">−1:16</span></div></div>
               </div>
               <span class="sb-home" aria-hidden="true"></span>
             </div>

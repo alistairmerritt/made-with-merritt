@@ -51,7 +51,7 @@ The display face, IvyPresto Headline Light (roman and italic), is served by Adob
 - It keeps serving only while the Creative Cloud subscription is active. If the project is deleted or lapses, or a blocker stops it, every heading falls back to Newsreader, which is self-hosted and needs nothing.
 - The kit's stylesheet also loads `p.typekit.net/p.css`, which Adobe uses to count page views for font licensing. The guide's privacy section says so; keep that sentence while the kit is in use.
 - To change weights, edit the web project on fonts.adobe.com (the kit URL stays the same), then the `font-weight` values in the CSS.
-- `assets/img/og.png` is a picture of the headline, rendered with the copy activated on this Mac, so it doesn't depend on the kit.
+- `assets/img/og.png` is a picture of the headline and StandBy, rendered from `_docs/og.html` (the command is in its comment), so it doesn't depend on the kit at share time.
 
 ## Product claims to keep true
 
@@ -102,7 +102,9 @@ cwebp -q 82 -m 6 -sharp_yuv -resize 720 720 cover.png -o assets/art/<id>.webp
 cwebp -q 80 -m 6 -sharp_yuv -resize 144 144 cover.png -o assets/art/<id>-sm.webp
 ```
 
-To add or change a record, edit `RECORDS` at the top of `assets/js/session.js`: `stage` is the colour the hero takes while it plays, `ink` is white or near-black to suit it (check 4.5:1 for small text), and `wall` is the two colours behind StandBy and the Lock Screen. The file name in `art/` is the `id`. The colours aren't chosen by eye: they're what `coloursFrom()` in `home.js` reads from the cover, the same reading a song picked in "Try it with your own song" gets, written out so the first paint is right and every browser agrees. For a new cover, run it on the 720 px file in Chrome on the preview and paste the result. Low Sun's set also appears in `base.css` (the stage before the script runs), the `theme-color` in `index.html`, `og.png` and the Made with Merritt card and slides (`_docs/card.html`, `_docs/slide.html`); if Low Sun's cover changes, update and re-render those.
+To add or change a record, edit `RECORDS` at the top of `assets/js/session.js`: `stage` is the colour the hero takes while it plays, `ink` is white or near-black to suit it (check 4.5:1 for small text), and `wall` is the two colours behind StandBy and the Lock Screen. The file name in `art/` is the `id`. The colours aren't chosen by eye: they're what `coloursFrom()` in `home.js` reads from the cover, the same reading a song picked in "Try it with your own song" gets, written out so the first paint is right and every browser agrees. For a new cover, run it on the 720 px file in Chrome on the preview and paste the result. Low Sun's set also appears in `base.css` (the stage before the script runs), the `theme-color` in `index.html`, `og.png` (`_docs/og.html`) and the Made with Merritt slides (`_docs/slide.html`); if Low Sun's cover changes, update and re-render those. The Made with Merritt card (`_docs/card.html`) shows Rooftop Season.
+
+**Sound.** Each made-up record can have its own track at `assets/audio/<id>.mp3` (original music made for this site, about a minute, levelled, looping). The hero's Sound switch appears only once `assets/audio/low-sun.mp3` exists; a record without a file is silent. Never use the Artlist tracks from the app prototype here: their licence forbids standalone online playback.
 
 ## When a new version ships
 

@@ -10,12 +10,12 @@ const ART_BASE = (document.currentScript ? new URL('../art/', document.currentSc
 // Each record's colours are read from its cover by coloursFrom() in home.js, the same reading a song picked in
 // "Try it with your own song" gets. They're written out here so the first paint is right and every browser agrees.
 const RECORDS = [
-  { id: 'low-sun', title: 'Low Sun', artist: 'Hollow Coast', album: 'Breakwater', duration: 214, bpm: 96,
-    stage: '#af583b', ink: '#ffffff', glow: '#e2c5bb', wall: ['#462318', '#b85c3e'] },
+  { id: 'low-sun', title: 'Low Sun', artist: 'Drift Hotel', album: 'Breakwater', duration: 214, bpm: 96,
+    stage: '#b35638', ink: '#ffffff', glow: '#e3c4ba', wall: ['#472316', '#bc5b3b'] },
   { id: 'small-hours', title: 'Small Hours', artist: 'Fen Lights', album: 'Lit Windows', duration: 252, bpm: 72,
     stage: '#857152', ink: '#ffffff', glow: '#d0c7b9', wall: ['#352d21', '#8b7756'] },
-  { id: 'overcast', title: 'Overcast, Brightening', artist: 'Juniper Hall', album: 'Weather for Walking', duration: 231, bpm: 84,
-    stage: '#78725e', ink: '#ffffff', glow: '#cac8bf', wall: ['#302e26', '#7e7863'] },
+  { id: 'rooftop-season', title: 'Rooftop Season', artist: 'Tavi Rhodes', album: 'Daylight Savings', duration: 188, bpm: 99, feel: 'punchy',
+    stage: '#dccbbc', ink: '#16120f', glow: '#ece5df', wall: ['#6b4f38', '#b59071'] },
   { id: 'ticket-hall', title: 'Ticket Hall', artist: 'Polly Atlas', album: 'Concourse', duration: 178, bpm: 122,
     stage: '#9a6e13', ink: '#ffffff', glow: '#e1c17f', wall: ['#3e2c08', '#a27314'] },
   { id: 'tidewater', title: 'Tidewater', artist: 'Brennan & Hale', album: 'Estuary', duration: 306, bpm: 68,

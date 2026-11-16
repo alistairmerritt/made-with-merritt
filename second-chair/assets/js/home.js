@@ -100,9 +100,18 @@ const sound = { phone: null, hold: 0, sync: () => {}, heard: () => null };
   }
 
   // How loud each band is now: fuller in the low mids, a kick on the beat, slow swells, a quick shimmer up top.
+  // A punchy record (hip hop) hits harder and shorter, with a snare in the middle on beats 2 and 4.
   function target(i, t, playing) {
     if (!playing) return 0;
     const x = i / n;
+    if (session.record.feel === 'punchy') {
+      const since = t - beatAt, onKick = beatN % 2 === 1;
+      const kick = onKick ? Math.exp(-since / 95) : 0.15 * Math.exp(-since / 95);
+      const snare = onKick ? 0 : Math.exp(-since / 120) * Math.exp(-(((x - 0.55) / 0.22) ** 2));
+      const body = 0.25 + 0.75 * Math.exp(-(((x - 0.15) / 0.28) ** 2));
+      const hat = 0.5 + 0.5 * Math.sin(t * 0.026 + i * 2.1);
+      return Math.min(1, body * (0.12 + 0.75 * kick * (1 - x)) + 0.6 * snare + 0.12 * hat * x);
+    }
     const kick = Math.exp(-(t - beatAt) / 170) * (beatN % 4 === 1 ? 1 : 0.7);
     const body = 0.3 + 0.7 * Math.exp(-(((x - 0.2) / 0.34) ** 2));
     const swell = 0.5 + 0.5 * Math.sin(t * 0.0019 + i * 0.31) * Math.sin(t * 0.0011 + i * 0.07 + 1.7);
@@ -227,7 +236,7 @@ const sound = { phone: null, hold: 0, sync: () => {}, heard: () => null };
   async function choose(song) {
     // The sound starts now, inside the click: some browsers (Safari) only allow it straight after one.
     const id = 'pick-' + song.trackId + '-' + RECORDS.length;
-    if (song.previewUrl) startPreview(song.previewUrl, id); else audio.pause();
+    if (song.previewUrl) { setSound(true); startPreview(song.previewUrl, id); } else audio.pause();
     status.textContent = 'Loading…';
     const art = song.artworkUrl100.replace(/\/\d+x\d+bb\./, '/600x600bb.');
     const colours = await coloursFrom(art).catch(() => ({ stage: '#2c2b30', ink: '#ffffff', glow: '#d4d2dc', wall: ['#121114', '#3b3a41'] }));
@@ -306,18 +315,68 @@ const sound = { phone: null, hold: 0, sync: () => {}, heard: () => null };
     try {
       const ctx = new (window.AudioContext || window.webkitAudioContext)();
       const an = ctx.createAnalyser(); an.fftSize = 1024; an.smoothingTimeConstant = 0.8;
-      ctx.createMediaElementSource(audio).connect(an); an.connect(ctx.destination);
-      Object.assign(live, { ctx, analyser: an, data: new Uint8Array(an.frequencyBinCount) });
+      const gain = ctx.createGain();     // for fading out: the analyser sits before it, so the bars still hear the music
+      ctx.createMediaElementSource(audio).connect(an); an.connect(gain); gain.connect(ctx.destination);
+      Object.assign(live, { ctx, analyser: an, gain, data: new Uint8Array(an.frequencyBinCount) });
     } catch (e) { /* the preview still plays; the bars just keep their own time */ }
   }
   const level = () => Math.max(0, Math.min(1, session.volume));
   function startPreview(url, id) {
-    audio.src = url; audio.dataset.for = id;
+    audio.src = url; audio.dataset.for = id; audio.loop = false;
     listen();
     if (live.ctx && live.ctx.state === 'suspended') live.ctx.resume();
     audio.volume = level();
-    audio.play().catch(() => showHearing(false));
+    soundUp();
   }
+  // ---- Sound: the records' own music ----
+  // Each made-up record has its own track (assets/audio/<id>.mp3, about a minute, looping), made for this site.
+  // The switch is off on every visit and nothing plays until it's touched. On, the record the demo is showing
+  // plays from the top, on the Mac, and the demo's controls drive it. Off, or with the tab hidden, it fades out.
+  // Until the tracks exist the switch stays hidden. A song picked in Try it still sounds as its preview.
+  const soundSwitch = $('.sound-switch');
+  const trackURL = (r) => `assets/audio/${r.id}.mp3`;
+  let soundOn = false, haveTracks = false, fadeTimer = 0;
+  function setSound(on) {
+    soundOn = on;
+    if (soundSwitch) soundSwitch.setAttribute('aria-checked', String(on));
+  }
+  if (soundSwitch) {
+    fetch(trackURL(RECORDS[0]), { method: 'HEAD' })
+      .then((res) => { if (res.ok) { haveTracks = true; soundSwitch.hidden = false; } })
+      .catch(() => {});
+    soundSwitch.addEventListener('click', () => {
+      setSound(!soundOn);
+      if (soundOn) {
+        listen();
+        if (live.ctx && live.ctx.state === 'suspended') live.ctx.resume();
+        const r = owner().record;
+        if (!r.id.startsWith('pick-')) audio.dataset.for = '';   // the record's track, from the top
+      }
+      sound.sync();
+    });
+  }
+  function startTrack(r) {
+    audio.src = trackURL(r); audio.dataset.for = r.id; audio.loop = true;
+    listen();
+    audio.currentTime = 0;
+  }
+  // Up to full and playing; or fade out over 0.3 s, then pause.
+  function soundUp() {
+    clearTimeout(fadeTimer);
+    if (live.gain) { const g = live.gain.gain, t = live.ctx.currentTime; g.cancelScheduledValues(t); g.setValueAtTime(g.value, t); g.linearRampToValueAtTime(1, t + 0.05); }
+    if (audio.paused) audio.play().catch(() => showHearing(false));
+  }
+  function soundDown() {
+    if (audio.paused) return;
+    clearTimeout(fadeTimer);
+    if (live.gain) {
+      const g = live.gain.gain, t = live.ctx.currentTime;
+      g.cancelScheduledValues(t); g.setValueAtTime(g.value, t); g.linearRampToValueAtTime(0, t + 0.3);
+      fadeTimer = setTimeout(() => audio.pause(), 300);
+    } else audio.pause();
+  }
+  document.addEventListener('visibilitychange', () => sound.sync());
+
   // The device that has the song: the iPhone after Continue on iPhone, otherwise the Mac.
   const onPhone = () => !!(sound.phone && sound.phone.where() === 'iphone' && sound.phone.index() != null);
   function owner() {
@@ -344,7 +403,17 @@ const sound = { phone: null, hold: 0, sync: () => {}, heard: () => null };
       apple.href = r.link;
       apple.setAttribute('aria-label', 'Open ' + r.title + ' in Apple Music (new tab)');
     }
-    if (!picked || !r.preview || !o.playing) { if (!audio.paused) audio.pause(); live.on = false; return; }
+    const audible = soundOn && !document.hidden && o.playing;
+    if (!picked) {
+      // A made-up record: its own track, from the top whenever the record changes, looping.
+      if (!haveTracks || !audible) { soundDown(); live.on = false; return; }
+      if (audio.dataset.for !== r.id) startTrack(r);
+      if (!onPhone()) audio.volume = level();
+      soundUp();
+      live.on = !onPhone();
+      return;
+    }
+    if (!r.preview || !audible) { soundDown(); live.on = false; return; }
     if (audio.dataset.for !== r.id) startPreview(r.preview, r.id);         // back to an earlier pick
     const len = audio.duration;
     if (isFinite(len) && o.pos >= len - 0.25) {
@@ -354,15 +423,23 @@ const sound = { phone: null, hold: 0, sync: () => {}, heard: () => null };
     }
     if (Math.abs(audio.currentTime - o.pos) > 1.2) audio.currentTime = o.pos;
     if (!onPhone()) audio.volume = level();  // the Mac's volume is Music's on the Mac
-    if (audio.paused) audio.play().catch(() => showHearing(false));
-    live.on = !audio.paused && !onPhone();   // the sound bars are the Mac's sound
+    soundUp();
+    live.on = !onPhone();                    // the sound bars are the Mac's sound
   };
   sound.heard = (id) => (!audio.paused && audio.dataset.for === id ? audio.currentTime : null);
 
   // The button is the song's own play and pause, on whichever device has it.
-  hear.addEventListener('click', () => { if (owner().record.preview) owner().toggle(); });
+  hear.addEventListener('click', () => {
+    const o = owner();
+    if (!o.record.preview) return;
+    if (!soundOn) { setSound(true); if (!o.playing) o.toggle(); else sound.sync(); }
+    else o.toggle();
+  });
   const showHearing = (on) => { hear.setAttribute('aria-pressed', String(on)); hearLabel.textContent = on ? 'Pause preview' : 'Play preview'; live.on = on && !onPhone(); };
-  audio.addEventListener('playing', () => showHearing(true));
+  audio.addEventListener('playing', () => {
+    if ((audio.dataset.for || '').startsWith('pick-')) showHearing(true);
+    else live.on = !onPhone();               // a record's own track: the bars follow it
+  });
   audio.addEventListener('pause', () => showHearing(false));
   audio.addEventListener('ended', () => {
     showHearing(false);
