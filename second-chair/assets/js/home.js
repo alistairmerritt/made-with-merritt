@@ -593,7 +593,8 @@ if (hand) {
 
   const fill = (card, r) => {
     const img = $('[data-bind="art"]', card);
-    if (!img.src.endsWith(`/${r.id}.webp`)) img.src = artURL(r);
+    const want = new URL(artURL(r), location.href).href;
+    if (img.src !== want) img.src = want;
     $('[data-bind="title"]', card).textContent = r.title;
     $('[data-bind="artist"]', card).textContent = r.artist;
   };

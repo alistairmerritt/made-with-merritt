@@ -24,7 +24,10 @@ const RECORDS = [
     stage: '#aa662c', ink: '#ffffff', glow: '#e0c2a9', wall: ['#442912', '#b36b2e'] },
 ];
 
-const artURL = (r, small) => r.art || `${ART_BASE}${r.id}${small ? '-sm' : ''}.webp`;   // a song picked from Apple Music brings its own artwork
+// Raise ART_V whenever a cover changes (and in the static src="…?v=" in the pages), so browsers fetch the new file
+// at once rather than showing the one they cached for up to 10 minutes.
+const ART_V = 2;
+const artURL = (r, small) => r.art || `${ART_BASE}${r.id}${small ? '-sm' : ''}.webp?v=${ART_V}`;   // a song picked from Apple Music brings its own artwork
 const BIG_ART = '.sb-art, .hand-art';   // the only places a cover is shown larger than 72 px
 const artFor = (img, r) => artURL(r, !img.closest(BIG_ART));
 
