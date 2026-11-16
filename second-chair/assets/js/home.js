@@ -9,9 +9,10 @@ const stage = $('#stage');
 const announce = $('#announce');
 const say = (text) => { announce.textContent = ''; requestAnimationFrame(() => { announce.textContent = text; }); };
 
-// The first record is nearly over, so the visitor sees the Mac move on by itself and the iPhone follow.
-// With reduced motion, nothing plays until asked.
-const session = new Session({ index: 0, position: 186, playing: !reducedMotion.matches });
+// The first record has 10 seconds left, so the visitor sees the Mac move on by itself and the iPhone follow.
+// With reduced motion, nothing plays until asked. (index.html's static times show the same moment: 3:24, −0:10.)
+const FIRST_SONG_LEFT = 10;
+const session = new Session({ index: 0, position: RECORDS[0].duration - FIRST_SONG_LEFT, playing: !reducedMotion.matches });
 
 // The page wears the colour of whatever the iPhone in the hero is showing.
 paintStage(stage, RECORDS[0]);
