@@ -214,19 +214,20 @@ ul, ol { margin: 0; padding: 0; }
 .mm-meta .album { font-size: 12px; }
 .mm-meta small { font-size: 10px; color: rgba(0, 0, 0, .34); padding-top: 2px; }
 .mm-progress { margin-top: 12px; }
-.mm-bar { height: 5px; border-radius: 3px; background: rgba(0, 0, 0, .1); overflow: hidden; }
+.mm-bar { height: 7px; border-radius: 4px; background: rgba(0, 0, 0, .1); overflow: hidden; }   /* as macOS 26 draws a ProgressView in a menu */
 .mm-bar i { display: block; height: 100%; width: 100%; background: #0a84ff; border-radius: inherit; transform-origin: left; transform: scaleX(var(--p, 0)); }
 .mm-times { display: flex; justify-content: space-between; margin-top: 3px; font: 400 10px/1 var(--sans); font-variant-numeric: tabular-nums; color: rgba(0, 0, 0, .5); }
 .mm-transport { display: flex; justify-content: center; gap: 32px; margin-top: 10px; }
-.mm-transport button { display: grid; place-items: center; width: 34px; height: 30px; padding: 0; border: 0; border-radius: 7px; background: none; color: rgba(0, 0, 0, .78); cursor: pointer; transition: background-color .15s, transform .15s; }
-.mm-transport button:hover { background: rgba(0, 0, 0, .06); }
+.mm-transport > * { display: grid; place-items: center; width: 34px; height: 30px; color: rgba(0, 0, 0, .5); }   /* borderless buttons: secondary grey, as in the app */
+.mm-transport button { padding: 0; border: 0; border-radius: 7px; background: none; color: rgba(0, 0, 0, .5); cursor: pointer; transition: background-color .15s, color .15s, transform .15s; }
+.mm-transport button:hover { background: rgba(0, 0, 0, .06); color: rgba(0, 0, 0, .78); }
 .mm-transport button:active { transform: scale(.9); }
-.mm-transport svg { width: 19px; height: 19px; }
-.mm-transport .pp svg { width: 21px; height: 21px; }
+.mm-transport svg { width: 22px; height: 22px; fill: currentColor; }
+.mm-transport .pp svg { width: 22px; height: 22px; }
 .mac-menu hr { border: 0; height: 1px; background: rgba(0, 0, 0, .1); margin: 12px 0; }
 .mm-conn { display: flex; align-items: center; gap: 6px; }
 .mm-conn i { width: 8px; height: 8px; border-radius: 50%; background: #30c94f; }
-.mm-row { display: flex; justify-content: space-between; margin-top: 8px; }
+.mm-row { display: flex; gap: 9px; margin-top: 8px; }   /* LabeledContent in a menu: the value follows the label */
 .mm-row span + span { color: rgba(0, 0, 0, .5); }
 /* "On This Mac" above the song; once Continue on iPhone has taken the music, the song steps back. */
 .mm-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; font-size: 10px; color: rgba(0, 0, 0, .5); }
