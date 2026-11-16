@@ -14,7 +14,7 @@ const RECORDS = [
     stage: '#b35638', ink: '#ffffff', glow: '#e3c4ba', wall: ['#472316', '#bc5b3b'] },
   { id: 'small-hours', title: 'Small Hours', artist: 'Fen Lights', album: 'Lit Windows', duration: 252, bpm: 72,
     stage: '#857152', ink: '#ffffff', glow: '#d0c7b9', wall: ['#352d21', '#8b7756'] },
-  { id: 'rooftop-season', title: 'Rooftop Season', artist: 'Tavi Rhodes', album: 'Daylight Savings', duration: 188, bpm: 99, feel: 'punchy',
+  { id: 'rooftop-season', title: 'Rooftop Season', artist: 'Remy Saint', album: 'Daylight Savings', duration: 188, bpm: 99, feel: 'punchy',
     stage: '#dccbbc', ink: '#16120f', glow: '#ece5df', wall: ['#6b4f38', '#b59071'] },
   { id: 'ticket-hall', title: 'Ticket Hall', artist: 'Polly Atlas', album: 'Concourse', duration: 178, bpm: 122,
     stage: '#9a6e13', ink: '#ffffff', glow: '#e1c17f', wall: ['#3e2c08', '#a27314'] },
