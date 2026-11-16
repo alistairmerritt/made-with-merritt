@@ -13,9 +13,9 @@
      slideshow's crops (wide on desktop, tall on phones) both keep it, above the title at the bottom left. */
   html, body { margin: 0; width: 2000px; height: 1500px; overflow: hidden; background: #000; }
   .hero { position: relative; isolation: isolate; width: 2000px; height: 1500px; background: #000; overflow: hidden;
-          --stage: #331810; --wall-a: #472316; --wall-b: #bc5b3b; }
+          --stage: #3f3a36; --wall-a: #6b4f38; --wall-b: #b59071; }   /* Rooftop Season: its stage at 28.6% for the night, its walls */
   .glow { position: absolute; left: 50%; top: 380px; width: 1300px; height: 640px; transform: translate(-50%, -50%);
-          background: radial-gradient(closest-side, rgba(184, 92, 62, .32), rgba(130, 62, 40, .12) 55%, transparent);
+          background: radial-gradient(closest-side, rgba(181, 144, 113, .30), rgba(107, 79, 56, .12) 55%, transparent);
           filter: blur(60px); z-index: -2; }
   /* The charging stand: rendered by devices/stand.py on black, added with screen so black adds nothing. */
   .stand { position: absolute; inset: 0; background: url("devices/stand-mobile.png") 0 0 / 100% 100% no-repeat; mix-blend-mode: screen; opacity: .7; z-index: -1; }
@@ -55,16 +55,16 @@
             <!-- StandBy's Now Playing, laid out as iOS draws it: artwork left; title, artist, controls and scrubber centred on the right. -->
             <div class="standby-ui">
               <div class="wall" aria-hidden="true"></div>
-              <div class="sb-art" data-swap="spin"><img class="art" data-bind="art" src="../assets/art/low-sun.webp" alt="" width="300" height="300"></div>
+              <div class="sb-art" data-swap="spin"><img class="art" data-bind="art" src="../assets/art/rooftop-season.webp" alt="" width="300" height="300"></div>
               <div class="sb-side">
                 <div class="sb-top" aria-hidden="true"><svg><use href="#i-vol-mid"/></svg><svg><use href="#i-airplay-audio"/></svg></div>
-                <div class="sb-meta"><b class="sb-title" data-bind="title">Low Sun</b><span class="sb-artist" data-bind="artist">Drift Hotel</span></div>
+                <div class="sb-meta"><b class="sb-title" data-bind="title">Rooftop Season</b><span class="sb-artist" data-bind="artist">Tavi Rhodes</span></div>
                 <div class="sb-controls">
                   <button type="button" class="ios-btn" data-cmd="previous" aria-label="Previous, from the iPhone"><svg class="glyph-fill"><use href="#i-prev"/></svg></button>
                   <button type="button" class="ios-btn pp" data-cmd="toggle" data-where="from the iPhone" aria-label="Pause from the iPhone"><svg class="i-pause glyph-fill"><use href="#i-pause"/></svg><svg class="i-play glyph-fill"><use href="#i-play"/></svg></button>
                   <button type="button" class="ios-btn" data-cmd="next" aria-label="Next, from the iPhone"><svg class="glyph-fill"><use href="#i-next"/></svg></button>
                 </div>
-                <div class="sb-scrub" aria-hidden="true"><div class="ios-bar"><i data-bind="progress" style="--p:.953"></i></div><div class="sb-times"><span data-bind="elapsed">3:24</span><span data-bind="remaining">−0:10</span></div></div>
+                <div class="sb-scrub" aria-hidden="true"><div class="ios-bar"><i data-bind="progress" style="--p:.596"></i></div><div class="sb-times"><span data-bind="elapsed">1:52</span><span data-bind="remaining">−1:16</span></div></div>
               </div>
               <span class="sb-home" aria-hidden="true"></span>
             </div>
