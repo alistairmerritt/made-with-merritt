@@ -586,9 +586,14 @@ if (hand) {
   const phone = { index: null, base: 0, t0: 0, playing: false };
   const phonePos = () => phone.index == null ? 0 : Math.min(RECORDS[phone.index].duration, phone.playing ? phone.base + (performance.now() - phone.t0) / 1000 : phone.base);
 
-  const upNext = (i) => Array.from({ length: 5 }, (_, k) => RECORDS[(i + 1 + k) % RECORDS.length]);
+  const upNext = (i) => Array.from({ length: 5 }, (_, k) => (i + 1 + k) % RECORDS.length);
+  // Each song in Up Next is a button: pressing it plays that song on that device, as in Music.
+  const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   const fillQueue = (ol, i) => {
-    ol.innerHTML = upNext(i).map((r) => `<li><img src="${artURL(r, true)}" alt="${r.title}, ${r.artist}" width="40" height="40"></li>`).join('') + '<li class="more">and up to 20 more</li>';
+    ol.innerHTML = upNext(i).map((n) => {
+      const r = RECORDS[n];
+      return `<li><button type="button" class="queue-song" data-index="${n}" aria-label="Play ${esc(r.title)}, ${esc(r.artist)}"><img src="${artURL(r, true)}" alt="" width="40" height="40"></button></li>`;
+    }).join('') + '<li class="more">and up to 20 more</li>';
   };
 
   const fill = (card, r) => {
@@ -721,9 +726,33 @@ if (hand) {
     say(`Continued on the Mac from ${fmt(at)}. The iPhone is paused.`);
   }
 
+  // Up Next on the Mac: play that song on the Mac. If the iPhone has the music, Music starting on the Mac takes
+  // it back, as in the app, and the iPhone pauses.
+  qMac.addEventListener('click', (e) => {
+    const b = e.target.closest('.queue-song');
+    if (!b || hand.dataset.busy) return;
+    const n = Number(b.dataset.index);
+    if (hand.dataset.where === 'iphone') { phone.base = phonePos(); phone.playing = false; hand.dataset.where = 'mac'; }
+    session.goTo(n, 0, 'mac');
+    if (!session.playing) session.toggle('mac');
+    render(); sound.sync();
+    say(`Playing ${RECORDS[n].title} on the Mac.`);
+  });
+  // Up Next on the iPhone: play that song in Apple Music on the iPhone.
+  qPhone.addEventListener('click', (e) => {
+    const b = e.target.closest('.queue-song');
+    if (!b || hand.dataset.busy || hand.dataset.where !== 'iphone') return;
+    const n = Number(b.dataset.index);
+    phone.index = n; phone.base = 0; phone.t0 = performance.now(); phone.playing = true;
+    fillQueue(qPhone, n);
+    render(); sound.sync();
+    say(`Playing ${RECORDS[n].title} on the iPhone.`);
+  });
+
   toPhone.addEventListener('click', continueOnIPhone);
   toMac.addEventListener('click', () => backHome(toMac, true));          // Continue from iPhone, on the Mac
   backToMac.addEventListener('click', () => backHome(backToMac, false)); // Continue on Mac, on the iPhone
+  fillQueue(qMac, session.index); qMac.dataset.for = String(session.index);
   session.addEventListener('change', ({ detail: { kind } }) => {
     if (hand.dataset.busy) return;
     // As on the Mac: Music starting there by itself ends Continue from iPhone. Here the iPhone pauses
