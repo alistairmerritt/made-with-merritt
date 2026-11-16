@@ -4,15 +4,16 @@ Alpine Loop is a two-layer textile knit from two yarns: seen front-on it's fine 
 alternately left and right in narrow columns (a chevron, or herringbone, texture), the rows alternating between the
 two yarn colours so the band reads as a speckled, heathered single colour. No edge stitching (that's Trail Loop).
 
-Size and placement (watch.py, base.css): 27 mm wide, between the case's horns; it runs down to the case's rim,
-where it disappears into the slot's shadow. The free end is cut straight across, as in Apple's product shots.
+Size and placement (watch.py, base.css): 28 mm wide, behind the case, so it disappears into the slot between the
+lugs' posts; its free end is cut across with slightly rounded corners and fades darker, as the band curves away
+around the wrist.
 
     python3 band.py    # writes ../../assets/img/devices/watch-band-top.webp and watch-band-bottom.webp
 """
 import numpy as np
 from PIL import Image
 
-W, H = 620, 330               # 27 x 14.4 mm (57.6% of the watch's width x 30cqw), ~23 px/mm
+W, H = 644, 330               # 28 x 14.4 mm (59.7% of the watch's width x 30cqw), ~23 px/mm
 SS = 3
 rng = np.random.default_rng(11)
 w, h = W * SS, H * SS
@@ -41,13 +42,22 @@ c = yarn * (1 + .07 * tone[..., None]) * (.5 + .7 * bump[..., None])   # dark ga
 edge = np.clip(np.minimum(u, 1 - u) / .035, 0, 1)
 c = c * (.55 + .45 * edge ** .7)[..., None] * (1 - .18 * (2 * u - 1) ** 6)[..., None]
 
-# Into the slot: the band darkens over its last ~1 mm and ends in a near-black line of shadow.
+# Into the slot: the band darkens over its last ~1.2 mm, most of it hidden behind the slot's floor.
 mm = h / 14.4
 d_slot = (h - ys) / mm                                      # mm from the slot end
-c = c * (1 - .75 * np.exp(-d_slot / .55))[..., None]
-c = np.where((d_slot < .28)[..., None], c * .25, c)
+c = c * (1 - .7 * np.exp(-d_slot / .6))[..., None]
 
-alpha = np.ones(xs.shape)
+# Towards its free end the band curves away around the wrist: a subtle fade to black over the last ~5 mm.
+d_free = ys / mm                                            # mm from the free end
+fade = np.clip(d_free / 5.0, 0, 1)
+c = c * (.45 + .55 * fade * fade * (3 - 2 * fade))[..., None]
+
+# The free end's corners are slightly rounded (r 0.8 mm).
+r = .8 * mm
+dx = np.maximum(np.maximum(r - xs, xs - (w - r)), 0)
+dy = np.maximum(r - ys, 0)
+alpha = np.clip(r - np.hypot(dx, dy) + .5 * SS, 0, SS) / SS
+alpha = np.where((dx > 0) & (dy > 0), alpha, 1.0)
 rgba = np.concatenate([np.clip(c, 0, 1), alpha[..., None]], -1)
 rgba = rgba.reshape(H, SS, W, SS, 4).mean(axis=(1, 3))
 img = Image.fromarray((rgba * 255 + .5).astype(np.uint8), 'RGBA')

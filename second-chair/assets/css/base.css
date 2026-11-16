@@ -355,12 +355,11 @@ ul, ol { margin: 0; padding: 0; }
 
 /* ---- Apple Watch Ultra 4: rendered case, band, watchOS Now Playing ---- */
 .watch { container-type: inline-size; position: relative; isolation: isolate; width: 100%; }
-/* The band: Alpine Loop in navy (_docs/devices/band.py), 27 mm wide between the case's horns. It runs down to the
-   case's rim (5.4 mm into the case frame, 11.51cqw) in front of the case, so the horns show either side of it; its
-   free end is cut straight across, as in Apple's product shots. */
-.watch-band { position: relative; z-index: 2; width: 57.6%; height: 30cqw; margin: 0 auto; background: center / 100% 100% no-repeat; }
-.watch-band--top { margin-bottom: -11.51cqw; background-image: url("../img/devices/watch-band-top.webp"); }
-.watch-band--bottom { margin-top: -11.51cqw; background-image: url("../img/devices/watch-band-bottom.webp"); }
+/* The band: Alpine Loop in navy (_docs/devices/band.py), 28 mm wide. It sits behind the case and runs into the slot
+   between the lugs' posts (whose floor is 3.65 mm into the case frame), ending 0.4 mm past it (4.05 mm, 8.64cqw). */
+.watch-band { position: relative; z-index: 0; width: 59.7%; height: 30cqw; margin: 0 auto; background: center / 100% 100% no-repeat; }
+.watch-band--top { margin-bottom: -8.64cqw; background-image: url("../img/devices/watch-band-top.webp"); }
+.watch-band--bottom { margin-top: -8.64cqw; background-image: url("../img/devices/watch-band-bottom.webp"); }
 /* Apple Watch Ultra 4, 49 mm, natural titanium: a pre-rendered case (assets/img/devices) from Apple's published
    dimensions and its front-on product photo, with the live screen in its transparent display window
    (32.88 x 40.05 mm in a 46.9 x 57.84 mm frame that includes the crown and the band lugs). */

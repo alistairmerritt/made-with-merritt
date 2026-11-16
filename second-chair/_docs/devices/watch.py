@@ -23,10 +23,11 @@ P = dict(
     # crown 0.69 mm proud of the guard, side button 26.4-36.0 and only 0.41 mm proud of it
     guard=(11.1, 37.3, 1.35), crown=(13.7, 22.6, 2.05), button=(26.4, 36.0, 1.76), action=(21.9, 35.2),
     # band lugs (horns), measured from Apple's front-on Alpine Loop photo at ~17.2 px/mm (body 41.7 mm = 718 px):
-    # 31.6 mm across, rising 3.5 mm above the body's top and below its bottom, corners r 2.0, flowing into the
-    # body's shoulders through a ~2.4 mm concave fillet. The band (27 mm) runs between them into a slot 0.75 mm
-    # above the body line; that slot and the band are drawn in the page (base.css), not here.
-    lug_w=31.6, lug_h=3.5, lug_r=2.0, lug_fillet=2.4,
+    # 31.6 mm across, rising 3.5 mm above the body's top and below its bottom: two posts either side of a 27 mm
+    # slot for the band, whose floor is a straight bridge 0.75 mm above the body line; outer corners r 2.0, inner
+    # corners r 0.9. Each post flows into the body (and the slot's floor) through a concave
+    # fillet: 2.4 mm on the shoulder outside, 1.2 mm inside, where the case's edge curves up to meet the band.
+    lug_w=31.6, lug_h=3.5, lug_r=2.0, lug_r_in=0.9, slot_w=27.0, lug_fillet=2.4, slot_fillet=1.2, slot_floor=0.75,
 )
 ENV = dict(front=0.717, front_pow=0.318, soft=0.173, soft_el=0.537, soft_w=0.343, below=0.47, side=0.265, back=0.153, lip_tilt=0.078, roll_R=1.509, groove=0.067,
            f0=(0.84, 0.75, 0.665), polish=1.22, brush=0.05, roll_h=1.5)   # fitted to Apple's photo (fit.py)
@@ -61,11 +62,22 @@ def render(scale=7.388, ss=3, margin=6.0, screen=None, e=None, out=None, shadow=
     yt = Y + P['body_h']/2; right = P['body_w']/2
     body = superrect(X, Y, P['body_w'], P['body_h'], P['body_a'], P['body_n']) <= 0
     # lugs: one rounded block across the top and bottom, merged into the shoulders with a concave fillet
-    lugs = superrect(X, Y, P['lug_w'], P['body_h'] + 2*P['lug_h'], P['lug_r'], 2.0) <= 0
-    kf = max(3, int(2*P['lug_fillet']*S)) | 1
-    # padded first, so the frame's edge doesn't erode the lugs' tops
-    padded = cv2.copyMakeBorder((body | lugs).astype(np.uint8), kf, kf, kf, kf, cv2.BORDER_CONSTANT, value=0)
-    body = cv2.morphologyEx(padded, cv2.MORPH_CLOSE, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (kf, kf)))[kf:-kf, kf:-kf].astype(bool)
+    pw = (P['lug_w'] - P['slot_w']) / 2                          # each post's width
+    ph = P['body_h'] + 2*P['lug_h']
+    def post(sign):                                              # a post, rounded r_out outside and r_in inside
+        cx = sign * (P['slot_w'] + pw) / 2
+        qx = X - cx; outer = (qx * sign) > 0
+        r = np.where(outer, P['lug_r'], P['lug_r_in'])
+        return superrect(qx, Y, pw, ph, r, 2.0) <= 0
+    # the slot's floor: a straight bridge between the posts, 0.75 mm proud of the body line, where the band goes in
+    bridge = (np.abs(X) < P['lug_w']/2 - 0.5) & (np.abs(Y) < P['body_h']/2 + P['slot_floor'])
+    lugs = post(-1) | post(1) | bridge
+    def close(m, mm):                                            # concave fillets; padded so the frame's edge can't hold anything out
+        k = max(3, int(2*mm*S)) | 1
+        pm = cv2.copyMakeBorder(m.astype(np.uint8), k, k, k, k, cv2.BORDER_CONSTANT, value=0)
+        return cv2.morphologyEx(pm, cv2.MORPH_CLOSE, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (k, k)))[k:-k, k:-k].astype(bool)
+    inside_slot = np.abs(X) < P['slot_w'] / 2
+    body = np.where(inside_slot, close(body | lugs, P['slot_fillet']), close(body | lugs, P['lug_fillet']))
     glass = superrect(X, Y, P['glass_w'], P['glass_h'], P['glass_a'], P['glass_n']) <= 0
     def part(y0, y1, prot, r):
         cy = (y0+y1)/2 - P['body_h']/2
