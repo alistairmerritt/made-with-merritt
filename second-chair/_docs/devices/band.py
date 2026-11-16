@@ -1,5 +1,5 @@
 """A woven loop band for the Apple Watch Ultra on the home page, after Apple's Trail Loop: a knitted centre in
-heathered brown, near-black edges each carrying a dashed line of light stitching, and a softly squared end.
+heathered navy, near-black edges each carrying a dashed line of light stitching, and a softly squared end.
 
 The texture is built stitch by stitch (each a small rounded bump, with per-stitch variation in the yarn's tone),
 then lit gently across the width as the band curves over the wrist. No fade: the band is solid to its end.
@@ -30,9 +30,9 @@ cell_tone = rng.normal(0, 1, (int(row.max()) + 2, int(cx.max()) + 2))
 tone = cell_tone[row.astype(int), cx.astype(int)]
 
 # Display (sRGB) values, as in Apple's photograph.
-brown = np.array([0.27, 0.16, 0.11])
-brown_hi = np.array([0.36, 0.23, 0.16])
-black = np.array([0.075, 0.07, 0.068])
+brown = np.array([0.09, 0.12, 0.24])      # navy
+brown_hi = np.array([0.14, 0.18, 0.33])
+black = np.array([0.06, 0.065, 0.08])
 stitch = np.array([0.74, 0.72, 0.70])
 
 heather = np.clip(.5 + .2 * tone, 0, 1)[..., None]
@@ -55,8 +55,8 @@ col = np.where(seam[..., None], col * .55, col)
 curve = 1 - .3 * (2 * u - 1) ** 4
 col = col * curve[..., None]
 
-# Shape: straight sides, a softly squared free end (radius ~10% of the width).
-r = .1 * w
+# Shape: straight sides, a squared free end with small corners (radius ~4% of the width).
+r = .04 * w
 dx = np.maximum(np.maximum(r - xs, xs - (w - 1 - r)), 0)
 dy = np.maximum(r - ys, 0)
 inside = np.hypot(dx, dy) <= r
