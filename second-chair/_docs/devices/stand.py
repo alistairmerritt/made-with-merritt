@@ -110,16 +110,16 @@ def base_blocks(p, q):
     return (tmax > np.maximum(tmin, 1e-4)) & (tmin < 1)
 
 
+SS = 4   # samples per pixel along each axis: rendered at 4x, averaged down, so edges are smooth
+
+
 def render(layout):
     L = LAYOUTS[layout]
-    W, H = L['size']
-    s = L['phone_px'] / PHONE_W                  # px per mm at the phone's plane
+    W, H = L['size'][0] * SS, L['size'][1] * SS
+    s = L['phone_px'] * SS / PHONE_W             # px per mm at the phone's plane
     f = s * CAM_D
-    cx, cy = L['centre']
+    cx, cy = L['centre'][0] * SS, L['centre'][1] * SS
     cam = np.array([0.0, 0.0, CAM_D])
-    ys, xs = np.mgrid[0:H, 0:W].astype(float)
-    dirs = np.stack([(xs + .5 - cx) / f, -(ys + .5 - cy) / f, -np.ones_like(xs)], -1)
-    dirs /= np.linalg.norm(dirs, axis=-1, keepdims=True)
     img = np.zeros((H, W, 3))
 
     # The stand: sphere-traced only inside its bounding box on screen.
@@ -129,7 +129,11 @@ def render(layout):
                for z in (BASE_Z - BASE_HALF - 2, BASE_Z + BASE_HALF + 2)]
     x0, x1 = int(min(c[0] for c in corners)) - 2, int(max(c[0] for c in corners)) + 3
     y0, y1 = int(min(c[1] for c in corners)) - 2, int(max(c[1] for c in corners)) + 3
-    sub = dirs[y0:y1, x0:x1]
+    x0, y0 = x0 // SS * SS, y0 // SS * SS
+    x1, y1 = -(-x1 // SS) * SS, -(-y1 // SS) * SS
+    ys, xs = np.mgrid[y0:y1, x0:x1].astype(float)
+    sub = np.stack([(xs + .5 - cx) / f, -(ys + .5 - cy) / f, -np.ones_like(xs)], -1)
+    sub /= np.linalg.norm(sub, axis=-1, keepdims=True)
     tt = np.full(sub.shape[:-1], CAM_D - 200.0)
     alive = np.ones(sub.shape[:-1], bool)
     hit = np.zeros(sub.shape[:-1], bool)
@@ -153,9 +157,10 @@ def render(layout):
     col = albedo * (key + amb)[:, None] * np.array([1.0, 0.86, 0.82])
     patch = img[y0:y1, x0:x1]
     patch[hit] = col
-    # A soft contact shadow where the base meets the table.
     img[y0:y1, x0:x1] = patch
 
+    # Average each SS x SS block in linear light, then encode.
+    img = img.reshape(H // SS, SS, W // SS, SS, 3).mean(axis=(1, 3))
     out = np.clip(img, 0, 1) ** (1 / 2.2)
     return Image.fromarray((out * 255 + .5).astype(np.uint8))
 

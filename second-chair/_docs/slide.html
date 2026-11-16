@@ -18,7 +18,7 @@
           background: radial-gradient(closest-side, rgba(200, 40, 28, .32), rgba(150, 22, 16, .12) 55%, transparent);
           filter: blur(60px); z-index: -2; }
   /* The charging stand: rendered by devices/stand.py on black, added with screen so black adds nothing. */
-  .stand { position: absolute; inset: 0; background: url("devices/stand-mobile.png") 0 0 / 100% 100% no-repeat; mix-blend-mode: screen; z-index: -1; }
+  .stand { position: absolute; inset: 0; background: url("devices/stand-mobile.png") 0 0 / 100% 100% no-repeat; mix-blend-mode: screen; opacity: .7; z-index: -1; }
   .desktop .stand { background-image: url("devices/stand-desktop.png"); }
   .hero .hero-standby { position: absolute; left: 50%; top: 380px; width: 640px; transform: translate(-50%, -50%); right: auto; bottom: auto; margin: 0;
           --phone-drop: drop-shadow(0 3cqw 5cqw rgba(0, 0, 0, .85)) drop-shadow(0 .8cqw 1.4cqw rgba(0, 0, 0, .6)); }
