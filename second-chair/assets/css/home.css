@@ -150,21 +150,21 @@ html:not(.js) .try { display: none; }
 /* Phones held upright. */
 @media (max-width: 719px) {
   .site-header { padding: 0 6px 0 calc(var(--gutter) - 8px); }
-  /* Spacing here is fixed, not tied to the screen's height: Safari's toolbars leave an iPhone 15 Pro about
-     680px, and squeezing everything to fit made it cramped. StandBy can start below the first screen. */
-  .hero { --gap: 20px; padding-top: 22px; padding-bottom: var(--gap); }
-  .hero-kicker { font-size: .625rem; letter-spacing: .06em; margin-bottom: 40px; }
+  /* Spacing here is fixed, not tied to the screen's height. It's set so that on an iPhone 15 Pro StandBy and its
+     caption sit whole above Safari's floating toolbar (about 710px of page shows above it), not half under it. */
+  .hero { --gap: 20px; padding-top: 20px; padding-bottom: var(--gap); }
+  .hero-kicker { font-size: .625rem; letter-spacing: .06em; margin-bottom: 28px; }
   .hero-copy { max-width: none; }
   .hero-title { font-size: 12.6vw; letter-spacing: -.03em; }   /* the widest line, "Music on your Mac.", spans the column (it measures 7.08 em) */
-  .hero-lede { font-size: 1rem; line-height: 1.5; margin-top: 30px; }
-  .hero-actions { margin-top: 34px; gap: 8px 22px; }   /* keeps the button and the link on one line down to 375px wide */
-  .hero-scene { padding-top: 64px; }
+  .hero-lede { font-size: 1rem; line-height: 1.5; margin-top: 22px; }
+  .hero-actions { margin-top: 26px; gap: 8px 22px; }   /* keeps the button and the link on one line down to 375px wide */
+  .hero-scene { padding-top: 26px; }
   .hero-mac, .try { display: none; }    /* on phones the first screen is the headline and StandBy */
   .try-open { min-height: 32px; }
   .hero-menu hr, .hero-menu .mm-conn, .hero-menu .mm-row, .hero-menu .mm-progress { display: none; }
   .hero-menu .mm-transport { margin-top: 8px; }
   .hero-standby { width: calc(100vw - var(--gutter) - var(--gap)); margin: 0 calc(var(--gap) - var(--gutter)) 0 auto; }
-  .device-tag--phone { bottom: auto; top: 100%; margin: 4px 0 0; }
+  .device-tag--phone { bottom: auto; top: 100%; margin: 8px 0 0; }
   .hero { padding-bottom: calc(var(--gap) + 16px); }
   /* The song's colour runs on under Safari's toolbar: the stage is as tall as the largest viewport, and the
      extra (the toolbars' height) is padding below the content, so nothing sits under the toolbar. iOS 26's
@@ -182,7 +182,7 @@ html:not(.js) .try { display: none; }
   .hero-lede { font-size: .9375rem; line-height: 1.45; margin-top: 20px; }
   .hero-actions { margin-top: 24px; }
   .hero-actions .btn { min-height: 44px; }
-  .hero-scene { padding-top: 44px; }
+  .hero-scene { padding-top: 22px; }
   .hero-menu .mm-transport { display: none; }
   .device-tag { display: none; }
   .hero { padding-bottom: var(--gap); }
