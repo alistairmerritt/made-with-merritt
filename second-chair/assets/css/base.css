@@ -355,14 +355,10 @@ ul, ol { margin: 0; padding: 0; }
 
 /* ---- Apple Watch Ultra 4: rendered case, band, watchOS Now Playing ---- */
 .watch { container-type: inline-size; position: relative; width: 100%; --band: #3f4b60; }
-.watch-band {
-  position: relative; width: 59%; height: 46cqw; margin: 0 auto;
-  background:
-    linear-gradient(90deg, rgba(0, 0, 0, .34), rgba(255, 255, 255, .07) 18%, rgba(255, 255, 255, .12) 46%, rgba(255, 255, 255, .05) 76%, rgba(0, 0, 0, .36)),
-    var(--band);
-}
-.watch-band--top { margin-bottom: -5cqw; border-radius: 3cqw 3cqw 0 0; -webkit-mask-image: linear-gradient(to top, #000 45%, transparent); mask-image: linear-gradient(to top, #000 50%, transparent); }
-.watch-band--bottom { margin-top: -5cqw; border-radius: 0 0 3cqw 3cqw; -webkit-mask-image: linear-gradient(to bottom, #000 45%, transparent); mask-image: linear-gradient(to bottom, #000 50%, transparent); }
+/* The band: a woven loop after Apple's Trail Loop, rendered by _docs/devices/band.py. Solid to its end, no fade. */
+.watch-band { position: relative; width: 59%; height: 46cqw; margin: 0 auto; background: center / 100% 100% no-repeat; }
+.watch-band--top { margin-bottom: -5cqw; background-image: url("../img/devices/watch-band-top.webp"); }
+.watch-band--bottom { margin-top: -5cqw; background-image: url("../img/devices/watch-band-bottom.webp"); }
 .watch-band::after { /* the shadow the case throws on the band where they meet */
   content: ""; position: absolute; left: 0; right: 0; height: 9cqw;
   background: linear-gradient(var(--dir, to top), rgba(0, 0, 0, .45), transparent);
