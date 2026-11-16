@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Privacy Policy – Made with Merritt</title>
-  <meta name="description" content="Privacy Policy for Made with Merritt.">
+  <meta name="description" content="Privacy Policy for Made with Merritt and the Second Chair apps.">
   <link rel="icon" type="image/svg+xml" href="/assets/pivot-logo-01.svg">
   <link rel="stylesheet" href="/styles.css">
   <style>
@@ -55,6 +55,15 @@
       color: rgba(0,0,0,0.7);
       margin-bottom: 16px;
     }
+    .pp-body h3 {
+      font-size: 15px;
+      font-weight: 500;
+      margin-top: 28px;
+      margin-bottom: 8px;
+    }
+    .pp-body ul ul { margin: 4px 0 8px; }
+    .pp-body .pp-section { margin-top: 72px; padding-top: 40px; border-top: 1px solid var(--grey-3); scroll-margin-top: 24px; }
+    .pp-body .pp-section + p { margin-top: 0; }
     .pp-body ul {
       margin: 0 0 16px 0;
       padding-left: 20px;
@@ -98,12 +107,13 @@
 
     <p class="pp-eyebrow">Legal</p>
     <h1 class="pp-title">Privacy Policy</h1>
-    <p class="pp-date">Last updated: 5 May 2026</p>
+    <p class="pp-date">Last updated: 16 November 2026</p>
 
     <div class="pp-body">
 
       <p>Made with Merritt respects your privacy.</p>
       <p>This website is operated by Alistair Merritt and is intended to share projects, experiments, updates, and ways to get in touch.</p>
+      <p>This policy covers this website and the <a href="#second-chair" style="color: inherit; border-bottom: 1px solid var(--grey-3); padding-bottom: 1px; text-decoration: none;">Second Chair apps</a> for iPhone and Mac.</p>
 
       <h2>What information may be collected</h2>
       <p>If you contact me through the website, or register your interest in purchasing a device or future product, I may collect the information you choose to submit, such as:</p>
@@ -174,6 +184,59 @@
       <h2>Contact</h2>
       <p>If you have questions about this Privacy Policy or the way your information is handled, you can contact:</p>
       <p>Alistair Merritt<br><a href="/?contact=1" style="color: inherit; border-bottom: 1px solid var(--grey-3); padding-bottom: 1px; text-decoration: none;">Get in touch via the contact form</a></p>
+
+      <h2 id="second-chair" class="pp-section">Second Chair</h2>
+      <p>Second Chair is an iPhone app and a Mac app. The Mac app reads what Music is playing on your Mac. It sends that to your iPhone through a relay server I run, so your iPhone can show it on the Lock Screen and in StandBy. Your taps on the iPhone go back to your Mac the same way. There are no accounts: you pair your iPhone with your Mac using a code.</p>
+
+      <h3>What the relay holds</h3>
+      <p>While your iPhone and Mac are paired, the relay holds:</p>
+      <ul>
+        <li><strong>What's playing on your Mac:</strong>
+          <ul>
+            <li>the song's title, artist, album, artwork and length;</li>
+            <li>how far through it is, and whether it's playing;</li>
+            <li>Music's volume, and the names of the speakers it can play to (such as "Kitchen HomePod");</li>
+            <li>up to 25 songs from Up Next.</li>
+          </ul>
+          Only the latest is kept, so each update replaces the one before. The relay keeps the artwork of the last 64 songs.</li>
+        <li><strong>Your devices:</strong>
+          <ul>
+            <li>your Mac's name, as set in System Settings (it often includes your own name);</li>
+            <li>a random identifier for each device, made up by the apps;</li>
+            <li>the app and system versions.</li>
+          </ul>
+          Your iPhone is named only "iPhone".</li>
+        <li><strong>Push tokens:</strong> the addresses Apple gives the iPhone app, so the relay can update your Lock Screen and, if you turn it on, send the reminder when music starts.</li>
+        <li><strong>Pairing keys,</strong> stored only in a form that can't be read back.</li>
+      </ul>
+      <p>To update your Lock Screen, the relay sends what's playing to your iPhone through Apple's push notification service.</p>
+      <p>When you use Continue on Mac, the song's Apple Music ID, title and position go through the relay to your Mac.</p>
+
+      <h3>What Second Chair doesn't do</h3>
+      <p>There are no accounts, and Second Chair doesn't ask for your name or email address. It doesn't keep a history of what you listen to. It has no advertising, analytics or tracking. I don't sell anything about you or share it with anyone, apart from the services that run Second Chair, listed below.</p>
+
+      <h3>Pairing</h3>
+      <p>Pairing codes expire after five minutes. To stop people guessing codes, the relay counts pairing attempts from each IP address, and deletes those counts afterwards.</p>
+
+      <h3>How long it's kept</h3>
+      <p>Everything the relay holds for a pairing is deleted as soon as you unpair, from either your iPhone or your Mac. If you delete the apps without unpairing, the data stays on the relay. Contact me and I'll delete it.</p>
+
+      <h3>On your iPhone and Mac</h3>
+      <ul>
+        <li>Both apps keep their settings and pairing key on the device.</li>
+        <li><strong>Apple Music on your iPhone:</strong> if you allow access, Second Chair reads what Apple Music is playing on your iPhone, and searches the Apple Music catalogue, for Continue Listening. This happens between your iPhone and Apple.</li>
+        <li><strong>The Mac app</strong> looks songs up in Apple's iTunes Search service, by artist, title and album, to find their artwork and Apple Music IDs.</li>
+        <li><strong>Try a Demo,</strong> in the iPhone app, uses a simulated Mac on your iPhone and sends nothing to the relay.</li>
+      </ul>
+
+      <h3>Services that run Second Chair</h3>
+      <ul>
+        <li><strong>Cloudflare</strong> runs the relay. What the relay holds is stored on Cloudflare's network and may be stored outside Australia. Cloudflare may keep short-lived technical logs, such as IP addresses, to run and protect its network. <a href="https://www.cloudflare.com/privacypolicy/" style="color: inherit; border-bottom: 1px solid var(--grey-3); padding-bottom: 1px; text-decoration: none;">Cloudflare's privacy policy</a></li>
+        <li><strong>Apple</strong> delivers the push notifications, provides Apple Music on your iPhone if you allow it, and handles App Store purchases. I don't receive your payment details.</li>
+      </ul>
+
+      <h3>Questions and deletion</h3>
+      <p>To ask what the relay holds for your pairing, or to have it deleted, use the <a href="/?contact=1" style="color: inherit; border-bottom: 1px solid var(--grey-3); padding-bottom: 1px; text-decoration: none;">contact form</a>.</p>
 
       <h2>Changes to this policy</h2>
       <p>This Privacy Policy may be updated from time to time to reflect changes to the website or the services used to run it. The latest version will always be published on this page.</p>

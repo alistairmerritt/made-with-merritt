@@ -2,125 +2,17 @@
 <html lang="en-GB">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Second Chair Privacy Policy</title>
-<meta name="description" content="What Second Chair sends, where it goes and why. No accounts, no analytics.">
-<meta name="theme-color" content="#f3eee6" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#14110f" media="(prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" href="../assets/img/favicon.png">
-<link rel="apple-touch-icon" href="../assets/img/icon-180.png">
-<link rel="canonical" href="https://madewithmerritt.com/second-chair/privacy/">
-<meta property="og:url" content="https://madewithmerritt.com/second-chair/privacy/">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Second Chair Privacy Policy">
-<meta property="og:image" content="https://madewithmerritt.com/second-chair/assets/img/og.png">
-<link rel="preconnect" href="https://use.typekit.net" crossorigin>
-<link rel="stylesheet" href="https://use.typekit.net/fiv2yhs.css">
-<link rel="stylesheet" href="../assets/css/base.css">
-<link rel="stylesheet" href="../assets/css/guide.css">
-<script src="../assets/js/contact.js" defer></script>
+<!-- Second Chair's privacy policy is now part of the Made with Merritt policy, at /privacy/#second-chair
+     (the URL App Store Connect uses). This page forwards old links there. -->
+<link rel="canonical" href="https://madewithmerritt.com/privacy/#second-chair">
+<meta name="robots" content="noindex">
+<meta http-equiv="refresh" content="0; url=/privacy/#second-chair">
+<script>location.replace('/privacy/#second-chair');</script>
+<style>body{margin:0;padding:48px 24px;font:400 16px/1.5 system-ui,sans-serif;background:#f3eee6;color:#1d1d1f}a{color:inherit}</style>
 </head>
-<body class="guide-page">
-<a class="skip" href="#main">Skip to content</a>
-
-<div class="mwm-bar">
-  <span>A <a href="/">Made with Merritt</a> project</span>
-  <nav aria-label="Made with Merritt"><a href="/">Home</a><a href="/#about">About</a><a href="/?contact=1">Contact</a></nav>
-</div>
-
-<header class="site-header">
-  <a class="brand" href="../" aria-label="Second Chair, home"><img src="../assets/img/icon-180.png" alt="" width="20" height="20">Second Chair</a>
-  <nav aria-label="Main">
-    <a href="../getting-started/">Getting started</a>
-    <a href="../#get">Download</a>
-  </nav>
-</header>
-
-<main id="main">
-  <div class="g-head">
-    <p class="g-eyebrow">Second Chair for Mac and iPhone</p>
-    <h1 class="display g-title">Privacy Policy</h1>
-    <p class="lede g-lede">Second Chair shows the music playing on your Mac on your iPhone. To do that, some details of what’s playing have to travel between them. This page says what, where it goes, and why. There are no accounts, no analytics and no advertising.</p>
-    <p class="g-updated">Last updated 16 November 2026 · Mac 0.3.1 and the iPhone beta</p>
-  </div>
-
-  <div class="g-body g-body--solo">
-    <article class="g-article">
-
-      <section id="sends" aria-labelledby="sends-h">
-        <h2 id="sends-h">What Second Chair sends</h2>
-        <p>Your Mac and iPhone don’t talk to each other directly. Second Chair on your Mac sends what’s playing to a small relay server run by Second Chair’s developer, and the relay passes it to your iPhone through Apple’s push notification service. That’s what lets it work away from home.</p>
-        <ul class="plain">
-          <li><strong>Whenever playback changes:</strong> the song’s title, artist, album, length and position, whether it’s playing, the artwork, the volume of Music on your Mac, the names of your Mac’s speakers, and the names of your Mac and iPhone, which are used for pairing.</li>
-          <li><strong>Only if you’ve connected Second Chair to Music for Continue Listening:</strong> the song’s Apple Music ID and up to 25 songs of Up Next (title, artist, album, length and ID). The Apple Music ID and Up Next are never put in push notifications.</li>
-          <li><strong>Your commands:</strong> play, pause, skip, seek, volume and Continue Listening requests travel back the same way, from your iPhone to your Mac.</li>
-          <li><strong>Continue on Mac, for a song your Mac’s queue doesn’t have:</strong> the song’s Apple Music ID, its title and how far through it your iPhone is go from your iPhone to your Mac through the relay, so your Mac can start the song’s station at the same point.</li>
-          <li><strong>Reminders:</strong> if you turn on Remind When Music Starts, the reminder is sent through Apple’s push notification service.</li>
-        </ul>
-      </section>
-
-      <section id="apple" aria-labelledby="apple-h">
-        <h2 id="apple-h">What goes to Apple</h2>
-        <ul class="plain">
-          <li><strong>Apple’s push notification service</strong> delivers playback updates and reminders to your iPhone.</li>
-          <li><strong>Apple’s public catalogue search</strong> is asked for a song’s artwork or Apple Music ID when Music on your Mac doesn’t have them. Only the album name, lead artist and your country are sent.</li>
-          <li><strong>Apple Music on your iPhone</strong> plays songs for Continue Listening, and Second Chair asks it for a song’s station. That needs your permission the first time, and Apple handles it under its own privacy policy.</li>
-        </ul>
-      </section>
-
-      <section id="stays" aria-labelledby="stays-h">
-        <h2 id="stays-h">What stays on your Mac</h2>
-        <p>The connection between Second Chair and Music, used for Continue Listening, stays on your Mac. That’s why macOS asks about the local network. Only whether it’s connected goes to your iPhone, so the iPhone app can show the Continue Listening status.</p>
-      </section>
-
-      <section id="kept" aria-labelledby="kept-h">
-        <h2 id="kept-h">What the relay keeps</h2>
-        <p>For each pairing, the relay keeps the latest playback state and the most recent artwork, up to 64 covers, so your iPhone can fetch them when it wakes.</p>
-        <p>When you unpair, from either device, the relay deletes everything it holds for that pairing straight away. The relay runs on Cloudflare, whose storage keeps a recovery history for 30 days; Second Chair never uses it, and after 30 days nothing is left. If you delete the apps without unpairing, the pairing and its latest state stay on the relay, so unpair first.</p>
-        <p>Pairing is protected like this:</p>
-        <ul class="plain">
-          <li>The pairing code is six random digits, valid for five minutes, used once, and stored only as a hash.</li>
-          <li>After pairing, your Mac and iPhone each get their own long random key, which the relay stores only as a hash.</li>
-          <li>Keys, codes and push tokens are never written to the relay’s logs.</li>
-          <li>Unpairing from either device cancels both keys at once.</li>
-        </ul>
-      </section>
-
-      <section id="choices" aria-labelledby="choices-h">
-        <h2 id="choices-h">Your choices</h2>
-        <ul class="plain">
-          <li><strong>Hide the player:</strong> tap Stop Showing in the iPhone app.</li>
-          <li><strong>Stop Continue Listening:</strong> choose Disconnect from Music under Continue Listening in the Mac’s menu. Up Next is no longer sent.</li>
-          <li><strong>Unpair:</strong> choose Unpair iPhone on the Mac, or Unpair Mac in the iPhone app. Do this before deleting the apps.</li>
-          <li><strong>Turn off catalogue searches:</strong> see <a href="../getting-started/#privacy">Privacy in the setup guide</a> for the Terminal command.</li>
-        </ul>
-      </section>
-
-      <section id="website" aria-labelledby="website-h">
-        <h2 id="website-h">This website</h2>
-        <p>These pages have no analytics and no forms. The headline typeface comes from Adobe Fonts, so your browser loads it from Adobe, which counts page views for font licensing. If you try the demo with your own song, what you type goes to Apple’s public catalogue search, and the artwork and 30-second preview come from Apple. The site is hosted on GitHub Pages; the <a href="/privacy/">Made with Merritt privacy policy</a> covers that, and the contact form.</p>
-      </section>
-
-      <section id="contact" aria-labelledby="contact-h">
-        <h2 id="contact-h">Questions</h2>
-        <p>Second Chair is made by Alistair Merritt. If you have a question about your privacy, <a href="/?contact=1">get in touch</a>.</p>
-        <div class="g-end">
-          <a class="btn btn-quiet" href="../getting-started/">Setup guide</a>
-          <a class="btn btn-quiet" href="../">Second Chair</a>
-        </div>
-      </section>
-
-    </article>
-  </div>
-</main>
-
-<footer class="site-footer">
-  <p>Second Chair is an independent project by <a href="/">Made with Merritt</a>. Mac 0.3.1 beta.</p>
-  <nav aria-label="Footer">
-    <a href="../">Home</a>
-    <a href="../getting-started/">Getting started</a>
-    <a href="https://github.com/alistairmerritt/music-standby/releases">Releases on GitHub</a>
-  </nav>
-</footer>
+<body>
+<p>Second Chair's privacy policy has moved to <a href="/privacy/#second-chair">madewithmerritt.com/privacy</a>.</p>
 </body>
 </html>
