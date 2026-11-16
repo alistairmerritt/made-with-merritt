@@ -355,8 +355,9 @@ ul, ol { margin: 0; padding: 0; }
 
 /* ---- Apple Watch Ultra 4: rendered case, band, watchOS Now Playing ---- */
 .watch { container-type: inline-size; position: relative; width: 100%; --band: #3f4b60; }
-/* The band: a woven loop after Apple's Trail Loop, rendered by _docs/devices/band.py. Solid to its end, no fade. */
-.watch-band { position: relative; width: 59%; height: 46cqw; margin: 0 auto; background: center / 100% 100% no-repeat; }
+/* The band: a woven loop after Apple's Trail Loop, rendered by _docs/devices/band.py. As in Apple's product shots:
+   cut straight across about a quarter of the case's height beyond it (26cqw showing), no fade. */
+.watch-band { position: relative; width: 59%; height: 31cqw; margin: 0 auto; background: center / 100% 100% no-repeat; }
 .watch-band--top { margin-bottom: -5cqw; background-image: url("../img/devices/watch-band-top.webp"); }
 .watch-band--bottom { margin-top: -5cqw; background-image: url("../img/devices/watch-band-bottom.webp"); }
 .watch-band::after { /* the shadow the case throws on the band where they meet */

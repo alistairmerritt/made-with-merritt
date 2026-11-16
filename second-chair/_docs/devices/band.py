@@ -1,5 +1,5 @@
 """A woven loop band for the Apple Watch Ultra on the home page, after Apple's Trail Loop: a knitted centre in
-heathered navy, near-black edges each carrying a dashed line of light stitching, and a softly squared end.
+heathered navy, near-black edges each carrying a dashed line of light stitching, cut straight across.
 
 The texture is built stitch by stitch (each a small rounded bump, with per-stitch variation in the yarn's tone),
 then lit gently across the width as the band curves over the wrist. No fade: the band is solid to its end.
@@ -9,7 +9,7 @@ then lit gently across the width as the band curves over the wrist. No fade: the
 import numpy as np
 from PIL import Image
 
-W, H = 600, 468                        # matches .watch-band: 59% of the watch's width, 46cqw tall, at 2x
+W, H = 600, 316                        # matches .watch-band: 59% of the watch's width, 31cqw tall, at 2x
 SS = 3                                 # supersampling for smooth stitch edges
 rng = np.random.default_rng(7)
 
@@ -55,14 +55,9 @@ col = np.where(seam[..., None], col * .55, col)
 curve = 1 - .3 * (2 * u - 1) ** 4
 col = col * curve[..., None]
 
-# Shape: straight sides, a squared free end with small corners (radius ~4% of the width).
-r = .04 * w
-dx = np.maximum(np.maximum(r - xs, xs - (w - 1 - r)), 0)
-dy = np.maximum(r - ys, 0)
-inside = np.hypot(dx, dy) <= r
-alpha = inside.astype(float)
-# A faint darkening right at the free end, where the band turns under itself.
-col = col * (1 - .35 * np.exp(-ys / (6 * SS)))[..., None]
+# Shape: as in Apple's product shots, the band is cut straight across, square, about a quarter of the case's
+# height beyond it.
+alpha = np.ones(xs.shape)
 
 rgba = np.concatenate([np.clip(col, 0, 1), alpha[..., None]], -1)
 rgba = rgba.reshape(H, SS, W, SS, 4).mean(axis=(1, 3))
