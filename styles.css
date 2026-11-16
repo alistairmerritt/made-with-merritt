@@ -1669,6 +1669,8 @@ section { position: relative; }
   padding: 5px 10px;
   border-radius: 100px;
 }
+/* On a pale card (Second Chair's Rooftop Season), a darker tint keeps the white label readable (about 6:1). */
+.mwm-badge--on-light { background: rgba(22, 18, 15, 0.6); }
 
 /* About */
 .mwm-about {

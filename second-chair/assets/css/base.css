@@ -289,6 +289,10 @@ ul, ol { margin: 0; padding: 0; }
 .sb-side { position: absolute; left: 47.9%; right: 7%; top: 0; bottom: 0; }
 .sb-top { position: absolute; top: 12.2%; right: 0; display: flex; gap: 4cqw; color: var(--sb-tint); }
 .sb-top svg { width: 3.7cqw; height: 3.7cqw; fill: currentColor; }
+/* StandBy's speaker: a mute button. Muting sets the shared volume to 0 (Music on the Mac), as on the iPhone. */
+.sb-mute { display: grid; place-items: center; margin: -1.4cqw; padding: 1.4cqw; border: 0; border-radius: 50%; background: none; color: inherit; cursor: pointer; }
+.sb-mute:hover { background: color-mix(in oklab, currentColor 14%, transparent); }
+.sb-mute:focus-visible { outline: 2px solid currentColor; outline-offset: 0; }
 .sb-meta { position: absolute; top: 24.5%; left: 0; right: 0; text-align: center; }
 .sb-title { display: block; font: 700 4cqw/1.15 var(--sans); letter-spacing: -.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .sb-artist { display: block; margin-top: .9cqw; font: 600 2.65cqw/1.25 var(--sans); color: var(--sb-tint); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }

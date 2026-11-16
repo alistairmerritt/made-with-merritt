@@ -62,32 +62,8 @@ html:not(.js) .try { display: none; }
   transition: background-color .25s, box-shadow .25s, transform .2s var(--ease);
 }
 .try-open:hover { background: color-mix(in oklab, currentColor 12%, transparent); box-shadow: inset 0 0 0 1px currentColor; }
-.try-open:active, .try-hear:active { transform: scale(.97); }
+.try-open:active { transform: scale(.97); }
 .try-open .ico { width: 15px; height: 15px; }
-/* The preview's play and pause: a quiet text control beside the Apple Music link, a level below "Try another song". */
-.try-hear {
-  display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 0 8px; margin: 0 -8px; border: 0; border-radius: 8px; cursor: pointer;
-  background: none; color: var(--stage-ink-2); font: 500 .75rem/1 var(--sans); letter-spacing: -.003em;
-  transition: color .2s, background-color .2s, transform .2s var(--ease);
-}
-.try-hear:hover { color: var(--stage-ink); background: color-mix(in oklab, currentColor 10%, transparent); }
-.try-hear .ico { width: 11px; height: 11px; }
-.try-hear .i-pause, .try-hear[aria-pressed="true"] .i-play { display: none; }
-.try-hear[aria-pressed="true"] .i-pause { display: block; }
-/* Sound: the same quiet pill as Try it, its icon saying whether it's on. */
-.sound-switch {
-  display: inline-flex; align-items: center; gap: 7px; min-height: 36px; padding: 0 13px 0 11px; border: 0; border-radius: 999px; cursor: pointer;
-  background: color-mix(in oklab, var(--stage) 88%, transparent); color: inherit; font: 600 .8125rem/1 var(--sans); letter-spacing: -.005em;
-  box-shadow: inset 0 0 0 1px color-mix(in oklab, currentColor 45%, transparent);
-  transition: background-color .25s, box-shadow .25s, transform .2s var(--ease);
-}
-.sound-switch[hidden] { display: none; }
-.sound-switch:hover { background: color-mix(in oklab, currentColor 12%, transparent); box-shadow: inset 0 0 0 1px currentColor; }
-.sound-switch:active { transform: scale(.97); }
-.sound-switch .ico { width: 16px; height: 16px; }
-.sound-switch .i-on, .sound-switch[aria-checked="true"] .i-off { display: none; }
-.sound-switch[aria-checked="true"] .i-on { display: block; }
-.sound-switch[aria-checked="true"] { background: color-mix(in oklab, currentColor 16%, transparent); box-shadow: inset 0 0 0 1px currentColor; }
 .try-now { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; }
 .try-now[hidden] { display: none; }
 .try-apple { font: 500 .75rem/1 var(--sans); color: var(--stage-ink-2); text-decoration: underline; text-underline-offset: .2em; }
@@ -171,7 +147,6 @@ html:not(.js) .try { display: none; }
   .hero-scene { padding-top: 64px; }
   .hero-mac, .try { display: none; }    /* on phones the first screen is the headline and StandBy */
   .try-open { min-height: 32px; }
-  .try-hear { min-height: 32px; }
   .hero-menu hr, .hero-menu .mm-conn, .hero-menu .mm-row, .hero-menu .mm-progress { display: none; }
   .hero-menu .mm-transport { margin-top: 8px; }
   .hero-standby { width: calc(100vw - var(--gutter) - var(--gap)); margin: 0 calc(var(--gap) - var(--gutter)) 0 auto; }
@@ -201,7 +176,6 @@ html:not(.js) .try { display: none; }
   .hero-menu .mm-meta .album { display: none; }
   .try { margin-top: 8px; }
   .try-open { min-height: 30px; }
-  .try-hear { min-height: 30px; }
 }
 /* Phones held sideways: StandBy, as the phone itself would be. */
 @media (max-height: 520px) and (orientation: landscape) {
