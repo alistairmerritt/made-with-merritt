@@ -272,7 +272,7 @@ html:not(.js) .try { display: none; }
 .handover .section-title { grid-area: title; margin-bottom: clamp(32px, 4.5vw, 64px); }
 .handover .lede { margin: 0; color: rgba(243, 238, 230, .74); }
 .handover .lede-leave { grid-area: leave; max-width: 29rem; }
-.handover .lede-back { grid-area: back; max-width: 33rem; }
+.handover .lede-back { grid-area: back; max-width: 29rem; }   /* the same measure as the left one */
 .handover .lede .ui { color: #f3eee6; }
 /* The small print, at the foot of the section. */
 /* Starts on the same edge as the copy above (.handover > * centres the section's column); only the text is narrower. */
