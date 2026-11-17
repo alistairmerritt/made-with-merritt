@@ -1,5 +1,14 @@
 # Copy brief: playlists carry over (Mac 0.3.2)
 
+> **Applied on 17 November 2026,** together with the reminder changes (the reminder now comes after 8 minutes, and covers Apple Music taking the player's place). Also applied:
+> - the round trip keeps the Mac's own queue;
+> - a playlist needs Sync Library on both devices;
+> - a shuffled playlist started on the iPhone in the last minute may still go as a station;
+> - the playlist's Apple Music ID is sent only when it has one.
+>
+> Nothing here is left to do.
+
+
 The version links and version numbers on both pages already point to 0.3.2. This brief covers only the wording.
 
 ## What changed
