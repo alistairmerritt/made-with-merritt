@@ -310,19 +310,20 @@
       <section id="continue" class="cl" aria-labelledby="continue-h">
         <p class="g-kicker">After setup · needs Apple Music on your iPhone</p>
         <h2 id="continue-h">Continue Listening</h2>
-        <p class="cl-lede">Take your music with you, then bring it back. Leaving your desk? Your iPhone picks up the song in Apple Music from the same point, with your playlist, album, station or shuffled library, and your Mac pauses. Back at your desk, your Mac carries on where your iPhone got to, with your playlist or album too.</p>
-        <p>It needs an Apple Music subscription on your iPhone and a one-time connection between Second Chair and Music on your Mac. Home Sharing isn’t required.</p>
+        <p class="cl-lede">Take your music with you, then bring it back. Continue Listening lets you move playback between your Mac and iPhone, picking up where you left off with your music queue<a class="fn" href="#fn-queue" aria-label="Note: what carries over">*</a> coming along too.</p>
+        <p>You’ll need an Apple Music subscription on your iPhone and a one-time connection to Music on your Mac. Home Sharing isn’t required.</p>
 
         <div class="with-fig cl-part">
           <div>
-            <h3 class="cl-h"><span class="n">a</span>Connect Second Chair to Music, once</h3>
+            <h3 class="cl-h"><span class="n">a</span>Connect Second Chair to Music</h3>
+            <p class="prose">You only need to do this once.</p>
             <ol class="steps">
-              <li class="step" data-on="mac"><span class="on">Mac</span><div class="do"><p>Click the music note and choose <kbd class="ui">Connect to Music…</kbd> A four-digit code appears.</p></div></li>
-              <li class="step" data-on="mac"><span class="on">Mac</span><div class="do"><p>In Music, select Second Chair under Devices in the sidebar, then enter the code.</p></div></li>
-              <li class="step" data-on="mac"><span class="on">Mac</span><div class="do"><p>If macOS asks about the local network, click <kbd class="ui">Allow</kbd>.</p><p>The menu then says <span class="says">Connected to Music. Your music can move between this Mac and your iPhone.</span></p></div></li>
+              <li class="step" data-on="mac"><span class="on">Mac</span><div class="do"><p>Open the Second Chair menu and choose <kbd class="ui">Connect to Music…</kbd> A four-digit code appears.</p></div></li>
+              <li class="step" data-on="mac"><span class="on">Mac</span><div class="do"><p>In Music, select Second Chair under Devices in the sidebar and enter the code.</p></div></li>
+              <li class="step" data-on="mac"><span class="on">Mac</span><div class="do"><p>If prompted, allow Second Chair access to the local network.</p></div></li>
             </ol>
-            <p class="note"><strong>This code is four digits, typed into Music on your Mac.</strong> It isn’t the six-digit code you used to pair your iPhone.</p>
-            <p class="prose">The iPhone app’s Continue Listening section then says <span class="says">Ready</span>. If something isn’t set up, it says what to do: see <a href="#cl-status">its statuses</a>.</p>
+            <p class="note">This is a separate connection from pairing your iPhone. The code has four digits rather than six.</p>
+            <p class="prose">Once connected, the iPhone app shows <span class="says">Ready</span> under Continue Listening.</p>
           </div>
           <!-- Illustration of MusicRemoteSection (MenuContent.swift) and Music's sidebar. Replace with a screenshot when there is one. -->
           <figure class="fig">
@@ -345,10 +346,10 @@
         <div class="with-fig cl-part" id="take">
           <div>
             <h3 class="cl-h"><span class="n">b</span>Take it with you</h3>
-            <ol class="steps">
-              <li class="step" data-on="iphone"><span class="on">iPhone</span><div class="do"><p>In Second Chair, tap <kbd class="ui">Continue on iPhone</kbd>.</p><p>Apple Music on your iPhone plays the song from the same point, then your Mac pauses. Your playlist, album or station comes with it, shuffled or on repeat if your Mac was. If you’ve added songs with Play Next, your iPhone gets up to 25 songs from your Mac’s Up Next instead. The first time, allow Second Chair access to Apple Music.</p></div></li>
-            </ol>
-            <p class="prose">It’s also an action in Shortcuts. Run it again when nothing has changed on your Mac and your iPhone carries on with what it’s playing, so it suits an automation, such as one that runs when you connect to CarPlay.</p>
+            <p class="prose">Leaving your desk? Open Second Chair on your iPhone and tap <kbd class="ui">Continue on iPhone</kbd>.</p>
+            <p class="prose">Your music picks up on your iPhone from the same point, and your Mac pauses. Your playlist, album or station comes along too, with your shuffle and repeat settings where supported.</p>
+            <p class="prose">The first time you use it, allow Second Chair access to Apple Music.</p>
+            <p class="prose"><strong>Make it automatic.</strong> Continue on iPhone is also available in Apple Shortcuts, so you can set up an automation to take your music with you when you connect to CarPlay.</p>
           </div>
           <!-- Illustration of ContinueListeningSection (HomeView.swift). Replace with a screenshot when there is one. -->
           <figure class="fig">
@@ -587,6 +588,7 @@
 </main>
 
 <footer class="site-footer">
+  <p class="footnote" id="fn-queue">* What carries over depends on what you’re listening to. See <a href="#cl-know">What comes with you</a> for details.</p>
   <p>Second Chair is an independent project by <a href="/">Made with Merritt</a>. Mac 0.3.3 beta.</p>
   <nav aria-label="Footer">
     <a href="../">Home</a>
