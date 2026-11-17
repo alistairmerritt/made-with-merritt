@@ -197,7 +197,10 @@
             <li>how far through it is, and whether it's playing;</li>
             <li>Music's volume, and the names of the speakers it can play to (such as "Kitchen HomePod");</li>
             <li>up to 25 songs from Up Next;</li>
-            <li>when Up Next is the rest of a playlist from your library, in order, that playlist's name, how many songs it has and the song's place in it.</li>
+            <li>when the song plays from a playlist in your library, that playlist's name, how many songs it has and the song's place in it;</li>
+            <li>when the song plays from an album in your library, the album's title and artist, how many songs it has and the song's place in it;</li>
+            <li>whether that playlist or album is shuffled, whether your Mac is shuffling its whole library, and whether the song is from Apple Music outside your library;</li>
+            <li>Music's shuffle and repeat settings.</li>
           </ul>
           Only the latest is kept, so each update replaces the one before. The relay keeps the artwork of the last 64 songs.</li>
         <li><strong>Your devices:</strong>
@@ -211,7 +214,7 @@
         <li><strong>Pairing keys,</strong> stored only in a form that can't be read back.</li>
       </ul>
       <p>To update your Lock Screen, the relay sends what's playing to your iPhone through Apple's push notification service.</p>
-      <p>When you use Continue on Mac, the song's Apple Music ID, title and position go through the relay to your Mac. If the song is from a playlist in your library, so do the playlist's name, its Apple Music ID when it has one, how many songs it has, the song's place in it and whether it's shuffled, so your Mac can carry on with that playlist. The relay passes these on without keeping them.</p>
+      <p>When you use Continue on Mac, the song's Apple Music ID, title and position go through the relay to your Mac, with what it's playing from, so your Mac can carry on with it: a playlist's name, its Apple Music ID when it has one, how many songs it has, the song's place in it and whether it's shuffled; an album's title, artist, how many songs it has, the song's place in it and whether it's shuffled; or a station's Apple Music ID and name. So do whether your whole library is shuffled, your repeat setting, and whether the playlist or album was just added to your library. The relay passes these on without keeping them.</p>
 
       <h3>What Second Chair doesn't do</h3>
       <p>There are no accounts, and Second Chair doesn't ask for your name or email address. It doesn't keep a history of what you listen to. It has no advertising, analytics or tracking. I don't sell anything about you or share it with anyone, apart from the services that run Second Chair, listed below.</p>
@@ -225,9 +228,10 @@
       <h3>On your iPhone and Mac</h3>
       <ul>
         <li>Both apps keep their settings and pairing key on the device.</li>
-        <li><strong>Apple Music on your iPhone:</strong> if you allow access, Second Chair reads what Apple Music is playing on your iPhone, the playlists in your library and your recently played list, and searches the Apple Music catalogue, for Continue Listening. This happens on your iPhone and between your iPhone and Apple. Only the playlist that's playing goes anywhere else, as described above.</li>
+        <li><strong>Apple Music on your iPhone:</strong> if you allow access, Second Chair reads what Apple Music is playing on your iPhone, the playlists and albums in your library, your recently played list and the songs of a playlist or album in it, and searches the Apple Music catalogue, for Continue Listening. This happens on your iPhone and between your iPhone and Apple. Only the playlist, album or station that's playing goes anywhere else, as described above.</li>
+        <li><strong>Adding to your Apple Music library:</strong> when you use Continue on Mac with an Apple Music playlist or album that isn't in your library, Second Chair asks Apple Music to add it to your library, so your Mac can play it. This changes your library: the playlist or album stays there until you remove it. It happens only while Add to Library for Continue on Mac is on, under Continue Listening in the iPhone app. It's on unless you turn it off.</li>
         <li><strong>The Mac app</strong> looks songs up in Apple's iTunes Search service, by artist, title and album, to find their artwork and Apple Music IDs.</li>
-        <li><strong>Music on your Mac:</strong> once you connect Second Chair to Music for Continue Listening, the Mac app reads your Music library and its playlists on your Mac, to find each song's Apple Music ID and the playlist it plays from. Only what's described above leaves your Mac.</li>
+        <li><strong>Music on your Mac:</strong> once you connect Second Chair to Music for Continue Listening, the Mac app reads your Music library, its playlists and its albums on your Mac, to find each song's Apple Music ID and the playlist or album it plays from. Only what's described above leaves your Mac.</li>
         <li><strong>Try a Demo,</strong> in the iPhone app, uses a simulated Mac on your iPhone and sends nothing to the relay.</li>
       </ul>
 
