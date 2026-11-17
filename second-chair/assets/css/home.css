@@ -283,6 +283,8 @@ html:not(.js) .try { display: none; }
 .handover-fine { margin-top: clamp(64px, 8vw, 112px); padding-top: 18px; border-top: 1px solid var(--rule); font-size: .8125rem; color: rgba(243, 238, 230, .62); }
 .handover-fine a { color: #f3eee6; }
 .handover-fine b { color: #f3eee6; font-weight: 600; }
+/* The queue footnote sits just above, so the line under it joins it. */
+.handover-note + .handover-fine { margin-top: 6px; padding-top: 0; border-top: 0; }
 
 .hand { position: relative; margin-top: clamp(64px, 8vw, 120px); grid-template-areas: "mac iphone"; align-items: start; }
 .place { position: relative; display: flex; flex-direction: column; align-items: flex-start; min-width: 0; }
