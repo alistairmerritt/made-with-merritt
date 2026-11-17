@@ -56,7 +56,7 @@
 
 <main id="main">
   <div class="g-head">
-    <p class="g-eyebrow">Getting started · Mac 0.3.2 and the iPhone beta</p>
+    <p class="g-eyebrow">Getting started · Mac 0.3.3 and the iPhone beta</p>
     <h1 class="display g-title">Get Second Chair working.</h1>
     <p class="lede g-lede">Set up Second Chair on your Mac and iPhone to see and control your Mac’s music from your Lock Screen, Control Centre and StandBy. You’ll need both devices nearby. There are four steps.</p>
 
@@ -85,9 +85,9 @@
         <li><a href="#take">Take it with you</a></li>
         <li><a href="#bring">Bring it back</a></li>
         <li><a href="#cl-know">What comes with you</a></li>
-        <li><a href="#cl-limits">What doesn’t carry over</a></li>
-        <li><a href="#cl-stations">Stations on your Mac</a></li>
-        <li><a href="#cl-library">Adding to your library</a></li>
+        <li><a href="#cl-limits">What doesn’t carry over?</a></li>
+        <li><a href="#cl-library">Adding music to your library</a></li>
+        <li><a href="#cl-need">What you need</a></li>
         <li><a href="#cl-status">If it isn’t ready</a></li>
         <li class="grp" aria-hidden="true">Day to day</li>
         <li><a href="#know">A few things to know</a></li>
@@ -122,7 +122,7 @@
             <ol class="steps">
               <li class="step" id="step-1a" data-on="mac">
                 <span class="on">Mac<small>1a</small></span>
-                <div class="do"><p>Download <a href="https://github.com/alistairmerritt/music-standby/releases/download/mac-v0.3.2/Second-Chair-0.3.2.zip">Second Chair 0.3.2</a>.</p></div>
+                <div class="do"><p>Download <a href="https://github.com/alistairmerritt/music-standby/releases/download/mac-v0.3.3/Second-Chair-0.3.3.zip">Second Chair 0.3.3</a>.</p></div>
               </li>
               <li class="step" id="step-1b" data-on="mac">
                 <span class="on">Mac<small>1b</small></span>
@@ -374,7 +374,7 @@
         <div class="with-fig cl-part" id="bring">
           <div>
             <h3 class="cl-h"><span class="n">c</span>Bring it back</h3>
-            <p class="prose">Either way, your Mac carries on from where your iPhone got to, and your iPhone pauses. Your playlist or album comes too, and a station keeps playing as the same station, though it starts on a different song: <a href="#cl-stations">here’s why</a>.</p>
+            <p class="prose">Either way, your Mac carries on from where your iPhone got to, and your iPhone pauses. Your playlist or album comes too, and a station keeps playing as the same station, though it starts on a different song. See <a href="#cl-know">what comes with you</a>.</p>
             <ol class="steps">
               <li class="step" data-on="mac"><span class="on">Mac</span><div class="do"><p>Click the music note and choose <kbd class="ui">Continue from iPhone</kbd>.</p><p>It’s there whenever Music on your Mac is paused or stopped. After Continue on iPhone it’s the menu’s main button. The menu says <span class="says">Asking your iPhone…</span>, then <span class="says">Your iPhone is handing over…</span></p></div></li>
               <li class="step" data-on="iphone"><span class="on">iPhone</span><div class="do"><p>Or, in Second Chair, tap <kbd class="ui">Continue on Mac</kbd>.</p></div></li>
@@ -408,48 +408,47 @@
 
         <div class="cl-part" id="cl-know">
           <h3 class="cl-h">What comes with you</h3>
-          <p class="prose">Continue Listening brings what you’re listening to, not just the song. Every handover starts on the same song from the same point, except a station going to your Mac.</p>
-          <ul class="plain">
-            <li><strong>A playlist from your library,</strong> both ways, shuffled if you were shuffling. It needs to be on both devices, so turn on Sync Library on your Mac and your iPhone.</li>
-            <li><strong>An album from your library,</strong> both ways. Going to your iPhone, it plays in order or shuffled, as it was on your Mac. Going to your Mac, it plays in order.</li>
-            <li><strong>An Apple Music playlist or album you haven’t added,</strong> both ways. Going to your Mac, Second Chair adds it to your library first, and your Mac plays it from the song about 10 seconds later. Your iPhone keeps playing until then. See <a href="#cl-library">Adding to your library</a>.</li>
-            <li><strong>A station,</strong> both ways. Going to your iPhone, the same song plays from the same point, then the same station carries on. Going to your Mac, the same station plays, starting on a different song: <a href="#cl-stations">here’s why</a>.</li>
-            <li><strong>Your whole library, shuffled,</strong> both ways: the same song, then the rest of your library, shuffled.</li>
-            <li><strong>Repeat,</strong> whether it’s off, one song or all. If you change shuffle or repeat on your Mac part-way through a song, your iPhone knows within about 15 seconds.</li>
-            <li><strong>Your Mac’s own queue.</strong> If the song came from your Mac, your Mac skips ahead to it and carries on with its queue.</li>
-          </ul>
-          <p class="prose">If you’ve added songs with Play Next or reordered Up Next on your Mac, your iPhone gets up to 25 songs from your Mac’s Up Next, in the same order, then a station made from the song. That station also follows when there’s nothing else to go on, such as near the end of a playlist.</p>
-          <p class="prose">All this needs Second Chair for Mac 0.3.3 or later and the current iPhone app. With older versions, music moves as it did before. In the iPhone app, each button is greyed out while the music is already playing on that side.</p>
+          <p class="prose">Continue Listening carries your music between your Mac and iPhone, picking up the same song at the same point. The exception is stations moving to your Mac, which start on a different song.</p>
+          <div class="table-scroll">
+            <table class="stack cl-table">
+              <thead><tr><th scope="col">What you’re listening to</th><th scope="col">Continue on iPhone</th><th scope="col">Continue on Mac</th></tr></thead>
+              <tbody>
+                <tr><td><strong>A playlist in your library</strong></td><td data-h="Continue on iPhone">The same playlist, including shuffle</td><td data-h="Continue on Mac">The same playlist, including shuffle</td></tr>
+                <tr><td><strong>An album in your library</strong></td><td data-h="Continue on iPhone">The album, with shuffle if enabled</td><td data-h="Continue on Mac">The album, played in order</td></tr>
+                <tr><td><strong>Your library on shuffle</strong></td><td data-h="Continue on iPhone">Your library, shuffled</td><td data-h="Continue on Mac">Your library, shuffled</td></tr>
+                <tr><td><strong>An Apple Music playlist or album not in your library</strong></td><td data-h="Continue on iPhone">The same playlist or album</td><td data-h="Continue on Mac">Added to your library first, then played</td></tr>
+                <tr><td><strong>A station</strong></td><td data-h="Continue on iPhone">The same song, followed by the same station</td><td data-h="Continue on Mac">The same station, starting on a song Apple chooses</td></tr>
+                <tr><td><strong>Songs added with Play Next</strong></td><td data-h="Continue on iPhone">Up to 25 upcoming songs</td><td data-h="Continue on Mac">These don’t transfer</td></tr>
+              </tbody>
+            </table>
+          </div>
         </div>
 
         <div class="cl-part" id="cl-limits">
-          <h3 class="cl-h">What doesn’t carry over</h3>
-          <p class="prose">Apple limits what apps can do with Music on the Mac and Apple Music on the iPhone. These are the gaps.</p>
+          <h3 class="cl-h">What doesn’t carry over?</h3>
+          <p class="prose">A few things work differently between devices:</p>
           <ul class="plain">
-            <li><strong>The shuffle order.</strong> You get the same playlist, album or library, shuffled, but each device shuffles in its own order. Apps can’t read the iPhone’s queue or set the Mac’s.</li>
-            <li><strong>Songs added with Play Next, going to your Mac.</strong> Going to your iPhone, up to 25 songs from your Mac’s Up Next come too. Going to your Mac, songs you added on your iPhone don’t.</li>
-            <li><strong>A shuffled album, going to your Mac.</strong> It plays in order. Music on the Mac can’t shuffle within one album: its shuffle takes in your whole library.</li>
-            <li><strong>A station’s song, going to your Mac.</strong> The station carries on, but starts on a different song: <a href="#cl-stations">here’s why</a>.</li>
-            <li><strong>An Apple Music playlist or album, going to your Mac, without adding it.</strong> Your Mac can only play a playlist or album from your library. That’s why Second Chair adds it first, and that changes your library. Turn off <span class="ui">Add to Library for Continue on Mac</span> and your Mac plays the song’s station instead.</li>
-            <li><strong>Something your Mac started in the last minute.</strong> If it’s an Apple Music playlist, album or station that isn’t in your library, your iPhone can only tell what it is once Apple Music lists it as recently played, about a minute in. Until then, your iPhone gets your Mac’s next songs, then a station made from the song.</li>
-            <li><strong>An artist or genre shuffle on your iPhone.</strong> iOS doesn’t say what a shuffle came from, so shuffling an artist, a genre or anything else from your library goes to your Mac as your whole library, shuffled. Going to your iPhone, an artist shuffle on your Mac sends its next 25 songs.</li>
-            <li><strong>Songs that aren’t in Apple Music.</strong> Songs only in your Mac’s library, such as uploads and some purchases, can’t move to your iPhone.</li>
-            <li><strong>Anything, without the connection to Music.</strong> If Second Chair isn’t <a href="#continue">connected to Music</a> on your Mac, your playlist, album or station doesn’t come along: the song plays with its station instead.</li>
+            <li><strong>Shuffle order.</strong> Your shuffle setting carries over, but each device chooses its own song order.</li>
+            <li><strong>A shuffled album returning to Mac.</strong> The album plays in its original order rather than shuffled.</li>
+            <li><strong>Play Next additions.</strong> Up to 25 upcoming songs transfer from Mac to iPhone, but manually added songs don’t transfer back.</li>
+            <li><strong>Recently started music.</strong> Apple Music can take around a minute to identify a playlist, album or station you haven’t saved to your library. Until then, Second Chair uses your upcoming songs or a station based on the current song.</li>
+            <li><strong>Songs outside Apple Music.</strong> Uploaded tracks and some purchases can’t be transferred to your iPhone.</li>
           </ul>
-        </div>
-
-        <div class="cl-part" id="cl-stations">
-          <h3 class="cl-h">Stations on your Mac</h3>
-          <p class="prose">A station isn’t a fixed list of songs: Apple chooses them as it plays. Music on the Mac can only start a station from the beginning, on a song Apple picks, and apps can’t tell it to play one song and then carry on with a station.</p>
-          <p class="prose">So going to your Mac, Second Chair has to choose between keeping your song and keeping your station. It keeps your station: the same station carries on, starting on a different song. The other way, a station made from the song would start with that song, but it would be a different station.</p>
-          <p class="prose">There are two exceptions. The song’s own station usually starts with that song, so your Mac picks up from the same point. And if your iPhone can’t tell which station is playing yet, as when you started it in the last minute, your Mac plays a station made from the song.</p>
-          <p class="prose">Going to your iPhone, nothing is lost: the same song plays from the same point, then the same station carries on.</p>
+          <p class="prose">Your repeat setting carries over in either direction.</p>
         </div>
 
         <div class="cl-part" id="cl-library">
-          <h3 class="cl-h">Adding to your library</h3>
-          <p class="prose">Your Mac can only play a playlist or album that’s in your library. So when you bring an Apple Music playlist or album you haven’t added back to your Mac, Second Chair adds it to your library first. It stays there until you remove it.</p>
-          <p class="prose">It’s on unless you turn it off. To turn it off, open Second Chair on your iPhone and, under Continue Listening, turn off <span class="ui">Add to Library for Continue on Mac</span>. Your Mac then plays the song’s station instead.</p>
+          <h3 class="cl-h">Adding music to your library</h3>
+          <p class="prose"><strong>Add to Library for Continue on Mac</strong> lets Second Chair continue Apple Music playlists and albums that aren’t already in your library.</p>
+          <p class="prose">It’s enabled by default. When you transfer one to your Mac, Second Chair adds it to your library first. It stays there until you remove it.</p>
+          <p class="prose">Turn the setting off if you’d prefer not to change your library. Your Mac will play a station based on the current song instead.</p>
+        </div>
+
+        <div class="cl-part" id="cl-need">
+          <h3 class="cl-h">What you need</h3>
+          <p class="prose">Continue Listening requires Second Chair for Mac 0.3.3, the current iPhone app and a connection to Music on your Mac.</p>
+          <p class="prose">For playlists saved in your library, <strong>Sync Library</strong> must be enabled on both devices.</p>
+          <p class="prose">Without the Music connection, Second Chair falls back to a station based on the current song.</p>
         </div>
 
         <div class="cl-part" id="cl-status">
@@ -517,7 +516,7 @@
             <div><dt>macOS never asked about the local network, or it was refused</dt><dd>In System Settings › Privacy &amp; Security › Local Network, turn on Second Chair.<span class="why">Continue Listening can’t reach Music without it.</span></dd></div>
             <div><dt><span class="says">Allow access to Apple Music in Settings to continue listening on your iPhone.</span></dt><dd>Turn it on in Settings › Privacy &amp; Security › Media &amp; Apple Music.<span class="why">Apple Music access was refused.</span></dd></div>
             <div><dt><span class="says">This song couldn’t be found in Apple Music.</span></dt><dd>Nothing to fix. Play it on the Mac.<span class="why">The song isn’t in Apple’s catalogue, such as an upload.</span></dd></div>
-            <div><dt><span class="says">Your Mac is playing the station, which started with another song.</span></dt><dd>Nothing to fix.<span class="why">Your Mac carried on with your station, or the song’s station, and Music on the Mac starts a station on a song Apple chooses. <a href="#cl-stations">Here’s why</a>.</span></dd></div>
+            <div><dt><span class="says">Your Mac is playing the station, which started with another song.</span></dt><dd>Nothing to fix.<span class="why">Your Mac carried on with your station, or the song’s station, and Music on the Mac starts a station on a song Apple chooses. See <a href="#cl-know">what comes with you</a>.</span></dd></div>
             <div><dt>Mac: <span class="says">Answer the notification on your iPhone or Apple Watch.</span></dt><dd>Tap <span class="ui">Continue on Mac</span> on the notification.<span class="why">Your iPhone couldn’t hand over by itself.</span></dd></div>
             <div><dt>Mac: <span class="says">Your iPhone didn’t answer. Try again.</span></dt><dd>Check your iPhone is on and has a connection, then try again. Or tap <span class="ui">Continue on Mac</span> in Second Chair on your iPhone.<span class="why">No answer within 45 seconds.</span></dd></div>
             <div><dt>Mac: <span class="says">Couldn’t reach your iPhone.</span></dt><dd>Check the menu says it’s connected, and that your Mac has an internet connection.</dd></div>
@@ -585,7 +584,7 @@
 </main>
 
 <footer class="site-footer">
-  <p>Second Chair is an independent project by <a href="/">Made with Merritt</a>. Mac 0.3.2 beta.</p>
+  <p>Second Chair is an independent project by <a href="/">Made with Merritt</a>. Mac 0.3.3 beta.</p>
   <nav aria-label="Footer">
     <a href="../">Home</a>
     <a href="/privacy/#second-chair">Privacy</a>

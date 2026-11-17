@@ -194,6 +194,8 @@
 @media (max-width: 699px) { .need { grid-template-columns: 1fr; } }
 
 .table-scroll { margin-top: 20px; overflow-x: auto; max-width: 60rem; }
+@media (min-width: 600px) { .cl-table td:first-child { width: 34%; } }
+.cl-table td strong { font-weight: 600; }
 table { width: 100%; border-collapse: collapse; font-size: .9375rem; }
 th { text-align: left; font: 600 .75rem/1.2 var(--sans); letter-spacing: .05em; text-transform: uppercase; color: var(--fg-3); padding: 0 16px 10px 0; border-bottom: 1px solid var(--fg); }
 td { padding: 14px 16px 14px 0; border-bottom: 1px solid var(--rule); vertical-align: top; color: var(--fg-2); }

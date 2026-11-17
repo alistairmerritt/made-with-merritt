@@ -185,6 +185,10 @@ ul, ol { margin: 0; padding: 0; }
 .site-footer nav { display: flex; flex-wrap: wrap; gap: 6px 24px; }
 .site-footer a { text-decoration: none; }
 .site-footer a:hover { text-decoration: underline; }
+.site-footer .footnote { flex-basis: 100%; }
+/* A footnote mark: small, raised, and a link to its note. */
+a.fn { font-size: .7em; vertical-align: super; line-height: 0; text-decoration: none; color: inherit; padding: 0 .1em; }
+a.fn:hover { text-decoration: underline; }
 
 /* =====================================================================
    Device pictures
