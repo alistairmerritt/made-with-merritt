@@ -110,7 +110,7 @@
           <li><b>A Mac with Apple silicon running macOS 27</b><span>With Music, Apple’s app, on it.</span></li>
           <li><b>An iPhone running iOS 27</b><span>One iPhone per Mac.</span></li>
           <li><b>An internet connection on both devices</b><span>They don’t need to be on the same network.</span></li>
-          <li><b>A TestFlight invitation for Second Chair on iPhone</b><span>Build 202611160929 or later.</span></li>
+          <li><b>A TestFlight invitation for Second Chair on iPhone</b><span>Build 202611172029 or later.</span></li>
         </ul>
         <p>Older operating systems and Intel Macs haven’t been tested yet. You don’t need an Apple Music subscription for the main player; only <a href="#continue">Continue Listening</a> uses one.</p>
       </section>
@@ -412,7 +412,7 @@
         <div class="cl-part" id="cl-know">
           <h3 class="cl-h">What comes with you</h3>
           <p class="prose">Continue Listening generally picks up the same song from the same point, carrying your playlist, album or station between devices.</p>
-          <p class="prose">There’s one exception: when moving a station to your Mac, Apple Music chooses the starting song.</p>
+          <p class="prose">The exception is a station on your Mac. Music on your Mac can’t choose a station’s first song, so your station starts on a song Apple Music chooses. When your Mac falls back to a station based on the current song, it usually starts with that song, but not always.</p>
           <div class="table-scroll">
             <table class="stack cl-table">
               <thead><tr><th scope="col">What you’re listening to</th><th scope="col">Continue on iPhone</th><th scope="col">Continue on Mac</th></tr></thead>
@@ -422,7 +422,7 @@
                 <tr><td><strong>Your library on shuffle</strong></td><td data-h="Continue on iPhone">Library shuffle continues</td><td data-h="Continue on Mac">Library shuffle continues</td></tr>
                 <tr><td><strong>An Apple Music playlist or album not in your library</strong></td><td data-h="Continue on iPhone">Same playlist or album</td><td data-h="Continue on Mac">Added to your library first, then played<a class="fn" href="#fn-library" aria-label="Note: needs Add to Library for Continue on Mac">*</a></td></tr>
                 <tr><td><strong>A station</strong></td><td data-h="Continue on iPhone">Same song and station</td><td data-h="Continue on Mac">Same station, starting on a song Apple chooses</td></tr>
-                <tr><td><strong>Songs added with Play Next</strong></td><td data-h="Continue on iPhone">Up to 25 upcoming songs</td><td data-h="Continue on Mac">Not transferred</td></tr>
+                <tr><td><strong>Songs added with Play Next</strong></td><td data-h="Continue on iPhone">Up to 25 upcoming songs, instead of the playlist or album</td><td data-h="Continue on Mac">Not transferred</td></tr>
               </tbody>
             </table>
           </div>
@@ -436,8 +436,10 @@
           <ul class="plain">
             <li><strong>Shuffle order:</strong> Both devices shuffle independently, so the song order may change.</li>
             <li><strong>Shuffled albums:</strong> Albums transferred to your Mac play in their original order.</li>
-            <li><strong>Play Next:</strong> Up to 25 upcoming songs transfer from Mac to iPhone, but manually queued songs don’t transfer back.</li>
+            <li><strong>Play Next:</strong> If you’ve added songs with Play Next on your Mac, your iPhone gets up to 25 of your Mac’s upcoming songs, in the same order, instead of the whole playlist or album, and stops after them. Songs you add with Play Next on your iPhone don’t transfer to your Mac.</li>
             <li><strong>Recently started music:</strong> Apple Music can take around a minute to identify a playlist, album or station that isn’t in your library. Until then, Second Chair falls back to upcoming songs or a station based on the current song.</li>
+            <li><strong>Shuffling part of your library:</strong> iOS doesn’t tell apps what a shuffle came from. So shuffling an artist, a genre or another selection from your library on your iPhone continues on your Mac as your whole library on shuffle. From your Mac, an artist on shuffle comes to your iPhone as up to 25 upcoming songs, and other selections continue as your whole library on shuffle.</li>
+            <li><strong>Just changed shuffle or repeat on your Mac?</strong> Your iPhone learns of it within about 15 seconds, so continuing straight away can use the old setting.</li>
             <li><strong>Songs outside Apple Music:</strong> Uploaded tracks and some purchases can’t be transferred to your iPhone.</li>
           </ul>
         </div>
@@ -540,7 +542,7 @@
           <summary>Exactly what leaves your Mac</summary>
           <ul class="plain">
             <li><strong>Whenever playback changes,</strong> to the developer’s relay server and on to your iPhone through Apple’s push notification service: the song’s title, artist, album, length and position, whether it’s playing, the artwork, the volume of Music on your Mac, the names of your Mac’s speakers, and the names of your Mac and iPhone.</li>
-            <li><strong>Only once you’ve connected to Music for Continue Listening:</strong> the song’s Apple Music ID and up to 25 songs of Up Next. When the song plays from a playlist or album in your library, also its name (and an album’s artist), how many songs it has, the song’s place in it and whether it’s shuffled. And whether your Mac is shuffling its whole library, whether the song is from Apple Music outside your library, and Music’s shuffle and repeat settings.</li>
+            <li><strong>Only once you’ve connected to Music for Continue Listening:</strong> the song’s Apple Music ID and up to 25 songs of Up Next. When the song plays from a playlist or album in your library, also its name (and an album’s artist), how many songs it has, the song’s place in it and whether it’s shuffled. And whether your Mac is shuffling its whole library, whether the song is from Apple Music outside your library, and Music’s shuffle and repeat settings, and, while your Mac plays from Apple Music outside your library, when that started.</li>
             <li><strong>To Apple’s public catalogue search,</strong> only for songs Music has no artwork or Apple Music ID for: the album name, lead artist and country.</li>
             <li><strong>From your iPhone to Apple Music,</strong> for Continue Listening: requests for the song’s station, for your recently played list, and for the songs of a playlist or album in it, to tell what your iPhone is playing and where the song is in it.</li>
             <li><strong>From your iPhone to Apple Music, to add to your library,</strong> only for Continue on Mac and only while Add to Library for Continue on Mac is on: a request to add an Apple Music playlist or album to your library, so your Mac can play it. This changes your library.</li>
@@ -555,7 +557,7 @@
             <pre><code>defaults write com.alistairmerritt.MusicStandBy.Mac catalogArtwork -bool false</code></pre>
             <button class="copy" type="button">Copy</button>
           </div>
-          <p>Songs Music has no artwork for then show none, and songs played from Apple Music that aren’t in your library can’t be continued on your iPhone.</p>
+          <p>Songs Music has no artwork for then show none. When you continue a song from Apple Music that isn’t in your library, your iPhone looks it up in Apple Music itself, and upcoming songs that aren’t in your library are left out.</p>
         </details>
       </section>
 
