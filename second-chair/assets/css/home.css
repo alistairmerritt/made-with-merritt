@@ -234,7 +234,7 @@ html:not(.js) .try { display: none; }
   position: absolute; right: 0; top: 0; width: 53cqw;
 }
 /* On the phone's left: between the Mac and the iPhone. */
-.ctl-watch { position: absolute; left: 11cqw; top: 42.16cqw; width: 32.6cqw; z-index: 3; }   /* the display stays where it was before the band and lugs changed */
+.ctl-watch { position: absolute; left: 11.783cqw; top: 43.487cqw; width: 32.6cqw; z-index: 3; }   /* the display stays where it was (15.87, 54.77; 22.85 wide) */
 
 .np-scrub, .vol-track { position: relative; }
 .vol-track { flex: 1; }
