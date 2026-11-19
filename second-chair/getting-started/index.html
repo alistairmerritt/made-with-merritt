@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Getting started with Second Chair</title>
-<meta name="description" content="Set up Second Chair on your Mac and iPhone in four steps, and see and control your Mac’s music from your Lock Screen, Control Centre and StandBy.">
+<meta name="description" content="Set up Second Chair on your Mac and iPhone in four steps, then take your music with you with Continue Listening.">
 <meta name="theme-color" content="#f3eee6" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#14110f" media="(prefers-color-scheme: dark)">
 <link rel="icon" type="image/png" href="../assets/img/favicon.png?v=indigo">
@@ -15,13 +15,21 @@
 <meta property="og:title" content="Getting started with Second Chair">
 <meta property="og:description" content="From nothing to your Mac’s music on your iPhone’s Lock Screen, in four steps.">
 <meta property="og:image" content="https://madewithmerritt.com/second-chair/assets/img/og.png">
+<script>
+  // Sections that moved to Make it yours: send old links there.
+  (function () {
+    var moved = ['cl-know', 'cl-limits', 'cl-library', 'cl-need', 'cl-status', 'fn-library', 'know', 'reminders', 'skip-tap',
+      'troubleshooting', 'privacy', 'removing', 'limits', 'feedback', 'shortcuts'];
+    var id = location.hash.slice(1);
+    if (moved.indexOf(id) > -1) location.replace('../more/#' + id);
+  })();
+</script>
 <link rel="preconnect" href="https://use.typekit.net" crossorigin>
 <link rel="stylesheet" href="https://use.typekit.net/fiv2yhs.css">
-<link rel="stylesheet" href="../assets/css/base.css?v=purple">
-<link rel="stylesheet" href="../assets/css/guide.css?v=purple">
-<script src="../assets/js/guide.js" defer></script>
+<link rel="stylesheet" href="../assets/css/base.css?v=three">
+<link rel="stylesheet" href="../assets/css/guide.css?v=three">
+<script src="../assets/js/guide.js?v=three" defer></script>
 <script src="../assets/js/clock.js" defer></script>
-<script src="../assets/js/contact.js" defer></script>
 </head>
 <body class="guide-page">
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -37,6 +45,7 @@
   <symbol id="i-laptop" viewBox="0 0 24 24"><path d="M4.5 5.5c0-.6.4-1 1-1h13c.6 0 1 .4 1 1v9.5h-15zM6 6v7.5h12V6zM2 16.2h20v.6c0 1-.8 1.7-1.7 1.7H3.7c-1 0-1.7-.8-1.7-1.7z"/></symbol>
   <symbol id="i-iphone-arrow" viewBox="0 0 24 24"><path d="M5.6 2h4.8C11.8 2 13 3.2 13 4.6v14.8c0 1.4-1.2 2.6-2.6 2.6H5.6C4.2 22 3 20.8 3 19.4V4.6C3 3.2 4.2 2 5.6 2zm0 1.6c-.6 0-1 .4-1 1v14.8c0 .6.4 1 1 1h4.8c.6 0 1-.4 1-1V4.6c0-.6-.4-1-1-1z"/><path d="M15.4 12h6m0 0-2.7-2.7m2.7 2.7-2.7 2.7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-iphone" viewBox="0 0 24 24"><path d="M8.6 2h6.8c1.4 0 2.4 1 2.4 2.4v15.2c0 1.4-1 2.4-2.4 2.4H8.6c-1.4 0-2.4-1-2.4-2.4V4.4C6.2 3 7.2 2 8.6 2zm0 1.6c-.5 0-.8.3-.8.8v15.2c0 .5.3.8.8.8h6.8c.5 0 .8-.3.8-.8V4.4c0-.5-.3-.8-.8-.8h-1.2c0 .5-.3.8-.8.8h-2.4c-.5 0-.8-.3-.8-.8z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
 </svg>
 
 <a class="skip" href="#main">Skip to content</a>
@@ -50,283 +59,308 @@
   <a class="brand" href="../" aria-label="Second Chair, home"><img src="../assets/img/icon-180.png?v=indigo" alt="" width="20" height="20">Second Chair</a>
   <nav aria-label="Main">
     <a href="./" aria-current="page">Getting started</a>
+    <a href="../more/">Make it yours</a>
     <a href="../#get">Download</a>
   </nav>
 </header>
 
-<main id="main">
-  <div class="g-head">
-    <p class="g-eyebrow">Getting started · Mac 0.3.5 and the iPhone beta</p>
-    <h1 class="display g-title">Get Second Chair working.</h1>
-    <p class="lede g-lede">Set up Second Chair on your Mac and iPhone to see and control your Mac’s music from your Lock Screen, Control Centre and StandBy. You’ll need both devices nearby. There are four steps.</p>
+<main id="main" class="gs">
 
-    <ol class="g-map" aria-label="The four steps">
-      <li><a href="#mac"><span class="who">Mac</span><b>Install Second Chair on your Mac</b></a></li>
-      <li><a href="#iphone"><span class="who">iPhone</span><b>Install Second Chair on your iPhone</b></a></li>
-      <li><a href="#pair"><span class="who">Mac and iPhone</span><b>Pair your devices</b></a></li>
-      <li class="key"><a href="#show"><span class="who">Mac and iPhone</span><b>Show what’s playing</b></a></li>
-    </ol>
-    <a class="g-then" href="#continue"><span class="who">Then</span><b>Continue Listening</b><span class="g-then-what">Take your music with you, and bring it back. With Apple Music on your iPhone.</span></a>
+  <!-- ============ Opening ============ -->
+  <div class="g-head gs-head">
+    <p class="g-eyebrow">Getting started</p>
+    <h1 class="display g-title">Get Second Chair working.</h1>
+    <p class="lede g-lede">Set up Second Chair on your Mac and iPhone to see and control your Mac’s music from your Lock Screen, Control Centre and StandBy.</p>
+
+    <section class="gs-need" id="need" aria-labelledby="need-h">
+      <h2 id="need-h" class="gs-need-h">What you’ll need</h2>
+      <ul>
+        <li><svg aria-hidden="true"><use href="#i-laptop"/></svg><span><b>A Mac with Apple silicon</b> on macOS 27, with Apple’s Music app</span></li>
+        <li><svg aria-hidden="true"><use href="#i-iphone"/></svg><span><b>An iPhone</b> on iOS 27</span></li>
+        <li><svg aria-hidden="true"><use href="#i-down"/></svg><span><b>Second Chair for Mac</b>, and a <b>TestFlight invitation</b> for the iPhone app. <a href="/?contact=1">Ask for one</a></span></li>
+        <li><svg aria-hidden="true"><use href="#i-airplay"/></svg><span><b>The internet on both</b>. They don’t need to be on the same network.</span></li>
+      </ul>
+      <p class="gs-need-note">You don’t need Apple Music to see and control your Mac’s music. You do need it on your iPhone for <a href="#continue">Continue Listening</a>.</p>
+    </section>
   </div>
 
-  <div class="g-body">
-    <details class="g-toc" open>
-      <summary>On this page</summary>
-      <ol>
-        <li class="grp" aria-hidden="true">Setting up</li>
-        <li><a href="#need">Before you begin</a></li>
-        <li><a href="#mac">1 · Your Mac</a></li>
-        <li><a href="#iphone">2 · Your iPhone</a></li>
-        <li><a href="#pair">3 · Pair your devices</a></li>
-        <li><a href="#show">4 · Show what’s playing</a></li>
-        <li><a href="#ready">You’re ready</a></li>
-        <li class="grp" aria-hidden="true">Continue Listening</li>
-        <li><a href="#continue">Connect it once</a></li>
-        <li><a href="#take">Take it with you</a></li>
-        <li><a href="#bring">Bring it back</a></li>
-        <li><a href="#cl-know">What comes with you</a></li>
-        <li><a href="#cl-limits">What doesn’t carry over?</a></li>
-        <li><a href="#cl-library">Adding music to your library</a></li>
-        <li><a href="#cl-need">What you need</a></li>
-        <li><a href="#cl-status">If it isn’t ready</a></li>
-        <li class="grp" aria-hidden="true">Day to day</li>
-        <li><a href="#know">A few things to know</a></li>
-        <li><a href="#reminders">Reminders</a></li>
-        <li class="grp" aria-hidden="true">Help</li>
-        <li><a href="#troubleshooting">Need help?</a></li>
-        <li><a href="#privacy">Privacy</a></li>
-        <li><a href="#removing">Disconnecting and removing</a></li>
-        <li><a href="#limits">Known limits</a></li>
-        <li><a href="#feedback">Feedback</a></li>
+  <div class="gs-body g-article">
+
+    <!-- ============ Part 1: Get connected ============ -->
+    <header class="gs-part" id="setup">
+      <p class="gs-part-n">Part 1</p>
+      <h2 class="gs-part-h">Get connected</h2>
+      <p class="gs-part-what">Four steps, a few minutes. Keep your Mac and iPhone side by side.</p>
+      <ol class="g-map" aria-label="The four steps">
+        <li><a href="#mac"><span class="who">Mac</span><b>Install on your Mac</b></a></li>
+        <li><a href="#iphone"><span class="who">iPhone</span><b>Install on your iPhone</b></a></li>
+        <li><a href="#pair"><span class="who">Mac and iPhone</span><b>Pair your devices</b></a></li>
+        <li class="key"><a href="#show"><span class="who">Mac and iPhone</span><b>Show what’s playing</b></a></li>
       </ol>
-      <a class="back" href="../#get">← Downloads</a>
-    </details>
+    </header>
 
-    <article class="g-article">
-
-      <section id="need" aria-labelledby="need-h">
-        <h2 id="need-h">Before you begin</h2>
-        <ul class="need">
-          <li><b>A Mac with Apple silicon running macOS 27</b><span>With Music, Apple’s app, on it.</span></li>
-          <li><b>An iPhone running iOS 27</b><span>One iPhone per Mac.</span></li>
-          <li><b>An internet connection on both devices</b><span>They don’t need to be on the same network.</span></li>
-          <li><b>A TestFlight invitation for Second Chair on iPhone</b><span>Build 202611191034 or later.</span></li>
-        </ul>
-        <p>Older operating systems and Intel Macs haven’t been tested yet. You don’t need an Apple Music subscription for the main player; only <a href="#continue">Continue Listening</a> uses one.</p>
-      </section>
-
-      <section id="mac" aria-labelledby="mac-h">
-        <div class="with-fig">
-          <div>
-            <h2 id="mac-h"><span class="n">1</span>Install Second Chair on your Mac</h2>
-            <ol class="steps">
-              <li class="step" id="step-1a" data-on="mac">
-                <span class="on">Mac<small>1a</small></span>
-                <div class="do"><p>Download <a href="https://github.com/alistairmerritt/music-standby/releases/download/mac-v0.3.5/Second-Chair-0.3.5.zip">Second Chair 0.3.5</a>.</p></div>
-              </li>
-              <li class="step" id="step-1b" data-on="mac">
-                <span class="on">Mac<small>1b</small></span>
-                <div class="do"><p>Open the zip file and move Second Chair to Applications.</p></div>
-              </li>
-              <li class="step" id="step-1c" data-on="mac">
-                <span class="on">Mac<small>1c</small></span>
-                <div class="do"><p>Open Second Chair. Apple has notarised it, so it opens without a warning.</p></div>
-              </li>
-              <li class="step" id="step-1d" data-on="mac">
-                <span class="on">Mac<small>1d</small></span>
-                <div class="do"><p>When asked for permission to control Music, click <kbd class="ui">OK</kbd>.</p><p>Without it, Second Chair can’t see what’s playing.</p></div>
-              </li>
-            </ol>
-            <p>Second Chair appears as a music note in your Mac’s menu bar. It doesn’t open a separate window.</p>
-            <p class="note"><strong>Recommended:</strong> click the music note and turn on <span class="ui">Launch at Login</span>, so Second Chair is ready whenever you use your Mac.</p>
+    <!-- 1 -->
+    <section class="gs-step" id="mac" aria-labelledby="mac-h">
+      <div class="with-fig">
+        <div class="gs-text">
+          <p class="gs-step-n" aria-hidden="true">01</p>
+          <p class="gs-on" data-on="mac"><svg aria-hidden="true"><use href="#i-laptop"/></svg>On your Mac</p>
+          <h3 id="mac-h" class="gs-h">Install on your Mac</h3>
+          <p class="gs-do" id="step-1a"><span id="step-1b"></span><span id="step-1c"></span>Download Second Chair, move it to Applications and open it.</p>
+          <div class="gs-actions">
+            <a class="btn" href="https://github.com/alistairmerritt/music-standby/releases/download/mac-v0.3.5/Second-Chair-0.3.5.zip"><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-down"/></svg>Download for Mac</a>
+            <span class="gs-meta">Version 0.3.5</span>
           </div>
+          <p class="gs-then" id="step-1d">When your Mac asks whether Second Chair can control Music, click <kbd class="ui">OK</kbd>. That’s how it sees what’s playing.</p>
+          <p class="gs-then">Second Chair lives in your menu bar, as a music note <svg class="inline-note" aria-label="(music note)" role="img"><use href="#i-note"/></svg>. Click it to see everything it does.</p>
+          <details class="more">
+            <summary>More detail</summary>
+            <ul class="plain">
+              <li><strong>Can’t see the music note?</strong> Look at the top right of your screen, next to the clock. If your menu bar is full, it may be hidden behind other icons.</li>
+              <li><strong>Start it with your Mac.</strong> In the music note’s menu, turn on <span class="ui">Launch at Login</span>. Second Chair needs to be running to update your iPhone.</li>
+              <li><strong>Clicked <span class="ui">Don’t Allow</span>?</strong> The menu will say <span class="says">Second Chair can’t read Music</span>. Click <span class="ui">Open Privacy Settings</span>, then turn on Music under Second Chair.</li>
+            </ul>
+          </details>
+        </div>
+        <!-- Illustration of Second Chair's menu (MenuContent.swift). Replace with a screenshot when there is one. -->
+        <figure class="fig">
+          <div class="fig-stage" aria-hidden="true">
+            <div class="menubar"><span class="dim" data-clock="menubar">Thu 12 Nov 18:24</span><span class="sel"><svg><use href="#i-note"/></svg></span></div>
+            <div class="mac-menu">
+              <div class="mm-head"><b>On This Mac</b></div>
+              <div class="mm-track">
+                <div class="mm-art"><img class="art" src="../assets/art/small-hours-sm.webp?v=2" alt="" width="64" height="64"></div>
+                <div class="mm-meta"><b>Small Hours</b><span>Fen Lights</span><span class="album">Lit Windows</span><small>Playing</small></div>
+              </div>
+              <div class="mm-progress"><div class="mm-bar"><i style="--p:.32"></i></div><div class="mm-times"><span>1:21</span><span>-2:51</span></div></div>
+              <div class="mm-transport"><span><svg width="19" height="19"><use href="#i-prev"/></svg></span><span class="pp"><svg width="21" height="21"><use href="#i-pause"/></svg></span><span><svg width="19" height="19"><use href="#i-next"/></svg></span></div>
+              <hr>
+              <div class="mm-conn"><i></i>Connected</div>
+              <div class="mm-row"><span>iPhone</span><span>Not paired</span></div>
+              <span class="mm-btn">Pair iPhone…</span>
+              <hr>
+              <div class="mm-toggle"><i></i>Launch at Login</div>
+              <hr>
+              <div class="mm-quit"><span class="mm-btn">Quit Second Chair</span></div>
+            </div>
+          </div>
+          <figcaption><b>Click the music note in your menu bar</b> to open Second Chair. <span class="illus">Illustration</span></figcaption>
+        </figure>
+      </div>
+    </section>
 
-          <!-- Illustration of Second Chair's menu (MenuContent.swift). Replace with a screenshot when there is one. -->
-          <figure class="fig">
-            <div class="fig-stage" aria-hidden="true">
-              <div class="menubar"><span class="dim" data-clock="menubar">Thu 12 Nov 18:24</span><span class="sel"><svg><use href="#i-note"/></svg></span></div>
-              <div class="mac-menu">
-                <div class="mm-head"><b>On This Mac</b></div>
-                <div class="mm-track">
-                  <div class="mm-art"><img class="art" src="../assets/art/small-hours-sm.webp?v=2" alt="" width="64" height="64"></div>
-                  <div class="mm-meta"><b>Small Hours</b><span>Fen Lights</span><span class="album">Lit Windows</span><small>Playing</small></div>
+    <!-- 2 -->
+    <section class="gs-step" id="iphone" aria-labelledby="iphone-h">
+      <div class="with-fig">
+        <div class="gs-text">
+          <p class="gs-step-n" aria-hidden="true">02</p>
+          <p class="gs-on" data-on="iphone"><svg aria-hidden="true"><use href="#i-iphone"/></svg>On your iPhone</p>
+          <h3 id="iphone-h" class="gs-h">Install on your iPhone</h3>
+          <p class="gs-do" id="step-2a"><span id="step-2b"></span><span id="step-2c"></span>Open your TestFlight invitation, install Second Chair, then open it and tap <kbd class="ui">Continue</kbd>.</p>
+          <p class="gs-then">You’ll see <span class="says">Pair with Mac</span>. Leave it open for the next step.</p>
+          <p class="gs-then">No invitation yet? <a href="/?contact=1">Ask for one</a>.</p>
+          <details class="more">
+            <summary>More detail</summary>
+            <ul class="plain">
+              <li><strong>New to TestFlight?</strong> It’s Apple’s free app for trying apps before they’re released. Install it from the App Store if you don’t have it, then open your invitation again.</li>
+              <li><strong>Which version?</strong> You’ll need build 202611191034 or later.</li>
+            </ul>
+          </details>
+        </div>
+        <!-- Illustration of PairingView before a code is typed. Replace with a screenshot when there is one. -->
+        <figure class="fig">
+          <div class="fig-stage night" aria-hidden="true">
+            <div class="phone phone--portrait">
+              <div class="phone-body"><div class="phone-bezel"><div class="screen">
+                <span class="island"></span>
+                <div class="app-screen">
+                  <div class="bar"><span data-clock="time">18:24</span><i></i></div>
+                  <h4>Pair with Mac</h4>
+                  <p class="sec-h">Pairing Code</p>
+                  <div class="sec hot"><div class="row pin dis">000000</div></div>
+                  <p class="foot">Enter the six-digit code shown by Second Chair on your Mac.</p>
+                  <div class="sec"><div class="row dis">Pair</div></div>
                 </div>
-                <div class="mm-progress"><div class="mm-bar"><i style="--p:.32"></i></div><div class="mm-times"><span>1:21</span><span>-2:51</span></div></div>
-                <div class="mm-transport"><span><svg width="19" height="19"><use href="#i-prev"/></svg></span><span class="pp"><svg width="21" height="21"><use href="#i-pause"/></svg></span><span><svg width="19" height="19"><use href="#i-next"/></svg></span></div>
-                <hr>
+              </div></div></div>
+            </div>
+          </div>
+          <figcaption><b>Pair with Mac,</b> ready for the code from your Mac. <span class="illus">Illustration</span></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 3 -->
+    <section class="gs-step" id="pair" aria-labelledby="pair-h">
+      <div class="with-fig">
+        <div class="gs-text">
+          <p class="gs-step-n" aria-hidden="true">03</p>
+          <p class="gs-on" data-on="both"><svg aria-hidden="true"><use href="#i-laptop"/></svg><svg aria-hidden="true"><use href="#i-iphone"/></svg>On your Mac and iPhone</p>
+          <h3 id="pair-h" class="gs-h">Pair your devices</h3>
+          <p class="gs-do">Your Mac gives you a code. Type it on your iPhone, then allow the connection on your Mac.</p>
+          <ol class="gs-seq">
+            <li id="step-3a"><span class="gs-dev">Mac</span><span>Click the music note and choose <kbd class="ui">Pair iPhone…</kbd></span></li>
+            <li id="step-3b"><span class="gs-dev">iPhone</span><span>Enter the six-digit code and tap <kbd class="ui">Pair</kbd>.</span></li>
+            <li id="step-3c"><span class="gs-dev">Mac</span><span>When the menu says your iPhone <span class="says">wants to show this Mac’s music.</span>, click <kbd class="ui">Allow</kbd>.</span></li>
+          </ol>
+          <details class="more">
+            <summary>More detail</summary>
+            <ul class="plain">
+              <li><strong>Code expired?</strong> A code lasts five minutes and works once. Choose <span class="ui">Pair iPhone…</span> again for a new one.</li>
+              <li><strong>One iPhone per Mac.</strong> You can pair one iPhone with each Mac.</li>
+            </ul>
+          </details>
+        </div>
+        <!-- Illustration of the pairing code on the Mac and PairingView on the iPhone. Replace with screenshots when there are some. -->
+        <figure class="fig">
+          <div class="fig-stage paper fig-pair" aria-hidden="true">
+            <div class="pair-a"><p class="pair-tag">Mac</p>
+              <div class="mac-menu">
                 <div class="mm-conn"><i></i>Connected</div>
                 <div class="mm-row"><span>iPhone</span><span>Not paired</span></div>
-                <span class="mm-btn">Pair iPhone…</span>
-                <hr>
-                <p class="mm-h">Continue Listening</p>
-                <p class="mm-note">Connect Second Chair to Music so your music can move between this Mac and your iPhone, with your Up Next queue.</p>
-                <span class="mm-btn">Connect to Music…</span>
-                <hr>
-                <div class="mm-toggle"><i></i>Launch at Login</div>
-                <hr>
-                <div class="mm-quit"><span class="mm-btn">Quit Second Chair</span></div>
+                <p class="mm-code">4 8 2 9 1 6</p>
+                <p class="mm-cap">Type this in Second Chair on your iPhone. Expires in 4:37.</p>
               </div>
             </div>
-            <figcaption><b>The music note’s menu.</b> Everything Second Chair does on the Mac is in here. <span class="illus">Illustration</span></figcaption>
-          </figure>
-        </div>
-      </section>
-
-      <section id="iphone" aria-labelledby="iphone-h">
-        <h2 id="iphone-h"><span class="n">2</span>Install Second Chair on your iPhone</h2>
-        <ol class="steps">
-          <li class="step" id="step-2a" data-on="iphone">
-            <span class="on">iPhone<small>2a</small></span>
-            <div class="do">
-              <p>Open your TestFlight invitation.</p>
-              <p>Don’t have one? <a href="/?contact=1">Ask for an invitation</a>.</p>
+            <div class="pair-b"><p class="pair-tag">iPhone</p>
+            <div class="phone phone--portrait small">
+              <div class="phone-body"><div class="phone-bezel"><div class="screen">
+                <span class="island"></span>
+                <div class="app-screen">
+                  <div class="bar"><span data-clock="time">18:24</span><i></i></div>
+                  <h4>Pair with Mac</h4>
+                  <p class="sec-h">Pairing Code</p>
+                  <div class="sec"><div class="row pin">482916</div></div>
+                  <p class="foot">Enter the six-digit code shown by Second Chair on your Mac.</p>
+                  <div class="sec"><div class="row tint">Pair</div></div>
+                </div>
+              </div></div></div>
             </div>
-          </li>
-          <li class="step" id="step-2b" data-on="iphone">
-            <span class="on">iPhone<small>2b</small></span>
-            <div class="do"><p>Install TestFlight from the App Store if you need to, then install Second Chair.</p></div>
-          </li>
-          <li class="step" id="step-2c" data-on="iphone">
-            <span class="on">iPhone<small>2c</small></span>
-            <div class="do"><p>Open Second Chair and tap <kbd class="ui">Continue</kbd>.</p></div>
-          </li>
-        </ol>
-        <p>You’ll see <span class="says">Pair with Mac</span>.</p>
-      </section>
-
-      <section id="pair" aria-labelledby="pair-h">
-        <div class="with-fig">
-          <div>
-            <h2 id="pair-h"><span class="n">3</span>Pair your devices</h2>
-            <p>You’ll get a six-digit code from your Mac, enter it on your iPhone, then approve the connection on your Mac.</p>
-            <ol class="steps">
-              <li class="step" id="step-3a" data-on="mac">
-                <span class="on">Mac<small>3a</small></span>
-                <div class="do"><p>Click the music note in the menu bar and choose <kbd class="ui">Pair iPhone…</kbd></p></div>
-              </li>
-              <li class="step" id="step-3b" data-on="iphone">
-                <span class="on">iPhone<small>3b</small></span>
-                <div class="do"><p>Enter the six-digit code and tap <kbd class="ui">Pair</kbd>.</p></div>
-              </li>
-              <li class="step" id="step-3c" data-on="mac">
-                <span class="on">Mac<small>3c</small></span>
-                <div class="do"><p>When the menu says your iPhone <span class="says">wants to show this Mac’s music.</span>, click <kbd class="ui">Allow</kbd>.</p></div>
-              </li>
-            </ol>
-            <p>Your devices are now paired.</p>
-            <p class="note">The code expires after five minutes and works once. If it expires, choose <span class="ui">Pair iPhone…</span> again for a new one.</p>
+            </div>
+            <div class="pair-c"><p class="pair-tag">Mac</p>
+              <div class="mac-menu">
+                <div class="mm-conn"><i></i>Connected</div>
+                <div class="mm-row"><span>iPhone</span><span>Not paired</span></div>
+                <p class="mm-note" style="color:#1d1d1f;margin-top:8px">“iPhone” wants to show this Mac’s music.</p>
+                <span class="mm-btn primary mm-ring">Allow</span><span class="mm-btn">Don’t Allow</span>
+              </div>
+            </div>
           </div>
+          <figcaption><b>The code from your Mac, typed on your iPhone,</b> then allowed on your Mac. <span class="illus">Illustration</span></figcaption>
+        </figure>
+      </div>
+    </section>
 
-          <!-- Illustration of the pairing code on the Mac and PairingView on the iPhone. Replace with screenshots when there are some. -->
-          <figure class="fig">
-            <div class="fig-stage paper fig-pair" aria-hidden="true">
-              <div class="pair-a"><p class="pair-tag">3a</p>
-                <div class="mac-menu">
-                  <div class="mm-conn"><i></i>Connected</div>
-                  <div class="mm-row"><span>iPhone</span><span>Not paired</span></div>
-                  <p class="mm-code">4 8 2 9 1 6</p>
-                  <p class="mm-cap">Type this in Second Chair on your iPhone. Expires in 4:37.</p>
+    <!-- 4 -->
+    <section class="gs-step key" id="show" aria-labelledby="show-h">
+      <div class="with-fig">
+        <div class="gs-text">
+          <p class="gs-step-n" aria-hidden="true">04</p>
+          <p class="gs-on" data-on="both"><svg aria-hidden="true"><use href="#i-laptop"/></svg><svg aria-hidden="true"><use href="#i-iphone"/></svg>On your Mac and iPhone</p>
+          <h3 id="show-h" class="gs-h">Show what’s playing</h3>
+          <p class="gs-do">Play something in Music on your Mac, then tap <kbd class="ui">Show in Now Playing</kbd> in Second Chair on your iPhone.</p>
+          <p class="gs-flag" id="step-4"><b>Don’t skip this one.</b> Pairing alone doesn’t put the player on your Lock Screen.</p>
+          <details class="more">
+            <summary>More detail</summary>
+            <ul class="plain">
+              <li><strong>Button greyed out?</strong> <span class="ui">Show in Now Playing</span> waits until music is playing on your Mac. Start a song in Music, and it lights up.</li>
+              <li><strong>Second Chair doesn’t open Music for you.</strong> Open it yourself on your Mac.</li>
+            </ul>
+          </details>
+        </div>
+        <!-- Illustration of HomeView's "Lock Screen and StandBy" section. Replace with a screenshot when there is one. -->
+        <figure class="fig">
+          <div class="fig-stage night" aria-hidden="true">
+            <div class="phone phone--portrait">
+              <div class="phone-body"><div class="phone-bezel"><div class="screen">
+                <span class="island"></span>
+                <div class="app-screen">
+                  <div class="bar"><span data-clock="time">18:24</span><i></i></div>
+                  <h4>Second Chair</h4>
+                  <p class="sec-h">Now Playing</p>
+                  <div class="sec"><div class="row np-row"><span class="a"><img src="../assets/art/small-hours-sm.webp?v=2" alt="" width="40" height="40"></span><span><b>Small Hours</b><span>Fen Lights</span></span></div></div>
+                  <p class="sec-h" style="margin-top:5cqw">Lock Screen and StandBy</p>
+                  <div class="sec hot"><div class="row key-label">Show in Now Playing</div></div>
+                  <p class="foot">If you dismiss the player on your Lock Screen, it may stay hidden until you next open Second Chair.</p>
+                  <div class="sec"><div class="row"><span>Remind When Music Starts</span><span class="v">○</span></div></div>
+                  <p class="foot">Get a notification when your Mac starts playing again after a break. Tap it to bring Second Chair back to your Lock Screen and StandBy.</p>
+                </div>
+              </div></div></div>
+            </div>
+          </div>
+          <figcaption><b>Show in Now Playing,</b> in Second Chair on your iPhone. <span class="illus">Illustration</span></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Success -->
+    <section class="gs-ready" id="ready" aria-labelledby="ready-h">
+      <div class="gs-ready-text">
+        <p class="gs-ready-tick" aria-hidden="true"><svg><use href="#i-check"/></svg></p>
+        <h2 id="ready-h" class="gs-ready-h">You’re ready.</h2>
+        <p class="gs-ready-do">Lock your iPhone. The song playing on your Mac is right there, with its artwork and controls.</p>
+        <ul class="gs-where" aria-label="Where you’ll see it">
+          <li>Lock Screen</li><li>Control Centre</li><li>StandBy</li><li>Apple Watch</li>
+        </ul>
+        <p>Play, pause, skip and scrub from any of them, and change Music’s volume on your Mac. The sound stays on your Mac.</p>
+        <p>It works away from home too, as long as both devices are online and your Mac is awake with Second Chair running.</p>
+      </div>
+      <!-- Illustration of Second Chair on the iPhone Lock Screen. Replace with a screenshot when there is one. -->
+      <figure class="gs-ready-fig" aria-label="Illustration: Small Hours by Fen Lights on an iPhone Lock Screen, with play controls">
+        <div class="phone phone--portrait" style="--wall-a:#352d21; --wall-b:#8b7756;">
+          <div class="phone-body"><div class="phone-bezel"><div class="screen">
+            <span class="island" aria-hidden="true"></span>
+            <div class="lock-ui" aria-hidden="true">
+              <div class="wall"></div>
+              <div class="lock-status"><i class="sig"></i><i class="bat"></i></div>
+              <p class="lock-date" data-clock="date">Thursday 12 November</p>
+              <p class="lock-time" data-clock="time">18:24</p>
+              <div class="np">
+                <div class="np-head">
+                  <div class="np-art"><img class="art" src="../assets/art/small-hours-sm.webp?v=2" alt="" width="120" height="120"></div>
+                  <div class="np-meta"><b>Small Hours</b><span>Fen Lights</span></div>
+                  <svg class="np-route"><use href="#i-airplay"/></svg>
+                </div>
+                <div class="np-scrub">
+                  <div class="ios-bar"><i style="--p:.32"></i></div>
+                  <div class="np-times"><span>1:21</span><span>-2:51</span></div>
+                </div>
+                <div class="np-controls">
+                  <span class="ios-btn"><svg class="glyph-fill"><use href="#i-prev"/></svg></span>
+                  <span class="ios-btn pp"><svg class="glyph-fill"><use href="#i-pause"/></svg></span>
+                  <span class="ios-btn"><svg class="glyph-fill"><use href="#i-next"/></svg></span>
+                </div>
+                <div class="np-vol">
+                  <svg class="ico"><use href="#i-vol-lo"/></svg>
+                  <div class="ios-bar"><i style="--p:.62"></i></div>
+                  <svg class="ico"><use href="#i-vol-hi"/></svg>
                 </div>
               </div>
-              <div class="pair-b"><p class="pair-tag">3b</p>
-              <div class="phone phone--portrait small">
-                <div class="phone-body"><div class="phone-bezel"><div class="screen">
-                  <span class="island"></span>
-                  <div class="app-screen">
-                    <div class="bar"><span data-clock="time">18:24</span><i></i></div>
-                    <h4>Pair with Mac</h4>
-                    <p class="sec-h">Pairing Code</p>
-                    <div class="sec"><div class="row pin">482916</div></div>
-                    <p class="foot">Enter the six-digit code shown by Second Chair on your Mac.</p>
-                    <div class="sec"><div class="row tint">Pair</div></div>
-                  </div>
-                </div></div></div>
-              </div>
-              </div>
-              <div class="pair-c"><p class="pair-tag">3c</p>
-                <div class="mac-menu">
-                  <div class="mm-conn"><i></i>Connected</div>
-                  <div class="mm-row"><span>iPhone</span><span>Not paired</span></div>
-                  <p class="mm-note" style="color:#1d1d1f;margin-top:8px">“iPhone” wants to show this Mac’s music.</p>
-                  <span class="mm-btn primary mm-ring">Allow</span><span class="mm-btn">Don’t Allow</span>
-                </div>
-              </div>
+              <div class="lock-corners"><i></i><i></i></div>
+              <span class="lock-home"></span>
             </div>
-            <figcaption><b>The code on the Mac, typed on the iPhone,</b> then allowed back on the Mac. <span class="illus">Illustration</span></figcaption>
-          </figure>
+          </div></div></div>
         </div>
-      </section>
+        <figcaption>Your Mac’s music, on your iPhone. <span class="illus">Illustration</span></figcaption>
+      </figure>
+    </section>
 
-      <section id="show" aria-labelledby="show-h">
-        <div class="with-fig">
-          <div>
-            <h2 id="show-h"><span class="n">4</span>Show what’s playing</h2>
-            <div class="must" id="step-4">
-              <p class="eyebrow">One last step</p>
-              <h3>Pairing alone doesn’t turn on the Lock Screen player.</h3>
-              <ol>
-                <li><span class="on">Mac</span><span>Open Music and start playing a song.</span></li>
-                <li><span class="on">iPhone</span><span>Open Second Chair and tap <span class="ui">Show in Now Playing</span>.</span></li>
-              </ol>
-              <p>The button stays unavailable until music is playing on your Mac.</p>
-            </div>
-          </div>
+    <!-- ============ Part 2: Continue Listening ============ -->
+    <section class="gs-cl" id="continue" aria-labelledby="continue-h">
+      <header class="gs-part">
+        <p class="gs-part-n">Part 2 · Optional</p>
+        <h2 id="continue-h" class="gs-part-h">Take your music with you.</h2>
+        <p class="gs-part-what">Heading out? Pick up where you left off on your iPhone. When you’re back at your Mac, bring your music back.</p>
+        <p class="gs-cl-need"><b>Continue Listening</b> needs an Apple Music subscription on your iPhone. Everything else works without it.</p>
+      </header>
 
-          <!-- Illustration of HomeView's "Lock Screen and StandBy" section. Replace with a screenshot when there is one. -->
-          <figure class="fig">
-            <div class="fig-stage night" aria-hidden="true">
-              <div class="phone phone--portrait">
-                <div class="phone-body"><div class="phone-bezel"><div class="screen">
-                  <span class="island"></span>
-                  <div class="app-screen">
-                    <div class="bar"><span data-clock="time">18:24</span><i></i></div>
-                    <h4>Second Chair</h4>
-                    <p class="sec-h">Now Playing</p>
-                    <div class="sec"><div class="row np-row"><span class="a"><img src="../assets/art/small-hours-sm.webp?v=2" alt="" width="40" height="40"></span><span><b>Small Hours</b><span>Fen Lights</span></span></div></div>
-                    <p class="sec-h" style="margin-top:5cqw">Lock Screen and StandBy</p>
-                    <div class="sec hot"><div class="row key-label">Show in Now Playing</div></div>
-                    <p class="foot">If you dismiss the player on your Lock Screen, it may stay hidden until you next open Second Chair.</p>
-                    <div class="sec"><div class="row"><span>Remind When Music Starts</span><span class="v">○</span></div></div>
-                    <p class="foot">Get a notification when your Mac starts playing again after a break. Tap it to bring Second Chair back to your Lock Screen and StandBy.</p>
-                  </div>
-                </div></div></div>
-              </div>
-            </div>
-            <figcaption><b>Show in Now Playing,</b> in the Second Chair app on your iPhone. <span class="illus">Illustration</span></figcaption>
-          </figure>
-        </div>
-      </section>
-
-      <section id="ready" aria-labelledby="ready-h">
-        <h2 id="ready-h">You’re ready.</h2>
-        <!-- Screenshot to come: real Second Chair playback on an iPhone Lock Screen and in landscape StandBy. -->
-        <p>Lock your iPhone. The song playing on your Mac should appear with its artwork and playback controls.</p>
-        <p>You’ll also see the player in Control Centre, in landscape StandBy while your iPhone is charging, and on Apple Watch.</p>
-        <p>The sound stays on your Mac. You can play, pause, skip and seek from any of them, and change the volume of Music on your Mac from the Lock Screen or the Second Chair app.</p>
-        <p>Second Chair also works when you’re away from home, as long as both devices have an internet connection and your Mac is awake with Second Chair running.</p>
-        <p class="g-next">Next: <a href="#continue">Continue Listening</a>, to take the song with you when you leave your desk.</p>
-      </section>
-
-      <section id="continue" class="cl" aria-labelledby="continue-h">
-        <p class="g-kicker">After setup · needs Apple Music on your iPhone</p>
-        <h2 id="continue-h">Continue Listening</h2>
-        <p class="cl-lede">Take your music with you, then bring it back. Continue Listening lets you switch playback between your Mac and iPhone, picking up where you left off.</p>
-        <p><em>Apple Music works differently on Mac and iPhone, and doesn’t give other apps complete control over playback. That means some things, like shuffle order and stations, may behave a little differently when switching devices. Those differences are outlined <a href="#cl-know">below</a>.</em></p>
-        <p>You’ll need an Apple Music subscription on your iPhone and a one-time connection to Music on your Mac. Home Sharing isn’t required.</p>
-
-        <div class="with-fig cl-part">
-          <div>
-            <h3 class="cl-h"><span class="n">a</span>Connect Second Chair to Music</h3>
-            <p class="prose">You only need to do this once.</p>
-            <ol class="steps">
-              <li class="step" data-on="mac"><span class="on">Mac</span><div class="do"><p>Open the Second Chair menu and choose <kbd class="ui">Connect to Music…</kbd> A four-digit code appears.</p></div></li>
-              <li class="step" data-on="mac"><span class="on">Mac</span><div class="do"><p>In Music, select Second Chair under Devices in the sidebar and enter the code.</p></div></li>
-              <li class="step" data-on="mac"><span class="on">Mac</span><div class="do"><p>If prompted, allow Second Chair access to the local network.</p></div></li>
-            </ol>
-            <p class="note">This is a separate connection from pairing your iPhone. The code has four digits rather than six.</p>
-            <p class="prose">Once connected, the iPhone app shows <span class="says">Ready</span> under Continue Listening.</p>
-          </div>
-          <!-- Illustration of MusicRemoteSection (MenuContent.swift) and Music's sidebar. Replace with a screenshot when there is one. -->
+      <div class="gs-cl-steps">
+        <article class="gs-cl-step" id="cl-connect" aria-labelledby="cl-connect-h">
+          <p class="gs-step-n" aria-hidden="true">01</p>
+          <p class="gs-on" data-on="mac"><svg aria-hidden="true"><use href="#i-laptop"/></svg>On your Mac · once</p>
+          <h3 id="cl-connect-h" class="gs-h">Connect to Music</h3>
+          <p class="gs-do">Click the music note and choose <kbd class="ui">Connect to Music…</kbd> In Music, select Second Chair under Devices and enter the four-digit code.</p>
+          <p class="gs-then">If your Mac asks about the local network, allow it. This is a separate code from pairing your iPhone. When it’s done, the iPhone app shows <span class="says">Ready</span> under Continue Listening.</p>
+          <!-- Illustration of MusicRemoteSection (MenuContent.swift) and Music's sidebar. -->
           <figure class="fig">
             <div class="fig-stage paper fig-connect" aria-hidden="true">
               <div class="mac-menu">
@@ -340,19 +374,25 @@
                 <p class="ms-row is-sel"><svg><use href="#i-iphone"/></svg>Second Chair</p>
               </div>
             </div>
-            <figcaption><b>The code in Second Chair’s menu,</b> and Second Chair under Devices in Music. <span class="illus">Illustration</span></figcaption>
+            <figcaption><b>The four-digit code</b> in Second Chair’s menu, and Second Chair under Devices in Music. <span class="illus">Illustration</span></figcaption>
           </figure>
-        </div>
+          <details class="more">
+            <summary>More detail</summary>
+            <ul class="plain">
+              <li><strong>Why the local network?</strong> Second Chair uses it to talk to Music on your Mac. Nothing leaves your Mac.</li>
+              <li><strong>Home Sharing isn’t needed.</strong></li>
+              <li><strong>Music says the code is wrong?</strong> Click <span class="ui">Cancel</span>, choose <span class="ui">Connect to Music…</span> again, and pick the Second Chair entry that has just appeared under Devices.</li>
+            </ul>
+          </details>
+        </article>
 
-        <div class="with-fig cl-part" id="take">
-          <div>
-            <h3 class="cl-h"><span class="n">b</span>Take it with you</h3>
-            <p class="prose">Leaving your desk? Open Second Chair on your iPhone and tap <kbd class="ui">Continue on iPhone</kbd>.</p>
-            <p class="prose">Your music picks up on your iPhone from the same point, and your Mac pauses. Your playlist, album or station comes along too, with your shuffle and repeat settings where supported.</p>
-            <p class="prose">The first time you use it, allow Second Chair access to Apple Music.</p>
-            <p class="prose"><strong>Make it automatic.</strong> Continue on iPhone is also available in Apple Shortcuts, so you can set up an automation to take your music with you when you connect to CarPlay.</p>
-          </div>
-          <!-- Illustration of ContinueListeningSection (HomeView.swift). Replace with a screenshot when there is one. -->
+        <article class="gs-cl-step" id="take" aria-labelledby="take-h">
+          <p class="gs-step-n" aria-hidden="true">02</p>
+          <p class="gs-on" data-on="iphone"><svg aria-hidden="true"><use href="#i-iphone"/></svg>On your iPhone</p>
+          <h3 id="take-h" class="gs-h">Continue on iPhone</h3>
+          <p class="gs-do">Open Second Chair and tap <kbd class="ui">Continue on iPhone</kbd>.</p>
+          <p class="gs-then">Your music carries on from the same point on your iPhone, with your playlist, album or station, and your Mac pauses. The first time, allow Second Chair access to Apple Music.</p>
+          <!-- Illustration of ContinueListeningSection (HomeView.swift). -->
           <figure class="fig">
             <div class="fig-stage night" aria-hidden="true">
               <div class="phone phone--portrait">
@@ -369,23 +409,17 @@
                 </div></div></div>
               </div>
             </div>
-            <figcaption><b>Continue on iPhone,</b> in the Second Chair app. <span class="illus">Illustration</span></figcaption>
+            <figcaption><b>Continue on iPhone,</b> in Second Chair on your iPhone. <span class="illus">Illustration</span></figcaption>
           </figure>
-        </div>
+        </article>
 
-        <div class="with-fig cl-part" id="bring">
-          <div>
-            <h3 class="cl-h"><span class="n">c</span>Bring it back</h3>
-            <p class="prose">Ready to return to your Mac? Pick up where you left off using either device.</p>
-            <ol class="steps">
-              <li class="step" data-on="mac"><span class="on">Mac</span><div class="do"><p>Click the Second Chair menu bar icon and choose <kbd class="ui">Continue from iPhone</kbd>.</p></div></li>
-              <li class="step" data-on="iphone"><span class="on">iPhone</span><div class="do"><p>Open Second Chair and tap <kbd class="ui">Continue on Mac</kbd>.</p></div></li>
-            </ol>
-            <p class="prose">Your iPhone pauses when playback moves to your Mac. What carries over depends on what you’re listening to, as explained <a href="#cl-know">below</a>.</p>
-            <p class="prose">You can also automate the handoff with Apple Shortcuts. For example, have your music return to your Mac when your headphones connect.</p>
-            <p class="prose"><strong>If your Mac asks for confirmation,</strong> tap <span class="ui">Continue on Mac</span> in the notification on your iPhone or Apple Watch. This requires notifications to be enabled for Second Chair.</p>
-          </div>
-          <!-- Illustration of ContinueFromPhoneRow (MenuContent.swift). Replace with a screenshot when there is one. -->
+        <article class="gs-cl-step" id="bring" aria-labelledby="bring-h">
+          <p class="gs-step-n" aria-hidden="true">03</p>
+          <p class="gs-on" data-on="both"><svg aria-hidden="true"><use href="#i-laptop"/></svg><svg aria-hidden="true"><use href="#i-iphone"/></svg>On either</p>
+          <h3 id="bring-h" class="gs-h">Continue on Mac</h3>
+          <p class="gs-do">Back at your desk? Tap <kbd class="ui">Continue on Mac</kbd> on your iPhone, or choose <kbd class="ui">Continue from iPhone</kbd> in the music note’s menu.</p>
+          <p class="gs-then">Your Mac picks up where you left off, and your iPhone pauses.</p>
+          <!-- Illustration of ContinueFromPhoneRow (MenuContent.swift). -->
           <figure class="fig">
             <div class="fig-stage" aria-hidden="true">
               <div class="menubar"><span class="dim" data-clock="menubar">Thu 12 Nov 18:24</span><span class="sel"><svg><use href="#i-note"/></svg></span></div>
@@ -396,209 +430,41 @@
                   <div class="mm-art"><img class="art" src="../assets/art/small-hours-sm.webp?v=2" alt="" width="64" height="64"></div>
                   <div class="mm-meta"><b>Small Hours</b><span>Fen Lights</span><span class="album">Lit Windows</span><small>Paused</small></div>
                 </div>
-                <div class="mm-progress"><div class="mm-bar"><i style="--p:.32"></i></div><div class="mm-times"><span>1:21</span><span>-2:51</span></div></div>
-                <div class="mm-transport"><span><svg width="19" height="19"><use href="#i-prev"/></svg></span><span class="pp"><svg width="21" height="21"><use href="#i-play"/></svg></span><span><svg width="19" height="19"><use href="#i-next"/></svg></span></div>
                 </div>
-                <div class="mm-back"><span class="mm-btn primary mm-ring"><svg><use href="#i-iphone-arrow"/></svg>Continue from iPhone</span><span class="mm-cap">Your iPhone is handing over…</span></div>
-                <hr>
-                <div class="mm-conn"><i></i>Connected</div>
-                <div class="mm-row"><span>iPhone</span><span>Paired</span></div>
+                <div class="mm-back"><span class="mm-btn primary mm-ring"><svg><use href="#i-iphone-arrow"/></svg>Continue from iPhone</span></div>
               </div>
             </div>
-            <figcaption><b>Continue from iPhone,</b> in Second Chair’s menu on the Mac. <span class="illus">Illustration</span></figcaption>
+            <figcaption><b>Continue from iPhone,</b> in the music note’s menu on your Mac. <span class="illus">Illustration</span></figcaption>
           </figure>
-        </div>
+          <details class="more">
+            <summary>More detail</summary>
+            <ul class="plain">
+              <li><strong>Don’t see <span class="ui">Continue from iPhone</span>?</strong> It appears when Music on your Mac is paused or stopped.</li>
+              <li><strong>Your Mac asks you to confirm?</strong> Tap <span class="ui">Continue on Mac</span> in the notification on your iPhone or Apple Watch. Notifications need to be on for Second Chair.</li>
+            </ul>
+          </details>
+        </article>
+      </div>
 
-        <div class="cl-part" id="cl-know">
-          <h3 class="cl-h">What comes with you</h3>
-          <p class="prose">Continue Listening picks up the same song from the same point, bringing your playlist, album or station along too.</p>
-          <p class="prose">The exception is when moving a station to your Mac. The same station continues, but Apple Music starts it on a different song. If Second Chair creates a station based on your current song instead, it will usually start with that song.</p>
-          <div class="table-scroll">
-            <table class="stack cl-table">
-              <thead><tr><th scope="col">What you’re listening to</th><th scope="col">Continue on iPhone</th><th scope="col">Continue on Mac</th></tr></thead>
-              <tbody>
-                <tr><td><strong>A playlist in your library</strong></td><td data-h="Continue on iPhone">Same playlist, including shuffle</td><td data-h="Continue on Mac">Same playlist, including shuffle</td></tr>
-                <tr><td><strong>An album in your library</strong></td><td data-h="Continue on iPhone">Same album, including shuffle</td><td data-h="Continue on Mac">Same album, played in order</td></tr>
-                <tr><td><strong>Your library on shuffle</strong></td><td data-h="Continue on iPhone">Library shuffle continues</td><td data-h="Continue on Mac">Library shuffle continues</td></tr>
-                <tr><td><strong>An Apple Music playlist or album not in your library</strong></td><td data-h="Continue on iPhone">Same playlist or album</td><td data-h="Continue on Mac">Added to your library first, then played<a class="fn" href="#fn-library" aria-label="Note: needs Automatically Add to Library">*</a></td></tr>
-                <tr><td><strong>A station</strong></td><td data-h="Continue on iPhone">Same song and station</td><td data-h="Continue on Mac">Same station, starting on a song Apple chooses</td></tr>
-                <tr><td><strong>Songs added with Play Next</strong></td><td data-h="Continue on iPhone">Up to 25 upcoming songs, instead of the playlist or album</td><td data-h="Continue on Mac">Not transferred</td></tr>
-              </tbody>
-            </table>
-          </div>
-          <p class="prose table-note" id="fn-library">* Requires <strong>Automatically Add to Library</strong> to be turned on.</p>
-          <p class="prose">Your repeat setting also carries over in both directions.</p>
-        </div>
+      <div class="gs-cl-foot">
+        <p><em>Apple Music works a little differently on Mac and iPhone, so some things, like shuffle order and stations, can change when you switch.</em> <a href="../more/#cl-know">See what comes with you</a></p>
+        <p>Want it to happen by itself? <a href="../more/#shortcuts">Use Shortcuts</a> to take your music with you when you connect to CarPlay, or bring it back when your headphones connect.</p>
+      </div>
+    </section>
 
-        <div class="cl-part" id="cl-limits">
-          <h3 class="cl-h">What doesn’t carry over?</h3>
-          <p class="prose">Some things work differently between devices:</p>
-          <ul class="plain">
-            <li><strong>Shuffle order:</strong> Both devices shuffle independently, so the song order may change.</li>
-            <li><strong>Shuffled albums:</strong> Albums transferred to your Mac play in their original order.</li>
-            <li><strong>Play Next:</strong> If you’ve added songs with Play Next on your Mac, your iPhone gets up to 25 of your Mac’s upcoming songs, in the same order, instead of the whole playlist or album, and stops after them. Songs you add with Play Next on your iPhone don’t transfer to your Mac.</li>
-            <li><strong>Recently started music:</strong> Apple Music can take around a minute to identify a playlist, album or station that isn’t in your library. Until then, Second Chair falls back to upcoming songs or a station based on the current song.</li>
-            <li><strong>Shuffling part of your library:</strong> iOS doesn’t tell apps what a shuffle came from. So shuffling an artist, a genre or another selection from your library on your iPhone continues on your Mac as your whole library on shuffle. From your Mac, an artist on shuffle comes to your iPhone as up to 25 upcoming songs, and other selections continue as your whole library on shuffle.</li>
-            <li><strong>Just changed shuffle or repeat on your Mac?</strong> Your iPhone learns of it within about 15 seconds, so continuing straight away can use the old setting.</li>
-            <li><strong>Songs outside Apple Music:</strong> Uploaded tracks and some purchases can’t be transferred to your iPhone.</li>
-          </ul>
-        </div>
-
-        <div class="cl-part" id="cl-library">
-          <h3 class="cl-h">Adding music to your library</h3>
-          <p class="prose">Some Apple Music playlists and albums need to be added to your library before they can play on your Mac.</p>
-          <p class="prose">Turn on <strong>Automatically Add to Library</strong>, under Continue Listening in the Second Chair app on your iPhone, and Second Chair adds them for you. It’s off by default, and anything added stays in your library until you remove it.</p>
-          <p class="prose">With the setting off, your Mac plays a station based on the current song instead.</p>
-        </div>
-
-        <div class="cl-part" id="cl-need">
-          <h3 class="cl-h">What you need</h3>
-          <p class="prose">Continue Listening requires Second Chair for Mac 0.3.5, the current iPhone app and a connection to Music on your Mac.</p>
-          <p class="prose">For playlists and albums saved in your library, <strong>Sync Library</strong> must be enabled on both devices.</p>
-          <p class="prose">Without the Music connection, Second Chair falls back to a station based on the current song.</p>
-        </div>
-
-        <div class="cl-part" id="cl-status">
-          <h3 class="cl-h">If it isn’t ready</h3>
-          <p class="prose">The iPhone app’s Continue Listening section starts with a <span class="ui">Status</span>. When it isn’t <span class="says">Ready</span>, it says what to do.</p>
-          <dl class="fixes">
-            <div><dt><span class="says">Set Up on Your Mac</span></dt><dd>On your Mac, click the music note and choose <span class="ui">Connect to Music…</span>, then select Second Chair under Devices in Music and enter the code.<span class="why">Continue Listening needs Second Chair on your Mac connected to Music.</span></dd></div>
-            <div><dt><span class="says">Reconnect on Your Mac</span></dt><dd>On your Mac, click the music note and choose <span class="ui">Connect to Music…</span> again.<span class="why">Music on your Mac no longer recognises Second Chair, for example after Forget All Remotes.</span></dd></div>
-            <div><dt><span class="says">Allow Apple Music</span></dt><dd>Tap <span class="ui">Allow Apple Music Access</span>, or <span class="ui">Open Settings</span> if you refused it before.<span class="why">Continue Listening plays songs in Apple Music on your iPhone, which Second Chair needs your permission for.</span></dd></div>
-            <div><dt><span class="says">Needs Apple Music</span></dt><dd>Subscribe to Apple Music on your iPhone.<span class="why">Continue on iPhone plays the song in Apple Music on your iPhone, which needs a subscription.</span></dd></div>
-          </dl>
-        </div>
-      </section>
-
-      <section id="know" aria-labelledby="know-h">
-        <h2 id="know-h">A few things to know</h2>
-        <dl class="fixes">
-          <div><dt>Keep Second Chair running on your Mac.</dt><dd>It needs to be open to update your iPhone. Turning on <span class="ui">Launch at Login</span> is recommended.</dd></div>
-          <div><dt>Open Music yourself.</dt><dd>Second Chair doesn’t open Music by itself.</dd></div>
-          <div><dt>Player gone from your Lock Screen?</dt><dd>Open Second Chair on your iPhone to bring it back. iOS keeps a dismissed player hidden until then, and when your Mac has been paused for about 8 minutes it can show your iPhone’s own Apple Music instead. Or turn on the <a href="#reminders">optional reminder</a>, and it’s a tap away when your Mac starts playing again.</dd></div>
-          <div><dt>Want to hide the player?</dt><dd>Tap <span class="ui">Stop Showing</span> in the iPhone app. Your devices stay paired.</dd></div>
-          <div><dt>Prefer Shortcuts?</dt><dd>Every control is also an action in the Shortcuts app, under Second Chair.</dd></div>
-        </dl>
-      </section>
-
-      <section id="reminders" aria-labelledby="reminders-h">
-        <h2 id="reminders-h">Get reminders</h2>
-        <p>Player gone from your Lock Screen or StandBy? Second Chair can tell you when your Mac starts playing again after a break, so the player is a tap away. Turn it on if you’d like it.</p>
-        <ol class="steps">
-          <li class="step" data-on="iphone"><span class="on">iPhone<small>a</small></span><div class="do"><p>Turn on <kbd class="ui">Remind When Music Starts</kbd>.</p></div></li>
-          <li class="step" data-on="iphone"><span class="on">iPhone<small>b</small></span><div class="do"><p>Allow notifications when prompted.</p></div></li>
-        </ol>
-        <p>After 8 minutes without music, you’ll get a silent notification when your Mac starts playing again. Tap it to bring the player back, or set up the shortcut below to skip the tap. It’s sent as Time Sensitive, so it shows during a Focus.</p>
-        <h3 class="cl-h" id="skip-tap">Skip the tap</h3>
-        <p>Want Second Chair to return to your Lock Screen and StandBy without opening the app yourself? A simple Shortcuts automation can restore Now Playing when the reminder arrives.</p>
-        <p><a class="btn btn-quiet" href="https://www.icloud.com/shortcuts/6f01cf28b5114a71ac9a398bf74707b2">Get the shortcut</a></p>
-        <p>Or set it up yourself:</p>
-        <ol class="steps">
-          <li class="step" data-on="iphone"><span class="on">iPhone<small>1</small></span><div class="do"><p>Open Shortcuts → Automation → + and select <kbd class="ui">Notification</kbd>.</p></div></li>
-          <li class="step" data-on="iphone"><span class="on">iPhone<small>2</small></span><div class="do"><p>Choose Second Chair.</p></div></li>
-          <li class="step" data-on="iphone"><span class="on">iPhone<small>3</small></span><div class="do"><p>Tap <kbd class="ui">Add Filter</kbd> and set the notification message to contains <span class="says">Tap to show it on your Lock Screen</span>. This ensures the automation only responds to playback reminders, not other Second Chair notifications.</p></div></li>
-          <li class="step" data-on="iphone"><span class="on">iPhone<small>4</small></span><div class="do"><p>Select <kbd class="ui">Run Immediately</kbd> and turn off <kbd class="ui">Notify When Run</kbd>.</p></div></li>
-          <li class="step" data-on="iphone"><span class="on">iPhone<small>5</small></span><div class="do"><p>Add Second Chair’s <kbd class="ui">Show in Now Playing</kbd> action.</p></div></li>
-        </ol>
-        <p>Once set up, the automation will open Second Chair once your iPhone is unlocked. Now Playing returns to your Lock Screen and StandBy when your iPhone locks again.</p>
-        <details class="advanced">
-          <summary>If the reminder doesn’t appear</summary>
-          <p>Three iPhone settings can still hide it:</p>
-          <ul class="plain">
-            <li>A Focus with Time Sensitive notifications turned off, in Settings › Focus › the Focus › Apps.</li>
-            <li><span class="ui">Show Previews</span> set to When Unlocked, which hides the text in StandBy.</li>
-            <li>Settings › StandBy › <span class="ui">Show Notifications</span> turned off.</li>
-          </ul>
-        </details>
-      </section>
-
-      <section id="troubleshooting" aria-labelledby="trouble-h">
-        <h2 id="trouble-h">Need help?</h2>
-        <dl class="fixes">
-          <div><dt>Nothing appears on your Lock Screen</dt><dd>Check that Music is playing on your Mac, then open Second Chair on your iPhone and tap <span class="ui">Show in Now Playing</span>.</dd></div>
-          <div><dt><span class="ui">Show in Now Playing</span> is greyed out</dt><dd>Start playing something in Music on your Mac.</dd></div>
-          <div><dt>Your iPhone says <span class="says">Mac Offline</span></dt><dd>Wake your Mac and make sure Second Chair is running and connected.</dd></div>
-          <div><dt>Your Mac says <span class="says">Second Chair can’t read Music</span></dt><dd>Click <span class="ui">Open Privacy Settings</span> in the menu, then turn on Music under Second Chair in System Settings › Privacy &amp; Security › Automation.</dd></div>
-          <div><dt>Your pairing code has expired</dt><dd>Choose <span class="ui">Pair iPhone…</span> again in the Mac’s menu for a new code.</dd></div>
-          <div><dt>The player has disappeared, or Apple Music shows instead</dt><dd>Open Second Chair on your iPhone, or tap the reminder. iOS keeps a dismissed player hidden, and when your Mac has been paused for about 8 minutes it can show your iPhone’s own Apple Music instead. Your Mac playing again doesn’t switch it back. To bring it back without tapping, see <a href="#skip-tap">Skip the tap</a>.</dd></div>
-          <div><dt>Your Mac played the song’s station, not your playlist or album</dt><dd>Check you have Second Chair for Mac 0.3.5 and the current iPhone app, connected to Music on your Mac, and that a library playlist or album is on both devices (Sync Library on). For an Apple Music playlist or album you haven’t added, <a href="#cl-library">Automatically Add to Library</a> needs to be on. If you started it in the last minute, or it didn’t reach your Mac within 25 seconds, give it a moment, then try again.</dd></div>
-          <div><dt>Continue Listening isn’t available</dt><dd>Look at <span class="ui">Status</span> under Continue Listening in the iPhone app: it says which step is missing. See <a href="#cl-status">what each status means</a>.</dd></div>
-          <div><dt><span class="ui">Continue from iPhone</span> doesn’t appear on the Mac</dt><dd>It appears when Music on your Mac is paused or stopped. Pause Music on your Mac, and make sure Music is open.</dd></div>
-        </dl>
-
-        <details class="advanced">
-          <summary>Every other message, and what to do</summary>
-          <dl class="fixes">
-            <div><dt>Mac: <span class="says">Music isn’t running</span></dt><dd>Open Music.<span class="why">Second Chair never opens Music by itself.</span></dd></div>
-            <div><dt>Mac: <span class="says">Music no longer recognises Second Chair. Connect again so your music can move between this Mac and your iPhone.</span></dt><dd>Choose <span class="ui">Connect to Music…</span> and enter the new code in Music.<span class="why">Music forgot Second Chair, for example after Forget All Remotes. The iPhone app shows <span class="says">Reconnect on Your Mac</span>.</span></dd></div>
-            <div><dt>Music rejects the four-digit code, or lists Second Chair more than once under Devices</dt><dd>Click <span class="ui">Cancel</span>, choose <span class="ui">Connect to Music…</span> again, and pick the entry that has just appeared.<span class="why">An entry left over from an earlier connection was picked.</span></dd></div>
-            <div><dt>macOS never asked about the local network, or it was refused</dt><dd>In System Settings › Privacy &amp; Security › Local Network, turn on Second Chair.<span class="why">Continue Listening can’t reach Music without it.</span></dd></div>
-            <div><dt><span class="says">Allow access to Apple Music in Settings to continue listening on your iPhone.</span></dt><dd>Turn it on in Settings › Privacy &amp; Security › Media &amp; Apple Music.<span class="why">Apple Music access was refused.</span></dd></div>
-            <div><dt><span class="says">This song couldn’t be found in Apple Music.</span></dt><dd>Nothing to fix. Play it on the Mac.<span class="why">The song isn’t in Apple’s catalogue, such as an upload.</span></dd></div>
-            <div><dt><span class="says">Your Mac is playing the station, which started with another song.</span></dt><dd>Nothing to fix.<span class="why">Your Mac carried on with your station, or the song’s station, and Music on the Mac starts a station on a song Apple chooses. See <a href="#cl-know">what comes with you</a>.</span></dd></div>
-            <div><dt>Mac: <span class="says">Answer the notification on your iPhone or Apple Watch.</span></dt><dd>Tap <span class="ui">Continue on Mac</span> on the notification.<span class="why">Your iPhone couldn’t hand over by itself.</span></dd></div>
-            <div><dt>Mac: <span class="says">Your iPhone didn’t answer. Try again.</span></dt><dd>Check your iPhone is on and has a connection, then try again. Or tap <span class="ui">Continue on Mac</span> in Second Chair on your iPhone.<span class="why">No answer within 45 seconds.</span></dd></div>
-            <div><dt>Mac: <span class="says">Couldn’t reach your iPhone.</span></dt><dd>Check the menu says it’s connected, and that your Mac has an internet connection.</dd></div>
-            <div><dt><span class="says">Your Mac didn’t respond. Try again.</span></dt><dd>Check your Mac is awake and Second Chair is running, then try again.</dd></div>
-            <div><dt>No artwork for a song</dt><dd>Nothing to fix.<span class="why">Music has none and Apple’s catalogue had no close match.</span></dd></div>
-          </dl>
-        </details>
-        <p><strong>Still having trouble?</strong> See <a href="#feedback">Feedback</a>.</p>
-      </section>
-
-      <section id="privacy" aria-labelledby="privacy-h">
-        <h2 id="privacy-h">Privacy</h2>
-        <p>Second Chair sends the current song, artwork, playback information and the names of your Mac, its speakers and your iPhone through a service run by its developer, so that your iPhone can show and control your Mac’s music. Continue Listening also sends the song’s Apple Music ID, up to 25 songs from Up Next, the playlist, album or station it’s playing from, and the shuffle and repeat settings.</p>
-        <p>Some songs trigger a lookup in Apple’s music catalogue. The apps and the service have no analytics, and you don’t need an account.</p>
-        <details class="advanced">
-          <summary>Exactly what leaves your Mac</summary>
-          <ul class="plain">
-            <li><strong>Whenever playback changes,</strong> to the developer’s relay server and on to your iPhone through Apple’s push notification service: the song’s title, artist, album, length and position, whether it’s playing, the artwork, the volume of Music on your Mac, the names of your Mac’s speakers, and the names of your Mac and iPhone.</li>
-            <li><strong>Only once you’ve connected to Music for Continue Listening:</strong> the song’s Apple Music ID and up to 25 songs of Up Next. When the song plays from a playlist or album in your library, also its name (and an album’s artist), how many songs it has, the song’s place in it and whether it’s shuffled. And whether your Mac is shuffling its whole library, whether the song is from Apple Music outside your library, and Music’s shuffle and repeat settings, and, while your Mac plays from Apple Music outside your library, when that started.</li>
-            <li><strong>To Apple’s public catalogue search,</strong> only for songs Music has no artwork or Apple Music ID for: the album name, lead artist and country.</li>
-            <li><strong>From your iPhone to Apple Music,</strong> for Continue Listening: requests for the song’s station, for your recently played list, and for the songs of a playlist or album in it, to tell what your iPhone is playing and where the song is in it.</li>
-            <li><strong>From your iPhone to Apple Music, to add to your library,</strong> only for Continue on Mac and only while Automatically Add to Library is on: a request to add an Apple Music playlist or album to your library, so your Mac can play it. This changes your library.</li>
-            <li><strong>From your iPhone to your Mac, through the relay,</strong> for Continue on Mac when your Mac can’t just skip ahead to the song in its own queue: the song’s Apple Music ID, its title and how far through it your iPhone is. Also what it’s playing from: a playlist’s name, its Apple Music ID when it has one, how many songs it has, the song’s place in it and whether it’s shuffled; an album’s title, artist, how many songs it has, the song’s place in it and whether it’s shuffled; or a station’s Apple Music ID and name. And whether your whole library is shuffled, your repeat setting, and whether the playlist or album was just added to your library. The relay passes these on without keeping them.</li>
-            <li><strong>Stays on each device:</strong> your other playlists and albums. Each device reads its own library to find the song, and only the playlist or album that’s playing is named.</li>
-            <li><strong>Stays on your Mac:</strong> the connection between Second Chair and Music. That’s why macOS asks about the local network. Only whether it’s connected goes to your iPhone, for the Continue Listening status.</li>
-          </ul>
-          <p>The pairing code is random, lasts five minutes and works once. After pairing, each device has its own long random key, and unpairing from either side cancels both.</p>
-          <p><strong>This website</strong> has no analytics and keeps nothing. Its headline typeface comes from Adobe Fonts, so your browser also loads it from Adobe, which counts page views for font licensing. If you try the demo with your own song, what you type goes to Apple’s public catalogue search, and the artwork and 30-second preview come from Apple.</p>
-          <p><strong>Advanced:</strong> to turn off catalogue searches, run this in Terminal on your Mac, then quit and reopen Second Chair:</p>
-          <div class="code">
-            <pre><code>defaults write com.alistairmerritt.MusicStandBy.Mac catalogArtwork -bool false</code></pre>
-            <button class="copy" type="button">Copy</button>
-          </div>
-          <p>Songs Music has no artwork for then show none. When you continue a song from Apple Music that isn’t in your library, your iPhone looks it up in Apple Music itself, and upcoming songs that aren’t in your library are left out.</p>
-        </details>
-      </section>
-
-      <section id="removing" aria-labelledby="removing-h">
-        <h2 id="removing-h">Disconnecting and removing Second Chair</h2>
-        <ul class="plain">
-          <li><strong>To hide the player</strong> without unpairing, tap <span class="ui">Stop Showing</span> on your iPhone.</li>
-          <li><strong>To unpair,</strong> choose <span class="ui">Unpair iPhone</span> in the Mac’s menu, or <span class="ui">Unpair Mac</span> in the Mac section of the iPhone app. Either side unpairs both. Unpair before deleting the apps, so the connection is cancelled.</li>
-          <li><strong>To disconnect Continue Listening,</strong> choose <span class="ui">Disconnect from Music</span> under Continue Listening in the Mac’s menu. Music still lists Second Chair under Devices; Music › Settings › Advanced › <span class="ui">Forget All Remotes</span> removes it, along with every other remote.</li>
-          <li><strong>To remove the Mac app,</strong> turn off <span class="ui">Launch at Login</span>, choose <span class="ui">Quit Second Chair</span>, then move it from Applications to the Bin.</li>
-          <li><strong>To remove the iPhone app,</strong> delete it like any other app.</li>
-        </ul>
-      </section>
-
-      <section id="limits" aria-labelledby="limits-h">
-        <h2 id="limits-h">Known limits</h2>
-        <p>Second Chair follows only Apple’s Music app on the Mac. One iPhone can be paired per Mac. Both devices need the internet, and your Mac needs to be awake with Second Chair running. Older operating systems and Intel Macs haven’t been tested.</p>
-      </section>
-
-      <section id="feedback" aria-labelledby="feedback-h">
-        <h2 id="feedback-h">Feedback</h2>
-        <p>Second Chair is in beta. If something doesn’t work as expected, I’d appreciate hearing about it.</p>
-        <p>On your iPhone, take a screenshot in Second Chair and choose Share Beta Feedback, or open TestFlight and tap Send Beta Feedback. Or <a href="/?contact=1">get in touch</a>, which works for the Mac app too.</p>
-        <div class="g-end">
-          <a class="btn" href="../#get"><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-down"/></svg>Downloads</a>
-          <a class="btn btn-quiet" href="#main">Back to the top</a>
-        </div>
-      </section>
-    </article>
+    <!-- ============ Onward ============ -->
+    <section class="gs-onward" aria-labelledby="onward-h">
+      <h2 id="onward-h" class="gs-onward-h">Make it yours</h2>
+      <p class="gs-part-what">Shortcuts, reminders, tips and help, on the next page.</p>
+      <ul class="gs-cards">
+        <li class="gs-card" id="shortcuts-card"><a href="../more/#shortcuts"><b>Shortcuts and automations</b><span>Move your music, and bring the player back, without a tap.</span><span class="go">Explore</span></a></li>
+        <li class="gs-card"><a href="../more/#reminders"><b>Reminders</b><span>Get a notification when your Mac starts playing again.</span><span class="go">Set up</span></a></li>
+        <li class="gs-card"><a href="../more/#know"><b>Everyday tips</b><span>Keep the player where you want it.</span><span class="go">Read</span></a></li>
+        <li class="gs-card"><a href="../more/#troubleshooting"><b>Something not working?</b><span>Quick fixes for common problems, and how to send feedback.</span><span class="go">Get help</span></a></li>
+      </ul>
+      <!-- Old links to sections that moved land here without JavaScript. -->
+      <p class="gs-moved" id="cl-know">Looking for the Continue Listening details, troubleshooting or privacy? They’re on <a href="../more/">Make it yours</a>.<span id="cl-limits"></span><span id="cl-library"></span><span id="cl-need"></span><span id="cl-status"></span><span id="fn-library"></span><span id="know"></span><span id="reminders"></span><span id="skip-tap"></span><span id="troubleshooting"></span><span id="privacy"></span><span id="removing"></span><span id="limits"></span><span id="feedback"></span></p>
+    </section>
   </div>
 </main>
 
@@ -606,6 +472,7 @@
   <p>Second Chair is an independent project by <a href="/">Made with Merritt</a>. Mac 0.3.5 beta.</p>
   <nav aria-label="Footer">
     <a href="../">Home</a>
+    <a href="../more/">Make it yours</a>
     <a href="/privacy/#second-chair">Privacy</a>
     <a href="https://github.com/alistairmerritt/music-standby/releases">Releases on GitHub</a>
   </nav>
