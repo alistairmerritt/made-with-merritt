@@ -376,9 +376,6 @@ a.fn:hover { text-decoration: underline; }
    1.62 mm top and bottom, as on the watch. */
 .watch { container-type: inline-size; position: relative; isolation: isolate; width: 100%; aspect-ratio: 1033 / 1597; }
 .watch::after { content: ""; position: absolute; inset: 0; z-index: 5; pointer-events: none; background: url("../img/devices/watch-ultra-alpine.webp") center / 100% 100% no-repeat; }
-.watch::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
-  background: url("../img/devices/watch-ultra-alpine-shadow.webp") center / 100% 100% no-repeat;
-  filter: drop-shadow(0 6cqw 8cqw rgba(60, 30, 10, .40)) drop-shadow(0 1.6cqw 2.4cqw rgba(60, 30, 10, .22)); }
 .watch-glass { position: absolute; left: 12.538%; top: 22.392%; width: 70.084%; height: 55.216%; background: #000; border-radius: 25.73% / 21.12%; }   /* 8.46 mm: fills the window's corners */
 .watch-screen {   /* sizes in cqw of the whole watch, fitted to the 32.88 mm display */
   position: relative; isolation: isolate; height: 100%; border-radius: inherit; overflow: hidden; color: #fff; font-family: var(--sans);
