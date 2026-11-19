@@ -18,7 +18,7 @@
 <script>
   // Sections that moved to Make it yours: send old links there.
   (function () {
-    var moved = ['cl-know', 'cl-limits', 'cl-library', 'cl-need', 'cl-status', 'fn-library', 'know', 'reminders', 'skip-tap',
+    var moved = ['cl-know', 'cl-limits', 'cl-library', 'cl-need', 'cl-status', 'fn-library', 'know', 'reminders', 'notifications', 'skip-tap',
       'troubleshooting', 'privacy', 'removing', 'limits', 'feedback', 'shortcuts'];
     var id = location.hash.slice(1);
     if (moved.indexOf(id) > -1) location.replace('../more/#' + id);
@@ -26,9 +26,9 @@
 </script>
 <link rel="preconnect" href="https://use.typekit.net" crossorigin>
 <link rel="stylesheet" href="https://use.typekit.net/fiv2yhs.css">
-<link rel="stylesheet" href="../assets/css/base.css?v=three">
-<link rel="stylesheet" href="../assets/css/guide.css?v=three">
-<script src="../assets/js/guide.js?v=three" defer></script>
+<link rel="stylesheet" href="../assets/css/base.css?v=four">
+<link rel="stylesheet" href="../assets/css/guide.css?v=four">
+<script src="../assets/js/guide.js?v=four" defer></script>
 <script src="../assets/js/clock.js" defer></script>
 </head>
 <body class="guide-page">
@@ -351,99 +351,114 @@
         <h2 id="continue-h" class="gs-part-h">Take your music with you.</h2>
         <p class="gs-part-what">Heading out? Pick up where you left off on your iPhone. When you’re back at your Mac, bring your music back.</p>
         <p class="gs-cl-need"><b>Continue Listening</b> needs an Apple Music subscription on your iPhone. Everything else works without it.</p>
+        <ol class="g-map g-map--3" aria-label="The three steps">
+          <li><a href="#cl-connect"><span class="who">Mac · once</span><b>Connect to Music</b></a></li>
+          <li><a href="#take"><span class="who">iPhone</span><b>Continue on iPhone</b></a></li>
+          <li><a href="#bring"><span class="who">iPhone or Mac</span><b>Continue on Mac</b></a></li>
+        </ol>
       </header>
 
-      <div class="gs-cl-steps">
-        <article class="gs-cl-step" id="cl-connect" aria-labelledby="cl-connect-h">
-          <p class="gs-step-n" aria-hidden="true">01</p>
-          <p class="gs-on" data-on="mac"><svg aria-hidden="true"><use href="#i-laptop"/></svg>On your Mac · once</p>
-          <h3 id="cl-connect-h" class="gs-h">Connect to Music</h3>
-          <p class="gs-do">Click the music note and choose <kbd class="ui">Connect to Music…</kbd> In Music, select Second Chair under Devices and enter the four-digit code.</p>
-          <p class="gs-then">If your Mac asks about the local network, allow it. This is a separate code from pairing your iPhone. When it’s done, the iPhone app shows <span class="says">Ready</span> under Continue Listening.</p>
-          <!-- Illustration of MusicRemoteSection (MenuContent.swift) and Music's sidebar. -->
-          <figure class="fig">
-            <div class="fig-stage paper fig-connect" aria-hidden="true">
-              <div class="mac-menu">
-                <p class="mm-h">Continue Listening</p>
-                <p class="mm-note">In Music, select Second Chair under Devices, then enter this code:</p>
-                <p class="mm-code">3 7 1 5</p>
-                <span class="mm-btn">Cancel</span>
+      <div class="gs-step" id="cl-connect" role="group" aria-labelledby="cl-connect-h">
+        <div class="with-fig">
+          <div class="gs-text">
+              <p class="gs-step-n" aria-hidden="true">01</p>
+              <p class="gs-on" data-on="mac"><svg aria-hidden="true"><use href="#i-laptop"/></svg>On your Mac · once</p>
+              <h3 id="cl-connect-h" class="gs-h">Connect to Music</h3>
+              <p class="gs-do">Click the music note and choose <kbd class="ui">Connect to Music…</kbd> In Music, select Second Chair under Devices and enter the four-digit code.</p>
+              <p class="gs-then">If your Mac asks about the local network, allow it. This is a separate code from pairing your iPhone. When it’s done, the iPhone app shows <span class="says">Ready</span> under Continue Listening.</p>
+              <details class="more">
+                <summary>More detail</summary>
+                <ul class="plain">
+                  <li><strong>Why the local network?</strong> Second Chair uses it to talk to Music on your Mac. Nothing leaves your Mac.</li>
+                  <li><strong>Home Sharing isn’t needed.</strong></li>
+                  <li><strong>Music says the code is wrong?</strong> Click <span class="ui">Cancel</span>, choose <span class="ui">Connect to Music…</span> again, and pick the Second Chair entry that has just appeared under Devices.</li>
+                </ul>
+              </details>
+          </div>
+            <!-- Illustration of MusicRemoteSection (MenuContent.swift) and Music's sidebar. -->
+            <figure class="fig">
+              <div class="fig-stage paper fig-connect" aria-hidden="true">
+                <div class="mac-menu">
+                  <p class="mm-h">Continue Listening</p>
+                  <p class="mm-note">In Music, select Second Chair under Devices, then enter this code:</p>
+                  <p class="mm-code">3 7 1 5</p>
+                  <span class="mm-btn">Cancel</span>
+                </div>
+                <div class="music-side">
+                  <p class="ms-h">Devices</p>
+                  <p class="ms-row is-sel"><svg><use href="#i-iphone"/></svg>Second Chair</p>
+                </div>
               </div>
-              <div class="music-side">
-                <p class="ms-h">Devices</p>
-                <p class="ms-row is-sel"><svg><use href="#i-iphone"/></svg>Second Chair</p>
-              </div>
-            </div>
-            <figcaption><b>The four-digit code</b> in Second Chair’s menu, and Second Chair under Devices in Music. <span class="illus">Illustration</span></figcaption>
-          </figure>
-          <details class="more">
-            <summary>More detail</summary>
-            <ul class="plain">
-              <li><strong>Why the local network?</strong> Second Chair uses it to talk to Music on your Mac. Nothing leaves your Mac.</li>
-              <li><strong>Home Sharing isn’t needed.</strong></li>
-              <li><strong>Music says the code is wrong?</strong> Click <span class="ui">Cancel</span>, choose <span class="ui">Connect to Music…</span> again, and pick the Second Chair entry that has just appeared under Devices.</li>
-            </ul>
-          </details>
-        </article>
+              <figcaption><b>The four-digit code</b> in Second Chair’s menu, and Second Chair under Devices in Music. <span class="illus">Illustration</span></figcaption>
+            </figure>
+        </div>
+      </div>
 
-        <article class="gs-cl-step" id="take" aria-labelledby="take-h">
-          <p class="gs-step-n" aria-hidden="true">02</p>
-          <p class="gs-on" data-on="iphone"><svg aria-hidden="true"><use href="#i-iphone"/></svg>On your iPhone</p>
-          <h3 id="take-h" class="gs-h">Continue on iPhone</h3>
-          <p class="gs-do">Open Second Chair and tap <kbd class="ui">Continue on iPhone</kbd>.</p>
-          <p class="gs-then">Your music carries on from the same point on your iPhone, with your playlist, album or station, and your Mac pauses. The first time, allow Second Chair access to Apple Music.</p>
-          <!-- Illustration of ContinueListeningSection (HomeView.swift). -->
-          <figure class="fig">
-            <div class="fig-stage night" aria-hidden="true">
-              <div class="phone phone--portrait">
-                <div class="phone-body"><div class="phone-bezel"><div class="screen">
-                  <span class="island"></span>
-                  <div class="app-screen">
-                    <div class="bar"><span data-clock="time">18:24</span><i></i></div>
-                    <h4>Second Chair</h4>
-                    <p class="sec-h">Now Playing</p>
-                    <div class="sec"><div class="row np-row"><span class="a"><img src="../assets/art/small-hours-sm.webp?v=2" alt="" width="40" height="40"></span><span><b>Small Hours</b><span>Fen Lights</span></span></div></div>
-                    <p class="sec-h" style="margin-top:5cqw">Continue Listening</p>
-                    <div class="sec hot"><div class="row"><span>Status</span><span class="v">Ready</span></div><div class="row cl-row"><svg class="cl-ico"><use href="#i-iphone"/></svg><span><b>Continue on iPhone</b><span>Continue listening on your iPhone, with your playlist, album or Up Next queue. Playback on your Mac will pause.</span></span></div></div>
+      <div class="gs-step" id="take" role="group" aria-labelledby="take-h">
+        <div class="with-fig">
+          <div class="gs-text">
+              <p class="gs-step-n" aria-hidden="true">02</p>
+              <p class="gs-on" data-on="iphone"><svg aria-hidden="true"><use href="#i-iphone"/></svg>On your iPhone</p>
+              <h3 id="take-h" class="gs-h">Continue on iPhone</h3>
+              <p class="gs-do">Open Second Chair and tap <kbd class="ui">Continue on iPhone</kbd>.</p>
+              <p class="gs-then">Your music carries on from the same point on your iPhone, with your playlist, album or station, and your Mac pauses. The first time, allow Second Chair access to Apple Music.</p>
+          </div>
+            <!-- Illustration of ContinueListeningSection (HomeView.swift). -->
+            <figure class="fig">
+              <div class="fig-stage night" aria-hidden="true">
+                <div class="phone phone--portrait">
+                  <div class="phone-body"><div class="phone-bezel"><div class="screen">
+                    <span class="island"></span>
+                    <div class="app-screen">
+                      <div class="bar"><span data-clock="time">18:24</span><i></i></div>
+                      <h4>Second Chair</h4>
+                      <p class="sec-h">Now Playing</p>
+                      <div class="sec"><div class="row np-row"><span class="a"><img src="../assets/art/small-hours-sm.webp?v=2" alt="" width="40" height="40"></span><span><b>Small Hours</b><span>Fen Lights</span></span></div></div>
+                      <p class="sec-h" style="margin-top:5cqw">Continue Listening</p>
+                      <div class="sec hot"><div class="row"><span>Status</span><span class="v">Ready</span></div><div class="row cl-row"><svg class="cl-ico"><use href="#i-iphone"/></svg><span><b>Continue on iPhone</b><span>Continue listening on your iPhone, with your playlist, album or Up Next queue. Playback on your Mac will pause.</span></span></div></div>
+                    </div>
+                  </div></div></div>
+                </div>
+              </div>
+              <figcaption><b>Continue on iPhone,</b> in Second Chair on your iPhone. <span class="illus">Illustration</span></figcaption>
+            </figure>
+        </div>
+      </div>
+
+      <div class="gs-step" id="bring" role="group" aria-labelledby="bring-h">
+        <div class="with-fig">
+          <div class="gs-text">
+              <p class="gs-step-n" aria-hidden="true">03</p>
+              <p class="gs-on" data-on="both"><svg aria-hidden="true"><use href="#i-laptop"/></svg><svg aria-hidden="true"><use href="#i-iphone"/></svg>On your iPhone or Mac</p>
+              <h3 id="bring-h" class="gs-h">Continue on Mac</h3>
+              <p class="gs-do">Back at your desk? Tap <kbd class="ui">Continue on Mac</kbd> on your iPhone, or choose <kbd class="ui">Continue from iPhone</kbd> in the music note’s menu.</p>
+              <p class="gs-then">Your Mac picks up where you left off, and your iPhone pauses.</p>
+              <details class="more">
+                <summary>More detail</summary>
+                <ul class="plain">
+                  <li><strong>Don’t see <span class="ui">Continue from iPhone</span>?</strong> It appears when Music on your Mac is paused or stopped.</li>
+                  <li><strong>Your Mac asks you to confirm?</strong> Tap <span class="ui">Continue on Mac</span> in the notification on your iPhone or Apple Watch. Notifications need to be on for Second Chair.</li>
+                </ul>
+              </details>
+          </div>
+            <!-- Illustration of ContinueFromPhoneRow (MenuContent.swift). -->
+            <figure class="fig">
+              <div class="fig-stage" aria-hidden="true">
+                <div class="menubar"><span class="dim" data-clock="menubar">Thu 12 Nov 18:24</span><span class="sel"><svg><use href="#i-note"/></svg></span></div>
+                <div class="mac-menu">
+                  <div class="mm-head"><b>On This Mac</b><span><svg><use href="#i-iphone"/></svg>Continued on iPhone</span></div>
+                  <div class="mm-dim">
+                  <div class="mm-track">
+                    <div class="mm-art"><img class="art" src="../assets/art/small-hours-sm.webp?v=2" alt="" width="64" height="64"></div>
+                    <div class="mm-meta"><b>Small Hours</b><span>Fen Lights</span><span class="album">Lit Windows</span><small>Paused</small></div>
                   </div>
-                </div></div></div>
-              </div>
-            </div>
-            <figcaption><b>Continue on iPhone,</b> in Second Chair on your iPhone. <span class="illus">Illustration</span></figcaption>
-          </figure>
-        </article>
-
-        <article class="gs-cl-step" id="bring" aria-labelledby="bring-h">
-          <p class="gs-step-n" aria-hidden="true">03</p>
-          <p class="gs-on" data-on="both"><svg aria-hidden="true"><use href="#i-laptop"/></svg><svg aria-hidden="true"><use href="#i-iphone"/></svg>On either</p>
-          <h3 id="bring-h" class="gs-h">Continue on Mac</h3>
-          <p class="gs-do">Back at your desk? Tap <kbd class="ui">Continue on Mac</kbd> on your iPhone, or choose <kbd class="ui">Continue from iPhone</kbd> in the music note’s menu.</p>
-          <p class="gs-then">Your Mac picks up where you left off, and your iPhone pauses.</p>
-          <!-- Illustration of ContinueFromPhoneRow (MenuContent.swift). -->
-          <figure class="fig">
-            <div class="fig-stage" aria-hidden="true">
-              <div class="menubar"><span class="dim" data-clock="menubar">Thu 12 Nov 18:24</span><span class="sel"><svg><use href="#i-note"/></svg></span></div>
-              <div class="mac-menu">
-                <div class="mm-head"><b>On This Mac</b><span><svg><use href="#i-iphone"/></svg>Continued on iPhone</span></div>
-                <div class="mm-dim">
-                <div class="mm-track">
-                  <div class="mm-art"><img class="art" src="../assets/art/small-hours-sm.webp?v=2" alt="" width="64" height="64"></div>
-                  <div class="mm-meta"><b>Small Hours</b><span>Fen Lights</span><span class="album">Lit Windows</span><small>Paused</small></div>
+                  </div>
+                  <div class="mm-back"><span class="mm-btn primary mm-ring"><svg><use href="#i-iphone-arrow"/></svg>Continue from iPhone</span></div>
                 </div>
-                </div>
-                <div class="mm-back"><span class="mm-btn primary mm-ring"><svg><use href="#i-iphone-arrow"/></svg>Continue from iPhone</span></div>
               </div>
-            </div>
-            <figcaption><b>Continue from iPhone,</b> in the music note’s menu on your Mac. <span class="illus">Illustration</span></figcaption>
-          </figure>
-          <details class="more">
-            <summary>More detail</summary>
-            <ul class="plain">
-              <li><strong>Don’t see <span class="ui">Continue from iPhone</span>?</strong> It appears when Music on your Mac is paused or stopped.</li>
-              <li><strong>Your Mac asks you to confirm?</strong> Tap <span class="ui">Continue on Mac</span> in the notification on your iPhone or Apple Watch. Notifications need to be on for Second Chair.</li>
-            </ul>
-          </details>
-        </article>
+              <figcaption><b>Continue from iPhone,</b> in the music note’s menu on your Mac. <span class="illus">Illustration</span></figcaption>
+            </figure>
+        </div>
       </div>
 
       <div class="gs-cl-foot">
@@ -455,15 +470,15 @@
     <!-- ============ Onward ============ -->
     <section class="gs-onward" aria-labelledby="onward-h">
       <h2 id="onward-h" class="gs-onward-h">Make it yours</h2>
-      <p class="gs-part-what">Shortcuts, reminders, tips and help, on the next page.</p>
+      <p class="gs-part-what">Shortcuts, notifications, tips and help, on the next page.</p>
       <ul class="gs-cards">
         <li class="gs-card" id="shortcuts-card"><a href="../more/#shortcuts"><b>Shortcuts and automations</b><span>Move your music, and bring the player back, without a tap.</span><span class="go">Explore</span></a></li>
-        <li class="gs-card"><a href="../more/#reminders"><b>Reminders</b><span>Get a notification when your Mac starts playing again.</span><span class="go">Set up</span></a></li>
+        <li class="gs-card"><a href="../more/#notifications"><b>Notifications</b><span>Get a notification when your Mac starts playing again.</span><span class="go">Set up</span></a></li>
         <li class="gs-card"><a href="../more/#know"><b>Everyday tips</b><span>Keep the player where you want it.</span><span class="go">Read</span></a></li>
         <li class="gs-card"><a href="../more/#troubleshooting"><b>Something not working?</b><span>Quick fixes for common problems, and how to send feedback.</span><span class="go">Get help</span></a></li>
       </ul>
       <!-- Old links to sections that moved land here without JavaScript. -->
-      <p class="gs-moved" id="cl-know">Looking for the Continue Listening details, troubleshooting or privacy? They’re on <a href="../more/">Make it yours</a>.<span id="cl-limits"></span><span id="cl-library"></span><span id="cl-need"></span><span id="cl-status"></span><span id="fn-library"></span><span id="know"></span><span id="reminders"></span><span id="skip-tap"></span><span id="troubleshooting"></span><span id="privacy"></span><span id="removing"></span><span id="limits"></span><span id="feedback"></span></p>
+      <p class="gs-moved" id="cl-know">Looking for the Continue Listening details, troubleshooting or privacy? They’re on <a href="../more/">Make it yours</a>.<span id="cl-limits"></span><span id="cl-library"></span><span id="cl-need"></span><span id="cl-status"></span><span id="fn-library"></span><span id="know"></span><span id="reminders"></span><span id="notifications"></span><span id="skip-tap"></span><span id="troubleshooting"></span><span id="privacy"></span><span id="removing"></span><span id="limits"></span><span id="feedback"></span></p>
     </section>
   </div>
 </main>

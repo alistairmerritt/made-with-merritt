@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Make Second Chair yours</title>
-<meta name="description" content="Shortcuts, reminders, everyday tips, what Continue Listening brings with you, and help for Second Chair on Mac and iPhone.">
+<meta name="description" content="Shortcuts, notifications, everyday tips, what Continue Listening brings with you, and help for Second Chair on Mac and iPhone.">
 <meta name="theme-color" content="#f3eee6" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#14110f" media="(prefers-color-scheme: dark)">
 <link rel="icon" type="image/png" href="../assets/img/favicon.png?v=indigo">
@@ -13,13 +13,13 @@
 <meta property="og:url" content="https://madewithmerritt.com/second-chair/more/">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Make Second Chair yours">
-<meta property="og:description" content="Shortcuts, reminders, tips and help for Second Chair.">
+<meta property="og:description" content="Shortcuts, notifications, tips and help for Second Chair.">
 <meta property="og:image" content="https://madewithmerritt.com/second-chair/assets/img/og.png">
 <link rel="preconnect" href="https://use.typekit.net" crossorigin>
 <link rel="stylesheet" href="https://use.typekit.net/fiv2yhs.css">
-<link rel="stylesheet" href="../assets/css/base.css?v=three">
-<link rel="stylesheet" href="../assets/css/guide.css?v=three">
-<script src="../assets/js/guide.js?v=three" defer></script>
+<link rel="stylesheet" href="../assets/css/base.css?v=four">
+<link rel="stylesheet" href="../assets/css/guide.css?v=four">
+<script src="../assets/js/guide.js?v=four" defer></script>
 </head>
 <body class="guide-page">
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -53,7 +53,7 @@
     <p class="lede g-lede">Let Shortcuts move your music for you, get a nudge when your Mac starts playing, and find a quick fix when something isn’t right.</p>
     <ul class="gs-cards mi-jump">
       <li class="gs-card"><a href="#shortcuts"><b>Shortcuts and automations</b><span>Move your music, and bring the player back, without a tap.</span></a></li>
-      <li class="gs-card"><a href="#reminders"><b>Reminders</b><span>Know when your Mac starts playing again.</span></a></li>
+      <li class="gs-card"><a href="#notifications"><b>Notifications</b><span>Know when your Mac starts playing again.</span></a></li>
       <li class="gs-card"><a href="#know"><b>Everyday tips</b><span>Keep the player where you want it.</span></a></li>
       <li class="gs-card"><a href="#cl-know"><b>What comes with you</b><span>What Continue Listening brings along, and what changes.</span></a></li>
       <li class="gs-card"><a href="#troubleshooting"><b>Something not working?</b><span>Quick fixes for common problems.</span></a></li>
@@ -67,7 +67,7 @@
       <ol>
         <li><a href="#shortcuts">Shortcuts and automations</a></li>
         <li><a href="#skip-tap">Skip the tap</a></li>
-        <li><a href="#reminders">Reminders</a></li>
+        <li><a href="#notifications">Notifications</a></li>
         <li><a href="#know">Everyday tips</a></li>
         <li><a href="#cl-know">What comes with you</a></li>
         <li><a href="#troubleshooting">Something not working?</a></li>
@@ -86,7 +86,7 @@
         <ul class="mi-ideas">
           <li><svg aria-hidden="true"><use href="#i-car"/></svg><div><b>Take your music in the car</b><span>Run <span class="ui">Continue on iPhone</span> when your iPhone connects to CarPlay.</span></div></li>
           <li><svg aria-hidden="true"><use href="#i-phones"/></svg><div><b>Bring it back to your desk</b><span>Run <span class="ui">Continue on Mac</span> when your headphones connect.</span></div></li>
-          <li><svg aria-hidden="true"><use href="#i-bell"/></svg><div><b>Bring the player back</b><span>Run <span class="ui">Show in Now Playing</span> when Second Chair’s reminder arrives. <a href="#skip-tap">Skip the tap</a></span></div></li>
+          <li><svg aria-hidden="true"><use href="#i-bell"/></svg><div><b>Bring the player back</b><span>Run <span class="ui">Show in Now Playing</span> when Second Chair’s notification arrives. <a href="#skip-tap">Skip the tap</a></span></div></li>
         </ul>
         <details class="more">
           <summary>How to make an automation</summary>
@@ -105,25 +105,25 @@
         </details>
 
         <h3 class="cl-h" id="skip-tap">Skip the tap</h3>
-        <p>Want Second Chair to return to your Lock Screen and StandBy without opening the app yourself? A simple Shortcuts automation can restore Now Playing when the reminder arrives.</p>
+        <p>Want Second Chair to return to your Lock Screen and StandBy without opening the app yourself? A simple Shortcuts automation can restore Now Playing when the notification arrives.</p>
         <p><a class="btn" href="https://www.icloud.com/shortcuts/6f01cf28b5114a71ac9a398bf74707b2">Get the shortcut</a></p>
         <p>Once set up, the automation will open Second Chair once your iPhone is unlocked. Now Playing returns to your Lock Screen and StandBy when your iPhone locks again.</p>
-        <p>It needs <a href="#reminders">reminders</a> turned on.</p>
+        <p>It needs <a href="#notifications">Remind When Music Starts</a> turned on.</p>
         <details class="more">
           <summary>Or set it up yourself</summary>
           <ol class="plain-steps">
             <li>Open Shortcuts → Automation → + and select <span class="ui">Notification</span>.</li>
             <li>Choose Second Chair.</li>
-            <li>Tap <span class="ui">Add Filter</span> and set the notification message to contains <span class="says">Tap to show it on your Lock Screen</span>. This ensures the automation only responds to playback reminders, not other Second Chair notifications.</li>
+            <li>Tap <span class="ui">Add Filter</span> and set the notification message to contains <span class="says">Tap to show it on your Lock Screen</span>. This ensures the automation only responds to playback notifications, not other Second Chair notifications.</li>
             <li>Select <span class="ui">Run Immediately</span> and turn off <span class="ui">Notify When Run</span>.</li>
             <li>Add Second Chair’s <span class="ui">Show in Now Playing</span> action.</li>
           </ol>
         </details>
       </section>
 
-      <!-- ============ Reminders ============ -->
-      <section id="reminders" aria-labelledby="reminders-h">
-        <h2 id="reminders-h">Reminders</h2>
+      <!-- ============ Notifications ============ -->
+      <section id="notifications" aria-labelledby="notifications-h">
+        <h2 id="notifications-h"><span id="reminders"></span>Notifications</h2>
         <p>Player gone from your Lock Screen or StandBy? Second Chair can tell you when your Mac starts playing again after a break, so the player is a tap away.</p>
         <ol class="gs-seq">
           <li><span class="gs-dev">iPhone</span><span>In Second Chair, turn on <kbd class="ui">Remind When Music Starts</kbd>.</span></li>
@@ -131,7 +131,7 @@
         </ol>
         <p>After 8 minutes without music, you’ll get a silent notification when your Mac starts playing again. Tap it to bring the player back, or <a href="#skip-tap">skip the tap</a> with a shortcut.</p>
         <details class="more">
-          <summary>If the reminder doesn’t appear</summary>
+          <summary>If the notification doesn’t appear</summary>
           <p>It’s sent as Time Sensitive, so it shows during a Focus. These iPhone settings can still hide it:</p>
           <ul class="plain">
             <li>A Focus with Time Sensitive notifications turned off, in Settings › Focus › the Focus › Apps.</li>
@@ -147,7 +147,7 @@
         <dl class="fixes">
           <div><dt>Keep Second Chair running on your Mac.</dt><dd>Your iPhone only updates while it’s running. In the music note’s menu, turn on <span class="ui">Launch at Login</span> so it starts with your Mac.</dd></div>
           <div><dt>Open Music yourself.</dt><dd>Second Chair doesn’t open Music by itself.</dd></div>
-          <div><dt>Player gone from your Lock Screen?</dt><dd>Open Second Chair on your iPhone to bring it back. iOS keeps a dismissed player hidden until then, and after your Mac has been paused for about 8 minutes it can show your iPhone’s own Apple Music instead. A <a href="#reminders">reminder</a> makes it a tap away.</dd></div>
+          <div><dt>Player gone from your Lock Screen?</dt><dd>Open Second Chair on your iPhone to bring it back. iOS keeps a dismissed player hidden until then, and after your Mac has been paused for about 8 minutes it can show your iPhone’s own Apple Music instead. A <a href="#notifications">notification</a> makes it a tap away.</dd></div>
           <div><dt>Want to hide the player?</dt><dd>Tap <span class="ui">Stop Showing</span> in the iPhone app. Your devices stay paired.</dd></div>
           <div><dt>Away from home?</dt><dd>It still works, as long as both devices are online and your Mac is awake with Second Chair running.</dd></div>
         </dl>
@@ -224,7 +224,7 @@
         <div class="mi-faq">
           <details><summary>Nothing appears on your Lock Screen</summary><div><p>Check that Music is playing on your Mac, then open Second Chair on your iPhone and tap <span class="ui">Show in Now Playing</span>.</p></div></details>
           <details><summary><span class="ui">Show in Now Playing</span> is greyed out</summary><div><p>Start playing something in Music on your Mac.</p></div></details>
-          <details><summary>The player has disappeared, or Apple Music shows instead</summary><div><p>Open Second Chair on your iPhone, or tap the reminder. iOS keeps a dismissed player hidden, and when your Mac has been paused for about 8 minutes it can show your iPhone’s own Apple Music instead. Your Mac playing again doesn’t switch it back. To bring it back without tapping, see <a href="#skip-tap">Skip the tap</a>.</p></div></details>
+          <details><summary>The player has disappeared, or Apple Music shows instead</summary><div><p>Open Second Chair on your iPhone, or tap the notification. iOS keeps a dismissed player hidden, and when your Mac has been paused for about 8 minutes it can show your iPhone’s own Apple Music instead. Your Mac playing again doesn’t switch it back. To bring it back without tapping, see <a href="#skip-tap">Skip the tap</a>.</p></div></details>
           <details><summary>Your iPhone says <span class="says">Mac Offline</span></summary><div><p>Wake your Mac and make sure Second Chair is running and connected.</p></div></details>
           <details><summary>No artwork for a song</summary><div><p>Nothing to fix. Music has none, and Apple’s catalogue had no close match.</p></div></details>
         </div>
