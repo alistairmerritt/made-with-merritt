@@ -28,8 +28,7 @@
   --paper: #f3eee6;
   --paper-2: #e8e0d3;
   --rule: rgba(22, 18, 15, .14);
-  --red: #c8221c;            /* brand red that holds 4.5:1 on paper */
-  --red-hot: #ff383c;        /* the icon's own red, for marks only */
+  --brand: #7431d8;          /* the icon's purple; holds 4.5:1 on paper */
 
   --serif: "ivypresto-headline", "Newsreader", "Newsreader Fallback", ui-serif, Georgia, serif;
   --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;

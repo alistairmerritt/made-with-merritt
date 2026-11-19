@@ -2,14 +2,14 @@
 
 .guide-page {
   --bg: var(--paper); --fg: var(--ink); --fg-2: var(--ink-2); --fg-3: var(--ink-3);
-  --panel: #fbf8f3; --rule: rgba(22, 18, 15, .13); --accent: var(--red); --hl: #fff1a8;
+  --panel: #fbf8f3; --rule: rgba(22, 18, 15, .13); --accent: var(--brand); --hl: #fff1a8;
   color-scheme: light dark;
   background: var(--bg); color: var(--fg);
 }
 @media (prefers-color-scheme: dark) {
   .guide-page {
     --bg: #14110f; --fg: #efe9e0; --fg-2: #bdb4aa; --fg-3: #8d847b;
-    --panel: #1d1916; --rule: rgba(239, 233, 224, .13); --accent: #ff6a5c; --hl: #4a3f00;
+    --panel: #1d1916; --rule: rgba(239, 233, 224, .13); --accent: #b28cf8; --hl: #4a3f00;
   }
   .guide-page .site-header a:hover { background: rgba(255, 255, 255, .08); }
 }
@@ -110,7 +110,7 @@
 .fig { margin: 0; }
 .fig figcaption { margin-top: 14px; font-size: .8125rem; color: var(--fg-3); max-width: 22rem; }
 .fig figcaption b { color: var(--fg-2); font-weight: 600; }
-.fig-stage { position: relative; padding: 28px; border-radius: 18px; background: linear-gradient(160deg, #cc231d, #a51914); display: grid; place-items: center; gap: 18px; overflow: hidden; }
+.fig-stage { position: relative; padding: 28px; border-radius: 18px; background: linear-gradient(160deg, #7a36e0, #5521b0); display: grid; place-items: center; gap: 18px; overflow: hidden; }
 .fig-stage.night { background: linear-gradient(160deg, #1f2a52, #0d1330); }
 .fig-stage.paper { background: color-mix(in oklab, var(--fg) 6%, var(--bg)); }
 .fig-pair { grid-template-columns: auto auto; align-items: center; }
@@ -174,7 +174,7 @@
 .fig .phone.small { width: 200px; }
 
 /* Step 4: the one people miss */
-.must { margin-top: 28px; border-radius: 22px; padding: clamp(24px, 3vw, 36px); background: #cc231d; color: #fff; max-width: 40rem; }
+.must { margin-top: 28px; border-radius: 22px; padding: clamp(24px, 3vw, 36px); background: var(--brand); color: #fff; max-width: 40rem; }
 .must .eyebrow { font: 600 .75rem/1 var(--sans); letter-spacing: .07em; text-transform: uppercase; opacity: .8; }
 .must h3 { margin-top: 12px; font: 300 clamp(1.75rem, 1.2rem + 1.6vw, 2.5rem)/1.05 var(--serif); letter-spacing: -.01em; }
 .must ol { list-style: none; margin-top: 20px; display: grid; gap: 10px; }

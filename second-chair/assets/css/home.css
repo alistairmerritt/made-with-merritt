@@ -413,9 +413,9 @@ html:not(.js) .try { display: none; }
 .setup-steps .who { font: 600 .75rem/1 var(--sans); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); }
 .setup-steps .who em { font-style: normal; }
 .setup-steps p { font-size: .9375rem; color: var(--ink-2); max-width: 22rem; }
-.setup-steps .key::before { color: var(--red); }
+.setup-steps .key::before { color: var(--brand); }
 .setup-steps .key p { color: var(--ink); }
-.setup-steps .key { background: linear-gradient(var(--red), var(--red)) top left / 100% 3px no-repeat; }
+.setup-steps .key { background: linear-gradient(var(--brand), var(--brand)) top left / 100% 3px no-repeat; }
 .get .fine { margin-top: clamp(56px, 7vw, 88px); padding-top: 20px; border-top: 1px solid var(--rule); color: var(--ink-2); max-width: 56rem; }
 .get .fine b { color: var(--ink); }
 
