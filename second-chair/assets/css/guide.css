@@ -275,3 +275,4 @@ details.advanced p { color: var(--fg-2); }
 /* A page with no contents list (the privacy policy). */
 .g-body--solo { grid-template-columns: minmax(0, 46rem); }
 .g-updated { color: var(--fg-3); font-size: .9375rem; margin-top: 18px; }
+.g-article #skip-tap { margin-top: 40px; }
