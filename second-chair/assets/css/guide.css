@@ -455,3 +455,12 @@ details.more .fixes { margin-top: 10px; }
 .mi-faq .says { font-weight: inherit; }
 .gs-step .fig-stage { min-height: 20rem; }
 @media (max-width: 559px) { .gs-step .fig-stage { min-height: 0; } }
+
+/* Real screenshots of the iPhone app inside the phone frame, under a clean status bar. */
+.app-shot { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.shot-bar { position: absolute; z-index: 2; top: 4cqw; left: 7cqw; right: 7cqw; display: flex; justify-content: space-between; color: #fff; font: 600 4.6cqw/1 var(--sans); }
+.shot-bar i { display: block; width: 9cqw; height: 4cqw; border-radius: 1.2cqw; background: #fff; opacity: .9; }
+/* A step with no picture */
+.gs-step .with-fig.solo { grid-template-columns: minmax(0, 1fr); }
+/* Pairing: the two Mac moments, one above the other */
+.fig-pair.fig-pair--mac { grid-template-columns: 236px; grid-template-areas: "a" "c"; justify-content: center; }

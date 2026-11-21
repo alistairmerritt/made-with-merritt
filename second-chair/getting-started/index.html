@@ -26,9 +26,9 @@
 </script>
 <link rel="preconnect" href="https://use.typekit.net" crossorigin>
 <link rel="stylesheet" href="https://use.typekit.net/fiv2yhs.css">
-<link rel="stylesheet" href="../assets/css/base.css?v=six">
-<link rel="stylesheet" href="../assets/css/guide.css?v=six">
-<script src="../assets/js/guide.js?v=six" defer></script>
+<link rel="stylesheet" href="../assets/css/base.css?v=seven">
+<link rel="stylesheet" href="../assets/css/guide.css?v=seven">
+<script src="../assets/js/guide.js?v=seven" defer></script>
 <script src="../assets/js/clock.js" defer></script>
 </head>
 <body class="guide-page">
@@ -95,7 +95,7 @@
         <li><a href="#mac"><span class="who">Mac</span><b>Install on your Mac</b></a></li>
         <li><a href="#iphone"><span class="who">iPhone</span><b>Install on your iPhone</b></a></li>
         <li><a href="#pair"><span class="who">Mac and iPhone</span><b>Pair your devices</b></a></li>
-        <li class="key"><a href="#show"><span class="who">Mac and iPhone</span><b>Show what’s playing</b></a></li>
+        <li class="key"><a href="#show"><span class="who">Mac</span><b>Show what’s playing</b></a></li>
       </ol>
     </header>
 
@@ -151,41 +151,22 @@
 
     <!-- 2 -->
     <section class="gs-step" id="iphone" aria-labelledby="iphone-h">
-      <div class="with-fig">
+      <div class="with-fig solo">
         <div class="gs-text">
           <p class="gs-step-n" aria-hidden="true">02</p>
           <p class="gs-on" data-on="iphone"><svg aria-hidden="true"><use href="#i-iphone"/></svg>On your iPhone</p>
           <h3 id="iphone-h" class="gs-h">Install on your iPhone</h3>
-          <p class="gs-do" id="step-2a"><span id="step-2b"></span><span id="step-2c"></span>Open your TestFlight invitation, install Second Chair, then open it and tap <kbd class="ui">Continue</kbd>.</p>
-          <p class="gs-then">You’ll see <span class="says">Pair with Mac</span>. Leave it open for the next step.</p>
+          <p class="gs-do" id="step-2a"><span id="step-2b"></span><span id="step-2c"></span>Open your TestFlight invitation, install Second Chair, then open it and tap <kbd class="ui">Get Started</kbd>.</p>
+          <p class="gs-then">The iPhone app walks you through each step, with help on every screen. If Second Chair is already on your Mac, tap <kbd class="ui">It’s Already on My Mac</kbd>.</p>
           <p class="gs-then">No invitation yet? <a href="/?contact=1">Ask for one</a>.</p>
           <details class="more">
             <summary>More detail</summary>
             <ul class="plain">
               <li><strong>New to TestFlight?</strong> It’s Apple’s free app for trying apps before they’re released. Install it from the App Store if you don’t have it, then open your invitation again.</li>
-              <li><strong>Which version?</strong> You’ll need build 202611191034 or later.</li>
+              <li><strong>Which version?</strong> You’ll need build 202611211340 or later.</li>
             </ul>
           </details>
         </div>
-        <!-- Illustration of PairingView before a code is typed. Replace with a screenshot when there is one. -->
-        <figure class="fig">
-          <div class="fig-stage night" aria-hidden="true">
-            <div class="phone phone--portrait">
-              <div class="phone-body"><div class="phone-bezel"><div class="screen">
-                <span class="island"></span>
-                <div class="app-screen">
-                  <div class="bar"><span data-clock="time">18:24</span><i></i></div>
-                  <h4>Pair with Mac</h4>
-                  <p class="sec-h">Pairing Code</p>
-                  <div class="sec hot"><div class="row pin dis">000000</div></div>
-                  <p class="foot">Enter the six-digit code shown by Second Chair on your Mac.</p>
-                  <div class="sec"><div class="row dis">Pair</div></div>
-                </div>
-              </div></div></div>
-            </div>
-          </div>
-          <figcaption><b>Pair with Mac,</b> ready for the code from your Mac. <span class="illus">Illustration</span></figcaption>
-        </figure>
       </div>
     </section>
 
@@ -199,7 +180,7 @@
           <p class="gs-do">Your Mac gives you a code. Type it on your iPhone, then allow the connection on your Mac.</p>
           <ol class="gs-seq">
             <li id="step-3a"><span class="gs-dev">Mac</span><span>Click the music note and choose <kbd class="ui">Pair iPhone…</kbd></span></li>
-            <li id="step-3b"><span class="gs-dev">iPhone</span><span>Enter the six-digit code and tap <kbd class="ui">Pair</kbd>.</span></li>
+            <li id="step-3b"><span class="gs-dev">iPhone</span><span>Type the six-digit code.</span></li>
             <li id="step-3c"><span class="gs-dev">Mac</span><span>When the menu says your iPhone <span class="says">wants to show this Mac’s music.</span>, click <kbd class="ui">Allow</kbd>.</span></li>
           </ol>
           <details class="more">
@@ -212,8 +193,8 @@
         </div>
         <!-- Illustration of the pairing code on the Mac and PairingView on the iPhone. Replace with screenshots when there are some. -->
         <figure class="fig">
-          <div class="fig-stage paper fig-pair" aria-hidden="true">
-            <div class="pair-a"><p class="pair-tag">Mac</p>
+          <div class="fig-stage paper fig-pair fig-pair--mac" aria-hidden="true">
+            <div class="pair-a"><p class="pair-tag">1 · Mac</p>
               <div class="mac-menu">
                 <div class="mm-conn"><i></i>Connected</div>
                 <div class="mm-row"><span>iPhone</span><span>Not paired</span></div>
@@ -221,22 +202,7 @@
                 <p class="mm-cap">Type this in Second Chair on your iPhone. Expires in 4:37.</p>
               </div>
             </div>
-            <div class="pair-b"><p class="pair-tag">iPhone</p>
-            <div class="phone phone--portrait small">
-              <div class="phone-body"><div class="phone-bezel"><div class="screen">
-                <span class="island"></span>
-                <div class="app-screen">
-                  <div class="bar"><span data-clock="time">18:24</span><i></i></div>
-                  <h4>Pair with Mac</h4>
-                  <p class="sec-h">Pairing Code</p>
-                  <div class="sec"><div class="row pin">482916</div></div>
-                  <p class="foot">Enter the six-digit code shown by Second Chair on your Mac.</p>
-                  <div class="sec"><div class="row tint">Pair</div></div>
-                </div>
-              </div></div></div>
-            </div>
-            </div>
-            <div class="pair-c"><p class="pair-tag">Mac</p>
+            <div class="pair-c"><p class="pair-tag">3 · Mac</p>
               <div class="mac-menu">
                 <div class="mm-conn"><i></i>Connected</div>
                 <div class="mm-row"><span>iPhone</span><span>Not paired</span></div>
@@ -245,7 +211,7 @@
               </div>
             </div>
           </div>
-          <figcaption><b>The code from your Mac, typed on your iPhone,</b> then allowed on your Mac. <span class="illus">Illustration</span></figcaption>
+          <figcaption><b>The code on your Mac,</b> then Allow, once you’ve typed it on your iPhone. <span class="illus">Illustration</span></figcaption>
         </figure>
       </div>
     </section>
@@ -255,39 +221,29 @@
       <div class="with-fig">
         <div class="gs-text">
           <p class="gs-step-n" aria-hidden="true">04</p>
-          <p class="gs-on" data-on="both"><svg aria-hidden="true"><use href="#i-laptop"/></svg><svg aria-hidden="true"><use href="#i-iphone"/></svg>On your Mac and iPhone</p>
+          <p class="gs-on" data-on="mac"><svg aria-hidden="true"><use href="#i-laptop"/></svg>On your Mac</p>
           <h3 id="show-h" class="gs-h">Show what’s playing</h3>
-          <p class="gs-do">Play something in Music on your Mac, then tap <kbd class="ui">Show in Now Playing</kbd> in Second Chair on your iPhone.</p>
-          <p class="gs-flag" id="step-4">This final step brings Second Chair to your Lock Screen.</p>
+          <p class="gs-do">Play something in Music on your Mac. Second Chair puts it on your iPhone’s Lock Screen.</p>
+          <p class="gs-flag" id="step-4">This final step brings your music to your Lock Screen.</p>
           <details class="more">
             <summary>More detail</summary>
             <ul class="plain">
-              <li><strong>Button greyed out?</strong> <span class="ui">Show in Now Playing</span> waits until music is playing on your Mac. Start a song in Music, and it lights up.</li>
               <li><strong>Second Chair doesn’t open Music for you.</strong> Open it yourself on your Mac.</li>
             </ul>
           </details>
         </div>
-        <!-- Illustration of HomeView's "Lock Screen and StandBy" section. Replace with a screenshot when there is one. -->
+        <!-- Screenshot of the iPhone app's Home, build 202611211340, before anything plays. -->
         <figure class="fig">
-          <div class="fig-stage night" aria-hidden="true">
+          <div class="fig-stage night">
             <div class="phone phone--portrait">
               <div class="phone-body"><div class="phone-bezel"><div class="screen">
                 <span class="island"></span>
-                <div class="app-screen">
-                  <div class="bar"><span data-clock="time">18:24</span><i></i></div>
-                  <h4>Second Chair</h4>
-                  <p class="sec-h">Now Playing</p>
-                  <div class="sec"><div class="row np-row"><span class="a"><img src="../assets/art/small-hours-sm.webp?v=2" alt="" width="40" height="40"></span><span><b>Small Hours</b><span>Fen Lights</span></span></div></div>
-                  <p class="sec-h" style="margin-top:5cqw">Lock Screen and StandBy</p>
-                  <div class="sec hot"><div class="row key-label">Show in Now Playing</div></div>
-                  <p class="foot">If you dismiss the player on your Lock Screen, it may stay hidden until you next open Second Chair.</p>
-                  <div class="sec"><div class="row"><span>Remind When Music Starts</span><span class="v">○</span></div></div>
-                  <p class="foot">Get a notification when your Mac starts playing again after a break. Tap it to bring Second Chair back to your Lock Screen and StandBy.</p>
-                </div>
+                <img class="app-shot" src="../assets/img/app/home-nothing-playing.webp" alt="Second Chair on iPhone: the Mac is connected, and it says Nothing playing on your Mac. Play something in Music and it’ll appear here." width="600" height="1300">
+                <div class="shot-bar" aria-hidden="true"><span data-clock="time">18:24</span><i></i></div>
               </div></div></div>
             </div>
           </div>
-          <figcaption><b>Show in Now Playing,</b> in Second Chair on your iPhone. <span class="illus">Illustration</span></figcaption>
+          <figcaption><b>Second Chair on your iPhone,</b> ready for a song from your Mac. <span class="illus">Screenshot</span></figcaption>
         </figure>
       </div>
     </section>
@@ -364,7 +320,7 @@
               <p class="gs-on" data-on="mac"><svg aria-hidden="true"><use href="#i-laptop"/></svg>On your Mac · once</p>
               <h3 id="cl-connect-h" class="gs-h">Connect to Music</h3>
               <p class="gs-do">Click the music note and choose <kbd class="ui">Connect to Music…</kbd> In Music, select Second Chair under Devices and enter the four-digit code.</p>
-              <p class="gs-then">If your Mac asks about the local network, allow it. This is a separate code from pairing your iPhone. When it’s done, the iPhone app shows <span class="says">Ready</span> under Continue Listening.</p>
+              <p class="gs-then">If your Mac asks about the local network, allow it. This is a separate code from pairing your iPhone. When it’s done, <kbd class="ui">Continue on iPhone</kbd> appears in the iPhone app.</p>
               <details class="more">
                 <summary>More detail</summary>
                 <ul class="plain">
@@ -402,25 +358,19 @@
               <p class="gs-do">Open Second Chair and tap <kbd class="ui">Continue on iPhone</kbd>.</p>
               <p class="gs-then">Your Mac pauses, and your music picks up on your iPhone where you left off. The first time, allow Second Chair access to Apple Music.</p>
           </div>
-            <!-- Illustration of ContinueListeningSection (HomeView.swift). -->
-            <figure class="fig">
-              <div class="fig-stage night" aria-hidden="true">
-                <div class="phone phone--portrait">
-                  <div class="phone-body"><div class="phone-bezel"><div class="screen">
-                    <span class="island"></span>
-                    <div class="app-screen">
-                      <div class="bar"><span data-clock="time">18:24</span><i></i></div>
-                      <h4>Second Chair</h4>
-                      <p class="sec-h">Now Playing</p>
-                      <div class="sec"><div class="row np-row"><span class="a"><img src="../assets/art/small-hours-sm.webp?v=2" alt="" width="40" height="40"></span><span><b>Small Hours</b><span>Fen Lights</span></span></div></div>
-                      <p class="sec-h" style="margin-top:5cqw">Continue Listening</p>
-                      <div class="sec hot"><div class="row"><span>Status</span><span class="v">Ready</span></div><div class="row cl-row"><svg class="cl-ico"><use href="#i-iphone"/></svg><span><b>Continue on iPhone</b><span>Continue listening on your iPhone, with your playlist, album or Up Next queue. Playback on your Mac will pause.</span></span></div></div>
-                    </div>
-                  </div></div></div>
+            <!-- Screenshot of the iPhone app's Home with Continue on iPhone, build 202611211340 (the song swapped for the site's Rooftop Season). -->
+              <figure class="fig">
+                <div class="fig-stage night">
+                  <div class="phone phone--portrait">
+              <div class="phone-body"><div class="phone-bezel"><div class="screen">
+                <span class="island"></span>
+                <img class="app-shot" src="../assets/img/app/home-continue-on-iphone.webp" alt="Second Chair on iPhone playing Rooftop Season by Remy Saint, with the Continue on iPhone button." width="600" height="1300">
+                <div class="shot-bar" aria-hidden="true"><span data-clock="time">18:24</span><i></i></div>
+              </div></div></div>
+            </div>
                 </div>
-              </div>
-              <figcaption><b>Continue on iPhone,</b> in Second Chair on your iPhone. <span class="illus">Illustration</span></figcaption>
-            </figure>
+                <figcaption><b>Continue on iPhone,</b> in Second Chair on your iPhone. <span class="illus">Screenshot</span></figcaption>
+              </figure>
         </div>
       </div>
 
