@@ -177,7 +177,7 @@ class Surface {
     if (sec !== this.lastSecond) {
       this.lastSecond = sec;
       for (const el of this.q('elapsed')) el.textContent = fmt(pos);
-      for (const el of this.q('remaining')) el.textContent = `${this.role === 'mac' ? '-' : '\u2212'}${fmt(r.duration - pos)}`;   // iOS uses a minus sign, the Mac menu a hyphen
+      for (const el of this.q('remaining')) el.textContent = `\u2212${fmt(r.duration - pos)}`;   // iOS and the Mac menu (0.3.9) both use a minus sign; was hyphen
       for (const el of this.q('seek')) { if (document.activeElement !== el) el.value = String(Math.round(pos)); el.max = String(r.duration); el.setAttribute('aria-valuetext', `${fmt(pos)} of ${fmt(r.duration)}`); }
     }
   }

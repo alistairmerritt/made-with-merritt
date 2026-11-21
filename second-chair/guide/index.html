@@ -17,9 +17,9 @@
 <meta property="og:image" content="https://madewithmerritt.com/second-chair/assets/img/og.png">
 <link rel="preconnect" href="https://use.typekit.net" crossorigin>
 <link rel="stylesheet" href="https://use.typekit.net/fiv2yhs.css">
-<link rel="stylesheet" href="../assets/css/base.css?v=seven">
-<link rel="stylesheet" href="../assets/css/guide.css?v=seven">
-<script src="../assets/js/guide.js?v=seven" defer></script>
+<link rel="stylesheet" href="../assets/css/base.css?v=menu">
+<link rel="stylesheet" href="../assets/css/guide.css?v=menu">
+<script src="../assets/js/guide.js?v=menu" defer></script>
 </head>
 <body class="guide-page">
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -144,7 +144,7 @@
       <section id="know" aria-labelledby="know-h">
         <h2 id="know-h">Everyday tips</h2>
         <dl class="fixes">
-          <div><dt>Keep Second Chair running on your Mac.</dt><dd>Turn on <span class="ui">Launch at Login</span> in the music note’s menu, so it’s always ready.</dd></div>
+          <div><dt>Keep Second Chair running on your Mac.</dt><dd>Turn on <span class="ui">Launch at Login</span> in the music note’s gear (⚙︎) menu, so it’s always ready.</dd></div>
           <div><dt>Open Music yourself.</dt><dd>Second Chair doesn’t open it for you.</dd></div>
           <div><dt>Player gone from your Lock Screen?</dt><dd>Open Second Chair on your iPhone and tap <span class="ui">Show on Lock Screen</span>, or turn on <a href="#notifications">notifications</a> to bring it back with a tap.</dd></div>
           <div><dt>Want to hide the player?</dt><dd>Touch and hold <span class="ui">Show on Lock Screen</span> in the iPhone app and choose <span class="ui">Stop Showing</span>, or find it in Settings. Your devices stay paired.</dd></div>
@@ -205,7 +205,7 @@
             <summary>If Continue Listening isn’t ready</summary>
             <p>When Continue Listening isn’t ready, the iPhone app shows a note with the fix where <span class="ui">Continue on iPhone</span> would be. Its <span class="ui">Status</span> is in Settings › Continue Listening:</p>
             <dl class="fixes">
-              <div><dt><span class="says">Set Up on Your Mac</span></dt><dd>On your Mac, click the music note and choose <span class="ui">Connect to Music…</span>, then select Second Chair under Devices in Music and enter the code.</dd></div>
+              <div><dt><span class="says">Set Up on Your Mac</span></dt><dd>On your Mac, click the music note and choose <span class="ui">Connect to Music…</span> (in the gear (⚙︎) menu if it isn’t showing), then select Second Chair under Devices in Music and enter the code.</dd></div>
               <div><dt><span class="says">Reconnect on Your Mac</span></dt><dd>On your Mac, click the music note and choose <span class="ui">Connect to Music…</span> again.<span class="why">Music on your Mac no longer recognises Second Chair, for example after Forget All Remotes.</span></dd></div>
               <div><dt><span class="says">Allow Apple Music</span></dt><dd>Tap <span class="ui">Allow Apple Music Access</span>, or <span class="ui">Open Settings</span> if you refused it before.</dd></div>
               <div><dt><span class="says">Needs Apple Music</span></dt><dd>Subscribe to Apple Music on your iPhone.</dd></div>
@@ -233,6 +233,7 @@
           <details><summary>Your Mac says <span class="says">Second Chair can’t read Music</span></summary><div><p>Click <span class="ui">Open Privacy Settings</span> in the menu, then turn on Music under Second Chair in System Settings › Privacy &amp; Security › Automation.</p></div></details>
           <details><summary>Your Mac says <span class="says">Music isn’t running</span></summary><div><p>Open Music. Second Chair never opens it by itself.</p></div></details>
           <details><summary>Your Mac says <span class="says">Music is slow to respond</span> or <span class="says">Can’t read Music right now</span></summary><div><p>Quit Music on your Mac (⌘Q) and open it again. Your iPhone catches up within a few seconds. Give Continue Listening a minute before you use it.<span class="why">Music is busy and isn’t answering Second Chair in time. It can happen after Music has been open for days.</span></p></div></details>
+          <details><summary>Your Mac says <span class="says">Offline</span></summary><div><p>Check this Mac’s internet connection. Second Chair reconnects by itself when it’s back.<span class="why">Second Chair on your Mac can’t reach its server. Your iPhone can’t get updates until it does.</span></p></div></details>
           <details><summary>Your pairing code has expired</summary><div><p>Choose <span class="ui">Pair iPhone…</span> again in the Mac’s menu for a new code.</p></div></details>
         </div>
 
@@ -254,7 +255,7 @@
           <details><summary><span class="says">Your Mac is playing the station, which started with another song.</span></summary><div><p>Nothing to fix.<span class="why">Your Mac carried on with your station, or the song’s station, and Music on the Mac starts a station on a song Apple chooses. See <a href="#cl-know">what comes with you</a>.</span></p></div></details>
           <details><summary>Mac: <span class="says">Answer the notification on your iPhone or Apple Watch.</span></summary><div><p>Tap <span class="ui">Continue on Mac</span> on the notification.<span class="why">Your iPhone couldn’t hand over by itself.</span></p></div></details>
           <details><summary>Mac: <span class="says">Your iPhone didn’t answer. Try again.</span></summary><div><p>Check your iPhone is on and has a connection, then try again. Or tap <span class="ui">Continue on Mac</span> in Second Chair on your iPhone.<span class="why">No answer within 45 seconds.</span></p></div></details>
-          <details><summary>Mac: <span class="says">Couldn’t reach your iPhone.</span></summary><div><p>Check the menu says it’s connected, and that your Mac has an internet connection.</p></div></details>
+          <details><summary>Mac: <span class="says">Couldn’t reach your iPhone.</span></summary><div><p>Check the menu says <span class="says">Online</span>, and that your Mac has an internet connection.</p></div></details>
           <details><summary><span class="says">Your Mac didn’t respond. Try again.</span></summary><div><p>Check your Mac is awake and Second Chair is running, then try again.</p></div></details>
         </div>
         <p><strong>Still stuck?</strong> <a href="#feedback">Let me know</a>.</p>
@@ -301,9 +302,9 @@
             <summary>Disconnecting and removing Second Chair</summary>
             <ul class="plain">
               <li><strong>To hide the player</strong> without unpairing, choose <span class="ui">Stop Showing</span> on your iPhone: touch and hold <span class="ui">Show on Lock Screen</span>, or find it in Settings.</li>
-              <li><strong>To unpair,</strong> choose <span class="ui">Unpair iPhone</span> in the Mac’s menu, or <span class="ui">Unpair Mac</span> in Settings › Mac in the iPhone app. Either side unpairs both. Unpair before deleting the apps, so the connection is cancelled.</li>
-              <li><strong>To disconnect Continue Listening,</strong> choose <span class="ui">Disconnect from Music</span> under Continue Listening in the Mac’s menu. Music still lists Second Chair under Devices; Music › Settings › Advanced › <span class="ui">Forget All Remotes</span> removes it, along with every other remote.</li>
-              <li><strong>To remove the Mac app,</strong> turn off <span class="ui">Launch at Login</span>, choose <span class="ui">Quit Second Chair</span>, then move it from Applications to the Bin.</li>
+              <li><strong>To unpair,</strong> choose <span class="ui">Unpair iPhone…</span> in the gear (⚙︎) menu on your Mac and confirm, or <span class="ui">Unpair Mac</span> in Settings › Mac in the iPhone app. Either side unpairs both. Unpair before deleting the apps, so the connection is cancelled.</li>
+              <li><strong>To disconnect Continue Listening,</strong> choose <span class="ui">Disconnect from Music</span> in the gear (⚙︎) menu on your Mac. Music still lists Second Chair under Devices; Music › Settings › Advanced › <span class="ui">Forget All Remotes</span> removes it, along with every other remote.</li>
+              <li><strong>To remove the Mac app,</strong> turn off <span class="ui">Launch at Login</span> and choose <span class="ui">Quit Second Chair</span>, both in the gear (⚙︎) menu, then move it from Applications to the Bin.</li>
               <li><strong>To remove the iPhone app,</strong> delete it like any other app.</li>
             </ul>
           </details>
@@ -318,7 +319,7 @@
 </main>
 
 <footer class="site-footer">
-  <p>Second Chair is an independent project by <a href="/">Made with Merritt</a>. Mac 0.3.8 beta.</p>
+  <p>Second Chair is an independent project by <a href="/">Made with Merritt</a>. Mac 0.3.9 beta.</p>
   <nav aria-label="Footer">
     <a href="../">Home</a>
     <a href="../getting-started/">Getting started</a>

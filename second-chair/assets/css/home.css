@@ -129,7 +129,7 @@ html:not(.js) .try { display: none; }
 
 /* Short desktop windows: the Mac menu keeps its song and controls, drops its connection rows. */
 @media (max-height: 760px) and (min-width: 960px) {
-  .hero-menu hr, .hero-menu .mm-conn, .hero-menu .mm-row { display: none; }
+  .hero-menu .mm-foot { display: none; }
   .hero-lede { font-size: 1rem; line-height: 1.45; }
   .hero-fine { display: none; }        /* the Get it section says it too */
 }
@@ -161,7 +161,7 @@ html:not(.js) .try { display: none; }
   .hero-scene { padding-top: 26px; }
   .hero-mac, .try { display: none; }    /* on phones the first screen is the headline and StandBy */
   .try-open { min-height: 32px; }
-  .hero-menu hr, .hero-menu .mm-conn, .hero-menu .mm-row, .hero-menu .mm-progress { display: none; }
+  .hero-menu .mm-foot, .hero-menu .mm-progress { display: none; }
   .hero-menu .mm-transport { margin-top: 8px; }
   .hero-standby { width: calc(100vw - var(--gutter) - var(--gap)); margin: 0 calc(var(--gap) - var(--gutter)) 0 auto; }
   .device-tag--phone { bottom: auto; top: 100%; margin: 8px 0 0; }
