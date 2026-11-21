@@ -308,10 +308,10 @@ a.fn:hover { text-decoration: underline; }
     var(--sb-bg);
 }
 /* Behind it all, the song's artwork blurred, as the iPhone app's Home does (HomeView.swift's HomeBackground):
-   filled, blurred hard, saturation 1.25, darkened, under a black veil (more for a pale cover). */
+   filled, blurred hard, darkened, under a black veil (more for a pale cover). Calmer than the app: saturation 0.8, not 1.25. */
 .standby-ui .sb-bg {
   position: absolute; left: -15%; top: -15%; width: 130%; height: 130%; max-width: none; object-fit: cover;
-  filter: blur(8cqw) saturate(1.25) brightness(.88);
+  filter: blur(8cqw) saturate(.8) brightness(.8);
 }
 .standby-ui .wall::after { content: ""; position: absolute; inset: 0; background: rgba(0, 0, 0, .3); }
 [data-tone="light"] .standby-ui .wall::after { background: rgba(0, 0, 0, .46); }
