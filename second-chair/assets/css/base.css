@@ -302,11 +302,19 @@ a.fn:hover { text-decoration: underline; }
   --sb-tint: color-mix(in oklab, var(--wall-b) 58%, #fff);
 }
 .standby-ui .wall {
-  position: absolute; inset: 0; z-index: -1;
+  position: absolute; inset: 0; z-index: -1; overflow: hidden;
   background:
     radial-gradient(55% 95% at 22% 70%, color-mix(in oklab, var(--sb-bg) 72%, #000), transparent 75%),
     var(--sb-bg);
 }
+/* Behind it all, the song's artwork blurred, as the iPhone app's Home does (HomeView.swift's HomeBackground):
+   filled, blurred hard, saturation 1.25, darkened, under a black veil (more for a pale cover). */
+.standby-ui .sb-bg {
+  position: absolute; left: -15%; top: -15%; width: 130%; height: 130%; max-width: none; object-fit: cover;
+  filter: blur(8cqw) saturate(1.25) brightness(.88);
+}
+.standby-ui .wall::after { content: ""; position: absolute; inset: 0; background: rgba(0, 0, 0, .3); }
+[data-tone="light"] .standby-ui .wall::after { background: rgba(0, 0, 0, .46); }
 .sb-art {
   position: absolute; left: 7%; top: 11.7%; height: 76.6%; aspect-ratio: 1;
   border-radius: 2cqw; overflow: hidden; background: rgba(255, 255, 255, .08);

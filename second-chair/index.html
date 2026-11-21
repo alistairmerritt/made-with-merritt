@@ -19,11 +19,11 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://use.typekit.net" crossorigin>
 <link rel="stylesheet" href="https://use.typekit.net/fiv2yhs.css">
-<link rel="stylesheet" href="assets/css/base.css?v=glass">
-<link rel="stylesheet" href="assets/css/home.css?v=blurart3">
+<link rel="stylesheet" href="assets/css/base.css?v=sbblur">
+<link rel="stylesheet" href="assets/css/home.css?v=darkpull">
 <script>document.documentElement.classList.add('js')</script>
 <script src="assets/js/session.js?v=rendezvous" defer></script>
-<script src="assets/js/home.js?v=blurart3" defer></script>
+<script src="assets/js/home.js" defer></script>
 <script src="assets/js/clock.js" defer></script>
 <script src="assets/js/contact.js" defer></script>
 </head>
@@ -57,7 +57,6 @@
 </div>
 
 <div class="stage" id="stage">
-  <div class="stage-art" aria-hidden="true"><img class="is-on" alt="" src="assets/art/midnight-rendezvous-sm.webp?v=2"></div>
   <header class="site-header">
     <a class="brand" href="./" aria-label="Second Chair, home"><img src="assets/img/icon-180.png?v=indigo" alt="" width="20" height="20">Second Chair</a>
     <nav aria-label="Main">
@@ -125,7 +124,7 @@
             <span class="island" aria-hidden="true"></span>
             <!-- StandBy's Now Playing, laid out as iOS draws it: artwork left; title, artist, controls and scrubber centred on the right. -->
             <div class="standby-ui">
-              <div class="wall" aria-hidden="true"></div>
+              <div class="wall" aria-hidden="true"><img class="art sb-bg" data-bind="art" src="assets/art/midnight-rendezvous-sm.webp?v=2" alt="" width="60" height="60"></div>
               <div class="sb-art" data-swap="spin"><img class="art" data-bind="art" src="assets/art/midnight-rendezvous.webp?v=2" alt="" width="300" height="300"></div>
               <div class="sb-side">
                 <div class="sb-top"><button type="button" class="sb-mute" aria-label="Mute" aria-pressed="false"><svg aria-hidden="true"><use href="#i-vol-mid"/></svg></button><svg aria-hidden="true"><use href="#i-airplay-audio"/></svg></div>
