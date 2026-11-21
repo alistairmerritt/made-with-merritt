@@ -14,8 +14,27 @@ const say = (text) => { announce.textContent = ''; requestAnimationFrame(() => {
 const FIRST_SONG_LEFT = 10;
 const session = new Session({ index: 0, position: RECORDS[0].duration - FIRST_SONG_LEFT, playing: !reducedMotion.matches });
 
-// The page wears the colour of whatever the iPhone in the hero is showing.
-paintStage(stage, RECORDS[0]);
+// The page wears whatever the iPhone in the hero is showing, as the iPhone app's Home does: the song's artwork,
+// blurred and darkened, behind everything. Like the app, the room is always dark while a cover shows, so a pale
+// record lends it its deep wall colour instead of its own.
+const stageArt = $('.stage-art', stage);
+function paintRoom(r) {
+  paintStage(stage, r.ink === '#ffffff' ? r : { ...r, stage: r.wall[0], ink: '#ffffff' });
+  document.querySelector('meta[name="theme-color"]').content = stage.style.getPropertyValue('--stage');
+  if (!stageArt) return;
+  const url = artURL(r, true), shown = stageArt.lastElementChild;
+  if (shown && shown.src === new URL(url, document.baseURI).href) return;
+  const img = new Image();
+  img.alt = ''; img.src = url;
+  // Crossfade over 0.6 s once the new cover has loaded, then let the old one go.
+  img.decode().catch(() => {}).then(() => {
+    if (stageArt.lastElementChild !== shown) return;        // a later song got there first
+    stageArt.append(img);
+    requestAnimationFrame(() => requestAnimationFrame(() => img.classList.add('is-on')));
+    setTimeout(() => { for (const old of [...stageArt.children]) if (old !== img && old !== stageArt.lastElementChild) old.remove(); }, 700);
+  });
+}
+paintRoom(RECORDS[0]);
 
 const surfaces = [];
 for (const el of $$('[data-surface="mac"]')) surfaces.push(new Surface(el, session, { role: 'mac' }));
@@ -27,8 +46,7 @@ for (const el of $$('[data-surface="iphone"]')) {
       if (!trackChanged) return;
       paintStage(el, r);                                  // the screen's own wallpaper
       if (inHero && el.offsetParent !== null) {           // the visible hero phone sets the room
-        paintStage(stage, r);
-        document.querySelector('meta[name="theme-color"]').content = r.stage;
+        paintRoom(r);
       }
     },
   }));

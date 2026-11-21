@@ -19,6 +19,21 @@
   background: radial-gradient(closest-side, color-mix(in oklab, var(--stage-glow) 38%, transparent), transparent);
   opacity: var(--lit, 0); transition: opacity 1.6s var(--ease), background 1.2s var(--ease);
 }
+/* The song's artwork, blurred and darkened, as on the iPhone app's Home (HomeView.swift's HomeBackground): filled to
+   the window, blurred hard, saturation 1.25 and brightness −0.12 under a 35% black veil, with a dark band from the top
+   (85% black, 55% by 18%, clear by 42%). The small cover is enough: nothing sharp survives the blur. */
+.stage-art { position: absolute; inset: 0; z-index: -2; overflow: hidden; pointer-events: none; }
+.stage-art img {
+  position: absolute; left: -12%; top: -12%; width: 124%; height: 124%; object-fit: cover;
+  filter: blur(clamp(48px, 7vmax, 120px)) saturate(1.25) brightness(.88);
+  opacity: 0; transition: opacity .6s var(--ease); will-change: opacity;
+}
+.stage-art img.is-on { opacity: 1; }
+.stage-art::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, .85) 0, rgba(0, 0, 0, .55) 18%, transparent 42%), rgba(0, 0, 0, .35);
+}
+@media (prefers-reduced-transparency: reduce) { .stage-art { display: none; } }
 .stage > .sound { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }   /* the sound, drawn by home.js */
 .stage .btn { --bg: var(--stage-ink); --fg: var(--stage); }
 .stage .site-header { color: var(--stage-ink); }
