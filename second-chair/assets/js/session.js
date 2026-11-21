@@ -10,18 +10,20 @@ const ART_BASE = (document.currentScript ? new URL('../art/', document.currentSc
 // Each record's colours are read from its cover by coloursFrom() in home.js, the same reading a song picked in
 // "Try it with your own song" gets. They're written out here so the first paint is right and every browser agrees.
 const RECORDS = [
+  { id: 'midnight-glass', title: 'Midnight Glass', artist: 'North Arcade', album: 'Electric Memory', duration: 232, bpm: 118,
+    stage: '#5731ba', ink: '#ffffff', glow: '#c5b8e5', wall: ['#23144a', '#5c33c3'] },
   { id: 'low-sun', title: 'Low Sun', artist: 'Drift Hotel', album: 'Breakwater', duration: 214, bpm: 96,
     stage: '#b35638', ink: '#ffffff', glow: '#e3c4ba', wall: ['#472316', '#bc5b3b'] },
-  { id: 'small-hours', title: 'Small Hours', artist: 'Fen Lights', album: 'Lit Windows', duration: 252, bpm: 72,
-    stage: '#857152', ink: '#ffffff', glow: '#d0c7b9', wall: ['#352d21', '#8b7756'] },
   { id: 'rooftop-season', title: 'Rooftop Season', artist: 'Remy Saint', album: 'Daylight Savings', duration: 188, bpm: 99, feel: 'punchy',
     stage: '#dccbbc', ink: '#16120f', glow: '#ece5df', wall: ['#6b4f38', '#b59071'] },
+  { id: 'small-hours', title: 'Small Hours', artist: 'Fen Lights', album: 'Lit Windows', duration: 252, bpm: 72,
+    stage: '#857152', ink: '#ffffff', glow: '#d0c7b9', wall: ['#352d21', '#8b7756'] },
   { id: 'ticket-hall', title: 'Ticket Hall', artist: 'Polly Atlas', album: 'Concourse', duration: 178, bpm: 122,
     stage: '#9a6e13', ink: '#ffffff', glow: '#e1c17f', wall: ['#3e2c08', '#a27314'] },
-  { id: 'tidewater', title: 'Tidewater', artist: 'Brennan & Hale', album: 'Estuary', duration: 306, bpm: 68,
-    stage: '#657c6b', ink: '#ffffff', glow: '#c5cec7', wall: ['#28322b', '#6a8270'] },
   { id: 'allotment', title: 'Allotment', artist: 'The Small Holdings', album: 'Seed Catalogue', duration: 197, bpm: 104,
     stage: '#aa662c', ink: '#ffffff', glow: '#e0c2a9', wall: ['#442912', '#b36b2e'] },
+  { id: 'tidewater', title: 'Tidewater', artist: 'Brennan & Hale', album: 'Estuary', duration: 306, bpm: 68,
+    stage: '#657c6b', ink: '#ffffff', glow: '#c5cec7', wall: ['#28322b', '#6a8270'] },
 ];
 
 // Raise ART_V whenever a cover changes (and in the static src="…?v=" in the pages), so browsers fetch the new file

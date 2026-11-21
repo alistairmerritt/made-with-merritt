@@ -42,13 +42,13 @@
   --ease-io: cubic-bezier(.65, 0, .35, 1);
   --follow: 180ms;           /* the beat between the Mac and the iPhone */
 
-  /* The song colours. JS sets these on .stage from the record that's playing; until then, Low Sun's (session.js). */
-  --stage: #b35638;
+  /* The song colours. JS sets these on .stage from the record that's playing; until then, Midnight Glass's (session.js). */
+  --stage: #5731ba;
   --stage-ink: #fff;
   --stage-ink-2: rgba(255, 255, 255, .9);
-  --stage-glow: #e3c4ba;
-  --wall-a: #472316;
-  --wall-b: #bc5b3b;
+  --stage-glow: #c5b8e5;
+  --wall-a: #23144a;
+  --wall-b: #5c33c3;
   color-scheme: light;
 }
 
