@@ -10,7 +10,7 @@ const ART_BASE = (document.currentScript ? new URL('../art/', document.currentSc
 // Each record's colours are read from its cover by coloursFrom() in home.js, the same reading a song picked in
 // "Try it with your own song" gets. They're written out here so the first paint is right and every browser agrees.
 const RECORDS = [
-  { id: 'midnight-glass', title: 'Midnight Glass', artist: 'North Arcade', album: 'Electric Memory', duration: 232, bpm: 118,
+  { id: 'midnight-rendezvous', title: 'Midnight Rendezvous', artist: 'North Arcade', album: 'Electric Memory', duration: 247, bpm: 108,
     stage: '#5731ba', ink: '#ffffff', glow: '#c5b8e5', wall: ['#23144a', '#5c33c3'] },
   { id: 'low-sun', title: 'Low Sun', artist: 'Drift Hotel', album: 'Breakwater', duration: 214, bpm: 96,
     stage: '#b35638', ink: '#ffffff', glow: '#e3c4ba', wall: ['#472316', '#bc5b3b'] },

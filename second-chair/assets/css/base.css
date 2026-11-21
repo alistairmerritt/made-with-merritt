@@ -42,7 +42,7 @@
   --ease-io: cubic-bezier(.65, 0, .35, 1);
   --follow: 180ms;           /* the beat between the Mac and the iPhone */
 
-  /* The song colours. JS sets these on .stage from the record that's playing; until then, Midnight Glass's (session.js). */
+  /* The song colours. JS sets these on .stage from the record that's playing; until then, Midnight Rendezvous's (session.js). */
   --stage: #5731ba;
   --stage-ink: #fff;
   --stage-ink-2: rgba(255, 255, 255, .9);
