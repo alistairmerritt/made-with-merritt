@@ -20,6 +20,7 @@ const session = new Session({ index: 0, position: RECORDS[0].duration - FIRST_SO
 const stageArt = $('.stage-art', stage);
 function paintRoom(r) {
   paintStage(stage, r.ink === '#ffffff' ? r : { ...r, stage: r.wall[0], ink: '#ffffff' });
+  stage.toggleAttribute('data-pale', r.ink !== '#ffffff');
   document.querySelector('meta[name="theme-color"]').content = stage.style.getPropertyValue('--stage');
   if (!stageArt) return;
   const url = artURL(r, true), shown = stageArt.lastElementChild;
