@@ -693,9 +693,12 @@ if (hand) {
     if (qMac.dataset.for !== String(session.index)) { fillQueue(qMac, session.index); qMac.dataset.for = String(session.index); }
   }
 
-  function flyArt(fromEl, toEl, src, { delay = 0, duration = 900, lift = 60 } = {}) {
+  // The copy lands on the destination, which is then shown as it will be (onLand), at once and under the copy;
+  // only then does the copy fade off it. So the real artwork is already there and nothing blinks.
+  function flyArt(fromEl, toEl, src, { delay = 0, duration = 900, lift = 60, onLand } = {}) {
     const a = fromEl.getBoundingClientRect(), b = toEl.getBoundingClientRect();
-    if (reducedMotion.matches || !a.width || !b.width) return Promise.resolve();
+    if (reducedMotion.matches || !a.width || !b.width) { onLand?.(); return Promise.resolve(); }
+    const landShadow = getComputedStyle(fromEl).boxShadow;   // the artwork's own shadow, so the copy lands wearing it
     const g = document.createElement('div');
     g.className = 'hand-ghost';
     Object.assign(g.style, { left: `${a.left + scrollX}px`, top: `${a.top + scrollY}px`, width: `${a.width}px`, height: `${a.height}px`, borderRadius: getComputedStyle(fromEl).borderRadius, transformOrigin: '0 0' });
@@ -705,9 +708,18 @@ if (hand) {
     const anim = g.animate([
       { transform: 'none', opacity: 1 },
       { transform: `translate(${dx * 0.5}px, ${dy * 0.5 - lift}px) scale(${(1 + s) / 2 * 1.04})`, opacity: 1, offset: 0.5 },
-      { transform: `translate(${dx}px, ${dy}px) scale(${s})`, opacity: 1 },
+      { transform: `translate(${dx}px, ${dy}px) scale(${s})`, opacity: 1, boxShadow: landShadow },
     ], { duration, delay, easing: 'cubic-bezier(.55,0,.15,1)', fill: 'both' });
-    return anim.finished.then(() => g.remove());
+    return anim.finished.then(() => new Promise((done) => {
+      toEl.classList.add('is-landing');                  // no transitions: the destination changes in one frame
+      onLand?.();
+      void toEl.offsetWidth;
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        toEl.classList.remove('is-landing');
+        const out = () => { g.remove(); done(); };
+        g.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 160, fill: 'forwards' }).finished.then(out, out);
+      }));
+    }));
   }
 
   // Keyboard users land on the way back once the move is done.
@@ -752,11 +764,18 @@ if (hand) {
     fill(phoneCard, RECORDS[i]);
     if (session.playing) session.toggle('auto');
     fillQueue(qPhone, i); qPhone.classList.remove('is-here'); qMac.classList.add('is-left');
-    const main = flyArt($('.hand-art', macCard), $('.hand-art', phoneCard), artURL(RECORDS[i]), { duration: 950 });
-    const trail = $$('li:not(.more) img', qMac).map((img, k) => flyArt(img, $$('li:not(.more) img', qPhone)[k], img.src, { delay: 160 + k * 60, duration: 820, lift: 30 }));
+    const main = flyArt($('.hand-art', macCard), $('.hand-art', phoneCard), artURL(RECORDS[i]), { duration: 950, onLand: () => {
+      if (!carried) { phone.t0 = performance.now(); phone.playing = true; }   // a paused Mac: the iPhone starts it now
+      render();                                                               // the iPhone's card: the song, playing
+    } });
+    const trail = $$('li:not(.more) img', qMac).map((img, k) => {
+      const to = $$('li:not(.more) img', qPhone)[k];
+      return flyArt(img, to, img.src, { delay: 160 + k * 60, duration: 820, lift: 30,
+        onLand: () => { Object.assign(to.closest('li').style, { transition: 'none', opacity: '1', transform: 'none' }); } });
+    });
     await Promise.all([main, ...trail]);
-    if (!carried) { phone.t0 = performance.now(); phone.playing = true; }   // a paused Mac: the iPhone starts it now
     qPhone.classList.add('is-here'); qMac.classList.remove('is-left');
+    for (const li of $$('li', qPhone)) li.removeAttribute('style');          // the class holds them now
     end(toPhone, 'iphone', backToMac);
     sound.sync();
     say(`Continued on the iPhone: ${RECORDS[i].title}, from ${fmt(at)}, with Up Next. The Mac is paused.`);
@@ -779,7 +798,8 @@ if (hand) {
     phone.base = at; phone.playing = false;
     session.goTo(i, at, 'auto');
     macCard.dataset.state = 'paused';
-    await flyArt($('.hand-art', phoneCard), $('.hand-art', macCard), artURL(RECORDS[i]), { duration: 900 });
+    await flyArt($('.hand-art', phoneCard), $('.hand-art', macCard), artURL(RECORDS[i]), { duration: 900,
+      onLand: () => { macCard.dataset.state = 'playing'; } });   // Music starts as it lands (just below)
     macStatus.classList.remove('is-waiting'); macStatus.textContent = '';
     hand.dataset.where = 'mac';                 // before Music starts, so the start isn't taken for a takeover
     const heard = sound.heard(RECORDS[i].id);   // the song kept sounding through the move: the Mac picks up where it is now
