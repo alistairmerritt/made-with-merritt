@@ -471,7 +471,7 @@ html:not(.js) .try { display: none; }
 }
 .home .hero-mac.is-folded {
   opacity: 0; visibility: hidden; pointer-events: none; transform: scale(.06);
-  transition: transform .36s cubic-bezier(.55, 0, .75, .2), opacity .2s .14s var(--ease), visibility 0s .36s;
+  transition: transform .62s cubic-bezier(.45, 0, .4, 1), opacity .34s .26s var(--ease), visibility 0s .62s;   /* unhurried: it eases away into the ♪ */
 }
 .home .hero-mac.no-anim { transition: none; }
 .home .hero-mac.is-away .device-tag--mac { display: none; }   /* the caption belongs to the first screen */
