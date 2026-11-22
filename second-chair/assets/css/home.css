@@ -440,7 +440,7 @@ html:not(.js) .try { display: none; }
 .home { --hdr-h: 40px; }
 .home .stage { z-index: 25; padding-top: var(--hdr-h); }   /* above the sections below (their device frames sit at 20), so the bar and menu stay on top */
 .home .site-header {
-  position: fixed; top: var(--nav-top, var(--mwm-bar)); left: 0; right: 0; height: var(--hdr-h);
+  position: fixed; z-index: 31; top: var(--nav-top, var(--mwm-bar)); left: 0; right: 0; height: var(--hdr-h);   /* over the phones' frames (20) */
   background: var(--stage); transition: background-color 1.2s var(--ease), color 1.2s var(--ease);   /* the song's colour, as the stage */
 }
 .home .status-item { border: 0; padding: 0; margin: 0; background: transparent; color: inherit; cursor: pointer; transition: background-color .25s; }
@@ -449,7 +449,7 @@ html:not(.js) .try { display: none; }
 .home .status-item.is-open { background: rgba(255, 255, 255, .24); }
 .home .stage[data-tone="light"] .status-item.is-open { background: rgba(0, 0, 0, .1); }
 .home .hero-mac {
-  position: fixed; z-index: 19; top: calc(var(--nav-top, var(--mwm-bar)) + var(--hdr-h) + 6px);
+  position: fixed; z-index: 30; top: calc(var(--nav-top, var(--mwm-bar)) + var(--hdr-h) + 6px);
   transform-origin: calc(100% - 11px) -26px;   /* the ♪, so the menu folds into it and opens out of it */
   transition: transform .42s cubic-bezier(.2, .8, .25, 1), opacity .22s var(--ease), visibility 0s;
 }

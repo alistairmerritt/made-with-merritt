@@ -13,7 +13,11 @@
   }
   .guide-page .site-header a:hover { background: rgba(255, 255, 255, .08); }
 }
-.guide-page .site-header { color: var(--fg); border-bottom: 1px solid var(--rule); }
+/* The menu bar stays at the top, as on the home page and Pivot: the Made with Merritt bar scrolls away above it. */
+.guide-page { --hdr-h: 40px; }
+@media (max-width: 719px) { .guide-page { --hdr-h: 56px; } }
+:where(.guide-page [id]) { scroll-margin-top: calc(var(--hdr-h) + 16px); }   /* links into the page land below the bar */
+.guide-page .site-header { position: sticky; top: 0; z-index: 40; color: var(--fg); background: var(--bg); border-bottom: 1px solid var(--rule); }
 .guide-page .site-header a:hover { background: rgba(0, 0, 0, .05); }
 .guide-page .site-header [aria-current="page"] { background: color-mix(in oklab, var(--fg) 8%, transparent); }
 /* Buttons: ink on paper, paper on ink. (.btn sets its own --bg/--fg, so name the colours.) */
@@ -58,7 +62,7 @@
 
 /* ---------- Body: contents rail + article ---------- */
 .g-body { max-width: var(--max); margin: 0 auto; padding: clamp(64px, 8vw, 112px) var(--gutter) 40px; display: grid; grid-template-columns: 13rem minmax(0, 1fr); gap: clamp(32px, 5vw, 88px); }
-.g-toc { position: sticky; top: 24px; align-self: start; font-size: .875rem; }
+.g-toc { position: sticky; top: calc(var(--hdr-h) + 24px); align-self: start; font-size: .875rem; }
 .g-toc summary { list-style: none; font-weight: 600; cursor: default; pointer-events: none; color: var(--fg); margin-bottom: 14px; }
 .g-toc summary::-webkit-details-marker { display: none; }
 .g-toc ol { list-style: none; display: grid; gap: 2px; }
@@ -79,7 +83,7 @@
 }
 
 .g-article { min-width: 0; }
-.g-article > section { padding-bottom: clamp(56px, 7vw, 96px); scroll-margin-top: 24px; }
+.g-article > section { padding-bottom: clamp(56px, 7vw, 96px); scroll-margin-top: calc(var(--hdr-h) + 24px); }
 .g-article > section + section { padding-top: clamp(40px, 5vw, 64px); border-top: 1px solid var(--rule); }
 .g-article h2 { font-family: var(--serif); font-weight: 300; font-size: clamp(2rem, 1.3rem + 2.2vw, 3.25rem); line-height: 1.02; letter-spacing: -.02em; text-wrap: balance; }
 .g-article h2 .n { color: var(--fg-3); margin-right: .25em; }
@@ -99,7 +103,7 @@
 
 /* Steps: what to do, on which device */
 .steps { list-style: none; margin-top: 28px; display: grid; gap: 0; }
-.step { display: grid; grid-template-columns: 4.5rem minmax(0, 1fr); gap: 0 20px; padding: 20px 0; border-top: 1px solid var(--rule); scroll-margin-top: 24px; }
+.step { display: grid; grid-template-columns: 4.5rem minmax(0, 1fr); gap: 0 20px; padding: 20px 0; border-top: 1px solid var(--rule); scroll-margin-top: calc(var(--hdr-h) + 24px); }
 .step:last-child { border-bottom: 1px solid var(--rule); }
 .step .on { font: 300 1.625rem/1.1 var(--serif); color: var(--fg); padding-top: 1px; }
 .step .on small { display: block; font: 500 .75rem/1 var(--sans); color: var(--fg-3); margin-top: 6px; letter-spacing: .02em; }
@@ -109,7 +113,7 @@
 
 /* Figures: illustrations of the real screens, until screenshots replace them */
 .with-fig { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, auto); gap: 32px clamp(32px, 5vw, 72px); align-items: start; }
-.with-fig > .fig { position: sticky; top: 24px; }
+.with-fig > .fig { position: sticky; top: calc(var(--hdr-h) + 24px); }
 .fig { margin: 0; }
 .fig figcaption { margin-top: 14px; font-size: .8125rem; color: var(--fg-3); max-width: 22rem; }
 .fig figcaption b { color: var(--fg-2); font-weight: 600; }
@@ -236,7 +240,7 @@ details.advanced p { color: var(--fg-2); }
 .g-kicker { font: 600 .75rem/1.2 var(--sans); letter-spacing: .06em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
 .g-article .cl h2 { font-size: clamp(2.5rem, 1.5rem + 3.4vw, 4.5rem); }
 .g-article .cl .cl-lede { font-size: 1.1875rem; line-height: 1.5; color: var(--fg); max-width: 38rem; }
-.cl-part { margin-top: clamp(48px, 6vw, 80px); scroll-margin-top: 24px; }
+.cl-part { margin-top: clamp(48px, 6vw, 80px); scroll-margin-top: calc(var(--hdr-h) + 24px); }
 .g-article .cl-h { font: 300 clamp(1.5rem, 1.1rem + 1.2vw, 2.125rem)/1.1 var(--serif); letter-spacing: -.015em; margin-top: 0; }
 .cl-h .n { color: var(--fg-3); margin-right: .3em; font-style: italic; }
 
@@ -279,7 +283,7 @@ details.advanced p { color: var(--fg-2); }
 @media (max-width: 699px) { .gs-need ul { grid-template-columns: 1fr; } }
 
 .gs-body { max-width: var(--max); margin: 0 auto; padding: clamp(56px, 8vw, 112px) var(--gutter) 40px; }
-.g-article.gs-body > section { padding: 0; border: 0; scroll-margin-top: 16px; }
+.g-article.gs-body > section { padding: 0; border: 0; scroll-margin-top: calc(var(--hdr-h) + 16px); }
 
 /* A part: Get connected, Take your music with you */
 .gs-part { max-width: 60rem; }
@@ -289,7 +293,7 @@ details.advanced p { color: var(--fg-2); }
 .gs-part .g-map { margin-top: clamp(28px, 4vw, 44px); }
 
 /* A step */
-.g-article.gs-body > .gs-step { padding-top: clamp(48px, 7vw, 96px); scroll-margin-top: 16px; }
+.g-article.gs-body > .gs-step { padding-top: clamp(48px, 7vw, 96px); scroll-margin-top: calc(var(--hdr-h) + 16px); }
 .gs-step + .gs-step { margin-top: clamp(16px, 3vw, 32px); border-top: 1px solid var(--rule) !important; }
 .gs-step .with-fig { grid-template-columns: minmax(0, 1fr) minmax(0, 32rem); align-items: center; }
 .gs-step .with-fig > .fig { position: static; }
@@ -356,7 +360,7 @@ details.more ul.plain { padding-left: 32px; font-size: .9375rem; }
   .g-map--3 a::before { grid-row: 1 / span 2; font-size: 2.4rem; }
 }
 .g-map--3 .key, .gs-cl .g-map a::before { color: var(--accent); }
-.gs-cl .gs-step { padding-top: clamp(48px, 7vw, 96px); scroll-margin-top: 16px; }
+.gs-cl .gs-step { padding-top: clamp(48px, 7vw, 96px); scroll-margin-top: calc(var(--hdr-h) + 16px); }
 .gs-cl .gs-step .gs-step-n { color: var(--accent); }
 .gs-cl-foot { margin-top: clamp(32px, 4vw, 48px); max-width: 44rem; }
 .g-article .gs-cl-foot p { color: var(--fg-2); margin-top: 12px; }
@@ -419,7 +423,7 @@ details.more .fixes { margin-top: 10px; }
 .mi .g-article details.more.ref { max-width: 60rem; }
 .mi-group { margin-top: 24px; display: grid; gap: 10px; }
 .mi-group details.more { margin-top: 0; }
-.g-article #skip-tap { margin-top: clamp(40px, 5vw, 56px); scroll-margin-top: 24px; }
+.g-article #skip-tap { margin-top: clamp(40px, 5vw, 56px); scroll-margin-top: calc(var(--hdr-h) + 24px); }
 
 /* Troubleshooting: scan the problems, open the one you have */
 .g-article h3.mi-grp { margin-top: 32px; font: 600 .75rem/1 var(--sans); letter-spacing: .07em; text-transform: uppercase; color: var(--fg-3); }
