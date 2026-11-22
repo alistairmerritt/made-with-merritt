@@ -551,14 +551,24 @@ function wake() {
   ghost.className = 'hand-ghost';
   Object.assign(ghost.style, { left: `${b.left + scrollX}px`, top: `${b.top + scrollY}px`, width: `${b.width}px`, height: `${b.height}px`, borderRadius: getComputedStyle(to).borderRadius, transformOrigin: '0 0' });
   ghost.innerHTML = `<img src="${artURL(session.record)}" alt="">`;
+  // The screen's glass sheen (.screen::after) lies over StandBy's artwork but not over the copy, so the copy takes
+  // on the same sheen, lined up with the screen, and StandBy's own shadow as it lands. Then the swap is invisible.
+  const screen = to.closest('.screen'), sc = screen.getBoundingClientRect();
+  const glass = document.createElement('i');
+  Object.assign(glass.style, { position: 'absolute', inset: '0', pointerEvents: 'none', opacity: '0',
+    backgroundImage: getComputedStyle(screen, '::after').backgroundImage, backgroundRepeat: 'no-repeat',
+    backgroundSize: `${sc.width}px ${sc.height}px`, backgroundPosition: `${sc.left - b.left}px ${sc.top - b.top}px` });
+  ghost.append(glass);
+  const landShadow = getComputedStyle(to).boxShadow;
   const s = a.width / b.width, dx = a.left - b.left, dy = a.top - b.top;
   to.style.opacity = '0';
   document.body.append(ghost);
   const fly = ghost.animate([
     { transform: `translate(${dx}px, ${dy}px) scale(${s})`, borderRadius: `${6 / s}px`, offset: 0 },
     { transform: `translate(${dx * 0.45}px, ${dy * 0.62}px) scale(${s + (1 - s) * 0.55})`, offset: 0.55 },
-    { transform: 'none', offset: 1 },
+    { transform: 'none', boxShadow: landShadow, offset: 1 },
   ], { duration: 980, delay: OPENING_WAIT, easing: 'cubic-bezier(.6,0,.2,1)', fill: 'both' });
+  glass.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 980, delay: OPENING_WAIT, easing: 'cubic-bezier(.6,0,.2,1)', fill: 'both' });
   setTimeout(() => { phone.classList.remove('is-asleep'); }, OPENING_WAIT + 500);
   setTimeout(() => stage.style.setProperty('--lit', '1'), OPENING_WAIT + 630);
   // A press during the wait means someone's already using it: skip the opening.
@@ -570,7 +580,10 @@ function wake() {
     session.removeEventListener('change', skip);
     to.style.transition = 'none'; to.style.opacity = '';
     reveal(); void to.offsetWidth;
-    requestAnimationFrame(() => requestAnimationFrame(() => { ghost.remove(); to.style.transition = ''; }));
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      to.style.transition = '';
+      ghost.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 160, fill: 'forwards' }).finished.then(() => ghost.remove(), () => ghost.remove());
+    }));
   };
   fly.finished.then(done, done);
 }
