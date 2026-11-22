@@ -17,7 +17,12 @@
 .guide-page { --hdr-h: 40px; }
 @media (max-width: 719px) { .guide-page { --hdr-h: 56px; } }
 :where(.guide-page [id]) { scroll-margin-top: calc(var(--hdr-h) + 16px); }   /* links into the page land below the bar */
-.guide-page .site-header { position: sticky; top: 0; z-index: 40; color: var(--fg); background: var(--bg); border-bottom: 1px solid var(--rule); }
+.guide-page .site-header {
+  position: sticky; top: 0; z-index: 40; color: var(--fg); border-bottom: 1px solid var(--rule);
+  background: color-mix(in oklab, var(--bg) 74%, transparent);   /* frosted glass, as on the home page */
+  -webkit-backdrop-filter: saturate(1.8) blur(20px); backdrop-filter: saturate(1.8) blur(20px);
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) { .guide-page .site-header { background: var(--bg); } }
 .guide-page .site-header a:hover { background: rgba(0, 0, 0, .05); }
 .guide-page .site-header [aria-current="page"] { background: color-mix(in oklab, var(--fg) 8%, transparent); }
 /* Buttons: ink on paper, paper on ink. (.btn sets its own --bg/--fg, so name the colours.) */

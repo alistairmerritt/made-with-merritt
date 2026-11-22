@@ -593,8 +593,9 @@ if (document.readyState === 'complete') wake(); else addEventListener('load', wa
 // The Made with Merritt bar scrolls away and the menu bar takes its place at the top. Scrolling away from the
 // first screen folds the menu into the ♪; the ♪ opens it again, and so does coming back to the top.
 (function menuBar() {
-  const root = document.documentElement, mac = $('.hero-mac'), btn = $('.status-item');
-  if (!mac || !btn) return;
+  const root = document.documentElement, header = $('.site-header'), mac = $('.hero-mac'), btn = $('.status-item');
+  const dark = $$('.handover');   // the night section; the other sections below the first screen are paper
+  if (!header || !mac || !btn) return;
   const AWAY = 24;     // scrolled this far, the menu folds
   const DRIFT = 240;   // opened while away, it folds again after this much more scrolling
   const barH = () => $('.mwm-bar')?.offsetHeight || 0;
@@ -609,6 +610,11 @@ if (document.readyState === 'complete') wake(); else addEventListener('load', wa
   const onScroll = () => {
     const y = Math.max(0, scrollY);
     root.style.setProperty('--nav-top', `${Math.max(0, barH() - y)}px`);
+    // Below the first screen the bar turns to glass, light or dark to match the section under it.
+    const line = header.getBoundingClientRect().bottom;
+    const under = stage.getBoundingClientRect().bottom > line ? 'stage'
+      : dark.some((s) => { const r = s.getBoundingClientRect(); return r.top <= line && r.bottom > line; }) ? 'dark' : 'light';
+    if (header.dataset.bar !== under) header.dataset.bar = under;
     const nowAway = y > AWAY;
     if (nowAway !== away) {
       const first = away === null;

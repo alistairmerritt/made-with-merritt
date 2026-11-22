@@ -443,6 +443,22 @@ html:not(.js) .try { display: none; }
   position: fixed; z-index: 31; top: var(--nav-top, var(--mwm-bar)); left: 0; right: 0; height: var(--hdr-h);   /* over the phones' frames (20) */
   background: var(--stage); transition: background-color 1.2s var(--ease), color 1.2s var(--ease);   /* the song's colour, as the stage */
 }
+.home .site-header:is([data-bar="light"], [data-bar="dark"]) {
+  -webkit-backdrop-filter: saturate(1.8) blur(20px); backdrop-filter: saturate(1.8) blur(20px);
+  transition: background-color .4s var(--ease), color .4s var(--ease);
+}
+/* Below the first screen: frosted glass, light over the paper sections and dark over the night one (home.js sets data-bar). */
+.home .site-header[data-bar="light"] { background: color-mix(in oklab, var(--paper) 74%, transparent); color: var(--ink); }
+.home .site-header[data-bar="dark"] { background: rgba(17, 14, 12, .68); color: #f3eee6; }
+.home .site-header:is([data-bar="light"], [data-bar="dark"])::after { left: 0; right: 0; opacity: .12; }   /* the hairline runs edge to edge under glass */
+.home .site-header[data-bar="light"] a:hover, .home .site-header[data-bar="light"] .status-item:hover { background: rgba(0, 0, 0, .07); }
+.home .site-header[data-bar="dark"] a:hover, .home .site-header[data-bar="dark"] .status-item:hover { background: rgba(255, 255, 255, .14); }
+.home .site-header[data-bar="light"] .status-item.is-open { background: rgba(0, 0, 0, .1); }
+.home .site-header[data-bar="dark"] .status-item.is-open { background: rgba(255, 255, 255, .22); }
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .home .site-header[data-bar="light"] { background: var(--paper); }
+  .home .site-header[data-bar="dark"] { background: #110e0c; }
+}
 .home .status-item { border: 0; padding: 0; margin: 0; background: transparent; color: inherit; cursor: pointer; transition: background-color .25s; }
 .home .status-item:hover { background: rgba(255, 255, 255, .16); }
 .home .stage[data-tone="light"] .status-item:hover { background: rgba(0, 0, 0, .07); }
