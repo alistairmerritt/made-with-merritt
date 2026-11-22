@@ -532,7 +532,7 @@ const sound = { phone: null, hold: 0, sync: () => {}, heard: () => null };
 
 // ---------- The opening: the song is on the Mac; then it arrives on the iPhone ----------
 // The opening waits a moment after landing, so the page is read before anything moves.
-const OPENING_WAIT = 600;
+const OPENING_WAIT = 500;   // from the page loading to the artwork setting off (was 1.1 s)
 function wake() {
   const phone = $$('.hero-phone').find((p) => p.offsetParent !== null);
   const from = $('.hero-menu .mm-art');
@@ -558,13 +558,20 @@ function wake() {
     { transform: `translate(${dx}px, ${dy}px) scale(${s})`, borderRadius: `${6 / s}px`, offset: 0 },
     { transform: `translate(${dx * 0.45}px, ${dy * 0.62}px) scale(${s + (1 - s) * 0.55})`, offset: 0.55 },
     { transform: 'none', offset: 1 },
-  ], { duration: 980, delay: OPENING_WAIT + 520, easing: 'cubic-bezier(.6,0,.2,1)', fill: 'both' });
-  setTimeout(() => { phone.classList.remove('is-asleep'); }, OPENING_WAIT + 1020);
-  setTimeout(() => stage.style.setProperty('--lit', '1'), OPENING_WAIT + 1150);
+  ], { duration: 980, delay: OPENING_WAIT, easing: 'cubic-bezier(.6,0,.2,1)', fill: 'both' });
+  setTimeout(() => { phone.classList.remove('is-asleep'); }, OPENING_WAIT + 500);
+  setTimeout(() => stage.style.setProperty('--lit', '1'), OPENING_WAIT + 630);
   // A press during the wait means someone's already using it: skip the opening.
   const skip = () => { fly.cancel(); };
   session.addEventListener('change', skip, { once: true });
-  const done = () => { session.removeEventListener('change', skip); to.style.opacity = ''; ghost.remove(); reveal(); };
+  // The landing: StandBy's own artwork appears at once, under the copy, before the copy goes. Left to its .5 s
+  // fade-in, it was still see-through when the copy went, and the artwork blinked.
+  const done = () => {
+    session.removeEventListener('change', skip);
+    to.style.transition = 'none'; to.style.opacity = '';
+    reveal(); void to.offsetWidth;
+    requestAnimationFrame(() => requestAnimationFrame(() => { ghost.remove(); to.style.transition = ''; }));
+  };
   fly.finished.then(done, done);
 }
 if (document.readyState === 'complete') wake(); else addEventListener('load', wake, { once: true });

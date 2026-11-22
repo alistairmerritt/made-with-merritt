@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Second Chair: your Mac’s music on your iPhone</title>
-<meta name="description" content="Second Chair shows the music playing on your Mac in your iPhone’s own Now Playing, on the Lock Screen, in StandBy and on Apple Watch, and its controls work the Mac. A free beta for Mac and iPhone.">
+<meta name="description" content="Second Chair brings your Mac’s music to your iPhone’s Lock Screen, StandBy and Apple Watch. Control playback remotely or switch listening between devices without starting over. Free during beta.">
 <meta name="theme-color" content="#5731ba">
 <link rel="icon" type="image/png" href="assets/img/favicon.png?v=indigo">
 <link rel="apple-touch-icon" href="assets/img/icon-180.png?v=indigo">
@@ -12,7 +12,7 @@
 <meta property="og:url" content="https://madewithmerritt.com/second-chair/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Second Chair">
-<meta property="og:description" content="Music on your Mac. Now Playing on your iPhone. The music playing on your Mac, in your iPhone’s own Now Playing.">
+<meta property="og:description" content="Music on your Mac. Now Playing on your iPhone. Control playback remotely or continue listening on either device.">
 <meta property="og:image" content="https://madewithmerritt.com/second-chair/assets/img/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -23,7 +23,7 @@
 <link rel="stylesheet" href="assets/css/home.css?v=darkpull">
 <script>document.documentElement.classList.add('js')</script>
 <script src="assets/js/session.js?v=rendezvous" defer></script>
-<script src="assets/js/home.js" defer></script>
+<script src="assets/js/home.js?v=landing" defer></script>
 <script src="assets/js/clock.js" defer></script>
 <script src="assets/js/contact.js" defer></script>
 </head>
@@ -115,7 +115,7 @@
             </div>
             <div class="mm-foot" aria-hidden="true"><i></i>Online · iPhone paired<svg><use href="#i-gear"/></svg></div>
           </div>
-          <p class="device-tag device-tag--mac">Mac, playing in Music</p>
+          <p class="device-tag device-tag--mac">Mac, playing Music</p>
         </div>
 
         <!-- The iPhone, in StandBy -->
@@ -152,7 +152,7 @@
   <section class="controls" aria-labelledby="controls-title">
     <h2 id="controls-title" class="display section-title controls-title"><span>Press it here.</span> <span>It happens there.</span></h2>
     <div class="controls-copy">
-      <p class="lede">Play, pause, skip and scrub from the Lock Screen, Control Centre, StandBy or your Apple Watch, and adjust your Mac’s volume remotely. When the song changes on your Mac, your iPhone follows. Whether you’re at home, at the office or out and about, everything stays in sync as long as both devices are online.</p>
+      <p class="lede">Play, pause, skip and scrub from the Lock Screen, Control Centre, StandBy or your Apple Watch, and adjust your Mac’s music volume remotely. When the song changes on your Mac, your iPhone follows. Whether you’re at home, at the office or out and about, everything stays in sync as long as both devices are online.</p>
       <figure class="ctl-mac" aria-label="Second Chair’s menu on the Mac, which follows what you press on the iPhone">
         <figcaption class="small">There: your Mac</figcaption>
         <div class="mac-menu ctl-menu" data-surface="mac">
@@ -280,22 +280,22 @@
       </div>
     </div>
 
-    <div class="handover-auto"><p><b>Or let it happen by itself.</b> Continue Listening works with Siri Shortcuts, so your music can move between devices without you lifting a finger. Pick up where you left off on your Mac when your iPhone connects to CarPlay, then switch back to your Mac when you connect your headphones.</p></div>
+    <div class="handover-auto"><p><b>Or make it automatic.</b> Continue Listening works with Apple Shortcuts, so you can move music between devices as part of your routine. Pick up on your iPhone when you connect to CarPlay, then return to your Mac when you reconnect your headphones.</p></div>
 
-    <p class="small handover-fine" id="fn-queue">*Your queue may carry over differently depending on how you’re listening. <a href="guide/#cl-know">See the details</a> · <b>Continue Listening</b> needs an Apple Music subscription on your iPhone and a one-time connection on the Mac. <a href="getting-started/#continue">Setting it up</a></p>
+    <p class="small handover-fine" id="fn-queue">*Due to Apple Music limitations, your queue may carry over differently depending on how you’re listening. <a href="guide/#cl-know">Queue management</a> · Continue Listening needs an Apple Music subscription on your iPhone and a one-time connection on the Mac. <a href="getting-started/#continue">Getting started</a></p>
   </section>
 
   <!-- 4. Get it -->
   <section class="get" id="get" aria-labelledby="get-title">
     <div class="get-head">
       <h2 id="get-title" class="display section-title">Pull up a chair.</h2>
-      <p class="lede">Second Chair is free while it’s in beta. There’s an app for your Mac and one for your iPhone, and you’ll need both.</p>
+      <p class="lede">Second Chair is free while it’s in beta. You’ll need both the Mac and iPhone apps to use it.</p>
     </div>
 
     <ul class="apps">
       <li class="app">
         <h3 class="display app-name">For Mac</h3>
-        <p class="app-meta">Version 0.3.9 · Notarised by Apple<br>Apple silicon, macOS 27 · Lives in the menu bar</p>
+        <p class="app-meta">Version 0.3.9 · Apple silicon · macOS 27</p>
         <div class="app-actions">
           <a class="btn" href="https://github.com/alistairmerritt/music-standby/releases/download/mac-v0.3.9/Second-Chair-0.3.9.zip"><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-down"/></svg>Download for Mac</a>
           <a class="small app-sub" href="https://github.com/alistairmerritt/music-standby/releases/tag/mac-v0.3.9">Release notes on GitHub</a>
@@ -303,7 +303,7 @@
       </li>
       <li class="app">
         <h3 class="display app-name">For iPhone</h3>
-        <p class="app-meta">TestFlight build 202611211340 or later · By invitation<br>iOS 27 · Needs Apple’s TestFlight app</p>
+        <p class="app-meta">TestFlight build 202611211340 or later · By invitation · iOS 27</p>
         <div class="app-actions">
           <!-- Invitations come through the Made with Merritt contact form. With a public TestFlight link, make this the link. -->
           <a class="btn btn-quiet" href="/?contact=1">Ask for an invitation</a>
@@ -315,10 +315,10 @@
     <div class="setup">
       <h3 class="setup-title">Setting up takes a few minutes</h3>
       <ol class="setup-steps">
-        <li><span class="who">Mac</span><p>Download Second Chair, move it to Applications and open it. It lives in the menu bar.</p></li>
-        <li><span class="who">iPhone</span><p>Install Second Chair from TestFlight and open it.</p></li>
-        <li><span class="who">Both</span><p>Choose <span class="ui">Pair iPhone…</span> on the Mac, type its six-digit code on the iPhone, then click <span class="ui">Allow</span> on the Mac.</p></li>
-        <li class="key"><span class="who">Mac</span><p>Play something in Music on the Mac, and it appears on your iPhone’s Lock Screen.</p></li>
+        <li><span class="who">Mac</span><p>Download Second Chair, move it to Applications and open it from the menu bar.</p></li>
+        <li><span class="who">iPhone</span><p>Install Second Chair through TestFlight and open it.</p></li>
+        <li><span class="who">Pair</span><p>Choose <span class="ui">Pair iPhone…</span> on your Mac, enter the six-digit code on your iPhone and approve the connection on your Mac.</p></li>
+        <li class="key"><span class="who">Play</span><p>Start a song in Music on your Mac. It will appear in Now Playing on your iPhone.</p></li>
       </ol>
       <a class="link-arrow" href="getting-started/">The full setup guide</a>
     </div>
@@ -341,7 +341,7 @@
 <dialog class="try-dialog" id="try-dialog" aria-labelledby="try-title">
   <form method="dialog" class="try-close-form"><button class="try-close" aria-label="Close">×</button></form>
   <h2 id="try-title" class="display try-title">Try it with your own song.</h2>
-  <p class="try-intro">Search Apple Music for any song, and the demo on this page plays its 30-second preview. It’s only a demo: nothing reaches your Mac or iPhone.</p>
+  <p class="try-intro">Search for a song to try Second Chair’s interactive demo with a 30-second Apple Music preview. It won’t affect playback on your devices.</p>
   <label class="try-field"><span class="visually-hidden">Song or artist</span><svg class="ico" aria-hidden="true"><use href="#i-search"/></svg><input type="search" placeholder="Song or artist" autocomplete="off" spellcheck="false" enterkeyhint="search"></label>
   <p class="try-status" role="status" aria-live="polite"></p>
   <ul class="try-results"></ul>
