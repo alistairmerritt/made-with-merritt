@@ -20,10 +20,10 @@
 <link rel="preconnect" href="https://use.typekit.net" crossorigin>
 <link rel="stylesheet" href="https://use.typekit.net/fiv2yhs.css">
 <link rel="stylesheet" href="assets/css/base.css?v=sbcalm">
-<link rel="stylesheet" href="assets/css/home.css?v=darkpull">
+<link rel="stylesheet" href="assets/css/home.css?v=menubar">
 <script>document.documentElement.classList.add('js')</script>
 <script src="assets/js/session.js?v=rendezvous" defer></script>
-<script src="assets/js/home.js?v=glass" defer></script>
+<script src="assets/js/home.js?v=menubar" defer></script>
 <script src="assets/js/clock.js" defer></script>
 <script src="assets/js/contact.js" defer></script>
 </head>
@@ -65,8 +65,8 @@
       <a href="guide/">Guide</a>
       <a href="#get">Download</a>
     </nav>
-    <div class="status" aria-hidden="true">
-      <span class="status-item is-open"><svg><use href="#i-note"/></svg></span>
+    <div class="status">
+      <button type="button" class="status-item is-open" aria-expanded="true" aria-controls="hero-mac" aria-label="Second Chair’s menu"><svg aria-hidden="true"><use href="#i-note"/></svg></button>
     </div>
   </header>
 
@@ -100,7 +100,7 @@
 
       <div class="scene hero-scene" role="group" aria-label="Illustration: the same song in Second Chair’s menu on a Mac and on an iPhone. The buttons work, on this page only.">
                 <!-- The Mac: Second Chair's menu, and beside it the way to try the demo with your own song. -->
-        <div class="hero-mac">
+        <div class="hero-mac" id="hero-mac">
           <div class="mac-menu hero-menu" data-surface="mac">
             <div class="mm-head"><b>On This Mac</b></div>
             <div class="mm-track">

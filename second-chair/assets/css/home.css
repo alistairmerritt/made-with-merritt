@@ -432,3 +432,34 @@ html:not(.js) .try { display: none; }
   .setup-steps li::before { grid-row: 1 / span 2; font-size: 2.5rem; }
   .setup-steps li + li { border-top: 1px solid var(--rule); }
 }
+
+/* ---------- The menu bar stays at the top, as on Pivot ----------
+   The Made with Merritt bar scrolls away and the menu bar takes its place (home.js sets --nav-top as it goes).
+   Second Chair's menu hangs from the bar; scrolling away folds it into the ♪, which opens it again. */
+:root:has(body.home) { scroll-padding-top: 56px; }   /* links into the page land below the bar */
+.home { --hdr-h: 40px; }
+.home .stage { z-index: 25; padding-top: var(--hdr-h); }   /* above the sections below (their device frames sit at 20), so the bar and menu stay on top */
+.home .site-header {
+  position: fixed; top: var(--nav-top, var(--mwm-bar)); left: 0; right: 0; height: var(--hdr-h);
+  background: var(--stage); transition: background-color 1.2s var(--ease), color 1.2s var(--ease);   /* the song's colour, as the stage */
+}
+.home .status-item { border: 0; padding: 0; margin: 0; background: transparent; color: inherit; cursor: pointer; transition: background-color .25s; }
+.home .status-item:hover { background: rgba(255, 255, 255, .16); }
+.home .stage[data-tone="light"] .status-item:hover { background: rgba(0, 0, 0, .07); }
+.home .status-item.is-open { background: rgba(255, 255, 255, .24); }
+.home .stage[data-tone="light"] .status-item.is-open { background: rgba(0, 0, 0, .1); }
+.home .hero-mac {
+  position: fixed; z-index: 19; top: calc(var(--nav-top, var(--mwm-bar)) + var(--hdr-h) + 6px);
+  transform-origin: calc(100% - 11px) -26px;   /* the ♪, so the menu folds into it and opens out of it */
+  transition: transform .42s cubic-bezier(.2, .8, .25, 1), opacity .22s var(--ease), visibility 0s;
+}
+.home .hero-mac.is-folded {
+  opacity: 0; visibility: hidden; pointer-events: none; transform: scale(.06);
+  transition: transform .36s cubic-bezier(.55, 0, .75, .2), opacity .2s .14s var(--ease), visibility 0s .36s;
+}
+.home .hero-mac.no-anim { transition: none; }
+.home .hero-mac.is-away .device-tag--mac { display: none; }   /* the caption belongs to the first screen */
+@media (max-width: 719px) { .home { --hdr-h: 56px; } }
+/* Where the first screen has no menu, the ♪ has nothing to open. */
+@media (max-height: 520px) and (orientation: landscape) { .home .site-header .status-item { display: none; } }
+@media (prefers-reduced-motion: reduce) { .home .hero-mac, .home .hero-mac.is-folded { transform: none; } }

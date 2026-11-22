@@ -589,6 +589,44 @@ function wake() {
 }
 if (document.readyState === 'complete') wake(); else addEventListener('load', wake, { once: true });
 
+// ---------- The menu bar stays at the top, as on Pivot; Second Chair's menu folds into its ♪ ----------
+// The Made with Merritt bar scrolls away and the menu bar takes its place at the top. Scrolling away from the
+// first screen folds the menu into the ♪; the ♪ opens it again, and so does coming back to the top.
+(function menuBar() {
+  const root = document.documentElement, mac = $('.hero-mac'), btn = $('.status-item');
+  if (!mac || !btn) return;
+  const AWAY = 24;     // scrolled this far, the menu folds
+  const DRIFT = 240;   // opened while away, it folds again after this much more scrolling
+  const barH = () => $('.mwm-bar')?.offsetHeight || 0;
+  let open = true, away = null, openedAt = null;
+  const set = (o, instant) => {
+    open = o;
+    if (instant) { mac.classList.add('no-anim'); requestAnimationFrame(() => requestAnimationFrame(() => mac.classList.remove('no-anim'))); }
+    mac.classList.toggle('is-folded', !o);
+    btn.classList.toggle('is-open', o);
+    btn.setAttribute('aria-expanded', String(o));
+  };
+  const onScroll = () => {
+    const y = Math.max(0, scrollY);
+    root.style.setProperty('--nav-top', `${Math.max(0, barH() - y)}px`);
+    const nowAway = y > AWAY;
+    if (nowAway !== away) {
+      const first = away === null;
+      away = nowAway; openedAt = null;
+      mac.classList.toggle('is-away', away);
+      set(!away, first);
+    } else if (away && open && openedAt !== null && Math.abs(y - openedAt) > DRIFT) {
+      set(false); openedAt = null;
+    }
+  };
+  btn.addEventListener('click', () => { set(!open); openedAt = open && away ? scrollY : null; });
+  addEventListener('keydown', (e) => { if (e.key === 'Escape' && open && away) { set(false); btn.focus(); } });
+  addEventListener('pointerdown', (e) => { if (open && away && !mac.contains(e.target) && !btn.contains(e.target)) set(false); });
+  addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('resize', onScroll);
+  onScroll();
+})();
+
 // ---------- 3. Continue Listening, both ways ----------
 // Each device pulls the song to itself: Continue on iPhone in the iPhone app, Continue from iPhone in the
 // Mac's menu. Only the destination's control shows, under its name.
