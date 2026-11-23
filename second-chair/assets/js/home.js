@@ -547,28 +547,50 @@ function wake() {
   if (b.width < a.width * 1.6) { setTimeout(reveal, 450); return; }   // nothing worth flying
 
   // A copy of the Mac's artwork travels down into StandBy and becomes its artwork.
+  // It is aimed at StandBy's artwork as it is now, and re-aimed whenever that moves or changes size during the
+  // flight: a new window can still be settling into its size (and the headline face arriving) when the page loads,
+  // and the copy then landed short of StandBy's artwork and the artwork jumped to its full size.
   const ghost = document.createElement('div');
   ghost.className = 'hand-ghost';
-  Object.assign(ghost.style, { left: `${b.left + scrollX}px`, top: `${b.top + scrollY}px`, width: `${b.width}px`, height: `${b.height}px`, borderRadius: getComputedStyle(to).borderRadius, transformOrigin: '0 0' });
   ghost.innerHTML = `<img src="${artURL(session.record)}" alt="">`;
   // The screen's glass sheen (.screen::after) lies over StandBy's artwork but not over the copy, so the copy takes
   // on the same sheen, lined up with the screen, and StandBy's own shadow as it lands. Then the swap is invisible.
-  const screen = to.closest('.screen'), sc = screen.getBoundingClientRect();
+  const screen = to.closest('.screen');
   const glass = document.createElement('i');
   Object.assign(glass.style, { position: 'absolute', inset: '0', pointerEvents: 'none', opacity: '0',
-    backgroundImage: getComputedStyle(screen, '::after').backgroundImage, backgroundRepeat: 'no-repeat',
-    backgroundSize: `${sc.width}px ${sc.height}px`, backgroundPosition: `${sc.left - b.left}px ${sc.top - b.top}px` });
+    backgroundImage: getComputedStyle(screen, '::after').backgroundImage, backgroundRepeat: 'no-repeat' });
   ghost.append(glass);
   const landShadow = getComputedStyle(to).boxShadow;
-  const s = a.width / b.width, dx = a.left - b.left, dy = a.top - b.top;
+  const start = { left: a.left + scrollX, top: a.top + scrollY, width: a.width };   // where it sets off, on the page
+  // The copy sits on StandBy's artwork (page coordinates); its keyframes carry it there from the Mac's.
+  let aim = null;
+  const aimAt = (r) => {
+    aim = { left: r.left + scrollX, top: r.top + scrollY, width: r.width, height: r.height };
+    const sc = screen.getBoundingClientRect();
+    Object.assign(ghost.style, { left: `${aim.left}px`, top: `${aim.top}px`, width: `${aim.width}px`, height: `${aim.height}px`, borderRadius: getComputedStyle(to).borderRadius, transformOrigin: '0 0' });
+    Object.assign(glass.style, { backgroundSize: `${sc.width}px ${sc.height}px`, backgroundPosition: `${sc.left - r.left}px ${sc.top - r.top}px` });
+    const s = start.width / aim.width, dx = start.left - aim.left, dy = start.top - aim.top;
+    return [
+      { transform: `translate(${dx}px, ${dy}px) scale(${s})`, borderRadius: `${6 / s}px`, offset: 0 },
+      { transform: `translate(${dx * 0.45}px, ${dy * 0.62}px) scale(${s + (1 - s) * 0.55})`, offset: 0.55 },
+      { transform: 'none', boxShadow: landShadow, offset: 1 },
+    ];
+  };
+  const frames = aimAt(b);
   to.style.opacity = '0';
   document.body.append(ghost);
-  const fly = ghost.animate([
-    { transform: `translate(${dx}px, ${dy}px) scale(${s})`, borderRadius: `${6 / s}px`, offset: 0 },
-    { transform: `translate(${dx * 0.45}px, ${dy * 0.62}px) scale(${s + (1 - s) * 0.55})`, offset: 0.55 },
-    { transform: 'none', boxShadow: landShadow, offset: 1 },
-  ], { duration: 980, delay: OPENING_WAIT, easing: 'cubic-bezier(.6,0,.2,1)', fill: 'both' });
+  const fly = ghost.animate(frames, { duration: 980, delay: OPENING_WAIT, easing: 'cubic-bezier(.6,0,.2,1)', fill: 'both' });
   glass.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 980, delay: OPENING_WAIT, easing: 'cubic-bezier(.6,0,.2,1)', fill: 'both' });
+  // Each frame of the flight: if StandBy's artwork has moved or changed size, re-aim (the flight keeps its time).
+  const moved = (r) => Math.abs(r.left + scrollX - aim.left) > .5 || Math.abs(r.top + scrollY - aim.top) > .5 || Math.abs(r.width - aim.width) > .5;
+  let flying = true;
+  const track = () => {
+    if (!flying) return;
+    const r = to.getBoundingClientRect();
+    if (moved(r)) fly.effect.setKeyframes(aimAt(r));
+    requestAnimationFrame(track);
+  };
+  requestAnimationFrame(track);
   setTimeout(() => { phone.classList.remove('is-asleep'); }, OPENING_WAIT + 500);
   setTimeout(() => stage.style.setProperty('--lit', '1'), OPENING_WAIT + 630);
   // A press during the wait means someone's already using it: skip the opening.
@@ -577,7 +599,10 @@ function wake() {
   // The landing: StandBy's own artwork appears at once, under the copy, before the copy goes. Left to its .5 s
   // fade-in, it was still see-through when the copy went, and the artwork blinked.
   const done = () => {
+    flying = false;
     session.removeEventListener('change', skip);
+    const r = to.getBoundingClientRect();
+    if (moved(r)) aimAt(r);                     // one last check, so the copy sits exactly on it
     to.style.transition = 'none'; to.style.opacity = '';
     reveal(); void to.offsetWidth;
     requestAnimationFrame(() => requestAnimationFrame(() => {
