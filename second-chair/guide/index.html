@@ -66,7 +66,6 @@
       <summary>On this page</summary>
       <ol>
         <li><a href="#shortcuts">Shortcuts and automations</a></li>
-        <li><a href="#skip-tap">Skip the tap</a></li>
         <li><a href="#player-display">Player Display</a></li>
         <li><a href="#notifications">Notifications</a></li>
         <li><a href="#know">Everyday tips</a></li>
@@ -87,7 +86,7 @@
         <ul class="mi-ideas">
           <li><svg aria-hidden="true"><use href="#i-car"/></svg><div><b>Take your music in the car</b><span>Run <span class="ui">Continue on iPhone</span> when your iPhone connects to CarPlay.</span></div></li>
           <li><svg aria-hidden="true"><use href="#i-phones"/></svg><div><b>Bring it back to your desk</b><span>Run <span class="ui">Continue on Mac</span> when your headphones connect.</span></div></li>
-          <li><svg aria-hidden="true"><use href="#i-bell"/></svg><div><b>Bring the player back</b><span>Run <span class="ui">Show in Now Playing</span> (the same as <span class="ui">Show on Lock Screen</span> in the app) after a playback notification. Your iPhone needs to be unlocked for Second Chair to open. In Live Activity mode it doesn’t show the Live Activity; open Second Chair instead. <a href="#skip-tap">Skip the tap</a></span></div></li>
+          <li><svg aria-hidden="true"><use href="#i-bell"/></svg><div><b>Bring the player back</b><span>Run <span class="ui">Show in Now Playing</span> (the same as <span class="ui">Show on Lock Screen</span> in the app) after a playback notification. Your iPhone needs to be unlocked for Second Chair to open. In Live Activity mode it doesn’t show the Live Activity; open Second Chair instead.</span></div></li>
         </ul>
         <details class="more">
           <summary>How to make an automation</summary>
@@ -105,27 +104,11 @@
           <p><b>On your Mac:</b> <span class="ui">Continue from iPhone</span>.</p>
         </details>
 
-        <h3 class="cl-h" id="skip-tap">Skip the tap</h3>
-        <p>This helps only when Second Chair sends a notification: with <a href="#player-display">Player Display</a> set to <span class="ui">Now Playing</span>, or with Live Activities turned off for Second Chair.</p>
-        <p>A Shortcuts automation can open Second Chair after a playback notification to restore Now Playing on your Lock Screen and in StandBy.</p>
-        <p><a class="btn" href="https://www.icloud.com/shortcuts/6f01cf28b5114a71ac9a398bf74707b2">Get the shortcut</a></p>
-        <p>Once set up, the automation will open Second Chair once your iPhone is unlocked. Now Playing returns to your Lock Screen and StandBy when your iPhone locks again.</p>
-        <p>Turn on <a href="#notifications">Notify When Music Resumes</a> in Second Chair’s Settings so the automation has a notification to respond to.</p>
-        <details class="more">
-          <summary>Or set it up yourself</summary>
-          <ol class="plain-steps">
-            <li>Open Shortcuts → Automation → + and select <span class="ui">Notification</span>.</li>
-            <li>Choose Second Chair.</li>
-            <li>Tap <span class="ui">Add Filter</span>. Set the notification message filter to contains, and enter <span class="says">Tap to show it on your Lock Screen</span>. This limits the automation to playback notifications.</li>
-            <li>Select <span class="ui">Run Immediately</span> and turn off <span class="ui">Notify When Run</span>.</li>
-            <li>Add Second Chair’s <span class="ui">Show in Now Playing</span> action.</li>
-          </ol>
-        </details>
       </section>
 
       <!-- ============ Player Display ============ -->
       <section id="player-display" aria-labelledby="player-display-h">
-        <h2 id="player-display-h">Player Display</h2>
+        <h2 id="player-display-h"><span id="skip-tap"></span>Player Display</h2>
         <p>Choose how your Mac’s music appears on your iPhone, in Second Chair’s Settings › Lock Screen and StandBy › <span class="ui">Player Display</span>.</p>
         <dl class="fixes">
           <div><dt><span class="ui">Automatic</span> (the default)</dt><dd>Prefers Now Playing, with a Live Activity when your Mac resumes after a break. Opening Second Chair restores Now Playing.</dd></div>
@@ -152,7 +135,7 @@
           <li><span class="gs-dev">iPhone</span><span>In Second Chair, tap the gear for Settings, then turn on <kbd class="ui">Notify When Music Resumes</kbd>.</span></li>
           <li><span class="gs-dev">iPhone</span><span>Allow notifications when asked.</span></li>
         </ol>
-        <p>You’ll then get a silent notification when your Mac starts playing after 8 minutes or more without music, whenever the Live Activity can’t show: with <a href="#player-display">Player Display</a> set to <span class="ui">Now Playing</span>, or with Live Activities turned off for Second Chair. Tap it to bring the player back, or <a href="#skip-tap">skip the tap</a> with a shortcut.</p>
+        <p>You’ll then get a silent notification when your Mac starts playing after 8 minutes or more without music, whenever the Live Activity can’t show: with <a href="#player-display">Player Display</a> set to <span class="ui">Now Playing</span>, or with Live Activities turned off for Second Chair. Tap it to bring the player back.</p>
         <details class="more">
           <summary>If the notification doesn’t appear</summary>
           <p>The notification is Time Sensitive, so it can appear during a Focus when those notifications are allowed. These iPhone settings can affect what you see:</p>
@@ -247,7 +230,7 @@
         <div class="mi-faq">
           <details><summary>Nothing appears on your Lock Screen</summary><div><p>Check that Music is playing on your Mac, then open Second Chair on your iPhone. If it still doesn’t appear, open Settings in the app and tap <span class="ui">Restore Now Playing</span>.</p></div></details>
           <details><summary><span class="ui">Show on Lock Screen</span> is greyed out</summary><div><p>Start playing something in Music on your Mac.</p></div></details>
-          <details><summary>The player has disappeared, or Apple Music shows instead</summary><div><p>Open Second Chair on your iPhone, or tap its playback notification. Under <span class="ui">Automatic</span>, a Live Activity usually appears when your Mac resumes after a break; tap it to bring the player back.</p><p>iOS keeps a dismissed player hidden. After your Mac has been paused for about 8 minutes, iOS may show your iPhone’s own Apple Music instead. Resuming playback on your Mac doesn’t switch it back. To automate the return once your iPhone is unlocked, see <a href="#skip-tap">Skip the tap</a>.</p></div></details>
+          <details><summary>The player has disappeared, or Apple Music shows instead</summary><div><p>Open Second Chair on your iPhone, or tap its playback notification. Under <span class="ui">Automatic</span>, a Live Activity usually appears when your Mac resumes after a break; tap it to bring the player back.</p><p>iOS keeps a dismissed player hidden. After your Mac has been paused for about 8 minutes, iOS may show your iPhone’s own Apple Music instead. Resuming playback on your Mac doesn’t switch it back.</p></div></details>
           <details><summary>Now Playing and a Live Activity both show</summary><div><p>Open Second Chair, which closes the Live Activity.<span class="why">Under <span class="ui">Automatic</span>, your Mac resumed before iOS had replaced Now Playing.</span></p></div></details>
           <details><summary>No Live Activity appears</summary><div><p>On your iPhone, check Settings › Second Chair › Live Activities. When they’re off, Second Chair’s Settings say <span class="says">Live Activities are turned off for Second Chair in Settings.</span> In <span class="ui">Live Activity</span> mode, opening Second Chair shows it again.</p></div></details>
           <details><summary>The Live Activity’s buttons ask for Face ID</summary><div><p>That’s how iOS handles buttons on a locked iPhone. Glance at your iPhone or unlock it.</p></div></details>
