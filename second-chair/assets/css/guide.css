@@ -454,3 +454,21 @@ details.more .fixes { margin-top: 10px; }
 .gs-step .with-fig.solo { grid-template-columns: minmax(0, 1fr); }
 /* Pairing: the two Mac moments, one above the other */
 .fig-pair.fig-pair--mac { grid-template-columns: minmax(0, 300px); grid-template-areas: "a" "c"; justify-content: center; }
+
+/* ---------- One column width per page (24 November 2026) ----------
+   Guide: every block in the article (text, lists, panels, tips, the table, the idea cards, the questions)
+   shares one measure, so they all end on the same right edge. Content inside a panel fills the panel.
+   Getting started: all text shares the step column's width, which sits beside the pictures; intros included. */
+.mi .g-article { --col: 44rem; }
+.mi .g-article section > :not(h2):not(h3),
+.mi .g-article section > details.more,
+.mi .g-article section > details.more.ref,
+.mi .g-article .mi-faq { max-width: var(--col); }
+.mi .g-article details :is(p, ul, ol, dl),
+.mi .g-article .mi-faq details > div p { max-width: none; }
+
+.gs { --col: 34rem; }
+.gs .gs-text, .gs .gs-ready-text, .gs .gs-cl-foot,
+.g-article .gs-part-what, .g-article p.gs-cl-need,
+.g-article p.gs-do, .g-article p.gs-then, .g-article p.gs-flag,
+.gs .gs-seq, .gs details.more { max-width: var(--col); }
