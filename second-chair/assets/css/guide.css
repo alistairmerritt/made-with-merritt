@@ -482,3 +482,5 @@ details.more > ol.plain-steps { padding-left: calc(16px + 1.6em); }
 .gs .gs-text, .gs .gs-ready-text, .gs .gs-cl-foot, .g-article .gs-part-what { max-width: 46rem; }
 /* Guide: more room for "On this page". */
 @media (min-width: 900px) { .g-body { grid-template-columns: 16rem minmax(0, 1fr); column-gap: clamp(40px, 6.5vw, 96px); } }
+/* "You're ready." reads as a closing note: a narrower measure than the steps (38rem, about 17% less). */
+.gs .gs-ready-text { max-width: 38rem; }
