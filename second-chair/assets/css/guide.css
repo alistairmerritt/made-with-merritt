@@ -475,3 +475,10 @@ details.more > ol.plain-steps { padding-left: calc(16px + 1.6em); }
 .g-article ol:not([class]), .g-article ul:not([class]) { padding-left: 1.6em; display: grid; gap: 6px; margin-top: 8px; }
 .g-article ol:not([class]) li::marker, .g-article ul:not([class]) li::marker { color: var(--fg-3); }
 .g-article :is(ul, ol):not([class]) + p { margin-top: 10px; }
+
+/* Getting started: the text column never runs the full page. It's capped at the width the text has beside a
+   picture (729 px on a 1440 px window), so a step without a picture, the intros and "You're ready" line up with
+   the rest. The step map, the needs box and the cards still run full width. */
+.gs .gs-text, .gs .gs-ready-text, .gs .gs-cl-foot, .g-article .gs-part-what { max-width: 46rem; }
+/* Guide: more room for "On this page". */
+@media (min-width: 900px) { .g-body { grid-template-columns: 16rem minmax(0, 1fr); column-gap: clamp(40px, 6.5vw, 96px); } }
