@@ -489,6 +489,19 @@ a.fn:hover { text-decoration: underline; }
 .w-ring circle { stroke: rgba(255, 255, 255, .2); }
 .w-ring .w-ring-fill { stroke: #fff; stroke-linecap: round; stroke-dasharray: 100 100; stroke-dashoffset: calc((1 - var(--p, 0)) * 100px); }
 
+/* The Watch's Live Activity (with the Live Activity player): black, a close button, the app's name, the artwork and
+   a waveform, then Open on iPhone. No controls. Measured off a photo of the real thing. */
+.w-live { position: absolute; inset: 0; z-index: 3; background: #000; opacity: 0; visibility: hidden; transition: opacity .25s var(--ease), visibility 0s .25s; }
+.is-live .w-live { opacity: 1; visibility: visible; transition: opacity .25s var(--ease), visibility 0s; }
+.w-live .w-live-x { position: absolute; left: 7.6cqw; top: 4.2cqw; width: 11.3cqw; height: 11.3cqw; background: rgba(255, 255, 255, .3); box-shadow: inset 0 0 0 .22cqw rgba(255, 255, 255, .42); }
+.w-live .w-live-x svg { width: 5.4cqw; height: 5.4cqw; }
+.w-live-app { position: absolute; left: 9.7cqw; top: 29.8cqw; font: 700 5.1cqw/1 var(--sans); letter-spacing: -.01em; white-space: nowrap; }
+.w-live-row { position: absolute; left: 9.5cqw; right: 10.5cqw; top: 40.2cqw; display: flex; align-items: center; justify-content: space-between; }
+.w-live-row .art { width: 7.6cqw; height: 7.6cqw; border-radius: 1.4cqw; }
+.w-live-wave { width: 4.9cqw; height: 3.8cqw; }
+.w-live-open { position: absolute; left: 50%; translate: -50% 0; top: 60.7cqw; width: 54cqw; height: 16.6cqw; display: grid; place-items: center; border-radius: 999px;
+  background: rgba(255, 255, 255, .36); box-shadow: inset 0 0 0 .22cqw rgba(255, 255, 255, .42); font: 700 5.1cqw/1 var(--sans); letter-spacing: -.01em; white-space: nowrap; }
+
 /* The play/pause button shows the action, not the state. */
 [data-cmd="toggle"] .i-play { display: none; }
 [data-cmd="toggle"][data-state="paused"] .i-play { display: block; }
