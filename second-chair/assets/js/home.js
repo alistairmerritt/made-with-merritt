@@ -63,15 +63,17 @@ for (const input of $$('.vol-input')) {
   input.addEventListener('input', () => session.setVolume(Number(input.value) / 100, 'iphone'));
 }
 
-// Now Playing or Live Activity: the same player, laid out as either. The switch under the phone picks one.
+// Now Playing or Live Activity: the same player, laid out as either. The segmented control under the phone picks one;
+// the Watch moves with the player so the two stay level.
 (() => {
-  const toggle = $('.np-mode .ios-switch'), label = $('#np-mode-label'), np = $('.ctl-lock .np');
-  if (!toggle || !np) return;
-  toggle.addEventListener('click', () => {
-    const live = toggle.getAttribute('aria-checked') !== 'true';
-    toggle.setAttribute('aria-checked', String(live));
-    label.textContent = live ? 'Live Activity' : 'Now Playing';
-    const swap = () => np.classList.toggle('is-live', live);
+  const seg = $('.np-mode .seg'), np = $('.ctl-lock .np'), scene = $('.controls-scene');
+  if (!seg || !np) return;
+  seg.addEventListener('click', (e) => {
+    const b = e.target.closest('button[data-mode]');
+    if (!b || b.getAttribute('aria-pressed') === 'true') return;
+    for (const x of $$('button', seg)) x.setAttribute('aria-pressed', String(x === b));
+    const live = b.dataset.mode === 'live';
+    const swap = () => { np.classList.toggle('is-live', live); scene.classList.toggle('is-live', live); };
     if (reducedMotion.matches) { swap(); return; }
     np.classList.add('is-swapping');                       // fade out, change layout, fade back in
     setTimeout(() => { swap(); np.classList.remove('is-swapping'); }, 160);

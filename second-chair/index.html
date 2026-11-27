@@ -19,11 +19,11 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://use.typekit.net" crossorigin>
 <link rel="stylesheet" href="https://use.typekit.net/fiv2yhs.css">
-<link rel="stylesheet" href="assets/css/base.css?v=liveact">
-<link rel="stylesheet" href="assets/css/home.css?v=liveact">
+<link rel="stylesheet" href="assets/css/base.css?v=seg4">
+<link rel="stylesheet" href="assets/css/home.css?v=seg4">
 <script>document.documentElement.classList.add('js')</script>
 <script src="assets/js/session.js?v=rendezvous" defer></script>
-<script src="assets/js/home.js?v=liveact" defer></script>
+<script src="assets/js/home.js?v=seg4" defer></script>
 <script src="assets/js/clock.js" defer></script>
 <script src="assets/js/contact.js" defer></script>
 </head>
@@ -153,6 +153,7 @@
     <h2 id="controls-title" class="display section-title controls-title"><span>Press it here.</span> <span>It happens there.</span></h2>
     <div class="controls-copy">
       <p class="lede">Play, pause, skip and scrub from the Lock Screen, Control Centre, StandBy or your Apple Watch, and adjust your Mac’s music volume remotely. When the song changes on your Mac, your iPhone follows. Whether you’re at home, at the office or out and about, everything stays in sync as long as both devices are online.</p>
+      <p class="small controls-note">Second Chair can appear on your Lock Screen through Now Playing or a Live Activity. Live Activities don’t support Apple Watch controls, and StandBy controls require your iPhone to be unlocked.</p>
       <figure class="ctl-mac" aria-label="Second Chair’s menu on the Mac, which follows what you press on the iPhone">
         <figcaption class="small">There: your Mac</figcaption>
         <div class="mac-menu ctl-menu" data-surface="mac">
@@ -220,10 +221,12 @@
             </div>
           </div></div>
       </div>
-      <!-- The app shows either player; this switches the Lock Screen between them (one player, two layouts). -->
+      <!-- The app shows either player (Player Display); this picks which one the Lock Screen shows. One player, two layouts. -->
       <div class="np-mode">
-        <button type="button" class="ios-switch" role="switch" aria-checked="false" aria-describedby="np-mode-label" aria-label="Live Activity"><i></i></button>
-        <span class="np-mode-label" id="np-mode-label">Now Playing</span>
+        <div class="seg" role="group" aria-label="Lock Screen player">
+          <button type="button" aria-pressed="true" data-mode="now">Now Playing</button>
+          <button type="button" aria-pressed="false" data-mode="live">Live Activity</button>
+        </div>
       </div>
     </div>
   </section>
