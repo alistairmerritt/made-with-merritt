@@ -214,11 +214,11 @@ html:not(.js) .try { display: none; }
 .controls {
   position: relative; overflow: hidden;
   display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); grid-template-areas: "title title" "copy scene"; gap: 0 clamp(24px, 4vw, 72px);
-  padding: clamp(80px, 10vw, 144px) var(--gutter) 0;
+  padding: clamp(80px, 10vw, 144px) var(--gutter);
   max-width: var(--max); margin: 0 auto;
 }
 .controls-title { grid-area: title; margin-bottom: clamp(32px, 4.5vw, 64px); }
-.controls-copy { grid-area: copy; padding-bottom: clamp(72px, 9vw, 128px); }
+.controls-copy { grid-area: copy; }
 .controls .lede { margin-top: 0; color: var(--ink-2); }
 .controls-note { margin-top: 16px; color: var(--ink-3); max-width: 26rem; }
 .ctl-mac { margin: clamp(40px, 6vw, 72px) 0 0; }
@@ -227,8 +227,8 @@ html:not(.js) .try { display: none; }
 .ctl-menu { width: 300px; box-shadow: 0 0 0 .5px rgba(0, 0, 0, .14), 0 18px 40px -16px rgba(60, 30, 10, .35), 0 2px 8px rgba(60, 30, 10, .08); }
 
 /* The iPhone and the Watch at their real relative size: an Apple Watch Ultra is 44 mm wide, an iPhone about 71.5 mm. */
-/* The section's bottom edge crops the phone well below its player, with the whole Watch in view. */
-.controls-scene { grid-area: scene; position: relative; container-type: inline-size; align-self: end; aspect-ratio: 100 / 107; }
+/* Wide screens: both devices start level with the copy and stand whole, with the section’s padding below them. */
+.controls-scene { grid-area: scene; position: relative; container-type: inline-size; align-self: start; aspect-ratio: 100 / 110; }
 .ctl-lock {
   --phone-drop: drop-shadow(0 3.5cqw 6cqw rgba(70, 30, 10, .42)) drop-shadow(0 1.2cqw 2cqw rgba(70, 30, 10, .2));
   position: absolute; right: 0; top: 0; width: 53cqw;
@@ -252,9 +252,9 @@ html:not(.js) .try { display: none; }
 .mac-menu.is-hit { box-shadow: 0 0 0 .5px rgba(0, 0, 0, .22), 0 0 0 5px rgba(10, 132, 255, .28), 0 16px 40px -10px rgba(0, 0, 0, .35); transition-duration: .12s; }
 
 @media (max-width: 899px) {
-  .controls { grid-template-columns: 1fr; grid-template-areas: "title" "copy" "scene"; gap: 0; }
+  .controls { grid-template-columns: 1fr; grid-template-areas: "title" "copy" "scene"; gap: 0; padding-bottom: 0; }
   .controls-copy { padding-bottom: 48px; }
-  .controls-scene { width: 100%; max-width: 640px; justify-self: center; aspect-ratio: 100 / 112; }
+  .controls-scene { width: 100%; max-width: 640px; justify-self: center; align-self: end; aspect-ratio: 100 / 112; }   /* phones keep the crop: the section's bottom edge cuts the phone below its player */
   .ctl-lock { width: 62cqw; right: auto; left: 0; }   /* on mobile the Lock Screen stands alone, on the copy's left edge */
   .ctl-watch { display: none; }
 }
