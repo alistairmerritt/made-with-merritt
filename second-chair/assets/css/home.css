@@ -213,14 +213,13 @@ html:not(.js) .try { display: none; }
 /* ---------- 2. The controls: the iPhone here, the Mac there ---------- */
 .controls {
   position: relative; overflow: hidden;
-  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); grid-template-areas: "title title" "copy scene"; gap: 0 clamp(24px, 4vw, 72px);
+  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); grid-template-areas: "title title" "copy scene"; grid-template-rows: auto 1fr; gap: 0 clamp(24px, 4vw, 72px);   /* the scene spans both rows; any extra height goes below the heading, never into it (Safari splits it otherwise) */
   padding: clamp(80px, 10vw, 144px) var(--gutter) clamp(40px, 4.5vw, 72px);
   max-width: var(--max); margin: 0 auto;
 }
 .controls-title { grid-area: title; margin-bottom: clamp(32px, 4.5vw, 64px); }
 .controls-copy { grid-area: copy; }
 .controls .lede { margin-top: 0; color: var(--ink-2); }
-.controls-note { margin-top: 16px; color: var(--ink-3); max-width: 26rem; }
 .controls-note { margin: 20px 0 0; max-width: 30rem; color: var(--ink-3); text-wrap: pretty; }
 .ctl-mac { margin: clamp(40px, 6vw, 72px) 0 0; }
 .ctl-mac figcaption { display: flex; align-items: center; gap: 12px; color: var(--ink-3); margin-bottom: 14px; max-width: 300px; }
@@ -265,7 +264,7 @@ html:not(.js) .try { display: none; }
 .mac-menu.is-hit { box-shadow: 0 0 0 .5px rgba(0, 0, 0, .22), 0 0 0 5px rgba(10, 132, 255, .28), 0 16px 40px -10px rgba(0, 0, 0, .35); transition-duration: .12s; }
 
 @media (max-width: 899px) {
-  .controls { grid-template-columns: 1fr; grid-template-areas: "title" "copy" "scene"; gap: 0; padding-bottom: 0; }
+  .controls { grid-template-columns: 1fr; grid-template-areas: "title" "copy" "scene"; grid-template-rows: none; gap: 0; padding-bottom: 0; }
   .controls-copy { padding-bottom: 48px; }
   .controls-scene { grid-area: scene; width: 100%; max-width: 640px; justify-self: center; align-self: end; aspect-ratio: 100 / 141; margin-bottom: 40px; }   /* the whole phone, then the switch */
   .ctl-lock { width: 62cqw; right: auto; left: 0; }   /* on mobile the Lock Screen stands alone, on the copy's left edge */
@@ -431,7 +430,7 @@ html:not(.js) .try { display: none; }
 .setup-steps .key::before { color: var(--brand); }
 .setup-steps .key p { color: var(--ink); }
 .setup-steps .key { background: linear-gradient(var(--brand), var(--brand)) top left / 100% 3px no-repeat; }
-.get .fine { margin-top: clamp(56px, 7vw, 88px); padding-top: 20px; border-top: 1px solid var(--rule); color: var(--ink-2); max-width: 56rem; }
+.get .fine { margin-top: clamp(56px, 7vw, 88px); padding-top: 20px; padding-right: max(0px, 100% - 56rem); border-top: 1px solid var(--rule); color: var(--ink-2); }   /* the rule runs full width; the text keeps its 56rem measure */
 .get .fine b { color: var(--ink); }
 
 @media (max-width: 899px) {
