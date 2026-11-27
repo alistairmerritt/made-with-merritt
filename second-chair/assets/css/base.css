@@ -355,38 +355,76 @@ a.fn:hover { text-decoration: underline; }
     radial-gradient(100% 60% at 50% 100%, color-mix(in oklab, var(--wall-a) 90%, #000), transparent),
     linear-gradient(180deg, var(--wall-b), var(--wall-a));
 }
-.lock-status { position: absolute; top: 4.6%; right: 8%; display: flex; gap: 1.6cqw; align-items: center; }
-.lock-status i { display: block; background: #fff; border-radius: .6cqw; }
-.lock-status .sig { width: 4.6cqw; height: 2.8cqw; clip-path: polygon(0 100%, 100% 0, 100% 100%); border-radius: 0; opacity: .95; }
-.lock-status .bat { width: 6.2cqw; height: 2.9cqw; border-radius: .9cqw; box-shadow: 0 0 0 .3cqw rgba(255, 255, 255, .4); background: linear-gradient(90deg, #fff 72%, transparent 72%); }
-.lock-date { position: absolute; top: 11%; left: 0; right: 0; text-align: center; font: 600 4.7cqw/1 var(--sans); color: rgba(255, 255, 255, .86); }
-.lock-time { position: absolute; top: 13.4%; left: 0; right: 0; text-align: center; font: 700 23cqw/1 var(--sans); letter-spacing: -.02em; font-variant-numeric: tabular-nums; color: rgba(255, 255, 255, .92); }
-.np {
-  position: absolute; left: 3.8%; right: 3.8%; top: 47%;
-  padding: 5cqw 5cqw 4.4cqw; border-radius: 9cqw;
-  background: color-mix(in oklab, var(--wall-a) 55%, rgba(30, 30, 32, .55));
-  -webkit-backdrop-filter: blur(24px) saturate(1.4); backdrop-filter: blur(24px) saturate(1.4);
-  box-shadow: inset 0 0 0 .5px rgba(255, 255, 255, .18);
+/* Measured off genuine iOS 27 Lock Screen captures (923 × 2000, 24 Nov 2026) and the App Store render script
+   (render-lockscreen-player.swift). cqw is the phone's width: one capture pixel is about 0.0984cqw. */
+.lock-status { position: absolute; top: 2.9%; right: 8.6%; display: flex; gap: 1.2cqw; align-items: center; }
+.lock-status .sig { display: flex; gap: .35cqw; align-items: flex-end; height: 2.5cqw; }
+.lock-status .sig b { display: block; width: .75cqw; border-radius: .3cqw; background: #fff; }
+.lock-status .sig b:nth-child(1) { height: 40%; } .lock-status .sig b:nth-child(2) { height: 60%; }
+.lock-status .sig b:nth-child(3) { height: 80%; } .lock-status .sig b:nth-child(4) { height: 100%; opacity: .4; }
+.lock-status .wifi { width: 3.6cqw; height: 2.7cqw; fill: #fff; }
+.lock-status .bat { display: block; width: 5.6cqw; height: 2.7cqw; border-radius: .8cqw; background: linear-gradient(90deg, #fff 70%, rgba(255, 255, 255, .35) 70%); }
+.lock-date { position: absolute; top: 9.1%; left: 0; right: 0; text-align: center; font: 600 4.9cqw/1 var(--sans); letter-spacing: -.005em; color: rgba(255, 255, 255, .94); }
+/* The clock is Liquid Glass: rounded, heavy, a bright face with a soft dark edge. */
+.lock-time {
+  position: absolute; top: 11.2%; left: 0; right: 0; text-align: center;
+  font: 600 28cqw/1 ui-rounded, "SF Pro Rounded", var(--sans); letter-spacing: -.025em; font-variant-numeric: tabular-nums;
+  color: #fafafc; -webkit-text-stroke: .16cqw rgba(0, 0, 0, .1); paint-order: stroke fill;
+  text-shadow: 0 .25cqw .6cqw rgba(0, 0, 0, .1), 0 0 .15cqw rgba(255, 255, 255, .5);
 }
-.np-head { display: flex; gap: 3.6cqw; align-items: center; }
-.np-art { flex: none; width: 15cqw; height: 15cqw; border-radius: 2.6cqw; overflow: hidden; background: rgba(255, 255, 255, .1); }
+
+/* The Now Playing player: Liquid Glass. A light veil, a glow under the top edge, a rim light that is bright on top
+   and softer below, and a faint dark refraction line just outside the sides. */
+.np {
+  position: absolute; left: 3.68%; right: 3.68%; top: 61.75%;
+  padding: 3.15cqw 3.05cqw 3.3cqw; border-radius: 5.7cqw;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, .11), transparent 1.3cqw),
+    linear-gradient(0deg, rgba(255, 255, 255, .07), transparent .8cqw),
+    linear-gradient(180deg, rgba(255, 255, 255, .2), rgba(255, 255, 255, .155));
+  -webkit-backdrop-filter: blur(10px) saturate(1.15); backdrop-filter: blur(10px) saturate(1.15);
+}
+.np::before, .np::after, .lock-corners i::before {
+  content: ""; position: absolute; pointer-events: none; border-radius: inherit;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+}
+.np::before, .lock-corners i::before {
+  inset: 0; padding: .14cqw;
+  background: linear-gradient(180deg, rgba(255, 255, 255, .88), rgba(255, 255, 255, .42) 2.2%, rgba(255, 255, 255, .07) 13%, rgba(255, 255, 255, .07) 87%, rgba(255, 255, 255, .3) 97.8%, rgba(255, 255, 255, .55));
+}
+.np::after {
+  inset: -.22cqw; padding: .22cqw; border-radius: 5.92cqw;
+  background: linear-gradient(180deg, transparent, rgba(0, 0, 0, .22) 18%, rgba(0, 0, 0, .22) 80%, rgba(0, 0, 0, .16));
+}
+.np-head { display: flex; gap: 2.46cqw; align-items: center; }
+.np-art { flex: none; width: 13.3cqw; height: 13.3cqw; border-radius: 1.48cqw; overflow: hidden; background: rgba(255, 255, 255, .1); }
 .np-meta { min-width: 0; flex: 1; }
-.np-meta b { display: block; font: 600 4.4cqw/1.2 var(--sans); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.np-meta span { display: block; font: 400 4.2cqw/1.25 var(--sans); color: rgba(255, 255, 255, .6); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.np-route { width: 6.5cqw; height: 6.5cqw; fill: rgba(255, 255, 255, .7); flex: none; }
-.np-scrub { margin-top: 4.6cqw; }
-.np .ios-bar { height: 1.7cqw; }
-.np-times { display: flex; justify-content: space-between; margin-top: 1.6cqw; font: 600 2.9cqw/1 var(--sans); font-variant-numeric: tabular-nums; color: rgba(255, 255, 255, .5); }
-.np-controls { display: flex; justify-content: center; gap: 9cqw; margin-top: 2.6cqw; }
+.np-meta small, .np-meta b, .np-meta span { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.np-meta small { font: 500 2.95cqw/1.25 var(--sans); letter-spacing: .035em; color: rgba(255, 255, 255, .32); }
+.np-meta b { font: 600 3.84cqw/1.2 var(--sans); }
+.np-meta span { font: 400 3.94cqw/1.2 var(--sans); color: rgba(255, 255, 255, .55); }
+.np-progress { display: flex; align-items: center; gap: 3cqw; margin-top: 2.9cqw; padding: 0 1.85cqw 0 1.65cqw; }
+.np-t { flex: none; font: 500 2.46cqw/1.2 var(--sans); font-variant-numeric: tabular-nums; color: rgba(255, 255, 255, .55); }
+.np-scrub { flex: 1; }
+.np .ios-bar { height: 1.67cqw; background: rgba(255, 255, 255, .13); }
+.np .ios-bar i { background: rgba(242, 245, 255, .66); }
+.np-controls { display: flex; justify-content: center; gap: 7.1cqw; margin-top: .5cqw; }
 .np-controls .ios-btn { width: 15cqw; height: 15cqw; }
-.np-controls .ios-btn svg { width: 8.4cqw; height: 8.4cqw; }
-.np-controls .ios-btn.pp svg { width: 10cqw; height: 10cqw; }
-.np-vol { display: flex; align-items: center; gap: 3cqw; margin-top: 2.4cqw; }
-.np-vol .ico { width: 3.8cqw; height: 3.8cqw; fill: rgba(255, 255, 255, .55); }
-.np-vol .ios-bar { flex: 1; height: 1.7cqw; }
-.lock-corners { position: absolute; bottom: 5.6%; left: 11%; right: 11%; display: flex; justify-content: space-between; }
-.lock-corners i { width: 13cqw; height: 13cqw; border-radius: 50%; background: rgba(255, 255, 255, .14); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
-.lock-home { position: absolute; bottom: 1.3%; left: 50%; width: 36%; height: 1.4cqw; translate: -50% 0; border-radius: 9px; background: rgba(255, 255, 255, .8); }
+.np-controls .ios-btn svg { width: 8.6cqw; height: 8.6cqw; }
+.np-controls .ios-btn.pp svg { width: 11cqw; height: 11cqw; }
+.np-vol { display: flex; align-items: center; gap: 1.9cqw; margin-top: .6cqw; }
+.np-vol .ico { flex: none; width: 4.7cqw; height: 4.7cqw; fill: rgba(255, 255, 255, .45); }
+.np-vol .ios-bar { flex: 1; height: 1.77cqw; }
+/* Torch and camera: Liquid Glass buttons with the same rim light. */
+.lock-corners { position: absolute; bottom: 5.9%; left: 10.6%; right: 10.6%; display: flex; justify-content: space-between; }
+.lock-corners i {
+  position: relative; display: grid; place-items: center; width: 13.4cqw; height: 13.4cqw; border-radius: 50%;
+  background: radial-gradient(circle at 50% 30%, rgba(255, 255, 255, .14), rgba(255, 255, 255, .06) 70%), rgba(0, 0, 0, .06);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+}
+.lock-corners svg { width: 7.4cqw; height: 7.4cqw; fill: #fff; }
+.lock-home { position: absolute; bottom: 1.1%; left: 50%; width: 35.5%; height: 1cqw; translate: -50% 0; border-radius: 9px; background: #fff; }
 .js .is-asleep .lock-ui > .np { opacity: 0; transform: translateY(3cqw) scale(.98); }
 .js .is-asleep .lock-ui > :not(.wall):not(.np) { opacity: .0; }
 .lock-ui > :not(.wall):not(.np) { transition: opacity .7s var(--ease); }

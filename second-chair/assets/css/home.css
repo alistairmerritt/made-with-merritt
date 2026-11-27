@@ -242,7 +242,6 @@ html:not(.js) .try { display: none; }
   position: absolute; left: -2%; width: 104%; top: 50%; height: max(7cqw, 30px); translate: 0 -50%; margin: 0;
   opacity: 0; cursor: pointer; -webkit-appearance: none; appearance: none; background: transparent;
 }
-.scrub-input { top: .8cqw; }
 .np-scrub:focus-within .ios-bar, .vol-track:focus-within .ios-bar { outline: 2px solid #fff; outline-offset: 3px; }
 .np-scrub:hover .ios-bar, .vol-track:hover .ios-bar { transform: scaleY(1.6); }
 .np .ios-bar { transition: transform .25s var(--ease); }
