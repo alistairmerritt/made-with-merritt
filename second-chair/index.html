@@ -19,11 +19,11 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://use.typekit.net" crossorigin>
 <link rel="stylesheet" href="https://use.typekit.net/fiv2yhs.css">
-<link rel="stylesheet" href="assets/css/base.css?v=clockgap2">
-<link rel="stylesheet" href="assets/css/home.css?v=watchlevel">
+<link rel="stylesheet" href="assets/css/base.css?v=liveact">
+<link rel="stylesheet" href="assets/css/home.css?v=liveact">
 <script>document.documentElement.classList.add('js')</script>
 <script src="assets/js/session.js?v=rendezvous" defer></script>
-<script src="assets/js/home.js?v=aim" defer></script>
+<script src="assets/js/home.js?v=liveact" defer></script>
 <script src="assets/js/clock.js" defer></script>
 <script src="assets/js/contact.js" defer></script>
 </head>
@@ -219,6 +219,11 @@
               <button type="button" tabindex="-1" class="w-btn" data-cmd="next" aria-label="Next, from Apple Watch"><svg class="glyph-fill"><use href="#i-next"/></svg></button>
             </div>
           </div></div>
+      </div>
+      <!-- The app shows either player; this switches the Lock Screen between them (one player, two layouts). -->
+      <div class="np-mode">
+        <button type="button" class="ios-switch" role="switch" aria-checked="false" aria-describedby="np-mode-label" aria-label="Live Activity"><i></i></button>
+        <span class="np-mode-label" id="np-mode-label">Now Playing</span>
       </div>
     </div>
   </section>

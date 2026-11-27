@@ -228,13 +228,22 @@ html:not(.js) .try { display: none; }
 
 /* The iPhone and the Watch at their real relative size: an Apple Watch Ultra is 44 mm wide, an iPhone about 71.5 mm. */
 /* Wide screens: the devices start level with the heading (rows 1–2 of the right column) and stand whole, with a short gap below. */
-.controls-scene { grid-row: 1 / 3; grid-column: 2; position: relative; container-type: inline-size; align-self: start; aspect-ratio: 100 / 110; }
+.controls-scene { grid-row: 1 / 3; grid-column: 2; position: relative; container-type: inline-size; align-self: start; aspect-ratio: 100 / 122; }
 .ctl-lock {
   --phone-drop: drop-shadow(0 3.5cqw 6cqw rgba(70, 30, 10, .42)) drop-shadow(0 1.2cqw 2cqw rgba(70, 30, 10, .2));
   position: absolute; right: 0; top: 0; width: 53cqw;
 }
 /* On the phone's left: between the Mac and the iPhone. */
 .ctl-watch { position: absolute; left: 11.783cqw; top: 54.13cqw; width: 32.6cqw; z-index: 3; }   /* the display (65.41 to 93.24) is centred on the Lock Screen player (67.03 to 91.62) */
+
+/* Under the phone: an iOS switch between the two players, captioned with the one showing. */
+.np-mode { position: absolute; right: 0; width: 53cqw; top: 113cqw; display: flex; justify-content: center; align-items: center; gap: 12px; }
+.np-mode-label { font: 500 .9375rem/1.2 var(--sans); color: var(--ink-2); min-width: 7.5em; }
+.ios-switch { position: relative; flex: none; width: 51px; height: 31px; padding: 0; border: 0; border-radius: 16px; background: rgba(120, 120, 128, .2); cursor: pointer; transition: background-color .25s var(--ease); -webkit-tap-highlight-color: transparent; }
+.ios-switch i { position: absolute; top: 2px; left: 2px; width: 27px; height: 27px; border-radius: 50%; background: #fff; box-shadow: 0 3px 8px rgba(0, 0, 0, .15), 0 1px 1px rgba(0, 0, 0, .16); transition: translate .25s var(--ease); }
+.ios-switch[aria-checked="true"] { background: #34c759; }
+.ios-switch[aria-checked="true"] i { translate: 20px 0; }
+.ios-switch:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 
 .np-scrub, .vol-track { position: relative; }
 .vol-track { flex: 1; }
@@ -253,9 +262,10 @@ html:not(.js) .try { display: none; }
 @media (max-width: 899px) {
   .controls { grid-template-columns: 1fr; grid-template-areas: "title" "copy" "scene"; gap: 0; padding-bottom: 0; }
   .controls-copy { padding-bottom: 48px; }
-  .controls-scene { grid-area: scene; width: 100%; max-width: 640px; justify-self: center; align-self: end; aspect-ratio: 100 / 112; }   /* phones keep the crop: the section's bottom edge cuts the phone below its player */
+  .controls-scene { grid-area: scene; width: 100%; max-width: 640px; justify-self: center; align-self: end; aspect-ratio: 100 / 141; margin-bottom: 40px; }   /* the whole phone, then the switch */
   .ctl-lock { width: 62cqw; right: auto; left: 0; }   /* on mobile the Lock Screen stands alone, on the copy's left edge */
   .ctl-watch { display: none; }
+  .np-mode { right: auto; left: 0; width: 62cqw; top: 133cqw; }
 }
 @media (max-width: 519px) {
   .ctl-menu { width: 100%; max-width: 300px; }

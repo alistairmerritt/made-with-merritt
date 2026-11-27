@@ -376,7 +376,7 @@ a.fn:hover { text-decoration: underline; }
 /* The Now Playing player: Liquid Glass. A light veil, a glow under the top edge, a rim light that is bright on top
    and softer below, and a faint dark refraction line just outside the sides. */
 .np {
-  position: absolute; left: 3.68%; right: 3.68%; top: 61.75%;
+  position: absolute; left: 3.68%; right: 3.68%; bottom: 15.05%;   /* both layouts end on the same line; Now Playing grows upward */
   padding: 3.15cqw 3.05cqw 3.3cqw; border-radius: 5.7cqw;
   background:
     linear-gradient(180deg, rgba(255, 255, 255, .11), transparent 1.3cqw),
@@ -416,6 +416,27 @@ a.fn:hover { text-decoration: underline; }
 .np-vol { display: flex; align-items: center; gap: 1.9cqw; margin-top: .6cqw; }
 .np-vol .ico { flex: none; width: 4.7cqw; height: 4.7cqw; fill: rgba(255, 255, 255, .45); }
 .np-vol .ios-bar { flex: 1; height: 1.77cqw; }
+/* The Live Activity: the same player, compact. Measured off the compact capture: artwork, then Pause and Next on the
+   right, then a thin bar across the whole width with the times under it. No Previous, no volume. */
+.np.is-live { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "head ctl" "prog prog"; align-items: center; }
+.np.is-live .np-head { grid-area: head; gap: 2.95cqw; }
+.np.is-live .np-art { width: 13.97cqw; height: 13.97cqw; }
+.np.is-live .np-meta small { font-size: 3.05cqw; }
+.np.is-live .np-meta b { font-size: 3.94cqw; }
+.np.is-live .np-meta span { font-size: 4.03cqw; }
+.np.is-live .np-controls { grid-area: ctl; gap: 1.2cqw; margin: 0 .45cqw 0 2cqw; }
+.np.is-live .np-controls .ios-btn { width: 10cqw; height: 10cqw; }
+.np.is-live .np-controls .ios-btn svg, .np.is-live .np-controls .ios-btn.pp svg { width: 7.9cqw; height: 7.9cqw; }
+.np.is-live [data-cmd="previous"], .np.is-live .np-vol { display: none; }
+.np.is-live .np-progress { grid-area: prog; display: grid; grid-template-columns: auto auto; justify-content: space-between; gap: 0; margin-top: 3.4cqw; padding: 0; }
+.np.is-live .np-scrub { grid-column: 1 / -1; }
+.np.is-live .np-t { grid-row: 2; margin-top: 1.8cqw; }
+.np.is-live .np-t:first-child { padding-left: .2cqw; }
+.np.is-live .np-t:last-child { padding-right: .3cqw; }
+.np.is-live .ios-bar { height: .98cqw; background: rgba(255, 255, 255, .07); }
+.screen .lock-ui > .np.is-swapping { transition-duration: .16s; }
+.np.is-swapping { opacity: 0 !important; }
+
 /* Torch and camera: Liquid Glass buttons with the same rim light. */
 .lock-corners { position: absolute; bottom: 5.9%; left: 10.6%; right: 10.6%; display: flex; justify-content: space-between; }
 .lock-corners i {

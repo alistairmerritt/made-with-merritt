@@ -62,6 +62,21 @@ for (const input of $$('.scrub-input')) {
 for (const input of $$('.vol-input')) {
   input.addEventListener('input', () => session.setVolume(Number(input.value) / 100, 'iphone'));
 }
+
+// Now Playing or Live Activity: the same player, laid out as either. The switch under the phone picks one.
+(() => {
+  const toggle = $('.np-mode .ios-switch'), label = $('#np-mode-label'), np = $('.ctl-lock .np');
+  if (!toggle || !np) return;
+  toggle.addEventListener('click', () => {
+    const live = toggle.getAttribute('aria-checked') !== 'true';
+    toggle.setAttribute('aria-checked', String(live));
+    label.textContent = live ? 'Live Activity' : 'Now Playing';
+    const swap = () => np.classList.toggle('is-live', live);
+    if (reducedMotion.matches) { swap(); return; }
+    np.classList.add('is-swapping');                       // fade out, change layout, fade back in
+    setTimeout(() => { swap(); np.classList.remove('is-swapping'); }, 160);
+  });
+})();
 // StandBy's speaker mutes and unmutes: the volume is Music's on the Mac, shared by every device, so the sliders
 // follow it to 0 and back. Muting isn't Sound off: the demo plays on, silently, as a muted Mac would.
 let beforeMute = 0;
