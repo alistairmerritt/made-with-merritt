@@ -347,10 +347,11 @@ details.more ul.plain { padding-left: 32px; font-size: .9375rem; }
 .gs-where li { padding: 7px 13px; border-radius: 999px; background: rgba(255, 255, 255, .14); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .22); font: 600 .875rem/1 var(--sans); }
 /* The phone rises from the bottom edge of the panel, cut off by it. */
 .gs-ready { --pad: clamp(32px, 5vw, 72px); }
-.gs-ready-fig { margin: 0 0 calc(-1 * var(--pad) - 108px); justify-self: center; align-self: end; }
+/* The phone bleeds off the card by about a quarter of its width, so the player always clears the edge. */
+.gs-ready-fig { margin: 0 0 calc(-1 * var(--pad) - min(300px, 72vw) * .23); justify-self: center; align-self: end; }
 .gs-ready-fig .phone { width: min(300px, 72vw); }
 .gs-ready .np-controls .ios-btn { cursor: default; }
-@media (max-width: 899px) { .g-article.gs-body > .gs-ready { grid-template-columns: 1fr; } .gs-ready-fig { margin-bottom: calc(-1 * var(--pad) - 26vw); } }
+@media (max-width: 899px) { .g-article.gs-body > .gs-ready { grid-template-columns: 1fr; } }
 
 /* Continue Listening, set apart from setup */
 .g-article .gs-cl { margin-top: clamp(80px, 11vw, 160px); padding-top: clamp(48px, 6vw, 80px) !important; border-top: 1.5px solid var(--fg) !important; }
