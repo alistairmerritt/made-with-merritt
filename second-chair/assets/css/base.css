@@ -367,8 +367,8 @@ a.fn:hover { text-decoration: underline; }
 .lock-date { position: absolute; top: 9.1%; left: 0; right: 0; text-align: center; font: 600 4.9cqw/1 var(--sans); letter-spacing: -.005em; color: rgba(255, 255, 255, .94); }
 /* The clock is Liquid Glass: rounded, heavy, a bright face with a soft dark edge. */
 .lock-time {
-  position: absolute; top: 11.2%; left: 0; right: 0; text-align: center;
-  font: 600 28cqw/1 ui-rounded, "SF Pro Rounded", var(--sans); letter-spacing: -.025em; font-variant-numeric: tabular-nums;
+  position: absolute; top: 11.45%; left: 0; right: 0; text-align: center;
+  font: 600 24.5cqw/1 ui-rounded, "SF Pro Rounded", var(--sans); letter-spacing: -.025em; font-variant-numeric: tabular-nums;
   color: #fafafc; -webkit-text-stroke: .16cqw rgba(0, 0, 0, .1); paint-order: stroke fill;
   text-shadow: 0 .25cqw .6cqw rgba(0, 0, 0, .1), 0 0 .15cqw rgba(255, 255, 255, .5);
 }
