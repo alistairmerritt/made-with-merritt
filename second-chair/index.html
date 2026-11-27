@@ -19,11 +19,11 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://use.typekit.net" crossorigin>
 <link rel="stylesheet" href="https://use.typekit.net/fiv2yhs.css">
-<link rel="stylesheet" href="assets/css/base.css?v=seg7">
-<link rel="stylesheet" href="assets/css/home.css?v=seg7">
+<link rel="stylesheet" href="assets/css/base.css?v=seg8">
+<link rel="stylesheet" href="assets/css/home.css?v=seg8">
 <script>document.documentElement.classList.add('js')</script>
 <script src="assets/js/session.js?v=rendezvous" defer></script>
-<script src="assets/js/home.js?v=seg7" defer></script>
+<script src="assets/js/home.js?v=seg8" defer></script>
 <script src="assets/js/clock.js" defer></script>
 <script src="assets/js/contact.js" defer></script>
 </head>
@@ -155,8 +155,8 @@
       <p class="lede">Play, pause, skip and scrub from the Lock Screen, Control Centre, StandBy or your Apple Watch, and adjust your Mac’s music volume remotely. When the song changes on your Mac, your iPhone follows. Whether you’re at home, at the office or out and about, everything stays in sync as long as both devices are online.</p>
       <p class="small controls-note">Choose between Now Playing and a Live Activity to control your Mac’s music. Live Activities don’t offer Apple Watch controls, and StandBy controls require an unlocked iPhone.</p>
       <figure class="ctl-mac" aria-label="Second Chair’s menu on the Mac, which follows what you press on the iPhone">
-        <figcaption class="small">There: your Mac</figcaption>
         <div class="mac-menu ctl-menu" data-surface="mac">
+          <div class="mm-head"><b>On This Mac</b></div>
           <div class="mm-track">
             <div class="mm-art"><img class="art" data-bind="art" src="assets/art/midnight-rendezvous-sm.webp?v=2" alt="" width="64" height="64"></div>
             <div class="mm-meta"><b data-bind="title">Midnight Rendezvous</b><span data-bind="artist">North Arcade</span><span class="album" data-bind="album">Electric Memory</span><small data-bind="state">Playing</small></div>
@@ -167,6 +167,7 @@
             <button type="button" tabindex="-1" class="pp" data-cmd="toggle" data-where="on the Mac" aria-label="Pause on the Mac"><svg class="i-pause"><use href="#i-pause"/></svg><svg class="i-play"><use href="#i-play"/></svg></button>
             <button type="button" tabindex="-1" data-cmd="next" aria-label="Next, on the Mac"><svg><use href="#i-next"/></svg></button>
           </div>
+          <div class="mm-foot" aria-hidden="true"><i></i>Online · iPhone paired<svg><use href="#i-gear"/></svg></div>
         </div>
       </figure>
     </div>
