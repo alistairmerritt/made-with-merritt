@@ -84,7 +84,7 @@
         <h2 id="shortcuts-h">Shortcuts and automations</h2>
         <p>Use Second Chair’s actions in Apple Shortcuts to control playback, move your music between devices or restore the Lock Screen player.</p>
         <ul class="mi-ideas">
-          <li><svg aria-hidden="true"><use href="#i-car"/></svg><div><b>Take your music in the car</b><span>Run <span class="ui">Continue on iPhone</span> when your iPhone connects to CarPlay.</span></div></li>
+          <li><svg aria-hidden="true"><use href="#i-car"/></svg><div><b>Take your music in the car</b><span>Run <span class="ui">Continue on iPhone</span> when your iPhone connects to CarPlay. If your Mac comes with you and is asleep, your iPhone plays the song your Mac was playing, from where it stopped.</span></div></li>
           <li><svg aria-hidden="true"><use href="#i-phones"/></svg><div><b>Bring it back to your desk</b><span>Run <span class="ui">Continue on Mac</span> when your headphones connect.</span></div></li>
           <li><svg aria-hidden="true"><use href="#i-bell"/></svg><div><b>Bring the player back</b><span>Run <span class="ui">Show in Now Playing</span> (the same as <span class="ui">Show on Lock Screen</span> in the app) after a playback notification. Your iPhone needs to be unlocked for Second Chair to open. In Live Activity mode it doesn’t show the Live Activity; open Second Chair instead.</span></div></li>
         </ul>
@@ -172,13 +172,13 @@
               <tr><td><strong>A playlist in your library</strong></td><td data-h="Continue on iPhone">Same playlist, including shuffle</td><td data-h="Continue on Mac">Same playlist, including shuffle</td></tr>
               <tr><td><strong>An album in your library</strong></td><td data-h="Continue on iPhone">Same album, including shuffle</td><td data-h="Continue on Mac">Same album, played in order</td></tr>
               <tr><td><strong>Your library on shuffle</strong></td><td data-h="Continue on iPhone">Library shuffle continues</td><td data-h="Continue on Mac">Library shuffle continues</td></tr>
-              <tr><td><strong>An Apple Music playlist or album not in your library</strong></td><td data-h="Continue on iPhone">Same playlist or album</td><td data-h="Continue on Mac">Added to your library first, then played<a class="fn" href="#fn-library" aria-label="Note: needs Add Playlists and Albums to Library">*</a></td></tr>
+              <tr><td><strong>An Apple Music playlist or album not in your library</strong></td><td data-h="Continue on iPhone">Same playlist or album</td><td data-h="Continue on Mac">Added to your library first, then played<a class="fn" href="#fn-library" aria-label="Note: Second Chair asks first">*</a></td></tr>
               <tr><td><strong>A station</strong></td><td data-h="Continue on iPhone">Same song and station</td><td data-h="Continue on Mac">Same station, starting on a song Apple chooses</td></tr>
               <tr><td><strong>Songs added with Play Next</strong></td><td data-h="Continue on iPhone">Up to 25 upcoming songs, instead of the playlist or album</td><td data-h="Continue on Mac">Not transferred</td></tr>
             </tbody>
           </table>
         </div>
-        <p class="table-note" id="fn-library">* Requires <strong>Add Playlists and Albums to Library</strong> (Settings › When Continuing on Mac) to be turned on. <a href="#cl-library">More about it</a></p>
+        <p class="table-note" id="fn-library">* Second Chair asks first, unless you’ve chosen otherwise in Settings › <strong>When a playlist or album isn’t in your library</strong>. <a href="#cl-library">More about it</a></p>
 
         <div class="mi-group">
           <details class="more ref" id="cl-limits">
@@ -195,15 +195,23 @@
           </details>
           <details class="more ref" id="cl-library">
             <summary>Adding music to your library</summary>
-            <p>Some Apple Music playlists and albums need to be in your library before your Mac can play them.</p>
-            <p>On your iPhone, open Second Chair’s Settings › When Continuing on Mac and turn on <strong>Add Playlists and Albums to Library</strong>. Second Chair can then add these playlists and albums when you continue on your Mac. The setting is off by default. Anything added stays in your library until you remove it.</p>
-            <p>With the setting off, your Mac plays a station based on the current song instead.</p>
+            <p>Your Mac can only continue a playlist or album that’s in your Apple Music library. When your iPhone is playing one that isn’t, Second Chair may need to add it first. Anything added stays in your library until you remove it.</p>
+            <p>By default, Second Chair asks before adding anything:</p>
+            <ul class="plain">
+              <li><strong>Add &amp; Continue</strong> adds it if needed, and your Mac carries on with the same playlist or album.</li>
+              <li><strong>Play Song Station Instead</strong> continues on your Mac with a station based on the current song. The original playlist or album doesn’t carry over, and nothing is added.</li>
+              <li><strong>Cancel</strong> leaves everything as it was. Your iPhone keeps playing.</li>
+            </ul>
+            <p>Your iPhone keeps playing while you decide, and your Mac starts from wherever the song has reached when you choose. The same question appears on your Mac when you use <span class="ui">Continue from iPhone</span> there.</p>
+            <p>Tick <strong>Remember my choice</strong> to stop being asked. You can change it any time in Second Chair’s Settings, under <strong>When a playlist or album isn’t in your library</strong>.</p>
+            <p>Shortcuts and widgets can’t ask. When a playlist or album isn’t in your library, automated handoffs use the song’s station unless you’ve chosen <strong>Add to Library</strong> in Settings.</p>
           </details>
           <details class="more ref" id="cl-need">
             <summary>What Continue Listening needs</summary>
             <ul class="plain">
               <li>An Apple Music subscription on your iPhone. Viewing and controlling playback in the Music app on your Mac doesn’t require a subscription. Home Sharing isn’t needed.</li>
               <li>Second Chair for Mac 0.3.5 or later and the current iPhone app.</li>
+              <li>To be asked on your Mac when you use <span class="ui">Continue from iPhone</span>: Second Chair for Mac 0.3.12 or later. With an older Mac app, it uses the song’s station unless you’ve chosen <strong>Add to Library</strong>.</li>
               <li>Second Chair connected to Music on your Mac. Without this connection, continuing on your Mac falls back to a station based on the current song.</li>
               <li>For playlists and albums in your library, <strong>Sync Library</strong> turned on on both devices.</li>
             </ul>
@@ -234,7 +242,8 @@
           <details><summary>Now Playing and a Live Activity both show</summary><div><p>Open Second Chair, which closes the Live Activity.<span class="why">Under <span class="ui">Automatic</span>, your Mac resumed before iOS had replaced Now Playing.</span></p></div></details>
           <details><summary>No Live Activity appears</summary><div><p>On your iPhone, check Settings › Second Chair › Live Activities. When they’re off, Second Chair’s Settings say <span class="says">Live Activities are turned off for Second Chair in Settings.</span> In <span class="ui">Live Activity</span> mode, opening Second Chair shows it again.</p></div></details>
           <details><summary>The Live Activity’s buttons ask for Face ID</summary><div><p>That’s how iOS handles buttons on a locked iPhone. Glance at your iPhone or unlock it.</p></div></details>
-          <details><summary>Your iPhone says your Mac is offline</summary><div><p>Wake your Mac and make sure Second Chair is running. Check that both devices are online, then tap <span class="ui">Reconnect</span> on your iPhone.</p></div></details>
+          <details><summary>Your iPhone says your Mac is <span class="says">Asleep</span></summary><div><p>Your Mac told Second Chair it was going to sleep. Second Chair will reconnect when your Mac wakes. <span class="ui">Continue on iPhone</span> still works: it plays your Mac’s song from where it stopped.</p></div></details>
+          <details><summary>Your iPhone says your Mac is <span class="says">Unavailable</span></summary><div><p>Wake your Mac and make sure Second Chair is running. Check that both devices are online, then tap <span class="ui">Reconnect</span> on your iPhone.</p></div></details>
           <details><summary>No artwork for a song</summary><div><p>Music has no artwork for this song, and Apple’s catalogue search found no close match. Playback still works without artwork.</p></div></details>
         </div>
 
@@ -251,7 +260,7 @@
         <div class="mi-faq">
           <details><summary>Continue Listening isn’t available</summary><div><p>In the iPhone app, check <span class="ui">Status</span> in Settings › Continue Listening to see which step is missing. See <a href="#cl-status">what each status means</a>.</p></div></details>
           <details><summary><span class="ui">Continue from iPhone</span> doesn’t appear on the Mac</summary><div><p>Make sure Music is open on your Mac, then pause or stop playback. <span class="ui">Continue from iPhone</span> appears when Music is paused or stopped.</p></div></details>
-          <details><summary>Your Mac played the song’s station, not your playlist or album</summary><div><p>Check the following:</p><ul><li>You have Second Chair for Mac 0.3.5 or later and the current iPhone app.</li><li>Second Chair is connected to Music on your Mac.</li><li>For a playlist or album in your library, Sync Library is on and the music is available on both devices.</li><li>For an Apple Music playlist or album outside your library, <a href="#cl-library">Add Playlists and Albums to Library</a> (Settings › When Continuing on Mac) is on.</li></ul><p>If you started the music less than a minute ago, wait a moment and try again. Do the same if the playlist or album didn’t reach your Mac within 25 seconds.</p></div></details>
+          <details><summary>Your Mac played the song’s station, not your playlist or album</summary><div><p>Check the following:</p><ul><li>You have Second Chair for Mac 0.3.5 or later and the current iPhone app.</li><li>Second Chair is connected to Music on your Mac.</li><li>For a playlist or album in your library, Sync Library is on and the music is available on both devices.</li><li>For an Apple Music playlist or album outside your library: you chose <strong>Play Song Station Instead</strong>, or a Shortcut or widget continued it while the setting is <strong>Ask Every Time</strong>. See <a href="#cl-library">Adding music to your library</a>.</li><li>If adding it failed, Sync Library is on in Settings › Apps › Music on your iPhone. Without it, apps can’t add to your library.</li></ul><p>If you started the music less than a minute ago, wait a moment and try again. Do the same if the playlist or album didn’t reach your Mac within 25 seconds.</p></div></details>
           <details><summary>Music rejects the four-digit code, or lists Second Chair more than once under Devices</summary><div><p>Click <span class="ui">Cancel</span> in Second Chair, choose <span class="ui">Connect to Music…</span> again, then select the newly appeared Second Chair entry under Devices in Music. Enter the new four-digit code there.<span class="why">An older Second Chair entry may still be listed from a previous connection.</span></p></div></details>
           <details><summary>macOS never asked about the local network, or it was refused</summary><div><p>On your Mac, open System Settings › Privacy &amp; Security › Local Network and turn on Second Chair. This permission lets Second Chair connect to Music on your Mac.</p></div></details>
           <details><summary>Your Mac says <span class="says">Music no longer recognises Second Chair. Connect again so your music can move between this Mac and your iPhone.</span></summary><div><p>Choose <span class="ui">Connect to Music…</span> and enter the new four-digit code in Music on your Mac.<span class="why">Music forgot Second Chair, for example after Forget All Remotes. The iPhone app shows <span class="says">Reconnect on Your Mac</span>.</span></p></div></details>
@@ -259,7 +268,10 @@
 
         <h3 class="mi-grp">Messages when you continue</h3>
         <div class="mi-faq">
-          <details><summary><span class="says">Your Mac isn’t connected. Check that it’s awake and Second Chair is open on it.</span></summary><div><p>Wake your Mac, or open Second Chair on it, then try again.<span class="why">Continue on iPhone couldn’t reach your Mac, for example a CarPlay automation while your Mac is asleep.</span></p></div></details>
+          <details><summary><span class="says">Your Mac isn’t connected. Check that it’s awake and Second Chair is open on it.</span></summary><div><p>Wake your Mac, or open Second Chair on it, then try again.<span class="why">There was no song from your Mac to continue.</span></p></div></details>
+          <details><summary><span class="says">Your Mac is asleep, so “<i>song</i>” is playing here from where it stopped.</span></summary><div><p>No action is needed.<span class="why">Your Mac was asleep, so Second Chair played the song it was playing, from where it stopped. Nothing changed on your Mac.</span></p></div></details>
+          <details><summary><span class="says">Second Chair isn’t open on your Mac, so “<i>song</i>” is playing here from where it last was.</span> or <span class="says">Your Mac isn’t connected, so “<i>song</i>” is playing here from where it last was.</span></summary><div><p>No action is needed.<span class="why">Second Chair couldn’t reach your Mac, so it played your Mac’s last song from where it last was.</span></p></div></details>
+          <details><summary><span class="says">Second Chair couldn’t reach its server, so it couldn’t ask your Mac. Check this iPhone is online and try again.</span></summary><div><p>Try again when you have a signal.<span class="why">Your iPhone couldn’t reach Second Chair’s server, for example between mobile masts.</span></p></div></details>
           <details><summary><span class="says">Allow access to Apple Music in Settings to continue listening on your iPhone.</span></summary><div><p>On your iPhone, allow Second Chair access in Settings › Privacy &amp; Security › Media &amp; Apple Music.</p></div></details>
           <details><summary><span class="says">This song couldn’t be found in Apple Music.</span></summary><div><p>Keep listening to this song on your Mac.<span class="why">It isn’t available in Apple’s catalogue, which can happen with uploaded songs.</span></p></div></details>
           <details><summary><span class="says">Your Mac is playing the station, which started with another song.</span></summary><div><p>A station is playing on your Mac. No action is needed.<span class="why">Apple Music chose a different starting song for your station or the station based on your song. See <a href="#cl-know">what comes with you</a>.</span></p></div></details>
@@ -292,8 +304,9 @@
               <li><strong>Only after you’ve connected to Music for Continue Listening:</strong> the song’s Apple Music ID, up to 25 songs from Up Next, and Music’s shuffle and repeat settings. For a playlist or album in your library, also its name, the album’s artist (for albums), its song count, the current song’s place in it and whether it’s shuffled. Second Chair also sends whether your Mac is shuffling its whole library and whether playback is from Apple Music outside your library. For playback outside your library, it sends when that playback started.</li>
               <li><strong>To Apple’s public catalogue search,</strong> only for songs Music has no artwork or Apple Music ID for: the album name, lead artist and country.</li>
               <li><strong>From your iPhone to Apple Music,</strong> for Continue Listening: requests for the song’s station, your recently played list, and the songs in a playlist or album from that list. These identify what your iPhone is playing and the song’s place in it.</li>
-              <li><strong>From your iPhone to Apple Music, to add to your library,</strong> only for Continue on Mac and only while Add Playlists and Albums to Library is on: a request to add an Apple Music playlist or album to your library, so your Mac can play it. This changes your library.</li>
+              <li><strong>From your iPhone to Apple Music, to add to your library,</strong> only for Continue on Mac and only when you choose Add &amp; Continue or have chosen Add to Library: a request to add an Apple Music playlist or album to your library, so your Mac can play it. This changes your library.</li>
               <li><strong>From your iPhone to your Mac, through the relay,</strong> for Continue on Mac when your Mac can’t skip ahead to the song in its own queue: the song’s Apple Music ID, title and playback position. This also includes what it’s playing from: a playlist’s name, Apple Music ID (if it has one), song count, current song’s place and shuffle state; an album’s title, artist, song count, current song’s place and shuffle state; or a station’s Apple Music ID and name. It also includes whether your whole library is shuffled, your repeat setting, and whether the playlist or album was just added to your library. The relay passes this information on without keeping it.</li>
+              <li><strong>Between your iPhone and your Mac, through the relay,</strong> for <span class="ui">Continue from iPhone</span> when the playlist or album isn’t in your library: its name, so your Mac can ask you, and your answer back to your iPhone. The relay passes the name on without keeping it, and keeps your answer with that request for up to two minutes.</li>
               <li><strong>Stays on each device:</strong> your other playlists and albums. Each device reads its own library to find the song, and only the playlist or album that’s playing is named.</li>
               <li><strong>Stays on your Mac:</strong> the local connection between Second Chair and Music. That’s why macOS asks for local network access. Second Chair shares this connection’s status with your iPhone for the Continue Listening status; playback information travels through the relay as described above.</li>
             </ul>
@@ -334,7 +347,7 @@
 </main>
 
 <footer class="site-footer">
-  <p>Second Chair is an independent project by <a href="/">Made with Merritt</a>. Mac 0.3.9 beta.</p>
+  <p>Second Chair is an independent project by <a href="/">Made with Merritt</a>. Mac 0.3.12 beta.</p>
   <nav aria-label="Footer">
     <a href="../">Home</a>
     <a href="../getting-started/">Getting started</a>
